@@ -3,16 +3,18 @@ package com.ramobeko.accountordermanagement.service;
 import com.ramobeko.accountordermanagement.model.entity.Customer;
 import com.ramobeko.accountordermanagement.repository.CustomerRepository;
 import jakarta.transaction.Transactional;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class CustomerService implements ICustomerService {
 
     private final CustomerRepository customerRepository;
+
+    public CustomerService(CustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
+    }
 
     /**
      * 📌 Adds a new customer (Calls the Oracle stored procedure)

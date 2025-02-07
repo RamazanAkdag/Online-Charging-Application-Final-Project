@@ -2,7 +2,6 @@ package com.ramobeko.accountordermanagement.service;
 
 import com.ramobeko.accountordermanagement.model.entity.Subscriber;
 import com.ramobeko.accountordermanagement.repository.SubscriberRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,10 +9,13 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class SubscriberService implements ISubscriberService {
 
     private final SubscriberRepository subscriberRepository;
+
+    public SubscriberService(SubscriberRepository subscriberRepository) {
+        this.subscriberRepository = subscriberRepository;
+    }
 
     /**
      * 📌 Adds a new subscription (Calls the Oracle stored procedure)

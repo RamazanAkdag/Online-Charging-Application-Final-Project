@@ -6,7 +6,6 @@ import com.ramobeko.accountordermanagement.model.entity.Customer;
 import com.ramobeko.accountordermanagement.repository.CustomerRepository;
 import com.ramobeko.accountordermanagement.security.JwtUtil;
 import com.ramobeko.accountordermanagement.util.model.Role;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,15 +15,19 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
-import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
 public class AuthService implements UserDetailsService {
 
     private final CustomerRepository customerRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
+
+    public AuthService(CustomerRepository customerRepository, PasswordEncoder passwordEncoder, JwtUtil jwtUtil) {
+        this.customerRepository = customerRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.jwtUtil = jwtUtil;
+    }
 
     /**
      * 📌 Registers a new customer with an encrypted password.

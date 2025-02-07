@@ -7,7 +7,6 @@ import com.ramobeko.accountordermanagement.model.dto.AuthRequest;
 import com.ramobeko.accountordermanagement.model.dto.AuthResponse;
 import com.ramobeko.accountordermanagement.model.dto.RegisterRequest;
 import com.ramobeko.accountordermanagement.service.AuthService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,7 +41,7 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> authenticateCustomer(@RequestBody AuthRequest request) {
         String token = authService.authenticateCustomer(request);
-        return ResponseEntity.ok(new AuthResponse());
+        return ResponseEntity.ok(new AuthResponse(token));
     }
 
     /**

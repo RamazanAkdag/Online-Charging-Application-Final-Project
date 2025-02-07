@@ -1,17 +1,10 @@
 package com.ramobeko.accountordermanagement.model.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
 
 import java.util.Date;
 
-@Entity
 @Table(name = "t_subscriber", schema = "AOM")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
 public class Subscriber {
 
     @Id
@@ -37,6 +30,54 @@ public class Subscriber {
     @Column(name = "subsc_status")
     @Enumerated(EnumType.STRING)
     private SubscriptionStatus status;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public SubscriptionStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(SubscriptionStatus status) {
+        this.status = status;
+    }
 
     public enum SubscriptionStatus {
         ACTIVE,
