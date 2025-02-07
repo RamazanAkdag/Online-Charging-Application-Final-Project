@@ -7,17 +7,14 @@ import com.ramobeko.accountordermanagement.repository.CustomerRepository;
 import com.ramobeko.accountordermanagement.security.JwtUtil;
 import com.ramobeko.accountordermanagement.util.model.Role;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
+
 
 @Service
-public class AuthService implements UserDetailsService {
+public class AuthService {
 
     private final CustomerRepository customerRepository;
     private final PasswordEncoder passwordEncoder;
@@ -88,20 +85,4 @@ public class AuthService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("Customer not found"));
     }
 
-    /**
-     * 📌 Loads user details for Spring Security authentication
-     * @param email Customer email
-     * @return UserDetails object
-     */
-    @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Customer customer = customerRepository.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
-
-        return new org.springframework.security.core.userdetails.User(
-                customer.getEmail(),
-                customer.getPassword(),
-                Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + customer.getRole().name()))
-        );
-    }
 }
