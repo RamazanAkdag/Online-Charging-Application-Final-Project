@@ -1,4 +1,4 @@
-package com.ramobeko.accountordermanagement.model.entity;
+package com.ramobeko.accountordermanagement.model.entity.oracle;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ramobeko.accountordermanagement.util.model.Role;

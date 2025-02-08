@@ -1,6 +1,6 @@
 package com.ramobeko.accountordermanagement.service.abstrct;
 
-import com.ramobeko.accountordermanagement.model.entity.Subscriber;
+import com.ramobeko.accountordermanagement.model.entity.oracle.Subscriber;
 
 import java.util.Date;
 import java.util.List;

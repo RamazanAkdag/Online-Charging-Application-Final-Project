@@ -1,6 +1,6 @@
 package com.ramobeko.accountordermanagement.repository;
 
-import com.ramobeko.accountordermanagement.model.entity.Customer;
+import com.ramobeko.accountordermanagement.model.entity.oracle.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.stereotype.Repository;

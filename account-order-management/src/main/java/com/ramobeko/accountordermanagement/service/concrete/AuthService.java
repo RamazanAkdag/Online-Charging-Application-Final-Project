@@ -2,7 +2,7 @@ package com.ramobeko.accountordermanagement.service.concrete;
 
 import com.ramobeko.accountordermanagement.model.dto.AuthRequest;
 import com.ramobeko.accountordermanagement.model.dto.RegisterRequest;
-import com.ramobeko.accountordermanagement.model.entity.Customer;
+import com.ramobeko.accountordermanagement.model.entity.oracle.Customer;
 import com.ramobeko.accountordermanagement.repository.CustomerRepository;
 import com.ramobeko.accountordermanagement.security.JwtUtil;
 import com.ramobeko.accountordermanagement.service.abstrct.IAuthService;

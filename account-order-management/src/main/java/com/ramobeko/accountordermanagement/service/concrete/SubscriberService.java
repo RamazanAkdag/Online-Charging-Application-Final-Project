@@ -1,6 +1,6 @@
 package com.ramobeko.accountordermanagement.service.concrete;
 
-import com.ramobeko.accountordermanagement.model.entity.Subscriber;
+import com.ramobeko.accountordermanagement.model.entity.oracle.Subscriber;
 import com.ramobeko.accountordermanagement.repository.SubscriberRepository;
 import com.ramobeko.accountordermanagement.service.abstrct.ISubscriberService;
 import org.springframework.stereotype.Service;
