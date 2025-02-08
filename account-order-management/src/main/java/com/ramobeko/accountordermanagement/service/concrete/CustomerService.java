@@ -1,7 +1,8 @@
-package com.ramobeko.accountordermanagement.service;
+package com.ramobeko.accountordermanagement.service.concrete;
 
 import com.ramobeko.accountordermanagement.model.entity.Customer;
 import com.ramobeko.accountordermanagement.repository.CustomerRepository;
+import com.ramobeko.accountordermanagement.service.abstrct.ICustomerService;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.ramobeko.accountordermanagement.service;
+package com.ramobeko.accountordermanagement.security;
 
 import com.ramobeko.accountordermanagement.model.entity.Customer;
 import com.ramobeko.accountordermanagement.repository.CustomerRepository;
@@ -6,11 +6,12 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 
-@Service
+@Component
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     private final CustomerRepository customerRepository;

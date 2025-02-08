@@ -1,5 +1,6 @@
 package com.ramobeko.accountordermanagement.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ramobeko.accountordermanagement.util.model.Role;
 import jakarta.persistence.*;
 
@@ -25,6 +26,7 @@ public class Customer implements UserDetails {
     @Column(name = "cust_mail", nullable = false, unique = true)
     private String email;
 
+    @JsonIgnore
     @Column(name = "cust_password", nullable = false)
     private String password;  // 🔑 Required for Spring Security
 
@@ -50,7 +52,7 @@ public class Customer implements UserDetails {
 
     @Override
     public String getPassword() {
-        return null;
+        return password;
     }
 
     @Override

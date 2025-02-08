@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ramobeko.accountordermanagement.model.dto.AuthRequest;
 import com.ramobeko.accountordermanagement.model.dto.AuthResponse;
 import com.ramobeko.accountordermanagement.model.dto.RegisterRequest;
-import com.ramobeko.accountordermanagement.service.AuthService;
+import com.ramobeko.accountordermanagement.service.concrete.AuthService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +23,7 @@ public class AuthController {
 
 
     /**
-     * 📌 Registers a new customer with encrypted password.
+     *  Registers a new customer with encrypted password.
      * @param request Registration request data
      * @return ResponseEntity with success message
      */
@@ -34,7 +34,7 @@ public class AuthController {
     }
 
     /**
-     * 📌 Authenticates a customer (Login process)
+     *  Authenticates a customer (Login process)
      * @param request Authentication request with email & password
      * @return JWT Token if authentication is successful
      */
@@ -45,7 +45,7 @@ public class AuthController {
     }
 
     /**
-     * 📌 Changes password for an existing customer
+     *  Changes password for an existing customer
      * @param email Customer email
      * @param oldPassword Old password for verification
      * @param newPassword New password to update
