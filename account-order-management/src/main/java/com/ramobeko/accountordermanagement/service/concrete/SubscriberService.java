@@ -1,7 +1,7 @@
 package com.ramobeko.accountordermanagement.service.concrete;
 
-import com.ramobeko.accountordermanagement.model.entity.oracle.Subscriber;
-import com.ramobeko.accountordermanagement.repository.SubscriberRepository;
+import com.ramobeko.accountordermanagement.model.entity.Subscriber;
+import com.ramobeko.accountordermanagement.repository.oracle.OracleSubscriberRepository;
 import com.ramobeko.accountordermanagement.service.abstrct.ISubscriberService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,10 +12,10 @@ import java.util.List;
 @Service
 public class SubscriberService implements ISubscriberService {
 
-    private final SubscriberRepository subscriberRepository;
+    private final OracleSubscriberRepository oracleSubscriberRepository;
 
-    public SubscriberService(SubscriberRepository subscriberRepository) {
-        this.subscriberRepository = subscriberRepository;
+    public SubscriberService(OracleSubscriberRepository oracleSubscriberRepository) {
+        this.oracleSubscriberRepository = oracleSubscriberRepository;
     }
 
     /**
@@ -33,7 +33,7 @@ public class SubscriberService implements ISubscriberService {
     @Override
     public void addSubscription(Long customerId, Long packageId, Date startDate, Date endDate,
                                 int balanceMinutes, int balanceSms, int balanceData) {
-        subscriberRepository.addSubscription(customerId, packageId, startDate, endDate, balanceMinutes, balanceSms, balanceData);
+        oracleSubscriberRepository.addSubscription(customerId, packageId, startDate, endDate, balanceMinutes, balanceSms, balanceData);
     }
 
     /**
@@ -43,6 +43,6 @@ public class SubscriberService implements ISubscriberService {
      */
     @Override
     public List<Subscriber> getAllSubscriptions() {
-        return subscriberRepository.getAllSubscriptions();
+        return oracleSubscriberRepository.getAllSubscriptions();
     }
 }

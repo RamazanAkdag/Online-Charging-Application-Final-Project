@@ -1,4 +1,4 @@
-package com.ramobeko.accountordermanagement.model.entity.oracle;
+package com.ramobeko.accountordermanagement.model.entity;
 
 import jakarta.persistence.*;
 

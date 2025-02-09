@@ -1,10 +1,14 @@
-package com.ramobeko.accountordermanagement.model.entity.oracle;
+package com.ramobeko.accountordermanagement.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ramobeko.accountordermanagement.util.model.Role;
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.Date;
+
+import org.apache.ignite.cache.query.annotations.QuerySqlField;
+import org.apache.ignite.cache.query.annotations.QueryTextField;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -13,38 +17,47 @@ import java.util.Collections;
 
 @Entity
 @Table(name = "t_customer", schema = "AOM")
-public class Customer implements UserDetails {
+public class Customer implements UserDetails, Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @QuerySqlField(index = true)
     @Column(name = "cust_id")
     private Long id;
 
+    @QuerySqlField
+    @QueryTextField
     @Column(name = "cust_name", nullable = false)
     private String name;
 
+    @QuerySqlField(index = true)
     @Column(name = "cust_mail", nullable = false, unique = true)
     private String email;
 
     @JsonIgnore
+    @QuerySqlField
     @Column(name = "cust_password", nullable = false)
-    private String password;  // 🔑 Required for Spring Security
+    private String password;
 
-    @Column(name = "cust_role", nullable = false)
+    @QuerySqlField
     @Enumerated(EnumType.STRING)
-    private Role role; // 🎭 Enum for roles (USER, ADMIN)
+    @Column(name = "cust_role", nullable = false)
+    private Role role;
 
-    @Column(name = "cust_start_date")
+    @QuerySqlField
     @Temporal(TemporalType.DATE)
+    @Column(name = "cust_start_date")
     private Date startDate;
 
+    @QuerySqlField
     @Column(name = "cust_address")
     private String address;
 
+    @QuerySqlField(index = true)
     @Column(name = "cust_status")
     private String status;
 
-    // ✅ Spring Security Methods Implementation
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.singletonList(role);
@@ -57,7 +70,7 @@ public class Customer implements UserDetails {
 
     @Override
     public String getUsername() {
-        return email; // 📧 Spring Security uses email as username
+        return email;
     }
 
     @Override
@@ -80,6 +93,7 @@ public class Customer implements UserDetails {
         return status.equalsIgnoreCase("ACTIVE");
     }
 
+    // ✅ Getters and Setters
     public Long getId() {
         return id;
     }

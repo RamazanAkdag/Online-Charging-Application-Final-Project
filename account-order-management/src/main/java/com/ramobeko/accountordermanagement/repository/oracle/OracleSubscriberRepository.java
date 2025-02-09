@@ -1,6 +1,6 @@
-package com.ramobeko.accountordermanagement.repository;
+package com.ramobeko.accountordermanagement.repository.oracle;
 
-import com.ramobeko.accountordermanagement.model.entity.oracle.Subscriber;
+import com.ramobeko.accountordermanagement.model.entity.Subscriber;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.stereotype.Repository;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface SubscriberRepository extends JpaRepository<Subscriber, Long> {
+public interface OracleSubscriberRepository extends JpaRepository<Subscriber, Long> {
 
     @Procedure(procedureName = "AOM.PKG_SUBSCRIPTION.ADD_SUBSCRIPTION")
     void addSubscription(Long p_cust_id, Long p_pkg_id,

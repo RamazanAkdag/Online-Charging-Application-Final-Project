@@ -1,7 +1,7 @@
 package com.ramobeko.accountordermanagement.security;
 
-import com.ramobeko.accountordermanagement.model.entity.oracle.Customer;
-import com.ramobeko.accountordermanagement.repository.CustomerRepository;
+import com.ramobeko.accountordermanagement.model.entity.Customer;
+import com.ramobeko.accountordermanagement.repository.oracle.OracleCustomerRepository;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,10 +13,10 @@ import java.util.Collections;
 @Component
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    private final CustomerRepository customerRepository;
+    private final OracleCustomerRepository customerRepository;
 
-    public UserDetailsServiceImpl(CustomerRepository customerRepository) {
-        this.customerRepository = customerRepository;
+    public UserDetailsServiceImpl(OracleCustomerRepository oracleCustomerRepository) {
+        this.customerRepository = oracleCustomerRepository;
     }
 
     @Override

@@ -9,6 +9,8 @@ public class RegisterRequest {
     private String password;
     private Role role; // USER or ADMIN
 
+    public RegisterRequest() {
+    }
 
     public RegisterRequest(String name, String email, String address, String password, Role role) {
         this.name = name;
