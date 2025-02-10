@@ -8,18 +8,8 @@
     </Appenders>
 
     <Loggers>
-        <!-- Apache Ignite DEBUG Seviyesi -->
-        <Logger name="org.apache.ignite" level="debug">
-            <AppenderRef ref="Console"/>
-        </Logger>
 
-        <!-- Spring Framework DEBUG Seviyesi -->
-        <Logger name="org.springframework" level="debug">
-            <AppenderRef ref="Console"/>
-        </Logger>
-
-        <!-- Genel Root Logger (Varsayılan: INFO) -->
-        <Root level="info">
+        <Root level="debug">
             <AppenderRef ref="Console"/>
         </Root>
     </Loggers>

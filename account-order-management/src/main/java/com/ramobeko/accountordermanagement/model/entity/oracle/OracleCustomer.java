@@ -1,4 +1,4 @@
-package com.ramobeko.accountordermanagement.model.entity;
+package com.ramobeko.accountordermanagement.model.entity.oracle;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ramobeko.accountordermanagement.util.model.Role;
@@ -17,43 +17,34 @@ import java.util.Collections;
 
 @Entity
 @Table(name = "t_customer", schema = "AOM")
-public class Customer implements UserDetails, Serializable {
+public class OracleCustomer implements UserDetails, Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @QuerySqlField(index = true)
+    @SequenceGenerator(name = "cust_seq_gen", sequenceName = "AOM.CUST_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cust_seq_gen")
     @Column(name = "cust_id")
     private Long id;
-
-    @QuerySqlField
-    @QueryTextField
     @Column(name = "cust_name", nullable = false)
     private String name;
 
-    @QuerySqlField(index = true)
     @Column(name = "cust_mail", nullable = false, unique = true)
     private String email;
 
     @JsonIgnore
-    @QuerySqlField
     @Column(name = "cust_password", nullable = false)
     private String password;
 
-    @QuerySqlField
     @Enumerated(EnumType.STRING)
     @Column(name = "cust_role", nullable = false)
     private Role role;
 
-    @QuerySqlField
     @Temporal(TemporalType.DATE)
     @Column(name = "cust_start_date")
     private Date startDate;
 
-    @QuerySqlField
     @Column(name = "cust_address")
     private String address;
 
-    @QuerySqlField(index = true)
     @Column(name = "cust_status")
     private String status;
 

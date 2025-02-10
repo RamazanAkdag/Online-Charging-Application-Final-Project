@@ -2,9 +2,9 @@ package com.ramobeko.accountordermanagement.service.abstrct.oracle;
 
 import com.ramobeko.accountordermanagement.model.dto.AuthRequest;
 import com.ramobeko.accountordermanagement.model.dto.RegisterRequest;
-import com.ramobeko.accountordermanagement.model.entity.Customer;
+import com.ramobeko.accountordermanagement.model.entity.oracle.OracleCustomer;
 
-public interface IOracleCustomerService extends IOracleService<Customer> {
+public interface IOracleCustomerService extends IOracleService<OracleCustomer> {
 
     /**
      * Authenticates a customer and returns a JWT token if successful.
@@ -12,7 +12,13 @@ public interface IOracleCustomerService extends IOracleService<Customer> {
      * @return JWT Token if authentication is successful
      */
     String authenticateCustomer(AuthRequest request);
-    void register(RegisterRequest request);
+    /**
+     * Registers a customer, saves the same details to Ignite, and returns the registered customer.
+     * @param request Registration request containing customer details.
+     * @return Registered Customer entity.
+     */
+    OracleCustomer register(RegisterRequest request);
+
     /**
      * Changes the password for an existing customer.
      * @param email Customer email
@@ -27,5 +33,5 @@ public interface IOracleCustomerService extends IOracleService<Customer> {
      * @param email Customer email
      * @return Customer entity
      */
-    Customer getCustomerDetails(String email);
+    OracleCustomer getCustomerDetails(String email);
 }

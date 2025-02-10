@@ -9,6 +9,36 @@
         <!-- Ignite Cluster Name -->
         <property name="igniteInstanceName" value="ignite-cluster"/>
 
+        <!-- Peer Class Loading -->
+        <property name="peerClassLoadingEnabled" value="true"/>
+
+        <!-- Discovery Configuration -->
+        <property name="discoverySpi">
+            <bean class="org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi">
+                <property name="ipFinder">
+                    <bean class="org.apache.ignite.spi.discovery.tcp.ipfinder.vm.TcpDiscoveryVmIpFinder">
+                        <property name="addresses">
+                            <list>
+                                <value>ignite-node-1:47500..47509</value>
+                                <value>ignite-node-2:47500..47509</value>
+                            </list>
+                        </property>
+                    </bean>
+                </property>
+            </bean>
+        </property>
+
+        <!-- Data Storage Configuration -->
+        <property name="dataStorageConfiguration">
+            <bean class="org.apache.ignite.configuration.DataStorageConfiguration">
+                <property name="defaultDataRegionConfiguration">
+                    <bean class="org.apache.ignite.configuration.DataRegionConfiguration">
+                        <property name="persistenceEnabled" value="false"/>
+                    </bean>
+                </property>
+            </bean>
+        </property>
+
         <!-- Caching Configuration -->
         <property name="cacheConfiguration">
             <list>
@@ -25,5 +55,17 @@
                 </bean>
             </list>
         </property>
+
+        <!-- Communication Configuration -->
+        <property name="communicationSpi">
+            <bean class="org.apache.ignite.spi.communication.tcp.TcpCommunicationSpi">
+                <property name="localPort" value="47100"/>
+                <property name="localPortRange" value="20"/>
+            </bean>
+        </property>
+
+        <!-- Network Configuration -->
+        <property name="networkTimeout" value="5000"/>
+        <property name="failureDetectionTimeout" value="10000"/>
     </bean>
 </beans>

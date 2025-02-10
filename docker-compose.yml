@@ -13,43 +13,44 @@ services:
       - OPTION_LIBS=ignite-rest-http,ignite-indexing
       - CONFIG_URI=/ignite-config.xml
       - IGNITE_WORK_DIR=/storage
+      - JAVA_OPTS=-DIGNITE_PEER_CLASS_LOADING=true
     volumes:
       - ignite-storage:/storage
       - ./ignite-config.xml:/ignite-config.xml  # Özel Ignite konfigürasyonu
     networks:
       - ignite-cluster
 
-
   ignite-node-2:
-      image: apacheignite/ignite:latest
-      container_name: ignite-node-2
-      depends_on:
-        - ignite-node-1
-      environment:
-        - OPTION_LIBS=ignite-rest-http,ignite-indexing
-        - CONFIG_URI=/ignite-config.xml
-        - IGNITE_WORK_DIR=/storage
-      volumes:
-        - ignite-storage:/storage
-        - ./ignite-config.xml:/ignite-config.xml
-      networks:
-        - ignite-cluster
-
+    image: apacheignite/ignite:latest
+    container_name: ignite-node-2
+    depends_on:
+      - ignite-node-1
+    environment:
+      - OPTION_LIBS=ignite-rest-http,ignite-indexing
+      - CONFIG_URI=/ignite-config.xml
+      - IGNITE_WORK_DIR=/storage
+      - JAVA_OPTS=-DIGNITE_PEER_CLASS_LOADING=true
+    volumes:
+      - ignite-storage:/storage
+      - ./ignite-config.xml:/ignite-config.xml
+    networks:
+      - ignite-cluster
 
   ignite-node-3:
-      image: apacheignite/ignite:latest
-      container_name: ignite-node-3
-      depends_on:
-        - ignite-node-1
-      environment:
-        - OPTION_LIBS=ignite-rest-http,ignite-indexing
-        - CONFIG_URI=/ignite-config.xml
-        - IGNITE_WORK_DIR=/storage
-      volumes:
-        - ignite-storage:/storage
-        - ./ignite-config.xml:/ignite-config.xml
-      networks:
-        - ignite-cluster
+    image: apacheignite/ignite:latest
+    container_name: ignite-node-3
+    depends_on:
+      - ignite-node-1
+    environment:
+      - OPTION_LIBS=ignite-rest-http,ignite-indexing
+      - CONFIG_URI=/ignite-config.xml
+      - IGNITE_WORK_DIR=/storage
+      - JAVA_OPTS=-DIGNITE_PEER_CLASS_LOADING=true
+    volumes:
+      - ignite-storage:/storage
+      - ./ignite-config.xml:/ignite-config.xml
+    networks:
+      - ignite-cluster
 
 
   hazelcast-node-1:

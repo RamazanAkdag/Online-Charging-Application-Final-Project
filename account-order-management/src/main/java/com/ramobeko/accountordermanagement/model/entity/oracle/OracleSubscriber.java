@@ -1,4 +1,4 @@
-package com.ramobeko.accountordermanagement.model.entity;
+package com.ramobeko.accountordermanagement.model.entity.oracle;
 
 import jakarta.persistence.*;
 
@@ -6,7 +6,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "t_subscriber", schema = "AOM")
-public class Subscriber {
+public class OracleSubscriber {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,7 +15,7 @@ public class Subscriber {
 
     @ManyToOne
     @JoinColumn(name = "subsc_cust_id", nullable = false)
-    private Customer customer;
+    private OracleCustomer oracleCustomer;
 
     @Column(name = "phone_number", unique = true, nullable = false, length = 11)
     private String phoneNumber;
@@ -40,12 +40,12 @@ public class Subscriber {
         this.id = id;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public OracleCustomer getCustomer() {
+        return oracleCustomer;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setCustomer(OracleCustomer oracleCustomer) {
+        this.oracleCustomer = oracleCustomer;
     }
 
     public String getPhoneNumber() {

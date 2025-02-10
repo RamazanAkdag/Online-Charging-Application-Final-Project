@@ -1,0 +1,46 @@
+version: '3'
+services:
+  ignite-node-1:
+    build:
+      context: .
+      dockerfile: ignite-dockerfile
+    container_name: ignite-node-1
+    ports:
+      - "10800:10800"
+      - "47100:47100"
+      - "47500:47500"
+      - "49112:49112"
+    environment:
+      - OPTION_LIBS=ignite-rest-http,ignite-indexing
+      - CONFIG_URI=/ignite-config.xml
+      - IGNITE_WORK_DIR=/storage
+      - JAVA_OPTS=-DIGNITE_PEER_CLASS_LOADING=true
+    volumes:
+      - ignite-storage:/storage
+      - ./ignite-config.xml:/ignite-config.xml
+    networks:
+      - ignite-cluster
+
+  ignite-node-2:
+    build:
+      context: .
+      dockerfile: ignite-dockerfile
+    container_name: ignite-node-2
+    depends_on:
+      - ignite-node-1
+    environment:
+      - OPTION_LIBS=ignite-rest-http,ignite-indexing
+      - CONFIG_URI=/ignite-config.xml
+      - IGNITE_WORK_DIR=/storage
+      - JAVA_OPTS=-DIGNITE_PEER_CLASS_LOADING=true
+    volumes:
+      - ignite-storage:/storage
+      - ./ignite-config.xml:/ignite-config.xml
+    networks:
+      - ignite-cluster
+
+volumes:
+  ignite-storage:
+
+networks:
+  ignite-cluster:

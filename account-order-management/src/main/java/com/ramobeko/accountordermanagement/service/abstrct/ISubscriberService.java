@@ -1,6 +1,6 @@
 package com.ramobeko.accountordermanagement.service.abstrct;
 
-import com.ramobeko.accountordermanagement.model.entity.Subscriber;
+import com.ramobeko.accountordermanagement.model.entity.oracle.OracleSubscriber;
 
 import java.util.Date;
 import java.util.List;
@@ -26,5 +26,5 @@ public interface ISubscriberService {
      *
      * @return List of all subscriptions.
      */
-    List<Subscriber> getAllSubscriptions();
+    List<OracleSubscriber> getAllSubscriptions();
 }

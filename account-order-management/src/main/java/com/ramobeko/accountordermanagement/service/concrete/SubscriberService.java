@@ -1,6 +1,6 @@
 package com.ramobeko.accountordermanagement.service.concrete;
 
-import com.ramobeko.accountordermanagement.model.entity.Subscriber;
+import com.ramobeko.accountordermanagement.model.entity.oracle.OracleSubscriber;
 import com.ramobeko.accountordermanagement.repository.oracle.OracleSubscriberRepository;
 import com.ramobeko.accountordermanagement.service.abstrct.ISubscriberService;
 import org.springframework.stereotype.Service;
@@ -42,7 +42,7 @@ public class SubscriberService implements ISubscriberService {
      * @return List of all subscriptions.
      */
     @Override
-    public List<Subscriber> getAllSubscriptions() {
+    public List<OracleSubscriber> getAllSubscriptions() {
         return oracleSubscriberRepository.getAllSubscriptions();
     }
 }

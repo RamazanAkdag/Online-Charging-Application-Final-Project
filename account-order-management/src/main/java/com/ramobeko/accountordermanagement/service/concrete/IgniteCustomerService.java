@@ -1,17 +1,24 @@
 package com.ramobeko.accountordermanagement.service.concrete;
 
-import com.ramobeko.accountordermanagement.model.dto.RegisterRequest;
-import com.ramobeko.accountordermanagement.model.entity.Customer;
+
+import com.ramobeko.accountordermanagement.model.entity.ignite.IgniteCustomer;
+import com.ramobeko.accountordermanagement.model.entity.oracle.OracleCustomer;
 import com.ramobeko.accountordermanagement.repository.ignite.IgniteCustomerRepository;
 import com.ramobeko.accountordermanagement.service.abstrct.ignite.IIgniteCustomerService;
 import com.ramobeko.accountordermanagement.util.model.Role;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 @Service
 public class IgniteCustomerService implements IIgniteCustomerService {
+
+    private static final Logger logger = LogManager.getLogger(IgniteCustomerService.class);
 
     private final IgniteCustomerRepository igniteCustomerRepository;
     private final PasswordEncoder passwordEncoder;
@@ -22,48 +29,54 @@ public class IgniteCustomerService implements IIgniteCustomerService {
     }
 
     @Override
-    public void register(RegisterRequest request) {
-        System.out.println("🔥 Registering new customer: " + request.getEmail());
+    public IgniteCustomer register(IgniteCustomer igniteCustomer) {
+        logger.info(" Registering new customer to ignite: {}", igniteCustomer.getEmail());
 
-        Customer customer = new Customer();
-        customer.setId(System.currentTimeMillis()); // Generate unique ID
-        customer.setName(request.getName());
-        customer.setEmail(request.getEmail());
-        customer.setAddress(request.getAddress());
-        customer.setStatus("ACTIVE");
-        customer.setStartDate(new Date());
-        customer.setPassword(passwordEncoder.encode(request.getPassword()));
-        customer.setRole(request.getRole() != null ? request.getRole() : Role.USER);
+        if (igniteCustomer.getId() == null) {
+            igniteCustomer.setId(System.currentTimeMillis());
+        }
+        if (igniteCustomer.getStatus() == null) {
+            igniteCustomer.setStatus("ACTIVE");
+        }
+        if (igniteCustomer.getStartDate() == null) {
+            igniteCustomer.setStartDate(new Date());
+        }
+        if (igniteCustomer.getRole() == null) {
+            igniteCustomer.setRole(Role.USER);
+        }
+        if (igniteCustomer.getPassword() != null) {
+            igniteCustomer.setPassword(passwordEncoder.encode(igniteCustomer.getPassword()));
+        }
 
-        igniteCustomerRepository.save(customer.getId(), customer);
-
-        System.out.println("✅ Customer registered successfully: " + customer.getEmail());
+        IgniteCustomer savedigniteCustomer = igniteCustomerRepository.save(igniteCustomer);
+        logger.info("✅ Customer registered successfully to ignite: {}", savedigniteCustomer.getEmail());
+        return savedigniteCustomer;
     }
 
     @Override
-    public void create(Customer entity) {
-        System.out.println("📝 Creating new customer: " + entity.getEmail());
-        igniteCustomerRepository.save(entity.getId(), entity);
-        System.out.println("✅ Customer created: " + entity.getEmail());
+    public void create(IgniteCustomer entity) {
+        logger.info("📝 Creating new customer: {}", entity.getEmail());
+        igniteCustomerRepository.save(entity);
+        logger.info("✅ Customer created: {}", entity.getEmail());
     }
 
     @Override
-    public void update(Customer entity) {
-        System.out.println("🔄 Updating customer: " + entity.getId());
+    public void update(IgniteCustomer entity) {
+        logger.info("🔄 Updating customer: {}", entity.getId());
 
         if (igniteCustomerRepository.existsById(entity.getId())) {
-            igniteCustomerRepository.save(entity.getId(), entity);
-            System.out.println("✅ Customer updated: " + entity.getId());
+            igniteCustomerRepository.save(entity);
+            logger.info("✅ Customer updated: {}", entity.getId());
         } else {
-            System.out.println("❌ Customer not found with ID: " + entity.getId());
+            logger.error("❌ Customer not found with ID: {}", entity.getId());
             throw new RuntimeException("Customer not found with ID: " + entity.getId());
         }
     }
 
     @Override
     public void delete(Long id) {
-        System.out.println("🗑 Deleting customer with ID: " + id);
+        logger.info("🗑 Deleting customer with ID: {}", id);
         igniteCustomerRepository.deleteById(id);
-        System.out.println("✅ Customer deleted: " + id);
+        logger.info("✅ Customer deleted: {}", id);
     }
 }
