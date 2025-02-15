@@ -175,9 +175,9 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <!-- Gerekirse Java sürümünü belirleyin -->
-                    <source>17</source>
-                    <target>17</target>
+                    <compilerArgs>
+                        <arg>-parameters</arg>
+                    </compilerArgs>
                 </configuration>
             </plugin>
             <plugin>

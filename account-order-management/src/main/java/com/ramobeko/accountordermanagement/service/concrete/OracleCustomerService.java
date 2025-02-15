@@ -66,7 +66,6 @@ public class OracleCustomerService implements IOracleCustomerService {
         logger.info("Customer created successfully in Oracle DB: {}", oracleCustomer.getEmail());
     }
 
-    @Transactional
     @Override
     public OracleCustomer register(RegisterRequest request) {
         logger.info("Registering new customer: {} in Oracle DB", request.getEmail());

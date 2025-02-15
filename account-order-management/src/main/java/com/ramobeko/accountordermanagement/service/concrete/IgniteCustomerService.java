@@ -48,7 +48,7 @@ public class IgniteCustomerService implements IIgniteCustomerService {
             igniteCustomer.setPassword(passwordEncoder.encode(igniteCustomer.getPassword()));
         }
 
-        IgniteCustomer savedigniteCustomer = igniteCustomerRepository.save(igniteCustomer);
+        IgniteCustomer savedigniteCustomer = igniteCustomerRepository.save(igniteCustomer.getId(),igniteCustomer);
         logger.info("✅ Customer registered successfully to ignite: {}", savedigniteCustomer.getEmail());
         return savedigniteCustomer;
     }

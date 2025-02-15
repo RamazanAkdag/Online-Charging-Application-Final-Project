@@ -28,40 +28,20 @@ import java.util.Collections;
 @Configuration
 public class IgniteConfig {
     @Bean
-    public CacheConfiguration<String, OracleCustomer> oracleCustomerCache(DataSource oracleDataSource) {
-        CacheJdbcPojoStoreFactory<String, OracleCustomer> storeFactory = new CacheJdbcPojoStoreFactory<>();
-
-        storeFactory.setDataSourceFactory(() -> oracleDataSource);
-        storeFactory.setDialect(new OracleDialect());
-
-        CacheConfiguration<String, OracleCustomer> cacheCfg = new CacheConfiguration<>("OracleCustomerCache");
-        cacheCfg.setReadThrough(true);
-        cacheCfg.setWriteThrough(true);
-        cacheCfg.setCacheStoreFactory(storeFactory);
-
-        return cacheCfg;
-    }
-
-    @Bean
-    public IgniteSpringBean igniteInstance() {
-        IgniteSpringBean igniteSpringBean = new IgniteSpringBean();
-        igniteSpringBean.setConfiguration(igniteConfiguration());
-        return igniteSpringBean;
-    }
-
-    @Bean
-    public IgniteConfiguration igniteConfiguration() {
-        IgniteConfiguration cfg = new IgniteConfiguration();
-        cfg.setPeerClassLoadingEnabled(true);
-        cfg.setClientMode(true);
+    public IgniteConfiguration igniteCfg() {
+        IgniteConfiguration igniteConfiguration = new IgniteConfiguration();
+        igniteConfiguration.setClientMode(true)
+                .setPeerClassLoadingEnabled(true);
 
         TcpDiscoverySpi discoverySpi = new TcpDiscoverySpi();
         TcpDiscoveryVmIpFinder ipFinder = new TcpDiscoveryVmIpFinder();
-        ipFinder.setAddresses(Arrays.asList("127.0.0.1:47500"));
-        discoverySpi.setIpFinder(ipFinder);
-        cfg.setDiscoverySpi(discoverySpi);
 
-        return cfg;
+        ipFinder.setAddresses(Collections.singletonList("127.0.0.1:47500"));
+
+        discoverySpi.setIpFinder(ipFinder);
+        igniteConfiguration.setDiscoverySpi(discoverySpi);
+
+
+        return igniteConfiguration;
     }
 }
-

@@ -1,4 +1,4 @@
-package com.ramobeko.accountordermanagement.model.entity;
+package com.ramobeko.accountordermanagement.model.entity.oracle;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ramobeko.accountordermanagement.util.model.Role;
@@ -13,7 +13,7 @@ import java.util.Collections;
 
 @Entity
 @Table(name = "t_customer", schema = "AOM")
-public class Customer implements UserDetails {
+public class OracleCustomer implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

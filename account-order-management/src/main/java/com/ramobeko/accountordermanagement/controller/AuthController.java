@@ -1,6 +1,8 @@
 package com.ramobeko.accountordermanagement.controller;
 
+
 import com.ramobeko.accountordermanagement.model.entity.ignite.IgniteCustomer;
+import com.ramobeko.accountordermanagement.model.entity.oracle.OracleCustomer;
 import com.ramobeko.accountordermanagement.service.abstrct.ignite.IIgniteCustomerService;
 import com.ramobeko.accountordermanagement.service.abstrct.oracle.IOracleCustomerService;
 import org.apache.logging.log4j.LogManager;
@@ -23,8 +25,8 @@ public class AuthController {
     private final IOracleCustomerService oracleCustomerService;
     private final IIgniteCustomerService igniteCustomerService;
 
-    public AuthController(IOracleCustomerService oracleCustomerService,
-                          IIgniteCustomerService igniteCustomerService) {
+    public AuthController(IOracleCustomerService oracleCustomerService
+                          ,IIgniteCustomerService igniteCustomerService) {
         this.oracleCustomerService = oracleCustomerService;
         this.igniteCustomerService = igniteCustomerService;
     }
@@ -38,9 +40,9 @@ public class AuthController {
         logger.info("Received register request for email: {} to Oracle DB", request.getEmail());
 
 
-        var customer = oracleCustomerService.register(request);
+        OracleCustomer customer = oracleCustomerService.register(request);
         logger.info("Customer registered in Oracle DB with email: {}", customer.getEmail());
-        /*logger.info("Registering same customer in Ignite DB for email: {}", customer.getEmail());
+        logger.info("Registering same customer in Ignite DB for email: {}", customer.getEmail());
 
 
         IgniteCustomer igniteCustomer = new IgniteCustomer();
@@ -54,7 +56,7 @@ public class AuthController {
         igniteCustomer.setAddress(customer.getAddress());
 
         igniteCustomerService.register(igniteCustomer);
-        logger.info("Customer registered successfully in both Oracle and Ignite DB: {}", customer.getEmail());*/
+        logger.info("Customer registered successfully in both Oracle and Ignite DB: {}", customer.getEmail());
 
         return ResponseEntity.ok("Customer registered successfully!");
     }

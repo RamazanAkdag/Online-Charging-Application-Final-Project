@@ -19,5 +19,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 @RepositoryConfig(cacheName = "CustomerCache", autoCreateCache = true)
 public interface IgniteCustomerRepository extends IgniteRepository<IgniteCustomer, Long> {
-    // Metotları tanımla
+
 }

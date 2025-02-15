@@ -19,7 +19,7 @@ RUN wget https://archive.apache.org/dist/ignite/2.16.0/apache-ignite-2.16.0-bin.
 RUN chmod +x ${IGNITE_HOME}/bin/ignite.sh
 
 # Ignite İçin Portları Aç
-EXPOSE 10800 47100 47500 49112
+EXPOSE 10800 47100 47500 49112 8080
 
 # Ignite Başlat
 CMD ["bin/ignite.sh", "/ignite-config.xml"]

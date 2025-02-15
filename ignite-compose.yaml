@@ -6,33 +6,16 @@ services:
       dockerfile: ignite-dockerfile
     container_name: ignite-node-1
     ports:
-      - "10800:10800"
-      - "47100:47100"
-      - "47500:47500"
-      - "49112:49112"
+      - "10800:10800"  # JDBC/ODBC bağlantısı için
+      - "47100:47100"  # TCP bağlantı noktası
+      - "47500:47500"  # Communication SPI için
+      - "49112:49112"  # Discovery SPI için
+      - "8080:8080"
     environment:
-      - OPTION_LIBS=ignite-rest-http,ignite-indexing
+      - OPTION_LIBS=ignite-rest-http,ignite-indexing,control-center-agent
       - CONFIG_URI=/ignite-config.xml
       - IGNITE_WORK_DIR=/storage
-      - JAVA_OPTS=-DIGNITE_PEER_CLASS_LOADING=true
-    volumes:
-      - ignite-storage:/storage
-      - ./ignite-config.xml:/ignite-config.xml
-    networks:
-      - ignite-cluster
-
-  ignite-node-2:
-    build:
-      context: .
-      dockerfile: ignite-dockerfile
-    container_name: ignite-node-2
-    depends_on:
-      - ignite-node-1
-    environment:
-      - OPTION_LIBS=ignite-rest-http,ignite-indexing
-      - CONFIG_URI=/ignite-config.xml
-      - IGNITE_WORK_DIR=/storage
-      - JAVA_OPTS=-DIGNITE_PEER_CLASS_LOADING=true
+      - JAVA_OPTS=-DIGNITE_PEER_CLASS_LOADING=true -DIGNITE_EVENT_DRIVEN_SERVICE_PROCESSOR_ENABLED=true
     volumes:
       - ignite-storage:/storage
       - ./ignite-config.xml:/ignite-config.xml
