@@ -16,6 +16,7 @@ import org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi;
 
 import org.apache.ignite.spi.discovery.tcp.ipfinder.vm.TcpDiscoveryVmIpFinder;
 import org.apache.ignite.springdata.repository.config.EnableIgniteRepositories;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -27,6 +28,10 @@ import java.util.Collections;
 
 @Configuration
 public class IgniteConfig {
+
+    @Value("${ignite.discovery.addresses}")
+    private String igniteAddresses;
+
     @Bean
     public IgniteConfiguration igniteCfg() {
         IgniteConfiguration igniteConfiguration = new IgniteConfiguration();
@@ -36,11 +41,9 @@ public class IgniteConfig {
         TcpDiscoverySpi discoverySpi = new TcpDiscoverySpi();
         TcpDiscoveryVmIpFinder ipFinder = new TcpDiscoveryVmIpFinder();
 
-        ipFinder.setAddresses(Collections.singletonList("127.0.0.1:47500"));
-
+        ipFinder.setAddresses(Collections.singletonList(igniteAddresses));
         discoverySpi.setIpFinder(ipFinder);
         igniteConfiguration.setDiscoverySpi(discoverySpi);
-
 
         return igniteConfiguration;
     }
