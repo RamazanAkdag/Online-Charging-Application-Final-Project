@@ -9,4 +9,6 @@ import java.util.Optional;
 @Repository
 public interface OracleCustomerRepository extends JpaRepository<OracleCustomer, Long> {
     Optional<OracleCustomer> findByEmail(String email);
+
+    boolean existsByEmail(String email);
 }

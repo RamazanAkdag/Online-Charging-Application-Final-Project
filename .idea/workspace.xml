@@ -5,8 +5,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f61fbd05-098c-439d-9baf-521a7396a7d6" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/account-order-management/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/controller/SubscriberController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/model/dto/IDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/model/dto/OracleCustomerDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/model/dto/request/ChangePasswordRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/model/dto/request/SubscriberRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/model/dto/response/ApiResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/model/dto/response/BalanceResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/model/dto/response/SubscriberResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/model/entity/oracle/OracleBalance.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/model/entity/oracle/OraclePackage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/model/shared/OracleSubscriber.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/abstrct/oracle/IOracleSubscriberService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/concrete/oracle/OracleSubscriberService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/model/dto/AuthRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/model/dto/request/AuthRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/model/dto/AuthResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/model/dto/response/AuthResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/model/dto/RegisterRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/model/dto/RegisterRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/model/entity/oracle/OracleSubscriber.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/repository/oracle/OracleCustomerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/repository/oracle/OracleCustomerRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/repository/oracle/OracleSubscriberRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/repository/oracle/OracleSubscriberRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/abstrct/ICrudService.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/abstrct/ICrudService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/abstrct/ISubscriberService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/abstrct/oracle/IOracleCustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/abstrct/oracle/IOracleCustomerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/abstrct/oracle/IOracleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/abstrct/oracle/IOracleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/concrete/IgniteCustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/concrete/ignite/IgniteCustomerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/concrete/OracleCustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/concrete/oracle/OracleCustomerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/concrete/SubscriberService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +48,7 @@
       <list>
         <option value="Interface" />
         <option value="Class" />
+        <option value="Dockerfile" />
       </list>
     </option>
   </component>
@@ -38,6 +69,16 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="jdkForImporter" value="17" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="MavenRunner">
+    <option name="jreName" value="17" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -50,6 +91,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.SecretKeyGenerator.executor": "Run",
+    "Docker.account-order-management/Dockerfile.executor": "Run",
     "Docker.docker-compose.yml.ignite-node-1: Compose Deployment.executor": "Run",
     "Docker.docker-compose.yml.ignite-node-2: Compose Deployment.executor": "Run",
     "Docker.docker-compose.yml.ignite-node-3: Compose Deployment.executor": "Run",
@@ -69,8 +111,9 @@
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.AccountOrderManagementApplication.executor": "Run",
-    "git-widget-placeholder": "AOM",
+    "git-widget-placeholder": "AOMsubscriberFeature",
     "ignore.virus.scanning.warn.message": "true",
     "jdk.selected.JAVA_MODULE": "17",
     "kotlin-language-version-configured": "true",
@@ -107,6 +150,18 @@
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
       <deployment type="docker-compose.yml">
         <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
+      <deployment type="dockerfile" />
+      <method v="2" />
+    </configuration>
+    <configuration name="account-order-management/Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="sourceFilePath" value="account-order-management/Dockerfile" />
+        </settings>
       </deployment>
       <method v="2" />
     </configuration>
@@ -163,6 +218,7 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Docker.account-order-management/Dockerfile" />
       <item itemvalue="Docker.ignite-compose.yaml.ignite-node-1: Compose Deployment" />
       <item itemvalue="Docker.docker-compose.yml.ignite-node-1: Compose Deployment" />
       <item itemvalue="Docker.docker-compose.yml.ignite-node-2: Compose Deployment" />
@@ -171,6 +227,7 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Docker.account-order-management/Dockerfile" />
         <item itemvalue="Docker.ignite-compose.yaml.ignite-node-1: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yml.ignite-node-3: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yml.ignite-node-2: Compose Deployment" />
@@ -206,11 +263,15 @@
       <workItem from="1739652236380" duration="419000" />
       <workItem from="1739692218416" duration="2470000" />
       <workItem from="1739694701113" duration="281000" />
-      <workItem from="1739695049274" duration="794000" />
+      <workItem from="1739695049274" duration="11556000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

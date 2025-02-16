@@ -1,6 +1,8 @@
-package com.ramobeko.accountordermanagement.model.dto;
+package com.ramobeko.accountordermanagement.model.dto.request;
 
-public class AuthRequest {
+import com.ramobeko.accountordermanagement.model.dto.IDTO;
+
+public class AuthRequest implements IDTO {
     private String email;
     private String password;
 

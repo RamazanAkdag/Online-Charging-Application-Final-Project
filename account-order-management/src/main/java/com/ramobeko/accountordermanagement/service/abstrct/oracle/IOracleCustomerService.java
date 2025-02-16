@@ -1,10 +1,12 @@
 package com.ramobeko.accountordermanagement.service.abstrct.oracle;
 
-import com.ramobeko.accountordermanagement.model.dto.AuthRequest;
+import com.ramobeko.accountordermanagement.model.dto.request.AuthRequest;
+import com.ramobeko.accountordermanagement.model.dto.request.ChangePasswordRequest;
+import com.ramobeko.accountordermanagement.model.dto.OracleCustomerDTO;
 import com.ramobeko.accountordermanagement.model.dto.RegisterRequest;
 import com.ramobeko.accountordermanagement.model.entity.oracle.OracleCustomer;
 
-public interface IOracleCustomerService extends IOracleService<OracleCustomer> {
+public interface IOracleCustomerService extends IOracleService<OracleCustomer,OracleCustomerDTO> {
 
     /**
      * Authenticates a customer and returns a JWT token if successful.
@@ -12,26 +14,24 @@ public interface IOracleCustomerService extends IOracleService<OracleCustomer> {
      * @return JWT Token if authentication is successful
      */
     String authenticateCustomer(AuthRequest request);
+
     /**
      * Registers a customer, saves the same details to Ignite, and returns the registered customer.
      * @param request Registration request containing customer details.
-     * @return Registered Customer entity.
+     * @return Registered Customer DTO.
      */
     OracleCustomer register(RegisterRequest request);
 
     /**
      * Changes the password for an existing customer.
-     * @param email Customer email
-     * @param oldPassword Old password for verification
-     * @param newPassword New password to update
+     * @param changePasswordRequest New password info to update
      */
-    void changePassword(String email, String oldPassword, String newPassword);
-
+    void changePassword(ChangePasswordRequest changePasswordRequest);
 
     /**
      * Retrieves customer details based on email.
      * @param email Customer email
-     * @return Customer entity
+     * @return Customer DTO
      */
     OracleCustomer getCustomerDetails(String email);
 }

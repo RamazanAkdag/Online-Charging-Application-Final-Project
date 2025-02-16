@@ -1,8 +1,7 @@
-package com.ramobeko.accountordermanagement.service.concrete;
+package com.ramobeko.accountordermanagement.service.concrete.ignite;
 
 
 import com.ramobeko.accountordermanagement.model.entity.ignite.IgniteCustomer;
-import com.ramobeko.accountordermanagement.model.entity.oracle.OracleCustomer;
 import com.ramobeko.accountordermanagement.repository.ignite.IgniteCustomerRepository;
 import com.ramobeko.accountordermanagement.service.abstrct.ignite.IIgniteCustomerService;
 import com.ramobeko.accountordermanagement.util.model.Role;

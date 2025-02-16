@@ -2,7 +2,7 @@ package com.ramobeko.accountordermanagement.model.dto;
 
 import com.ramobeko.accountordermanagement.util.model.Role;
 
-public class RegisterRequest {
+public class RegisterRequest implements IDTO {
     private String name;
     private String email;
     private String address;

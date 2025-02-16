@@ -1,9 +1,9 @@
-package com.ramobeko.accountordermanagement.model.dto;
+package com.ramobeko.accountordermanagement.model.dto.response;
 
 
+import com.ramobeko.accountordermanagement.model.dto.IDTO;
 
-
-public class AuthResponse {
+public class AuthResponse implements IDTO {
     private String token;
 
     public AuthResponse(String token) {
