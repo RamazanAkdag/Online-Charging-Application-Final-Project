@@ -1,34 +1,33 @@
 package com.ramobeko.accountordermanagement.model.dto.request;
 
 import com.ramobeko.accountordermanagement.model.dto.IDTO;
-
 import java.util.Date;
 
-public class SubscriberRequest implements IDTO {
+public class SubscriberUpdateRequest implements IDTO {
 
-    private Long packageId;  // 📌 `customerId` kaldırıldı
+    private Long subscriberId;  // Güncellenecek aboneliğin ID'si
     private Date startDate;
     private Date endDate;
-    private String status;   // 📌 `phoneNumber` kaldırıldı
+    private String status;
 
     // 🛠 Default Constructor
-    public SubscriberRequest() {}
+    public SubscriberUpdateRequest() {}
 
     // 🛠 Parameterized Constructor
-    public SubscriberRequest(Long packageId, Date startDate, Date endDate, String status) {
-        this.packageId = packageId;
+    public SubscriberUpdateRequest(Long subscriberId, Date startDate, Date endDate, String status) {
+        this.subscriberId = subscriberId;
         this.startDate = startDate;
         this.endDate = endDate;
         this.status = status;
     }
 
     // ✅ Getters and Setters
-    public Long getPackageId() {
-        return packageId;
+    public Long getSubscriberId() {
+        return subscriberId;
     }
 
-    public void setPackageId(Long packageId) {
-        this.packageId = packageId;
+    public void setSubscriberId(Long subscriberId) {
+        this.subscriberId = subscriberId;
     }
 
     public Date getStartDate() {

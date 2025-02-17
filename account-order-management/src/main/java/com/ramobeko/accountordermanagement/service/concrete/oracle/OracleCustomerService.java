@@ -46,14 +46,14 @@ public class OracleCustomerService implements IOracleCustomerService {
             throw new BadCredentialsException("Invalid email or password");
         }
 
-        String token = jwtUtil.generateToken(customer.getEmail(), customer.getRole().name());
+        String token = jwtUtil.generateToken(customer.getId(), customer.getEmail(), customer.getRole().name());
         logger.info("Authentication successful for customer: {}", request.getEmail());
         return token;
     }
 
 
     @Override
-    public void create(OracleCustomerDTO oracleCustomerDTO) {
+    public void create(Long id, OracleCustomerDTO oracleCustomerDTO) {
         /**
          * ⚠️ This method is a wrapper for `register()`
          *
@@ -63,6 +63,7 @@ public class OracleCustomerService implements IOracleCustomerService {
         logger.info("Redirecting create() to register() for customer: {}", oracleCustomerDTO.getEmail());
         //register(request);
     }
+
 
     @Override
     public OracleCustomer register(RegisterRequest request) {

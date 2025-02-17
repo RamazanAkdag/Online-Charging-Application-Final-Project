@@ -1,16 +1,17 @@
 package com.ramobeko.accountordermanagement.controller;
 
 import com.ramobeko.accountordermanagement.model.dto.request.SubscriberRequest;
+import com.ramobeko.accountordermanagement.model.dto.request.SubscriberUpdateRequest;
 import com.ramobeko.accountordermanagement.model.dto.response.ApiResponse;
 import com.ramobeko.accountordermanagement.model.shared.OracleSubscriber;
 import com.ramobeko.accountordermanagement.service.abstrct.oracle.IOracleSubscriberService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 @RestController
 @RequestMapping("/api/subscriber")
 public class SubscriberController {
@@ -43,24 +44,29 @@ public class SubscriberController {
     }
 
     /**
-     * Create a new subscriber.
+     * Create a new subscriber (ID from JWT Token).
      */
     @PostMapping
-    public ResponseEntity<?> createSubscriber(@RequestBody SubscriberRequest request) {
-        logger.info("Creating new subscriber with phone number: {}", request.getPhoneNumber());
-        subscriberService.create(request);
-        return ResponseEntity.ok(new ApiResponse("Subscriber Created Successfully"));
+    public ResponseEntity<?> createSubscriber(HttpServletRequest request, @RequestBody SubscriberRequest subscriberRequest) {
+        Long userId = (Long) request.getAttribute("userId");
+
+        if (userId == null) {
+            return ResponseEntity.status(401).body(new ApiResponse("Unauthorized: User ID is missing in token."));
+        }
+
+        logger.info("Creating new subscriber for userId: {}", userId);
+        subscriberService.create(userId, subscriberRequest);
+        return ResponseEntity.ok(new ApiResponse("Subscriber Created Successfully for userId: " + userId));
     }
 
     /**
      * Update an existing subscriber.
      */
-    @PutMapping("/{id}")
-    public ResponseEntity<OracleSubscriber> updateSubscriber(@PathVariable Long id, @RequestBody SubscriberRequest request) {
-        logger.info("Updating subscriber with ID: {}", id);
-        request.setCustomerId(id);
+    @PutMapping("/update")
+    public ResponseEntity<OracleSubscriber> updateSubscriber(@RequestBody SubscriberUpdateRequest request) {
+        logger.info("Updating subscriber with ID: {}", request.getSubscriberId());
         subscriberService.update(request);
-        return ResponseEntity.ok((OracleSubscriber) subscriberService.readById(id));
+        return ResponseEntity.ok((OracleSubscriber) subscriberService.readById(request.getSubscriberId()));
     }
 
     /**
