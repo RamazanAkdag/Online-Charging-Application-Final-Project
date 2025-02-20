@@ -155,7 +155,7 @@ public class OracleCustomerService implements IOracleCustomerService {
         return findCustomerByEmail(email);
     }
 
-    private OracleCustomer findCustomerByEmail(String email) {
+    public OracleCustomer findCustomerByEmail(String email) {
         return oracleCustomerRepository.findByEmail(email)
                 .orElseThrow(() -> {
                     logger.error("Customer not found with email: {}", email);
@@ -170,4 +170,7 @@ public class OracleCustomerService implements IOracleCustomerService {
                     return new IllegalArgumentException("Customer not found with ID: " + id);
                 });
     }
+
+
+
 }
