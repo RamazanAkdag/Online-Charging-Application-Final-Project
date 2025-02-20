@@ -13,6 +13,7 @@
 
   <modules>
     <module>account-order-management</module>
+      <module>trafic-generator-function</module>
   </modules>
 
   <properties>
