@@ -35,7 +35,7 @@ services:
     depends_on:
       - hazelcast-node-1
     ports:
-      - "8080:8080"
+      - "9090:8080"  # 8080 yerine 9090 kullanıldı
     environment:
       - MC_DEFAULT_CLUSTER=hazelcast-cluster
       - MC_CLUSTER_CONNECTION_ADDRESS=hazelcast-node-1:5701,hazelcast-node-2:5701
