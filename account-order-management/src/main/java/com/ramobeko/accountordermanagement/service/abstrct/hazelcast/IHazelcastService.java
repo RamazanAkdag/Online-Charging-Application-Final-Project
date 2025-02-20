@@ -2,6 +2,12 @@ package com.ramobeko.accountordermanagement.service.abstrct.hazelcast;
 
 import com.ramobeko.accountordermanagement.service.abstrct.IWriteService;
 
-public interface IHazelcastService<T> extends IWriteService<T> {
-    void delete(Long id);
+import java.util.Optional;
+
+public interface IHazelcastService<K, V> {
+    void save(K key, V value);
+    Optional<V> get(K key);
+    void remove(K key);
+    boolean containsKey(K key);
 }
+
