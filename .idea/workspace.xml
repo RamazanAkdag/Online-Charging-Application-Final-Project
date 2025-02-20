@@ -5,9 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f61fbd05-098c-439d-9baf-521a7396a7d6" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/account-order-management/docker-compose-run.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/config/HazelcastConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/model/entity/hazelcast/HazelcastCustomer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/abstrct/ignite/CacheService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/concrete/hazelcast/HazelcastCustomerService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/account-order-management/src/test/java/com/ramobeko/accountordermanagement/HazelcastTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hazelcast-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/run.bat" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/run.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/run.sh" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/run.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/abstrct/hazelcast/IHazelcastService.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/abstrct/hazelcast/IHazelcastService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,8 +24,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Dockerfile" />
         <option value="Interface" />
+        <option value="Dockerfile" />
         <option value="Class" />
       </list>
     </option>
@@ -85,7 +92,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.AccountOrderManagementApplication.executor": "Run",
-    "git-widget-placeholder": "AOM",
+    "git-widget-placeholder": "hazelcast",
     "ignore.virus.scanning.warn.message": "true",
     "jdk.selected.JAVA_MODULE": "17",
     "kotlin-language-version-configured": "true",
@@ -103,6 +110,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\berki\Desktop\ocs\Online-Charging-Application-Final-Project" />
       <recent name="C:\___FINAL_PROJECT\ocs-project\account-order-management" />
     </key>
   </component>
@@ -113,7 +121,7 @@
       <command value="mvn package" />
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.AccountOrderManagementApplication">
+  <component name="RunManager" selected="Docker.ignite-compose.yaml: Compose Deployment">
     <configuration name="AccountOrderManagementApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="C:\Java17\jdk-17.0.10" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
