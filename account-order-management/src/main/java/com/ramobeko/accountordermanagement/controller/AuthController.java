@@ -5,14 +5,18 @@ import com.ramobeko.accountordermanagement.model.dto.request.AuthRequest;
 import com.ramobeko.accountordermanagement.model.dto.request.ChangePasswordRequest;
 import com.ramobeko.accountordermanagement.model.dto.response.ApiResponse;
 import com.ramobeko.accountordermanagement.model.dto.response.AuthResponse;
+import com.ramobeko.accountordermanagement.model.entity.hazelcast.HazelcastCustomer;
 import com.ramobeko.accountordermanagement.model.entity.ignite.IgniteCustomer;
 import com.ramobeko.accountordermanagement.model.entity.oracle.OracleCustomer;
+import com.ramobeko.accountordermanagement.service.abstrct.hazelcast.IHazelcastService;
 import com.ramobeko.accountordermanagement.service.abstrct.ignite.IIgniteCustomerService;
 import com.ramobeko.accountordermanagement.service.abstrct.oracle.IOracleCustomerService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -22,11 +26,15 @@ public class AuthController {
 
     private final IOracleCustomerService oracleCustomerService;
     private final IIgniteCustomerService igniteCustomerService;
+    private final IHazelcastService<Long, HazelcastCustomer> hazelcastService;
 
     public AuthController(IOracleCustomerService oracleCustomerService,
-                          IIgniteCustomerService igniteCustomerService) {
+                          IIgniteCustomerService igniteCustomerService,
+                          IHazelcastService<Long, HazelcastCustomer> hazelcastService) {
         this.oracleCustomerService = oracleCustomerService;
         this.igniteCustomerService = igniteCustomerService;
+        this.hazelcastService = hazelcastService;
+
     }
 
     /**
@@ -54,6 +62,19 @@ public class AuthController {
         igniteCustomerService.register(igniteCustomer);
         logger.info("Customer registered successfully in both Oracle and Ignite DB: {}", customer.getEmail());
 
+        // 3️⃣ Hazelcast'e ekleme işlemi
+        HazelcastCustomer hazelcastCustomer = new HazelcastCustomer(
+                customer.getId(),
+                customer.getName(),
+                customer.getEmail(),
+                customer.getRole().toString(),
+                customer.getStartDate(),
+                customer.getAddress(),
+                customer.getStatus()
+        );
+        hazelcastService.save(hazelcastCustomer.getId(), hazelcastCustomer);
+        logger.info("Customer registered in Hazelcast cache: {}", customer.getEmail());
+
         return ResponseEntity.ok(new ApiResponse("Customer registered successfully!"));
     }
 
@@ -62,12 +83,42 @@ public class AuthController {
      */
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> authenticateCustomer(@RequestBody AuthRequest request) {
-        logger.info("Received authentication request for email: {} in Oracle DB", request.getEmail());
+        logger.info("Received authentication request for email: {}", request.getEmail());
 
+        // 1️⃣ Kullanıcının Oracle'daki ID'sini al
+        OracleCustomer customer = oracleCustomerService.findCustomerByEmail(request.getEmail());
+        if (customer == null) {
+            return ResponseEntity.status(401).body(new AuthResponse("Invalid credentials"));
+        }
+        Long customerId = customer.getId();
+
+        // 2️⃣ Önce Hazelcast cache'de var mı kontrol edelim
+        Optional<HazelcastCustomer> cachedCustomer = hazelcastService.get(customerId);
+        if (cachedCustomer.isPresent()) {
+            logger.info("Customer found in Hazelcast cache: {}", request.getEmail());
+            return ResponseEntity.ok(new AuthResponse("TOKEN_FROM_CACHE"));
+        }
+
+        // 3️⃣ Oracle DB'den al ve Hazelcast'e ekle
         String token = oracleCustomerService.authenticateCustomer(request);
-        logger.info("Authentication successful for email: {}. Token generated.", request.getEmail());
+        if (token != null) {
+            logger.info("Customer authenticated from Oracle DB: {}. Adding to Hazelcast...", request.getEmail());
 
-        return ResponseEntity.ok(new AuthResponse(token));
+            HazelcastCustomer hazelcastCustomer = new HazelcastCustomer(
+                    customer.getId(),
+                    customer.getName(),
+                    customer.getEmail(),
+                    customer.getRole().toString(),
+                    customer.getStartDate(),
+                    customer.getAddress(),
+                    customer.getStatus()
+            );
+            hazelcastService.save(customer.getId(), hazelcastCustomer);
+
+            return ResponseEntity.ok(new AuthResponse(token));
+        }
+
+        return ResponseEntity.status(401).body(new AuthResponse("Invalid credentials"));
     }
 
     /**

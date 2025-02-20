@@ -34,4 +34,6 @@ public interface IOracleCustomerService extends IOracleService<OracleCustomer,Or
      * @return Customer DTO
      */
     OracleCustomer getCustomerDetails(String email);
+
+    OracleCustomer findCustomerByEmail(String email);
 }
