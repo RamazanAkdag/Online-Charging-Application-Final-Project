@@ -15,7 +15,7 @@ public class TrafficGenerator {
 
     private static final int TRAFFIC_INTERVAL_MS = 2000; // 2 saniyede bir trafik üret
     private static final Random RANDOM = new Random();
-    private static final String HAZELCAST_MAP_NAME = "subscribers"; // Hazelcast map adı
+    private static final String HAZELCAST_MAP_NAME = "subscriberCache"; // Hazelcast map adı
     private static final String HAZELCAST_CLUSTER_NAME = "hazelcast-cluster"; // ✅ Cluster adı düzeltildi
 
     // Trafik türleri
