@@ -6,11 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="f61fbd05-098c-439d-9baf-521a7396a7d6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/AccountOrderManagementApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/AccountOrderManagementApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/config/HazelcastConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/config/HazelcastConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/abstrct/oracle/IOracleCustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/abstrct/oracle/IOracleCustomerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/concrete/oracle/OracleCustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/concrete/oracle/OracleCustomerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hazelcast-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/hazelcast-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,6 +74,7 @@
     "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
     "Maven.account-order-management [clean].executor": "Run",
     "Maven.account-order-management [install].executor": "Run",
+    "Maven.ocs-project [clean,instal,-DskipTests].executor": "Run",
     "Maven.ocs-project [clean,install].executor": "Run",
     "Maven.ocs-project [clean].executor": "Run",
     "Maven.ocs-project [package].executor": "Run",
@@ -113,13 +112,14 @@
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="mvn clean" />
-      <command value="mvn clean install" />
       <command value="mvn package" />
+      <command value="mvn clean install" />
+      <command value="mvn clean instal -DskipTests" />
     </option>
   </component>
-  <component name="RunManager" selected="Docker.ignite-compose.yaml: Compose Deployment">
+  <component name="RunManager" selected="Spring Boot.AccountOrderManagementApplication">
     <configuration name="AccountOrderManagementApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="C:\Java17\jdk-17.0.10" />
+      <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-17" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <module name="account-order-management" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.ramobeko.accountordermanagement.AccountOrderManagementApplication" />
