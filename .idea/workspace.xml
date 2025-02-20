@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f61fbd05-098c-439d-9baf-521a7396a7d6" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="f61fbd05-098c-439d-9baf-521a7396a7d6" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -76,6 +74,9 @@
     &quot;Maven.ocs-project [clean].executor&quot;: &quot;Run&quot;,
     &quot;Maven.ocs-project [package].executor&quot;: &quot;Run&quot;,
     &quot;Maven.ocs-project [validate].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.tgf-traffic-generator [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.tgf-traffic-generator [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.tgf-traffic-generator [package].executor&quot;: &quot;Run&quot;,
     &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
     &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
     &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
@@ -114,7 +115,7 @@
       <command value="mvn clean instal -DskipTests" />
     </option>
   </component>
-  <component name="RunManager" selected="Application.TrafficGenerator">
+  <component name="RunManager" selected="Spring Boot.AccountOrderManagementApplication">
     <configuration name="TrafficGenerator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.TrafficGenerator" />
       <module name="trafic-generator-function" />
