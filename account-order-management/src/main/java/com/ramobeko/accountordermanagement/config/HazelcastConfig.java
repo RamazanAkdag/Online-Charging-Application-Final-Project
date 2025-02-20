@@ -5,23 +5,30 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
+import com.hazelcast.config.Config;
+import com.hazelcast.config.JoinConfig;
+import com.hazelcast.config.NetworkConfig;
+import com.hazelcast.core.Hazelcast;
+import com.hazelcast.core.HazelcastInstance;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
 @Configuration
-@Primary  // Eğer birden fazla varsa, bunu öncelikli yapar.
 public class HazelcastConfig {
 
     @Bean
-    public Config hazelcastConfig() {
+    public HazelcastInstance hazelcastInstance() {
         Config config = new Config();
         config.setClusterName("hazelcast-cluster");
 
-        JoinConfig joinConfig = config.getNetworkConfig().getJoin();
+        // Network yapılandırması
+        NetworkConfig networkConfig = config.getNetworkConfig();
+        JoinConfig joinConfig = networkConfig.getJoin();
         joinConfig.getMulticastConfig().setEnabled(false);
         joinConfig.getTcpIpConfig().setEnabled(true)
                 .addMember("hazelcast-node-1:5701")
                 .addMember("hazelcast-node-2:5701");
 
-        return config;
+        return Hazelcast.newHazelcastInstance(config);
     }
 }
-
-

@@ -9,9 +9,7 @@ import org.springframework.context.annotation.FilterType;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@ComponentScan(excludeFilters = {
-        @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = HazelcastConfig.class)
-})
+@ComponentScan(basePackages = {"com.ramobeko.accountordermanagement.config"})
 @EnableIgniteRepositories(basePackages = "com.ramobeko.accountordermanagement.repository.ignite")
 @EnableJpaRepositories(basePackages = "com.ramobeko.accountordermanagement.repository.oracle")
 public class AccountOrderManagementApplication {
