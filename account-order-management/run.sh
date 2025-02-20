@@ -15,4 +15,4 @@ java \
 -Xms512m -Xmx1g \
 -DIGNITE_REST_START_ON_CLIENT=false \
 -DIGNITE_QUIET=false \
--jar account-order-management-0.0.1-SNAPSHOT.jar
+-jar target/account-order-management-0.0.1-SNAPSHOT.jar

@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f61fbd05-098c-439d-9baf-521a7396a7d6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/account-order-management/java_jar_run.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/account-order-management/run.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/account-order-management/run.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/run.bat" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/run.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/run.sh" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/run.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +85,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.AccountOrderManagementApplication.executor": "Run",
-    "git-widget-placeholder": "AOMJarFeature",
+    "git-widget-placeholder": "AOM",
     "ignore.virus.scanning.warn.message": "true",
     "jdk.selected.JAVA_MODULE": "17",
     "kotlin-language-version-configured": "true",
