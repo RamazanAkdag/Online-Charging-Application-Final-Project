@@ -16,8 +16,6 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -83,42 +81,12 @@ public class AuthController {
      */
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> authenticateCustomer(@RequestBody AuthRequest request) {
-        logger.info("Received authentication request for email: {}", request.getEmail());
+        logger.info("Received authentication request for email: {} in Oracle DB", request.getEmail());
 
-        // 1️⃣ Kullanıcının Oracle'daki ID'sini al
-        OracleCustomer customer = oracleCustomerService.findCustomerByEmail(request.getEmail());
-        if (customer == null) {
-            return ResponseEntity.status(401).body(new AuthResponse("Invalid credentials"));
-        }
-        Long customerId = customer.getId();
-
-        // 2️⃣ Önce Hazelcast cache'de var mı kontrol edelim
-        Optional<HazelcastCustomer> cachedCustomer = hazelcastService.get(customerId);
-        if (cachedCustomer.isPresent()) {
-            logger.info("Customer found in Hazelcast cache: {}", request.getEmail());
-            return ResponseEntity.ok(new AuthResponse("TOKEN_FROM_CACHE"));
-        }
-
-        // 3️⃣ Oracle DB'den al ve Hazelcast'e ekle
         String token = oracleCustomerService.authenticateCustomer(request);
-        if (token != null) {
-            logger.info("Customer authenticated from Oracle DB: {}. Adding to Hazelcast...", request.getEmail());
+        logger.info("Authentication successful for email: {}. Token generated.", request.getEmail());
 
-            HazelcastCustomer hazelcastCustomer = new HazelcastCustomer(
-                    customer.getId(),
-                    customer.getName(),
-                    customer.getEmail(),
-                    customer.getRole().toString(),
-                    customer.getStartDate(),
-                    customer.getAddress(),
-                    customer.getStatus()
-            );
-            hazelcastService.save(customer.getId(), hazelcastCustomer);
-
-            return ResponseEntity.ok(new AuthResponse(token));
-        }
-
-        return ResponseEntity.status(401).body(new AuthResponse("Invalid credentials"));
+        return ResponseEntity.ok(new AuthResponse(token));
     }
 
     /**
