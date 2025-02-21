@@ -24,11 +24,11 @@ public class SubscriberController {
     private static final Logger logger = LogManager.getLogger(SubscriberController.class);
 
     private final IOracleSubscriberService oracleSubscriberService;
-    private final IHazelcastService<String, HazelcastSubscriber> hazelcastService;
+    private final IHazelcastService<String, Long> hazelcastService;
     private final IIgniteSubscriberService igniteSubscriberService;
 
     public SubscriberController(IOracleSubscriberService oracleSubscriberService,
-                                IHazelcastService<String, HazelcastSubscriber> hazelcastService,
+                                IHazelcastService<String, Long> hazelcastService,
                                 IIgniteSubscriberService igniteSubscriberService) {
         this.oracleSubscriberService = oracleSubscriberService;
         this.hazelcastService = hazelcastService;
@@ -38,6 +38,7 @@ public class SubscriberController {
     /**
      * Creates a new subscriber, storing it in Oracle, Ignite, and Hazelcast.
      */
+
     @PostMapping
     public ResponseEntity<?> createSubscriber(HttpServletRequest request, @RequestBody SubscriberRequest subscriberRequest) {
         Long userId = (Long) request.getAttribute("userId");
@@ -55,18 +56,9 @@ public class SubscriberController {
             return ResponseEntity.status(500).body(new ApiResponse("Failed to retrieve created subscriber."));
         }
 
-        // Store in Hazelcast
-        HazelcastSubscriber hazelcastSubscriber = new HazelcastSubscriber(
-                createdSubscriber.getId(),
-                createdSubscriber.getCustomer() != null ? createdSubscriber.getCustomer().getId() : null,
-                createdSubscriber.getPackagePlan() != null ? createdSubscriber.getPackagePlan().getId() : null,
-                createdSubscriber.getPhoneNumber(),
-                createdSubscriber.getStartDate(),
-                createdSubscriber.getEndDate(),
-                createdSubscriber.getStatus()
-        );
-        hazelcastService.save(hazelcastSubscriber.getPhoneNumber(), hazelcastSubscriber);
-        logger.info("Subscriber stored in Hazelcast with phone: {}", createdSubscriber.getPhoneNumber());
+        // Store in Hazelcast (phone as key, ID as value)
+        hazelcastService.save(createdSubscriber.getPhoneNumber(), createdSubscriber.getId());
+        logger.info("Subscriber stored in Hazelcast with phone: {} and ID: {}", createdSubscriber.getPhoneNumber(), createdSubscriber.getId());
 
         // Store in Ignite
         igniteSubscriberService.createFromOracle(createdSubscriber);
@@ -89,19 +81,6 @@ public class SubscriberController {
             logger.error("Failed to retrieve updated subscriber from Oracle for ID: {}", request.getSubscriberId());
             return ResponseEntity.status(500).body(null);
         }
-
-        // Update Hazelcast
-        HazelcastSubscriber hazelcastSubscriber = new HazelcastSubscriber(
-                updatedSubscriber.getId(),
-                updatedSubscriber.getCustomer() != null ? updatedSubscriber.getCustomer().getId() : null,
-                updatedSubscriber.getPackagePlan() != null ? updatedSubscriber.getPackagePlan().getId() : null,
-                updatedSubscriber.getPhoneNumber(),
-                updatedSubscriber.getStartDate(),
-                updatedSubscriber.getEndDate(),
-                updatedSubscriber.getStatus()
-        );
-        hazelcastService.save(hazelcastSubscriber.getPhoneNumber(), hazelcastSubscriber);
-        logger.info("Subscriber updated in Hazelcast with phone: {}", updatedSubscriber.getPhoneNumber());
 
         // Update Ignite
         igniteSubscriberService.updateFromOracle(updatedSubscriber);
