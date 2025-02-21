@@ -22,6 +22,7 @@ services:
       - HZ_NETWORK_JOIN_TCPIP_ENABLED=true
       - HZ_NETWORK_JOIN_TCPIP_MEMBERS=hazelcast-node1,hazelcast-node2
       - HZ_NETWORK_PUBLICADDRESS=hazelcast-node2:5701
+      - HZ_NETWORK_JOIN_AUTODETECTION_ENABLED=false
     networks:
       - hazelcast-network
     ports:
