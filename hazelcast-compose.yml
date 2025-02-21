@@ -8,9 +8,10 @@ services:
       - "5701:5701"
     environment:
       - HZ_CLUSTERNAME=hazelcast-cluster
+      - HZ_NETWORK_PORT=5701
       - HZ_NETWORK_JOIN_TCPIP_ENABLED=true
       - HZ_NETWORK_JOIN_MULTICAST_ENABLED=false
-      - HZ_NETWORK_JOIN_TCPIP_MEMBERS=hazelcast-node-1,hazelcast-node-2
+      - HZ_NETWORK_JOIN_TCPIP_MEMBERS=hazelcast-node-1:5701,hazelcast-node-2:5701
     networks:
       - hazelcast-cluster
 
@@ -21,20 +22,21 @@ services:
       - "5702:5701"
     environment:
       - HZ_CLUSTERNAME=hazelcast-cluster
+      - HZ_NETWORK_PORT=5701
       - HZ_NETWORK_JOIN_TCPIP_ENABLED=true
       - HZ_NETWORK_JOIN_MULTICAST_ENABLED=false
-      - HZ_NETWORK_JOIN_TCPIP_MEMBERS=hazelcast-node-1,hazelcast-node-2
+      - HZ_NETWORK_JOIN_TCPIP_MEMBERS=hazelcast-node-1:5701,hazelcast-node-2:5701
     networks:
       - hazelcast-cluster
 
   hazelcast-management-center:
-    image: hazelcast/management-center:latest
+    image: hazelcast/management-center:5.3.0
     container_name: hazelcast-mc
     ports:
       - "9090:8080"
     environment:
       - MC_DEFAULT_CLUSTER=hazelcast-cluster
-      - MC_CLUSTER_CONNECTION_ADDRESS=hazelcast-node-1,hazelcast-node-2
+      - MC_CLUSTER_CONNECTION_ADDRESS=hazelcast-node-1:5701,hazelcast-node-2:5701
     networks:
       - hazelcast-cluster
 
