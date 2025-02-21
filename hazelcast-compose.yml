@@ -9,9 +9,10 @@ services:
     environment:
       - HZ_CLUSTERNAME=hazelcast-cluster
       - HZ_NETWORK_PORT=5701
+      - HZ_NETWORK_PUBLICADDRESS=hazelcast-node-1:5701  # Public address ekledik
       - HZ_NETWORK_JOIN_TCPIP_ENABLED=true
-      - HZ_NETWORK_JOIN_TCPIP_MEMBERS=hazelcast-node-1:5701,hazelcast-node-2:5701
-      - HZ_NETWORK_BIND_ANY=false
+      - HZ_NETWORK_JOIN_TCPIP_MEMBERS=hazelcast-node-1,hazelcast-node-2  # Port kaldırıldı
+      - HZ_NETWORK_BIND_ANY=true  # Self-bind sorununu önlemek için true yaptık
     networks:
       - hazelcast-ignite-cluster
 
@@ -21,13 +22,14 @@ services:
     depends_on:
       - hazelcast-node-1
     ports:
-      - "5702:5701"  # Çakışmayı önlemek için 5702 portunu host makinede bağladım
+      - "5702:5701"
     environment:
       - HZ_CLUSTERNAME=hazelcast-cluster
       - HZ_NETWORK_PORT=5701
+      - HZ_NETWORK_PUBLICADDRESS=hazelcast-node-2:5701
       - HZ_NETWORK_JOIN_TCPIP_ENABLED=true
-      - HZ_NETWORK_JOIN_TCPIP_MEMBERS=hazelcast-node-1:5701,hazelcast-node-2:5701
-      - HZ_NETWORK_BIND_ANY=false
+      - HZ_NETWORK_JOIN_TCPIP_MEMBERS=hazelcast-node-1,hazelcast-node-2
+      - HZ_NETWORK_BIND_ANY=true
     networks:
       - hazelcast-ignite-cluster
 
