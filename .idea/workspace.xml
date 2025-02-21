@@ -6,6 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="f61fbd05-098c-439d-9baf-521a7396a7d6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/config/HazelcastConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/config/HazelcastConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hazelcast-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/hazelcast-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,6 +68,8 @@
     "Docker.docker-compose.yml.ignite-node-2: Compose Deployment.executor": "Run",
     "Docker.docker-compose.yml.ignite-node-3: Compose Deployment.executor": "Run",
     "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
+    "Docker.hazelcast-compose.yml.hazelcast-node1: Compose Deployment.executor": "Run",
+    "Docker.hazelcast-compose.yml.management-center: Compose Deployment.executor": "Run",
     "Docker.hazelcast-compose.yml: Compose Deployment.executor": "Run",
     "Docker.ignite-compose.yaml.ignite-node-1: Compose Deployment.executor": "Run",
     "Docker.ignite-compose.yaml: Compose Deployment.executor": "Run",
@@ -90,7 +95,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.AccountOrderManagementApplication.executor": "Run",
-    "git-widget-placeholder": "tgf",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "jdk.selected.JAVA_MODULE": "17",
     "kotlin-language-version-configured": "true",
@@ -136,10 +141,9 @@
     </configuration>
     <configuration name="AccountOrderManagementApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-17" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <module name="account-order-management" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.ramobeko.accountordermanagement.AccountOrderManagementApplication" />
-      <option name="VM_PARAMETERS" value="--add-opens=java.base/jdk.internal.misc=ALL-UNNAMED --add-opens=java.base/sun.nio.ch=ALL-UNNAMED --add-opens=java.management/com.sun.jmx.mbeanserver=ALL-UNNAMED --add-opens=jdk.internal.jvmstat/sun.jvmstat.monitor=ALL-UNNAMED --add-opens=java.base/sun.reflect.generics.reflectiveObjects=ALL-UNNAMED --add-opens=java.base/java.io=ALL-UNNAMED --add-opens=java.base/java.nio=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.util.concurrent=ALL-UNNAMED --add-opens=java.base/java.util.concurrent.locks=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED -Xms512m -Xmx1g -DIGNITE_REST_START_ON_CLIENT=false -DIGNITE_QUIET=false" />
+      <option name="VM_PARAMETERS" value="--add-opens=java.base/jdk.internal.misc=ALL-UNNAMED --add-opens=java.base/sun.nio.ch=ALL-UNNAMED --add-opens=java.management/com.sun.jmx.mbeanserver=ALL-UNNAMED --add-opens=jdk.internal.jvmstat/sun.jvmstat.monitor=ALL-UNNAMED --add-opens=java.base/sun.reflect.generics.reflectiveObjects=ALL-UNNAMED --add-opens=java.base/java.io=ALL-UNNAMED --add-opens=java.base/java.nio=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.util.concurrent=ALL-UNNAMED --add-opens=java.base/java.util.concurrent.locks=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED -Xms512m -Xmx1g -DIGNITE_REST_START_ON_CLIENT=false -DIGNITE_QUIET=false -Dhazelcast.serialization.enable-compact=false" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -156,17 +160,35 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="account-order-management/Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
-      <deployment type="dockerfile">
+    <configuration name="hazelcast-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
         <settings>
-          <option name="sourceFilePath" value="account-order-management/Dockerfile" />
+          <option name="sourceFilePath" value="hazelcast-compose.yml" />
         </settings>
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="hazelcast-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+    <configuration name="hazelcast-compose.yml.hazelcast-node1: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
+          <option name="services">
+            <list>
+              <option value="hazelcast-node1" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="hazelcast-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="hazelcast-compose.yml.management-center: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="management-center" />
+            </list>
+          </option>
           <option name="sourceFilePath" value="hazelcast-compose.yml" />
         </settings>
       </deployment>
@@ -180,34 +202,21 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="ignite-compose.yaml.ignite-node-1: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="services">
-            <list>
-              <option value="ignite-node-1" />
-            </list>
-          </option>
-          <option name="sourceFilePath" value="ignite-compose.yaml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
     <list>
       <item itemvalue="Application.TrafficGenerator" />
+      <item itemvalue="Docker.hazelcast-compose.yml.hazelcast-node1: Compose Deployment" />
+      <item itemvalue="Docker.hazelcast-compose.yml.management-center: Compose Deployment" />
       <item itemvalue="Docker.hazelcast-compose.yml: Compose Deployment" />
       <item itemvalue="Docker.ignite-compose.yaml: Compose Deployment" />
-      <item itemvalue="Docker.account-order-management/Dockerfile" />
-      <item itemvalue="Docker.ignite-compose.yaml.ignite-node-1: Compose Deployment" />
       <item itemvalue="Spring Boot.AccountOrderManagementApplication" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Docker.hazelcast-compose.yml.hazelcast-node1: Compose Deployment" />
+        <item itemvalue="Docker.hazelcast-compose.yml.management-center: Compose Deployment" />
         <item itemvalue="Docker.hazelcast-compose.yml: Compose Deployment" />
         <item itemvalue="Application.TrafficGenerator" />
         <item itemvalue="Docker.ignite-compose.yaml: Compose Deployment" />
-        <item itemvalue="Docker.account-order-management/Dockerfile" />
-        <item itemvalue="Docker.ignite-compose.yaml.ignite-node-1: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
