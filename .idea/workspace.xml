@@ -60,7 +60,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.HazelcastDataLister.executor": "Run",
+    "Application.Main.executor": "Run",
     "Application.SecretKeyGenerator.executor": "Run",
+    "Application.TrafficGenerator.executor": "Run",
     "Docker.account-order-management/Dockerfile.executor": "Run",
     "Docker.docker-compose.yml.ignite-node-1: Compose Deployment.executor": "Run",
     "Docker.docker-compose.yml.ignite-node-2: Compose Deployment.executor": "Run",
@@ -114,6 +117,9 @@
       <recent name="C:\Users\berki\Desktop\ocs\Online-Charging-Application-Final-Project" />
       <recent name="C:\___FINAL_PROJECT\ocs-project\account-order-management" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.example" />
+    </key>
   </component>
   <component name="RunAnythingCache">
     <option name="myCommands">
@@ -124,6 +130,19 @@
     </option>
   </component>
   <component name="RunManager" selected="Spring Boot.AccountOrderManagementApplication">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.example.Main" />
+      <module name="trafic-generator-function" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TrafficGenerator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.TrafficGenerator" />
       <module name="trafic-generator-function" />
@@ -299,6 +318,7 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Application.Main" />
       <item itemvalue="Application.TrafficGenerator" />
       <item itemvalue="Docker.hazelcast-compose.yml.hazelcast-node1: Compose Deployment" />
       <item itemvalue="Docker.hazelcast-compose.yml.management-center: Compose Deployment" />
@@ -312,6 +332,7 @@
         <item itemvalue="Docker.hazelcast-compose.yml.management-center: Compose Deployment" />
         <item itemvalue="Docker.hazelcast-compose.yml: Compose Deployment" />
         <item itemvalue="Application.TrafficGenerator" />
+        <item itemvalue="Docker.hazelcast-compose.yml: Compose Deployment" />
         <item itemvalue="Docker.ignite-compose.yaml: Compose Deployment" />
       </list>
     </recent_temporary>
@@ -352,7 +373,7 @@
       <workItem from="1740075288001" duration="3984000" />
       <workItem from="1740113710077" duration="11944000" />
       <workItem from="1740127183999" duration="121000" />
-      <workItem from="1740127322492" duration="14313000" />
+      <workItem from="1740127322492" duration="22204000" />
     </task>
     <servers />
   </component>
