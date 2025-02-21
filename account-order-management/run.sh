@@ -14,4 +14,4 @@ java --add-opens=java.base/jdk.internal.misc=ALL-UNNAMED \
      -DIGNITE_REST_START_ON_CLIENT=false \
      -DIGNITE_QUIET=false \
      -Dhazelcast.serialization.enable-compact=false \
-     -jar ./account-order-management-0.0.1-SNAPSHOT.jar
+     -jar ./target/account-order-management-0.0.1-SNAPSHOT.jar
