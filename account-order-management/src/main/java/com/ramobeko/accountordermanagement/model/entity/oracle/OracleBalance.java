@@ -1,5 +1,6 @@
 package com.ramobeko.accountordermanagement.model.entity.oracle;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ramobeko.accountordermanagement.model.shared.OracleSubscriber;
 import jakarta.persistence.*;
 import java.util.Date;
@@ -13,10 +14,12 @@ public class OracleBalance {
     @Column(name = "bal_id", nullable = false)
     private Long id;
 
+    @JsonIgnore//to eliminate infinite recursion on json
     @ManyToOne
     @JoinColumn(name = "bal_subsc_id", referencedColumnName = "subsc_id", nullable = false)
     private OracleSubscriber subscriber;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "bal_pkg_id", referencedColumnName = "pkg_id", nullable = false)
     private OraclePackage packagePlan;
