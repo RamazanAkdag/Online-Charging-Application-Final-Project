@@ -9,4 +9,6 @@ import java.util.List;
 
 public interface IOracleSubscriberService extends IOracleService<OracleSubscriber,SubscriberRequest> {
     public void update(SubscriberUpdateRequest request);
+
+    public OracleSubscriber createSubscriber(Long id, SubscriberRequest request);
 }
