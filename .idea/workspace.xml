@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f61fbd05-098c-439d-9baf-521a7396a7d6" name="Changes" comment="" />
+    <list default="true" id="f61fbd05-098c-439d-9baf-521a7396a7d6" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/hazelcast-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/hazelcast-compose.yml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -249,7 +251,7 @@
       <workItem from="1740075288001" duration="3984000" />
       <workItem from="1740113710077" duration="11944000" />
       <workItem from="1740127183999" duration="121000" />
-      <workItem from="1740127322492" duration="5078000" />
+      <workItem from="1740127322492" duration="5262000" />
     </task>
     <servers />
   </component>

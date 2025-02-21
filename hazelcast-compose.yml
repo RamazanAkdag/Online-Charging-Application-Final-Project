@@ -1,45 +1,41 @@
-version: "3.8"
+version: '3.8'
 
 services:
-  hazelcast-node-1:
-    image: hazelcast/hazelcast:5.3.0
-    container_name: hazelcast-node-1
+  hazelcast-node1:
+    image: hazelcast/hazelcast:latest
+    container_name: hazelcast-node1
+    environment:
+      - HZ_CLUSTERNAME=hazelcast-cluster
+      - HZ_NETWORK_JOIN_TCPIP_ENABLED=true
+      - HZ_NETWORK_JOIN_TCPIP_MEMBERS=hazelcast-node1,hazelcast-node2
+    networks:
+      - hazelcast-network
     ports:
       - "5701:5701"
+
+  hazelcast-node2:
+    image: hazelcast/hazelcast:latest
+    container_name: hazelcast-node2
     environment:
       - HZ_CLUSTERNAME=hazelcast-cluster
-      - HZ_NETWORK_PORT=5701
       - HZ_NETWORK_JOIN_TCPIP_ENABLED=true
-      - HZ_NETWORK_JOIN_MULTICAST_ENABLED=false
-      - HZ_NETWORK_JOIN_TCPIP_MEMBERS=hazelcast-node-1:5701,hazelcast-node-2:5701
+      - HZ_NETWORK_JOIN_TCPIP_MEMBERS=hazelcast-node1,hazelcast-node2
     networks:
-      - hazelcast-cluster
-
-  hazelcast-node-2:
-    image: hazelcast/hazelcast:5.3.0
-    container_name: hazelcast-node-2
+      - hazelcast-network
     ports:
       - "5702:5701"
-    environment:
-      - HZ_CLUSTERNAME=hazelcast-cluster
-      - HZ_NETWORK_PORT=5701
-      - HZ_NETWORK_JOIN_TCPIP_ENABLED=true
-      - HZ_NETWORK_JOIN_MULTICAST_ENABLED=false
-      - HZ_NETWORK_JOIN_TCPIP_MEMBERS=hazelcast-node-1:5701,hazelcast-node-2:5701
-    networks:
-      - hazelcast-cluster
 
-  hazelcast-management-center:
-    image: hazelcast/management-center:5.3.0
-    container_name: hazelcast-mc
-    ports:
-      - "9090:8080"
+  management-center:
+    image: hazelcast/management-center:latest
+    container_name: hazelcast-mancenter
     environment:
       - MC_DEFAULT_CLUSTER=hazelcast-cluster
-      - MC_CLUSTER_CONNECTION_ADDRESS=hazelcast-node-1:5701,hazelcast-node-2:5701
+      - MC_CLUSTER_MEMBER=hazelcast-node1:5701
     networks:
-      - hazelcast-cluster
+      - hazelcast-network
+    ports:
+      - "8080:8080"
 
 networks:
-  hazelcast-cluster:
+  hazelcast-network:
     driver: bridge
