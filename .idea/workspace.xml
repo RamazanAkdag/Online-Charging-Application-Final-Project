@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="f61fbd05-098c-439d-9baf-521a7396a7d6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/run.sh" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/run.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hazelcast-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/hazelcast-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -252,7 +254,7 @@
       <workItem from="1740075288001" duration="3984000" />
       <workItem from="1740113710077" duration="11944000" />
       <workItem from="1740127183999" duration="121000" />
-      <workItem from="1740127322492" duration="556000" />
+      <workItem from="1740127322492" duration="1498000" />
     </task>
     <servers />
   </component>
