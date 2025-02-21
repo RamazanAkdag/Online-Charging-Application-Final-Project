@@ -6,11 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f61fbd05-098c-439d-9baf-521a7396a7d6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/controller/SubscriberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/controller/SubscriberController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/model/entity/hazelcast/HazelcastSubscriber.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/model/entity/hazelcast/HazelcastSubscriber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/abstrct/hazelcast/IHazelcastService.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/abstrct/hazelcast/IHazelcastService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/concrete/hazelcast/HazelcastSubscriberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/concrete/hazelcast/HazelcastSubscriberService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hazelcast-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/hazelcast-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -254,7 +250,7 @@
       <workItem from="1740034587553" duration="1478000" />
       <workItem from="1740065827466" duration="3070000" />
       <workItem from="1740075288001" duration="3984000" />
-      <workItem from="1740113710077" duration="9250000" />
+      <workItem from="1740113710077" duration="11206000" />
     </task>
     <servers />
   </component>
