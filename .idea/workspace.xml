@@ -5,8 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f61fbd05-098c-439d-9baf-521a7396a7d6" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/config/HazelcastConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/config/HazelcastConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/traffic-generator-function/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/traffic-generator-function/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/traffic-generator-function/src/main/java/org/example/HazelcastClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/traffic-generator-function/src/main/java/org/example/HazelcastClientApp.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,6 +64,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.HazelcastClientApp.executor": "Run",
     "Application.HazelcastDataLister.executor": "Run",
     "Application.Main.executor": "Run",
     "Application.SecretKeyGenerator.executor": "Run",
@@ -129,10 +134,10 @@
       <command value="mvn clean install" />
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.AccountOrderManagementApplication">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.example.Main" />
-      <module name="trafic-generator-function" />
+  <component name="RunManager" selected="Application.HazelcastClientApp">
+    <configuration name="HazelcastClientApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.example.HazelcastClientApp" />
+      <module name="traffic-generator-function" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="org.example.*" />
@@ -309,31 +314,57 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="ignite-compose.yaml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="sourceFilePath" value="ignite-compose.yaml" />
-        </settings>
-      </deployment>
+    <configuration default="true" type="tests" factoryName="Autodetect">
+      <module name="traffic-generator-function" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Doctests">
+      <module name="traffic-generator-function" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.HazelcastClientApp" />
       <item itemvalue="Application.TrafficGenerator" />
       <item itemvalue="Docker.hazelcast-compose.yml.hazelcast-node1: Compose Deployment" />
       <item itemvalue="Docker.hazelcast-compose.yml.management-center: Compose Deployment" />
       <item itemvalue="Docker.hazelcast-compose.yml: Compose Deployment" />
-      <item itemvalue="Docker.ignite-compose.yaml: Compose Deployment" />
       <item itemvalue="Spring Boot.AccountOrderManagementApplication" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.HazelcastClientApp" />
         <item itemvalue="Docker.hazelcast-compose.yml.hazelcast-node1: Compose Deployment" />
         <item itemvalue="Docker.hazelcast-compose.yml.management-center: Compose Deployment" />
         <item itemvalue="Docker.hazelcast-compose.yml: Compose Deployment" />
         <item itemvalue="Application.TrafficGenerator" />
-        <item itemvalue="Docker.hazelcast-compose.yml: Compose Deployment" />
-        <item itemvalue="Docker.ignite-compose.yaml: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
