@@ -26,8 +26,8 @@ public class HazelcastConfig {
         JoinConfig joinConfig = networkConfig.getJoin();
         joinConfig.getMulticastConfig().setEnabled(false);
         joinConfig.getTcpIpConfig().setEnabled(true)
-                .addMember("hazelcast-node-1:5701")
-                .addMember("hazelcast-node-2:5701");
+                .addMember("localhost:5701")
+                .addMember("localhost:5702");
 
         return Hazelcast.newHazelcastInstance(config);
     }
