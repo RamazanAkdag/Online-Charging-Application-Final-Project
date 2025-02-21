@@ -10,10 +10,10 @@ services:
       - HZ_CLUSTERNAME=hazelcast-cluster
       - HZ_NETWORK_PORT=5701
       - HZ_NETWORK_JOIN_TCPIP_ENABLED=true
-      - HZ_NETWORK_JOIN_TCPIP_MEMBERS=hazelcast-node-1:5701,hazelcast-node-2:5701
+      - HZ_NETWORK_JOIN_TCPIP_MEMBERS=hazelcast-node-2
     networks:
       - hazelcast-cluster
-    restart: always  # Eğer çökme olursa tekrar başlat
+    restart: always
 
   hazelcast-node-2:
     image: hazelcast/hazelcast:5.3.0
@@ -26,10 +26,10 @@ services:
       - HZ_CLUSTERNAME=hazelcast-cluster
       - HZ_NETWORK_PORT=5701
       - HZ_NETWORK_JOIN_TCPIP_ENABLED=true
-      - HZ_NETWORK_JOIN_TCPIP_MEMBERS=hazelcast-node-1:5701,hazelcast-node-2:5701
+      - HZ_NETWORK_JOIN_TCPIP_MEMBERS=hazelcast-node-1
     networks:
       - hazelcast-cluster
-    restart: always  # Eğer çökme olursa tekrar başlat
+    restart: always
 
   hazelcast-management-center:
     image: hazelcast/management-center:latest
@@ -40,10 +40,10 @@ services:
       - "9090:8080"
     environment:
       - MC_DEFAULT_CLUSTER=hazelcast-cluster
-      - MC_CLUSTER_CONNECTION_ADDRESS=hazelcast-node-1,hazelcast-node-2
+      - MC_CLUSTER_CONNECTION_ADDRESS=hazelcast-node-1
     networks:
       - hazelcast-cluster
-    restart: always  # Yönetim paneli çökse bile tekrar başlasın
+    restart: always
 
 networks:
   hazelcast-cluster:
