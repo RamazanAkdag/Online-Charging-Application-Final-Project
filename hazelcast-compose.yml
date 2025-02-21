@@ -13,7 +13,7 @@ services:
       - HZ_NETWORK_JOIN_TCPIP_MEMBERS=hazelcast-node-1:5701,hazelcast-node-2:5701
       - HZ_NETWORK_BIND_ANY=false
     networks:
-      - hazelcast-cluster
+      - hazelcast-ignite-cluster
 
   hazelcast-node-2:
     image: hazelcast/hazelcast:latest
@@ -21,7 +21,7 @@ services:
     depends_on:
       - hazelcast-node-1
     ports:
-      - "5701:5701"
+      - "5702:5701"  # Çakışmayı önlemek için 5702 portunu host makinede bağladım
     environment:
       - HZ_CLUSTERNAME=hazelcast-cluster
       - HZ_NETWORK_PORT=5701
@@ -29,7 +29,7 @@ services:
       - HZ_NETWORK_JOIN_TCPIP_MEMBERS=hazelcast-node-1:5701,hazelcast-node-2:5701
       - HZ_NETWORK_BIND_ANY=false
     networks:
-      - hazelcast-cluster
+      - hazelcast-ignite-cluster
 
   hazelcast-management-center:
     image: hazelcast/management-center:latest
@@ -42,8 +42,8 @@ services:
       - MC_DEFAULT_CLUSTER=hazelcast-cluster
       - MC_CLUSTER_CONNECTION_ADDRESS=hazelcast-node-1:5701,hazelcast-node-2:5701
     networks:
-      - hazelcast-cluster
+      - hazelcast-ignite-cluster
 
 networks:
-  hazelcast-cluster:
+  hazelcast-ignite-cluster:
     driver: bridge

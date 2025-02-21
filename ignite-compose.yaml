@@ -20,10 +20,11 @@ services:
       - ignite-storage:/storage
       - ./ignite-config.xml:/ignite-config.xml
     networks:
-      - ignite-cluster
+      - hazelcast-ignite-cluster  # Ignite artık Hazelcast ile aynı ağda!
 
 volumes:
   ignite-storage:
 
 networks:
-  ignite-cluster:
+  hazelcast-ignite-cluster:  # Ortak ağ
+    driver: bridge
