@@ -26,16 +26,6 @@ public class HazelcastSubscriber implements Serializable {
         this.status = status;
     }
 
-    public HazelcastSubscriber(Long id, String name, String email, String role, Date startDate, String address, String status) {
-        this.id = id;
-        this.customerId = id; // Assuming customerId is the same as id
-        this.packagePlanId = null; // No package plan in constructor
-        this.phoneNumber = email; // Placeholder assignment
-        this.startDate = startDate;
-        this.endDate = null; // Default null for end date
-        this.status = status;
-    }
-
     // Getters & Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }

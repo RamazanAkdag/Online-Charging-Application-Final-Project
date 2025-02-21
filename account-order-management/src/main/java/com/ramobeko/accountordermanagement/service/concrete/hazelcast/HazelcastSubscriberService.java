@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Service
-public class HazelcastSubscriberService implements IHazelcastService<Long, HazelcastSubscriber> {
+public class HazelcastSubscriberService implements IHazelcastService<String, HazelcastSubscriber> {
 
     private static final Logger logger = LoggerFactory.getLogger(HazelcastSubscriberService.class);
     private final HazelcastInstance hazelcastInstance;
@@ -21,33 +21,34 @@ public class HazelcastSubscriberService implements IHazelcastService<Long, Hazel
     }
 
     @Override
-    public void save(Long key, HazelcastSubscriber value) {
-        logger.info("Saving subscriber with ID: {} to Hazelcast cache", key);
-        IMap<Long, HazelcastSubscriber> cache = hazelcastInstance.getMap(CACHE_NAME);
-        cache.put(key, value);
-        logger.info("Subscriber with ID: {} saved successfully", key);
+    public void save(String phoneNumber, HazelcastSubscriber value) {
+        logger.info("Saving subscriber with phone number: {} to Hazelcast cache", phoneNumber);
+        IMap<String, HazelcastSubscriber> cache = hazelcastInstance.getMap(CACHE_NAME);
+        cache.put(phoneNumber, value);
+        logger.info("Subscriber with phone number: {} saved successfully", phoneNumber);
     }
 
     @Override
-    public Optional<HazelcastSubscriber> get(Long key) {
-        logger.info("Fetching subscriber with ID: {} from Hazelcast cache", key);
-        IMap<Long, HazelcastSubscriber> cache = hazelcastInstance.getMap(CACHE_NAME);
-        return Optional.ofNullable(cache.get(key));
+    public Optional<HazelcastSubscriber> get(String phoneNumber) {
+        logger.info("Fetching subscriber with phone number: {} from Hazelcast cache", phoneNumber);
+        IMap<String, HazelcastSubscriber> cache = hazelcastInstance.getMap(CACHE_NAME);
+        return Optional.ofNullable(cache.get(phoneNumber));
     }
 
     @Override
-    public void remove(Long key) {
-        logger.info("Removing subscriber with ID: {} from Hazelcast cache", key);
-        IMap<Long, HazelcastSubscriber> cache = hazelcastInstance.getMap(CACHE_NAME);
-        cache.remove(key);
-        logger.info("Subscriber with ID: {} removed successfully", key);
+    public void remove(String phoneNumber) {
+        logger.info("Removing subscriber with phone number: {} from Hazelcast cache", phoneNumber);
+        IMap<String, HazelcastSubscriber> cache = hazelcastInstance.getMap(CACHE_NAME);
+        cache.remove(phoneNumber);
+        logger.info("Subscriber with phone number: {} removed successfully", phoneNumber);
     }
 
     @Override
-    public boolean containsKey(Long key) {
-        IMap<Long, HazelcastSubscriber> cache = hazelcastInstance.getMap(CACHE_NAME);
-        boolean exists = cache.containsKey(key);
-        logger.info("Subscriber with ID: {} exists in cache: {}", key, exists);
+    public boolean containsKey(String phoneNumber) {
+        IMap<String, HazelcastSubscriber> cache = hazelcastInstance.getMap(CACHE_NAME);
+        boolean exists = cache.containsKey(phoneNumber);
+        logger.info("Subscriber with phone number: {} exists in cache: {}", phoneNumber, exists);
         return exists;
     }
 }
+
