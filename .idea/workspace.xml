@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f61fbd05-098c-439d-9baf-521a7396a7d6" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/docker-compose-down-up.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hazelcast-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/hazelcast-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -250,7 +250,7 @@
       <workItem from="1740034587553" duration="1478000" />
       <workItem from="1740065827466" duration="3070000" />
       <workItem from="1740075288001" duration="3984000" />
-      <workItem from="1740113710077" duration="1866000" />
+      <workItem from="1740113710077" duration="2498000" />
     </task>
     <servers />
   </component>
