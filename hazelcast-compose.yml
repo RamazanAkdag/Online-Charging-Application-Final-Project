@@ -8,38 +8,28 @@ services:
       - "5701:5701"
     environment:
       - HZ_CLUSTERNAME=hazelcast-cluster
-      - HZ_NETWORK_PORT=5701
       - HZ_NETWORK_JOIN_TCPIP_ENABLED=true
-      - HZ_NETWORK_JOIN_MULTICAST_ENABLED=false  # Multicast kapatıldı
+      - HZ_NETWORK_JOIN_MULTICAST_ENABLED=false
       - HZ_NETWORK_JOIN_TCPIP_MEMBERS=hazelcast-node-1,hazelcast-node-2
-      - JAVA_OPTS=-Xms512m -Xmx1024m  # Bellek optimizasyonu
     networks:
       - hazelcast-cluster
-    restart: always
 
   hazelcast-node-2:
     image: hazelcast/hazelcast:5.3.0
     container_name: hazelcast-node-2
-    depends_on:
-      - hazelcast-node-1
     ports:
       - "5702:5701"
     environment:
       - HZ_CLUSTERNAME=hazelcast-cluster
-      - HZ_NETWORK_PORT=5701
       - HZ_NETWORK_JOIN_TCPIP_ENABLED=true
-      - HZ_NETWORK_JOIN_MULTICAST_ENABLED=false  # Multicast kapatıldı
+      - HZ_NETWORK_JOIN_MULTICAST_ENABLED=false
       - HZ_NETWORK_JOIN_TCPIP_MEMBERS=hazelcast-node-1,hazelcast-node-2
-      - JAVA_OPTS=-Xms512m -Xmx1024m  # Bellek optimizasyonu
     networks:
       - hazelcast-cluster
-    restart: always
 
   hazelcast-management-center:
     image: hazelcast/management-center:latest
     container_name: hazelcast-mc
-    depends_on:
-      - hazelcast-node-1
     ports:
       - "9090:8080"
     environment:
@@ -47,7 +37,6 @@ services:
       - MC_CLUSTER_CONNECTION_ADDRESS=hazelcast-node-1,hazelcast-node-2
     networks:
       - hazelcast-cluster
-    restart: always
 
 networks:
   hazelcast-cluster:
