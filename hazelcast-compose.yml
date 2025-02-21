@@ -10,46 +10,38 @@ services:
       - HZ_CLUSTERNAME=hazelcast-cluster
       - HZ_NETWORK_PORT=5701
       - HZ_NETWORK_JOIN_TCPIP_ENABLED=true
-      - HZ_NETWORK_JOIN_TCPIP_MEMBERS=hazelcast-node-1:5701,hazelcast-node-2:5701
-      - HZ_NETWORK_PUBLICADDRESS=hazelcast-node-1:5701
+      - HZ_NETWORK_JOIN_TCPIP_MEMBERS=hazelcast-node-1,hazelcast-node-2
     networks:
-      - hazelcast-ignite-cluster
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5701/hazelcast/health"]
-      interval: 10s
-      retries: 5
+      - hazelcast-cluster
 
   hazelcast-node-2:
     image: hazelcast/hazelcast:latest
     container_name: hazelcast-node-2
     depends_on:
-      hazelcast-node-1:
-        condition: service_healthy
+      - hazelcast-node-1
     ports:
       - "5702:5701"
     environment:
       - HZ_CLUSTERNAME=hazelcast-cluster
       - HZ_NETWORK_PORT=5701
       - HZ_NETWORK_JOIN_TCPIP_ENABLED=true
-      - HZ_NETWORK_JOIN_TCPIP_MEMBERS=hazelcast-node-1:5701,hazelcast-node-2:5701
-      - HZ_NETWORK_PUBLICADDRESS=hazelcast-node-2:5701
+      - HZ_NETWORK_JOIN_TCPIP_MEMBERS=hazelcast-node-1,hazelcast-node-2
     networks:
-      - hazelcast-ignite-cluster
+      - hazelcast-cluster
 
   hazelcast-management-center:
     image: hazelcast/management-center:latest
     container_name: hazelcast-mc
     depends_on:
-      hazelcast-node-1:
-        condition: service_healthy
+      - hazelcast-node-1
     ports:
-      - "9090:8080"
+      - "9090:8080"  # 8080 yerine 9090 kullanıldı
     environment:
       - MC_DEFAULT_CLUSTER=hazelcast-cluster
-      - MC_DEFAULT_CLUSTER_MEMBERS=hazelcast-node-1:5701,hazelcast-node-2:5701
+      - MC_CLUSTER_CONNECTION_ADDRESS=hazelcast-node-1:5701,hazelcast-node-2:5701
     networks:
-      - hazelcast-ignite-cluster
+      - hazelcast-cluster
 
 networks:
-  hazelcast-ignite-cluster:
+  hazelcast-cluster:
     driver: bridge
