@@ -24,14 +24,12 @@ public class AuthController {
 
     private final IOracleCustomerService oracleCustomerService;
     private final IIgniteCustomerService igniteCustomerService;
-    private final IHazelcastService<Long, HazelcastSubscriber> hazelcastService;
 
     public AuthController(IOracleCustomerService oracleCustomerService,
-                          IIgniteCustomerService igniteCustomerService,
-                          IHazelcastService<Long, HazelcastSubscriber> hazelcastService) {
+                          IIgniteCustomerService igniteCustomerService) {
         this.oracleCustomerService = oracleCustomerService;
         this.igniteCustomerService = igniteCustomerService;
-        this.hazelcastService = hazelcastService;
+
     }
 
     @PostMapping("/register")
@@ -51,19 +49,6 @@ public class AuthController {
         igniteCustomer.setAddress(customer.getAddress());
 
         igniteCustomerService.register(igniteCustomer);
-        logger.info("Customer registered successfully in both Oracle and Ignite DB: {}", customer.getEmail());
-
-        HazelcastSubscriber hazelcastSubscriber = new HazelcastSubscriber(
-                customer.getId(),
-                customer.getName(),
-                customer.getEmail(),
-                customer.getRole().toString(),
-                customer.getStartDate(),
-                customer.getAddress(),
-                customer.getStatus()
-        );
-        hazelcastService.save(hazelcastSubscriber.getId(), hazelcastSubscriber);
-        logger.info("Customer registered in Hazelcast cache: {}", customer.getEmail());
 
         return ResponseEntity.ok(new ApiResponse("Customer registered successfully!"));
     }
