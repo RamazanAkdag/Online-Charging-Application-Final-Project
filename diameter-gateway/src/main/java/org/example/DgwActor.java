@@ -1,32 +1,45 @@
 package org.example;
 
-import akka.actor.AbstractActor;
+import akka.actor.typed.Behavior;
+import akka.actor.typed.javadsl.AbstractBehavior;
+import akka.actor.typed.javadsl.ActorContext;
+import akka.actor.typed.javadsl.Behaviors;
+import akka.actor.typed.javadsl.Receive;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.map.IMap;
+import com.ramobeko.akka.Command;
 
-public class DgwActor extends AbstractActor {
+public class DgwActor extends AbstractBehavior<Command> {
     private final HazelcastInstance hazelcastInstance;
 
-    public DgwActor(HazelcastInstance hazelcastInstance) {
+    private DgwActor(ActorContext<Command> context, HazelcastInstance hazelcastInstance) {
+        super(context);
         this.hazelcastInstance = hazelcastInstance;
     }
 
+    public static Behavior<Command> create(HazelcastInstance hazelcastInstance) {
+        return Behaviors.setup(context -> new DgwActor(context, hazelcastInstance));
+    }
+
     @Override
-    public Receive createReceive() {
-        return receiveBuilder()
-                .match(UsageData.class, this::processUsageData)
+    public Receive<Command> createReceive() {
+        return newReceiveBuilder()
+                .onMessage(Command.UsageData.class, this::processUsageData)
                 .build();
     }
 
-    private void processUsageData(UsageData data) {
+    private Behavior<Command> processUsageData(Command.UsageData data) {
         IMap<String, Boolean> userCache = hazelcastInstance.getMap("userCache");
 
         if (userCache.containsKey(data.getUserId())) {
-            System.out.println("✅ Kullanıcı doğrulandı: " + data.getUserId());
-            System.out.println("🔹 Kullanım Türü: " + data.getServiceType());
-            System.out.println("🔹 Kullanım Miktarı: " + data.getUsageAmount());
+            getContext().getLog().info("✅ Kullanıcı doğrulandı: {}", data.getUserId());
+            getContext().getLog().info("🔹 Kullanım Türü: {}", data.getServiceType());
+            getContext().getLog().info("🔹 Kullanım Miktarı: {}", data.getUsageAmount());
+            data.getReplyTo().tell(Command.Ack.INSTANCE);
         } else {
-            System.out.println("❌ Kullanıcı bulunamadı: " + data.getUserId());
+            getContext().getLog().info("❌ Kullanıcı bulunamadı: {}", data.getUserId());
         }
+
+        return this;
     }
 }

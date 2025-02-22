@@ -1,5 +1,7 @@
 package org.example;
 
+import com.ramobeko.akka.Command;
+
 // Ana sınıf
 public class TrafficGeneratorFunctionApplication {
     public static void main(String[] args) {
@@ -12,7 +14,7 @@ public class TrafficGeneratorFunctionApplication {
         try {
             while (true) {
                 subscriberService.printSubscribers();
-                SubscriberService.UsageData usageData = trafficGenerator.generateUsageData();
+                Command.UsageData usageData = trafficGenerator.generateUsageData();
                 trafficSender.sendUsageData(usageData);
                 Thread.sleep(5000);
             }

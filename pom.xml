@@ -15,6 +15,7 @@
     <module>account-order-management</module>
       <module>traffic-generator-function</module>
       <module>diameter-gateway</module>
+      <module>common</module>
   </modules>
 
   <properties>

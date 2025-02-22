@@ -2,17 +2,27 @@ package org.example;
 
 import com.hazelcast.client.HazelcastClient;
 import com.hazelcast.client.config.ClientConfig;
+import com.hazelcast.config.Config;
+import com.hazelcast.config.JoinConfig;
+import com.hazelcast.config.NetworkConfig;
+import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
 
 public class HazelcastConfig {
 
     public static HazelcastInstance createHazelcastClient() {
-        ClientConfig clientConfig = new ClientConfig();
-        clientConfig.setClusterName("hazelcast-cluster");
+        Config config = new Config();
+        config.setClusterName("hazelcast-cluster");
+        config.getJetConfig().setEnabled(true);
 
-        clientConfig.getNetworkConfig().addAddress("35.159.24.36:5701", "35.159.24.36:5702");
 
-        return HazelcastClient.newHazelcastClient(clientConfig);
+        NetworkConfig networkConfig = config.getNetworkConfig();
+        JoinConfig joinConfig = networkConfig.getJoin();
+        joinConfig.getMulticastConfig().setEnabled(false);
+        joinConfig.getTcpIpConfig().setEnabled(true)
+                .addMember("127.0.0.1:5701")
+                .addMember("127.0.0.1:5702");
+        return Hazelcast.newHazelcastInstance(config);
     }
 }
 

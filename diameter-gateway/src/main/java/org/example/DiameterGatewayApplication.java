@@ -1,25 +1,31 @@
 package org.example;
 
-import akka.actor.ActorRef;
-import akka.actor.ActorSystem;
-import akka.actor.Props;
+import akka.actor.typed.ActorSystem;
+import akka.actor.typed.Behavior;
+import akka.actor.typed.javadsl.Behaviors;
+import akka.cluster.typed.Cluster;
+import akka.cluster.typed.Join;
 import com.hazelcast.core.HazelcastInstance;
+
+
 
 public class DiameterGatewayApplication {
     public static void main(String[] args) {
-        // Akka Sistemi Başlat
-        final ActorSystem system = ActorSystem.create("dgw-system");
 
-        // Hazelcast Client Bağlantısı
+
+
         HazelcastInstance hazelcastInstance = HazelcastConfig.createHazelcastClient();
 
-        // 4 Farklı DGW Aktörü Başlat
-        final ActorRef dgwRouter1 = system.actorOf(Props.create(DgwActor.class, hazelcastInstance), "dgwRouter1");
-        final ActorRef dgwRouter2 = system.actorOf(Props.create(DgwActor.class, hazelcastInstance), "dgwRouter2");
-        final ActorRef dgwRouter3 = system.actorOf(Props.create(DgwActor.class, hazelcastInstance), "dgwRouter3");
-        final ActorRef dgwRouter4 = system.actorOf(Props.create(DgwActor.class, hazelcastInstance), "dgwRouter4");
+        Behavior<Void> rootBehavior = Behaviors.setup(context -> {
+            var dgwRouter = context.spawn(DgwActor.create(hazelcastInstance), "dgwRouter");
 
-        // HTTP Sunucusunu Başlat
-        new DgwHttpServer(system, dgwRouter1).startHttpServer();
+            Cluster cluster = Cluster.get(context.getSystem());
+            cluster.manager().tell(Join.create(cluster.selfMember().address()));
+
+            new DgwHttpServer(context.getSystem(), dgwRouter).startHttpServer();
+            return Behaviors.empty();
+        });
+
+        ActorSystem<Void> system = ActorSystem.create(rootBehavior, "dgw-system");
     }
 }
