@@ -3,7 +3,7 @@ package org.example;
 // Ana sınıf
 public class HazelcastClientApp {
     public static void main(String[] args) {
-        HazelcastClientManager clientManager = new HazelcastClientManager("hazelcast-cluster", "35.159.24.36:5701", "35.159.24.36:5702");
+        HazelcastClientManager clientManager = new HazelcastClientManager("hazelcast-cluster", "3.73.101.119:5701", "3.73.101.119:5702");
         SubscriberService subscriberService = new SubscriberService(clientManager.getSubscriberMap());
         TrafficGenerator trafficGenerator = new TrafficGenerator();
         TrafficSender trafficSender = new TrafficSender("http://localhost:9091/usage-data");
