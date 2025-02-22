@@ -32,10 +32,13 @@ public class DgwHttpServer extends AllDirectives {
                     try {
                         System.out.println("SELAMIN ALEYKUM");
                         Command.UsageData data = objectMapper.readValue(json, Command.UsageData.class);
+
+                        System.out.println("request user id : "+data.getUserId());
                         dgwRouter.tell(data);
                         return complete(HttpResponse.create()
                                 .withEntity(HttpEntities.create(ContentTypes.TEXT_PLAIN_UTF8, "Data received")));
                     } catch (Exception e) {
+                        System.out.println("hatali");
                         return complete(HttpResponse.create()
                                 .withEntity(HttpEntities.create(ContentTypes.TEXT_PLAIN_UTF8, "Invalid Data")));
                     }
