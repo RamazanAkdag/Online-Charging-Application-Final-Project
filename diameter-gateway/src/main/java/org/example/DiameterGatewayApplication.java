@@ -5,7 +5,7 @@ import akka.actor.ActorSystem;
 import akka.actor.Props;
 import com.hazelcast.core.HazelcastInstance;
 
-public class Main {
+public class DiameterGatewayApplication {
     public static void main(String[] args) {
         // Akka Sistemi Başlat
         final ActorSystem system = ActorSystem.create("dgw-system");
