@@ -12,7 +12,7 @@ public class HazelcastClientApp {
         // Hazelcast istemci konfigürasyonu
         ClientConfig clientConfig = new ClientConfig();
         clientConfig.setClusterName("hazelcast-cluster"); // Cluster adı, sunucu konfigürasyonu ile uyumlu olmalı
-        clientConfig.getNetworkConfig().addAddress("127.0.0.1:5701", "127.0.0.1:5702");
+        clientConfig.getNetworkConfig().addAddress("3.127.230.246:5701", "3.127.230.246:5702");
 
         // Hazelcast istemcisine bağlan
         HazelcastInstance hazelcastClient = HazelcastClient.newHazelcastClient(clientConfig);
