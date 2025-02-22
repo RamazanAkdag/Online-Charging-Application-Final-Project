@@ -6,10 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f61fbd05-098c-439d-9baf-521a7396a7d6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/config/HazelcastConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/config/HazelcastConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/traffic-generator-function/src/main/java/org/example/HazelcastClientManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/traffic-generator-function/src/main/java/org/example/HazelcastClientManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/traffic-generator-function/src/main/java/org/example/TrafficGeneratorFunctionApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/traffic-generator-function/src/main/java/org/example/TrafficGeneratorFunctionApplication.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

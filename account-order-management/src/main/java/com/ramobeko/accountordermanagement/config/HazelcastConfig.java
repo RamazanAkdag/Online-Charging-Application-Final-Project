@@ -13,7 +13,7 @@ public class HazelcastConfig {
     public HazelcastInstance hazelcastClient() {
         ClientConfig clientConfig = new ClientConfig();
         clientConfig.setClusterName("hazelcast-cluster"); // Küme adı
-        clientConfig.getNetworkConfig().addAddress("127.0.0.1:5701", "127.0.0.1:5702"); // Düğümler
+        clientConfig.getNetworkConfig().addAddress("18.158.110.143:5701", "18.158.110.143:5702"); // Düğümler
 
         return HazelcastClient.newHazelcastClient(clientConfig);
     }
