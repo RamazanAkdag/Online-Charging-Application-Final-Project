@@ -2,13 +2,13 @@ package org.example;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hazelcast.shaded.com.fasterxml.jackson.core.JsonProcessingException;
+import com.ramobeko.akka.Command;
 
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-// Trafik gönderici sınıf
-public // Trafik gönderici sınıf
+public
 class TrafficSender {
     private final String endpoint;
     private final ObjectMapper objectMapper = new ObjectMapper();
@@ -17,7 +17,7 @@ class TrafficSender {
         this.endpoint = endpoint;
     }
 
-    public void sendUsageData(SubscriberService.UsageData data) {
+    public void sendUsageData(Command.UsageData data) {
         try {
             URL url = new URL(endpoint);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
