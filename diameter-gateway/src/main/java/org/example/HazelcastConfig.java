@@ -10,7 +10,7 @@ public class HazelcastConfig {
         ClientConfig clientConfig = new ClientConfig();
         clientConfig.setClusterName("hazelcast-cluster");
 
-        clientConfig.getNetworkConfig().addAddress("127.0.0.1:5701", "127.0.0.1:5702");
+        clientConfig.getNetworkConfig().addAddress("35.159.24.36:5701", "35.159.24.36:5702");
 
         return HazelcastClient.newHazelcastClient(clientConfig);
     }
