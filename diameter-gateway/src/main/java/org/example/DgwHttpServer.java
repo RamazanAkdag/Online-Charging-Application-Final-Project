@@ -30,6 +30,7 @@ public class DgwHttpServer extends AllDirectives {
         return post(() ->
                 entity(Unmarshaller.entityToString(), json -> {
                     try {
+                        System.out.println("SELAMIN ALEYKUM");
                         Command.UsageData data = objectMapper.readValue(json, Command.UsageData.class);
                         dgwRouter.tell(data);
                         return complete(HttpResponse.create()
