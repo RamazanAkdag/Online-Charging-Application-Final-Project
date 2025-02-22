@@ -29,17 +29,21 @@ public class DgwActor extends AbstractBehavior<Command> {
     }
 
     private Behavior<Command> processUsageData(Command.UsageData data) {
-        IMap<String, Boolean> userCache = hazelcastInstance.getMap("userCache");
+        IMap<String, Long> userCache = hazelcastInstance.getMap("subscriberCache");
+
+        String actorId = getContext().getSelf().path().name(); // Actor'ün adını al
+
+        System.out.println("🔥 [" + actorId + "] Baba merhaba!");
 
         if (userCache.containsKey(data.getUserId())) {
-            getContext().getLog().info("✅ Kullanıcı doğrulandı: {}", data.getUserId());
-            getContext().getLog().info("🔹 Kullanım Türü: {}", data.getServiceType());
-            getContext().getLog().info("🔹 Kullanım Miktarı: {}", data.getUsageAmount());
-            data.getReplyTo().tell(Command.Ack.INSTANCE);
+            getContext().getLog().info("✅ [{}] Kullanıcı doğrulandı: {}", actorId, data.getUserId());
+            getContext().getLog().info("🔹 [{}] Kullanım Türü: {}", actorId, data.getServiceType());
+            getContext().getLog().info("🔹 [{}] Kullanım Miktarı: {}", actorId, data.getUsageAmount());
         } else {
-            getContext().getLog().info("❌ Kullanıcı bulunamadı: {}", data.getUserId());
+            getContext().getLog().info("❌ [{}] Kullanıcı bulunamadı: {}", actorId, data.getUserId());
         }
 
         return this;
     }
+
 }

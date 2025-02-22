@@ -13,23 +13,22 @@ import com.hazelcast.core.HazelcastInstance;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.hazelcast.client.HazelcastClient;
+import com.hazelcast.client.config.ClientConfig;
+
 @Configuration
 public class HazelcastConfig {
 
     @Bean
     public HazelcastInstance hazelcastInstance() {
-        Config config = new Config();
-        config.setClusterName("hazelcast-cluster");
-        config.getJetConfig().setEnabled(true);//ramo
+        ClientConfig clientConfig = new ClientConfig();
+        clientConfig.setClusterName("hazelcast-cluster");
 
-        // Network yapılandırması
-        NetworkConfig networkConfig = config.getNetworkConfig();
-        JoinConfig joinConfig = networkConfig.getJoin();
-        joinConfig.getMulticastConfig().setEnabled(false);
-        joinConfig.getTcpIpConfig().setEnabled(true)
-                .addMember("127.0.0.1:5701")
-                .addMember("127.0.0.1:5702");
+        // Uzak Hazelcast üyelerinin adreslerini ekle
+        clientConfig.getNetworkConfig()
+                .addAddress("18.158.110.143:5701", "18.158.110.143:5702");
 
-        return Hazelcast.newHazelcastInstance(config);
+        return HazelcastClient.newHazelcastClient(clientConfig);
     }
 }
+
