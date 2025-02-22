@@ -1,0 +1,85 @@
+<dependencies>
+    <!-- Akka Actor -->
+    <dependency>
+        <groupId>com.typesafe.akka</groupId>
+        <artifactId>akka-actor-typed_2.13</artifactId>
+        <version>2.6.20</version>
+    </dependency>
+
+    <!-- Akka Remote -->
+    <dependency>
+        <groupId>com.typesafe.akka</groupId>
+        <artifactId>akka-remote_2.13</artifactId>
+        <version>2.6.20</version>
+    </dependency>
+
+    <!-- Akka HTTP -->
+    <dependency>
+        <groupId>com.typesafe.akka</groupId>
+        <artifactId>akka-http_2.13</artifactId>
+        <version>10.2.9</version>
+    </dependency>
+
+    <!-- Akka Streams -->
+    <dependency>
+        <groupId>com.typesafe.akka</groupId>
+        <artifactId>akka-stream_2.13</artifactId>
+        <version>2.6.20</version>
+    </dependency>
+
+    <!-- Hazelcast -->
+    <dependency>
+        <groupId>com.hazelcast</groupId>
+        <artifactId>hazelcast</artifactId>
+        <version>5.5.0</version>
+    </dependency>
+
+    <!-- Jackson JSON Bağımlılıkları -->
+    <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>2.15.0</version> <!-- En son kararlı sürümü kullanmanız önerilir -->
+    </dependency>
+
+    <dependency>
+        <groupId>com.typesafe.akka</groupId>
+        <artifactId>akka-http-jackson_2.13</artifactId>
+        <version>10.2.9</version>
+    </dependency>
+
+
+
+    <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-core</artifactId>
+        <version>2.15.0</version>
+    </dependency>
+
+    <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-annotations</artifactId>
+        <version>2.15.0</version>
+    </dependency>
+
+    <!-- Akka HTTP için Jackson Entegrasyonu -->
+    <dependency>
+        <groupId>com.typesafe.akka</groupId>
+        <artifactId>akka-http-jackson_2.13</artifactId>
+        <version>10.2.9</version>
+    </dependency>
+
+    <!-- SLF4J (Logging için) -->
+    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>1.7.32</version>
+    </dependency>
+
+    <!-- SLF4J Simple -->
+    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-simple</artifactId>
+        <version>1.7.32</version>
+    </dependency>
+
+</dependencies>
