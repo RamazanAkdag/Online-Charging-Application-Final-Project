@@ -5,8 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e36dfc9-06df-4fb0-896c-d0105c657a96" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ignite-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/ignite-compose.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ignite-dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/ignite-dockerfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -178,7 +176,7 @@
       <workItem from="1740304311076" duration="64000" />
       <workItem from="1740304385503" duration="46000" />
       <workItem from="1740304449163" duration="2751000" />
-      <workItem from="1740328089227" duration="8323000" />
+      <workItem from="1740328089227" duration="8666000" />
     </task>
     <servers />
   </component>

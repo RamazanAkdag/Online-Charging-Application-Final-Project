@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 WORKDIR /opt/ignite
 
 # Apache Ignite'ı indir ve çıkar
-RUN curl -L https://dlcdn.apache.org/ignite/${IGNITE_VERSION}/apache-ignite-${IGNITE_VERSION}-bin.zip -o ignite.zip \
+RUN curl -L https://archive.apache.org/dist/ignite/${IGNITE_VERSION}/apache-ignite-${IGNITE_VERSION}-bin.zip -o ignite.zip \
     && unzip ignite.zip \
     && rm ignite.zip
 
