@@ -7,8 +7,8 @@ services:
     environment:
       - HZ_CLUSTERNAME=hazelcast-cluster
       - HZ_NETWORK_JOIN_TCPIP_ENABLED=true
-      - HZ_NETWORK_JOIN_TCPIP_MEMBERS=hazelcast-node1,hazelcast-node2
-      - HZ_NETWORK_PUBLICADDRESS=hazelcast-node1:5701
+      - HZ_NETWORK_JOIN_TCPIP_MEMBERS=18.158.110.143:5701,18.158.110.143:5702
+      - HZ_NETWORK_PUBLICADDRESS=18.158.110.143:5701
       - HZ_NETWORK_JOIN_AUTODETECTION_ENABLED=false
       - HZ_JET_ENABLED=true
     networks:
@@ -22,8 +22,8 @@ services:
     environment:
       - HZ_CLUSTERNAME=hazelcast-cluster
       - HZ_NETWORK_JOIN_TCPIP_ENABLED=true
-      - HZ_NETWORK_JOIN_TCPIP_MEMBERS=hazelcast-node1,hazelcast-node2
-      - HZ_NETWORK_PUBLICADDRESS=hazelcast-node2:5701
+      - HZ_NETWORK_JOIN_TCPIP_MEMBERS=18.158.110.143:5701,18.158.110.143:5702
+      - HZ_NETWORK_PUBLICADDRESS=18.158.110.143:5702
       - HZ_NETWORK_JOIN_AUTODETECTION_ENABLED=false
     networks:
       - hazelcast-network
@@ -35,12 +35,11 @@ services:
     container_name: hazelcast-mancenter
     environment:
       - MC_DEFAULT_CLUSTER=hazelcast-cluster
-      - MC_CLUSTER_MEMBER=hazelcast-node1:5701,hazelcast-node2:5701  # İKİ NODE EKLENDİ
+      - MC_CLUSTER_MEMBER=18.158.110.143:5701,18.158.110.143:5702
     networks:
       - hazelcast-network
     ports:
       - "9090:8080"
-
 
 networks:
   hazelcast-network:
