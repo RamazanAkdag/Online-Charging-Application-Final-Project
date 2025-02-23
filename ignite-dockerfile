@@ -1,25 +1,34 @@
 FROM eclipse-temurin:17-jdk
 
+# Ignite sürümü
 ENV IGNITE_VERSION 2.16.0
 
-ENV IGNITE_HOME /opt/ignite/apache-ignite-fabric-${IGNITE_VERSION}-bin
+# Ignite Home Dizini
+ENV IGNITE_HOME /opt/ignite/apache-ignite-${IGNITE_VERSION}-bin
 
+# Gerekli bağımlılıkları yükle
 RUN apt-get update && apt-get install -y --no-install-recommends \
         unzip \
         curl \
     && rm -rf /var/lib/apt/lists/*
 
+# Çalışma dizinini ayarla
 WORKDIR /opt/ignite
 
-RUN curl https://dist.apache.org/repos/dist/release/ignite/${IGNITE_VERSION}/apache-ignite-fabric-${IGNITE_VERSION}-bin.zip -o ignite.zip \
+# Apache Ignite'ı indir ve çıkar
+RUN curl -L https://dlcdn.apache.org/ignite/${IGNITE_VERSION}/apache-ignite-${IGNITE_VERSION}-bin.zip -o ignite.zip \
     && unzip ignite.zip \
     && rm ignite.zip
 
+# Konfigürasyon dosyalarını Ignite dizinine kopyala
 COPY ./ignite-config.xml $IGNITE_HOME/config/
 COPY ./igniterun.sh $IGNITE_HOME/
 
+# Çalıştırma dosyasına izin ver
 RUN chmod +x $IGNITE_HOME/igniterun.sh
 
-CMD $IGNITE_HOME/igniterun.sh
+# Ignite'ı başlat
+CMD ["sh", "-c", "$IGNITE_HOME/igniterun.sh"]
 
+# Ignite için gerekli portları aç
 EXPOSE 11211 47100 47500 49112
