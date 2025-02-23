@@ -1,92 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="
-           http://www.springframework.org/schema/beans
-           http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <!-- Ignite Konfigürasyonu -->
     <bean id="ignite.cfg" class="org.apache.ignite.configuration.IgniteConfiguration">
-
-        <!-- Ignite Instance Name (opsiyonel, kümede isimlendirme için) -->
+        <!-- Cluster ismi -->
         <property name="igniteInstanceName" value="ignite-cluster"/>
 
-        <!-- Peer Class Loading -->
-        <property name="peerClassLoadingEnabled" value="true"/>
+        <!-- Tüm ağ arayüzlerinden dinlemesi için ayarlar -->
+        <property name="localHost" value="0.0.0.0"/>
 
-        <!-- REST API için Konnektör Ayarları -->
-        <property name="connectorConfiguration">
-            <bean class="org.apache.ignite.configuration.ConnectorConfiguration">
-                <!-- REST portunu 8080'e sabitle -->
-                <property name="port" value="8080"/>
-                <!-- Port aralığını 0 yaparak yalnızca 8080 kullandır -->
-                <property name="portRange" value="0"/>
-            </bean>
-        </property>
-
-        <!-- Discovery SPI (Node'ların birbirini bulması) -->
+        <!-- Discovery SPI (Cluster oluşturmak için) -->
         <property name="discoverySpi">
             <bean class="org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi">
-                <!-- Konteyner içinde tüm arayüzlerden dinlesin -->
-                <property name="localAddress" value="0.0.0.0"/>
-                <!-- Tek port (47500) kullan -->
-                <property name="localPort" value="47500"/>
-                <property name="localPortRange" value="0"/>
-
-                <!-- IP Finder (statik liste veya Docker service name) -->
                 <property name="ipFinder">
                     <bean class="org.apache.ignite.spi.discovery.tcp.ipfinder.vm.TcpDiscoveryVmIpFinder">
                         <property name="addresses">
                             <list>
-                                <value>18.158.110.143:47500</value>
+                                <!-- Ignite’ın tüm ağ arayüzlerinden gelen istekleri kabul etmesini sağlar -->
+                                <value>0.0.0.0:47500..47509</value>
                             </list>
                         </property>
                     </bean>
                 </property>
-            </bean>
-        </property>
-
-        <!-- Communication SPI (Node'lar arası veri alışverişi) -->
-        <property name="communicationSpi">
-            <bean class="org.apache.ignite.spi.communication.tcp.TcpCommunicationSpi">
-                <!-- Konteyner içinde tüm arayüzlerden dinlesin -->
                 <property name="localAddress" value="0.0.0.0"/>
-                <!-- Tek port (47100) kullan -->
-                <property name="localPort" value="47100"/>
-                <property name="localPortRange" value="0"/>
             </bean>
         </property>
 
-        <!-- Örnek Data Storage Config (Persistence kapalı) -->
-        <property name="dataStorageConfiguration">
-            <bean class="org.apache.ignite.configuration.DataStorageConfiguration">
-                <property name="defaultDataRegionConfiguration">
-                    <bean class="org.apache.ignite.configuration.DataRegionConfiguration">
-                        <property name="persistenceEnabled" value="false"/>
+        <!-- Komşu düğümleri otomatik bulmak için Multicast Discovery -->
+        <property name="discoverySpi">
+            <bean class="org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi">
+                <property name="ipFinder">
+                    <bean class="org.apache.ignite.spi.discovery.tcp.ipfinder.multicast.TcpDiscoveryMulticastIpFinder">
+                        <property name="multicastGroup" value="228.10.10.157"/>
                     </bean>
                 </property>
             </bean>
         </property>
-
-        <!-- Örnek bir cache tanımı -->
-        <property name="cacheConfiguration">
-            <list>
-                <bean class="org.apache.ignite.configuration.CacheConfiguration">
-                    <property name="name" value="defaultCache"/>
-                    <property name="queryEntities">
-                        <list>
-                            <bean class="org.apache.ignite.cache.QueryEntity">
-                                <property name="keyType" value="java.lang.String"/>
-                                <property name="valueType" value="java.lang.String"/>
-                            </bean>
-                        </list>
-                    </property>
-                </bean>
-            </list>
-        </property>
-
-        <!-- Ağ Timeout ve Failure Detection -->
-        <property name="networkTimeout" value="5000"/>
-        <property name="failureDetectionTimeout" value="10000"/>
-
     </bean>
+
 </beans>

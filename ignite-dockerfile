@@ -1,25 +1,25 @@
-# Java 17 Temurin JDK kullanarak Ignite imajı oluştur
 FROM eclipse-temurin:17-jdk
-LABEL maintainer="your_email@example.com"
 
-# Ignite Kurulum Dizini
-ENV IGNITE_HOME=/opt/ignite
-WORKDIR ${IGNITE_HOME}
+ENV IGNITE_VERSION 2.16.0
 
-# Gerekli Bağımlılıkları Yükle
-RUN apt-get update && apt-get install -y wget unzip && rm -rf /var/lib/apt/lists/*
+ENV IGNITE_HOME /opt/ignite/apache-ignite-fabric-${IGNITE_VERSION}-bin
 
-# Apache Ignite 2.16.0 İndir ve Çıkart
-RUN wget https://archive.apache.org/dist/ignite/2.16.0/apache-ignite-2.16.0-bin.zip && \
-    unzip apache-ignite-2.16.0-bin.zip && \
-    mv apache-ignite-2.16.0-bin/* . && \
-    rm -rf apache-ignite-2.16.0-bin apache-ignite-2.16.0-bin.zip
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        unzip \
+        curl \
+    && rm -rf /var/lib/apt/lists/*
 
-# ignite.sh dosyasına çalıştırma yetkisi ver
-RUN chmod +x ${IGNITE_HOME}/bin/ignite.sh
+WORKDIR /opt/ignite
 
-# Ignite İçin Portları Aç
-EXPOSE 10800 47100 47500 49112 8080
+RUN curl https://dist.apache.org/repos/dist/release/ignite/${IGNITE_VERSION}/apache-ignite-fabric-${IGNITE_VERSION}-bin.zip -o ignite.zip \
+    && unzip ignite.zip \
+    && rm ignite.zip
 
-# Ignite Başlat
-CMD ["bin/ignite.sh", "/ignite-config.xml"]
+COPY ./ignite-config.xml $IGNITE_HOME/config/
+COPY ./igniterun.sh $IGNITE_HOME/
+
+RUN chmod +x $IGNITE_HOME/igniterun.sh
+
+CMD $IGNITE_HOME/igniterun.sh
+
+EXPOSE 11211 47100 47500 49112

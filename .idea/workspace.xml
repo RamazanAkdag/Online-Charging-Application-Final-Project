@@ -5,26 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e36dfc9-06df-4fb0-896c-d0105c657a96" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/igniterun.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/config/HazelcastConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/config/HazelcastConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/config/IgniteConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/config/IgniteConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/diameter-gateway/src/main/java/org/example/HazelcastConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/diameter-gateway/src/main/java/org/example/HazelcastConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose-down-up.sh" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose-down-up.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hazelcast-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/hazelcast-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ignite-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ignite-config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/online-charging-system/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/online-charging-system/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/OnlineChargingSystemApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/OnlineChargingSystemApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/config/IgniteConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/config/KafkaConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/controller/OcsController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/model/entity/UsageData.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/model/entity/UserBalance.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/repository/IgniteRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/service/concrete/KafkaProducerService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/service/concrete/OcsService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/traffic-generator-function/src/main/java/org/example/HazelcastClientManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/traffic-generator-function/src/main/java/org/example/HazelcastClientManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ignite-dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/ignite-dockerfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +132,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <module name="account-order-management" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.ramobeko.accountordermanagement.AccountOrderManagementApplication" />
-      <option name="VM_PARAMETERS" value="--add-opens=java.base/jdk.internal.misc=ALL-UNNAMED --add-opens=java.base/sun.nio.ch=ALL-UNNAMED --add-opens=java.management/com.sun.jmx.mbeanserver=ALL-UNNAMED --add-opens=jdk.internal.jvmstat/sun.jvmstat.monitor=ALL-UNNAMED --add-opens=java.base/sun.reflect.generics.reflectiveObjects=ALL-UNNAMED --add-opens=java.base/java.io=ALL-UNNAMED --add-opens=java.base/java.nio=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.util.concurrent=ALL-UNNAMED --add-opens=java.base/java.util.concurrent.locks=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED -Xms512m -Xmx1g -DIGNITE_REST_START_ON_CLIENT=false -DIGNITE_QUIET=false" />
+      <option name="VM_PARAMETERS" value="--add-opens=java.base/jdk.internal.access=ALL-UNNAMED --add-opens=java.base/jdk.internal.misc=ALL-UNNAMED --add-opens=java.base/sun.nio.ch=ALL-UNNAMED --add-opens=java.base/sun.util.calendar=ALL-UNNAMED --add-opens=java.management/com.sun.jmx.mbeanserver=ALL-UNNAMED --add-opens=jdk.internal.jvmstat/sun.jvmstat.monitor=ALL-UNNAMED --add-opens=java.base/sun.reflect.generics.reflectiveObjects=ALL-UNNAMED --add-opens=jdk.management/com.sun.management.internal=ALL-UNNAMED --add-opens=java.base/java.io=ALL-UNNAMED --add-opens=java.base/java.nio=ALL-UNNAMED --add-opens=java.base/java.net=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.util.concurrent=ALL-UNNAMED --add-opens=java.base/java.util.concurrent.locks=ALL-UNNAMED --add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED --add-opens=java.base/java.math=ALL-UNNAMED --add-opens=java.sql/java.sql=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.time=ALL-UNNAMED --add-opens=java.base/java.text=ALL-UNNAMED --add-opens=java.management/sun.management=ALL-UNNAMED --add-opens java.desktop/java.awt.font=ALL-UNNAMED -Xms512m -Xmx1g -DIGNITE_REST_START_ON_CLIENT=false -DIGNITE_QUIET=false" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -180,7 +164,7 @@
       <workItem from="1740304311076" duration="64000" />
       <workItem from="1740304385503" duration="46000" />
       <workItem from="1740304449163" duration="2751000" />
-      <workItem from="1740328089227" duration="5033000" />
+      <workItem from="1740328089227" duration="7027000" />
     </task>
     <servers />
   </component>
