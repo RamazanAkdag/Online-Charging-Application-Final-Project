@@ -9,6 +9,8 @@ public class HazelcastConfig {
     public static HazelcastInstance createHazelcastClient() {
         ClientConfig clientConfig = new ClientConfig();
         clientConfig.setClusterName("hazelcast-cluster");
+        clientConfig.setProperty("hazelcast.logging.type", "slf4j");
+        clientConfig.setProperty("hazelcast.logging.level", "FINEST");
 
         // Uzak Hazelcast üyelerinin adreslerini ekle
         clientConfig.getNetworkConfig()

@@ -11,3 +11,5 @@ sudo docker-compose -f ignite-compose.yaml up -d
 
 sudo docker-compose -f hazelcast-compose.yml up -d
 
+
+sudo docker-compose -f ramo-compose.yml down --remove-or

@@ -6,27 +6,38 @@
            http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="ignite.cfg" class="org.apache.ignite.configuration.IgniteConfiguration">
-        <!-- Ignite Cluster Name -->
+
+        <!-- Ignite Instance Name (opsiyonel, kümede isimlendirme için) -->
         <property name="igniteInstanceName" value="ignite-cluster"/>
 
         <!-- Peer Class Loading -->
         <property name="peerClassLoadingEnabled" value="true"/>
 
+        <!-- REST API için Konnektör Ayarları -->
         <property name="connectorConfiguration">
             <bean class="org.apache.ignite.configuration.ConnectorConfiguration">
-                <property name="port" value="8080"/>  <!-- REST API Portu -->
-                <property name="portRange" value="10"/>  <!-- Alternatif port aralığı -->
+                <!-- REST portunu 8080'e sabitle -->
+                <property name="port" value="8080"/>
+                <!-- Port aralığını 0 yaparak yalnızca 8080 kullandır -->
+                <property name="portRange" value="0"/>
             </bean>
         </property>
 
-
+        <!-- Discovery SPI (Node'ların birbirini bulması) -->
         <property name="discoverySpi">
             <bean class="org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi">
+                <!-- Konteyner içinde tüm arayüzlerden dinlesin -->
+                <property name="localAddress" value="0.0.0.0"/>
+                <!-- Tek port (47500) kullan -->
+                <property name="localPort" value="47500"/>
+                <property name="localPortRange" value="0"/>
+
+                <!-- IP Finder (statik liste veya Docker service name) -->
                 <property name="ipFinder">
                     <bean class="org.apache.ignite.spi.discovery.tcp.ipfinder.vm.TcpDiscoveryVmIpFinder">
                         <property name="addresses">
                             <list>
-                                <value>ignite-node-1:47500..47509</value>  <!-- Buraya kendi sunucu IP'ni koy -->
+                                <value>18.158.110.143:47500</value>
                             </list>
                         </property>
                     </bean>
@@ -34,9 +45,18 @@
             </bean>
         </property>
 
+        <!-- Communication SPI (Node'lar arası veri alışverişi) -->
+        <property name="communicationSpi">
+            <bean class="org.apache.ignite.spi.communication.tcp.TcpCommunicationSpi">
+                <!-- Konteyner içinde tüm arayüzlerden dinlesin -->
+                <property name="localAddress" value="0.0.0.0"/>
+                <!-- Tek port (47100) kullan -->
+                <property name="localPort" value="47100"/>
+                <property name="localPortRange" value="0"/>
+            </bean>
+        </property>
 
-
-        <!-- Data Storage Configuration -->
+        <!-- Örnek Data Storage Config (Persistence kapalı) -->
         <property name="dataStorageConfiguration">
             <bean class="org.apache.ignite.configuration.DataStorageConfiguration">
                 <property name="defaultDataRegionConfiguration">
@@ -47,7 +67,7 @@
             </bean>
         </property>
 
-        <!-- Caching Configuration -->
+        <!-- Örnek bir cache tanımı -->
         <property name="cacheConfiguration">
             <list>
                 <bean class="org.apache.ignite.configuration.CacheConfiguration">
@@ -64,16 +84,9 @@
             </list>
         </property>
 
-        <!-- Communication Configuration -->
-        <property name="communicationSpi">
-            <bean class="org.apache.ignite.spi.communication.tcp.TcpCommunicationSpi">
-                <property name="localPort" value="47100"/>
-                <property name="localPortRange" value="20"/>
-            </bean>
-        </property>
-
-        <!-- Network Configuration -->
+        <!-- Ağ Timeout ve Failure Detection -->
         <property name="networkTimeout" value="5000"/>
         <property name="failureDetectionTimeout" value="10000"/>
+
     </bean>
 </beans>
