@@ -106,6 +106,8 @@
             <groupId>com.oracle.database.jdbc</groupId>
             <artifactId>ojdbc11</artifactId>
             <scope>runtime</scope>
+
+
         </dependency>
 
         <!-- Test Bağımlılıkları -->
@@ -171,6 +173,8 @@
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
         </dependency>
+
+
 
     </dependencies>
 
