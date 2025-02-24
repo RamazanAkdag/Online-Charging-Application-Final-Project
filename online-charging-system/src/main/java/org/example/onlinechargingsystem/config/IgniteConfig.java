@@ -6,6 +6,7 @@ import org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi;
 import org.apache.ignite.spi.discovery.tcp.ipfinder.vm.TcpDiscoveryVmIpFinder;
 import org.hibernate.cache.spi.RegionFactory;
 import org.hibernate.cfg.Environment;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -15,36 +16,22 @@ import java.util.Properties;
 @Configuration
 public class IgniteConfig {
 
-    @Bean
-    public Ignite igniteInstance() throws IgniteException {
-        IgniteConfiguration cfg = new IgniteConfiguration();
-        cfg.setClientMode(true);
-        cfg.setPeerClassLoadingEnabled(true);
+    @Value("${ignite.discovery.addresses}")
+    private String igniteAddresses;
 
-        // Discovery mekanizması
+    @Bean
+    public IgniteConfiguration igniteCfg() {
+        IgniteConfiguration igniteConfiguration = new IgniteConfiguration();
+        igniteConfiguration.setClientMode(true)
+                .setPeerClassLoadingEnabled(true);
+
         TcpDiscoverySpi discoverySpi = new TcpDiscoverySpi();
         TcpDiscoveryVmIpFinder ipFinder = new TcpDiscoveryVmIpFinder();
-        ipFinder.setAddresses(Collections.singletonList("127.0.0.1:47500")); // Ignite node adresi
+
+        ipFinder.setAddresses(Collections.singletonList(igniteAddresses));
         discoverySpi.setIpFinder(ipFinder);
-        cfg.setDiscoverySpi(discoverySpi);
+        igniteConfiguration.setDiscoverySpi(discoverySpi);
 
-        // Hibernate için Ignite Cache Konfigurasyonu
-        CacheConfiguration<Long, Object> balanceCache = new CacheConfiguration<>("BalanceCache");
-        balanceCache.setIndexedTypes(Long.class, org.example.onlinechargingsystem.model.entity.Balance.class);
-
-        cfg.setCacheConfiguration(balanceCache);
-
-        // Ignite başlat
-        return Ignition.start(cfg);
-    }
-
-    @Bean
-    public Properties hibernateProperties() {
-        Properties properties = new Properties();
-        properties.setProperty(Environment.CACHE_REGION_FACTORY, "org.apache.ignite.cache.hibernate.IgniteRegionFactory");
-        properties.setProperty(Environment.USE_SECOND_LEVEL_CACHE, "true");
-        properties.setProperty(Environment.USE_QUERY_CACHE, "true");
-        properties.setProperty("hibernate.ignite.cache.default", "BalanceCache"); // Ignite Cache kullan
-        return properties;
+        return igniteConfiguration;
     }
 }

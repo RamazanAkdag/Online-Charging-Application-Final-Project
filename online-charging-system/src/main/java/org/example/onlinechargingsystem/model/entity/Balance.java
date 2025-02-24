@@ -1,45 +1,42 @@
 package org.example.onlinechargingsystem.model.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.apache.ignite.cache.query.annotations.QuerySqlField;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 import java.io.Serializable;
 
 @Entity
-@Getter
-@Setter
-@Table(name = "T_BALANCE")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "BalanceCache")
+@Table(name = "t_balance")
+@Data // Lombok ile tüm getter, setter, equals, hashCode ve toString otomatik oluşturulacak
+@NoArgsConstructor
+@AllArgsConstructor
 public class Balance implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
-    @QuerySqlField(index = true) // Ignite için SQL indeksleme
+    @QuerySqlField(index = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "BAL_ID")
+    @Column(name = "bal_id")
     private Long id;
 
     @QuerySqlField
-    @Column(name = "BAL_PKG_ID")
+    @Column(name = "bal_pkg_id")
     private Long packageId;
 
+    @QuerySqlField(index = true)
+    @Column(name = "bal_subscriber_id", nullable = false)
+    private Long subscriberId;
+
     @QuerySqlField
-    @Column(name = "BAL_LVL_MINUTES")
+    @Column(name = "bal_lvl_minutes")
     private Integer levelMinutes;
 
     @QuerySqlField
-    @Column(name = "BAL_LVL_SMS")
+    @Column(name = "bal_lvl_sms")
     private Integer levelSms;
 
     @QuerySqlField
-    @Column(name = "BAL_LVL_DATA")
+    @Column(name = "bal_lvl_data")
     private Integer levelData;
-
-    @QuerySqlField(index = true) // Ignite indexleme için gerekli
-    @Column(name = "BAL_SUBSCRIBER_ID")
-    private Long subscriberId; // ➜ **Eksik olan alan eklendi**
 }
