@@ -18,7 +18,6 @@ public class HazelcastConfig {
         // TCP/IP bağlantı ayarları
         ClientNetworkConfig networkConfig = clientConfig.getNetworkConfig();
         networkConfig.addAddress("18.158.110.143:5701", "18.158.110.143:5702");
-        networkConfig.setSmartRouting(true);
         networkConfig.setConnectionTimeout(5000); // 5 saniye timeout ayarla
 
         return HazelcastClient.newHazelcastClient(clientConfig);
