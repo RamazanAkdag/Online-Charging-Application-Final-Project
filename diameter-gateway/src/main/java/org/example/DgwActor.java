@@ -25,7 +25,7 @@ public class DgwActor extends AbstractBehavior<Command> {
     private final Materializer materializer;
     private final ObjectMapper objectMapper;
 
-    private static final String OCS_URL = "http://localhost:8080/ocs/usage"; // OCS API URL
+    private static final String OCS_URL = "http://18.158.110.143:8071/ocs/usage"; // OCS API URL
 
     private DgwActor(ActorContext<Command> context, HazelcastInstance hazelcastInstance) {
         super(context);

@@ -1,39 +1,26 @@
 package com.ramobeko.accountordermanagement.config;
 
-import com.hazelcast.config.*;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-
-import com.hazelcast.config.Config;
-import com.hazelcast.config.JoinConfig;
-import com.hazelcast.config.NetworkConfig;
-import com.hazelcast.core.Hazelcast;
+import com.hazelcast.client.HazelcastClient;
+import com.hazelcast.client.config.ClientConfig;
+import com.hazelcast.client.config.ClientNetworkConfig;
 import com.hazelcast.core.HazelcastInstance;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import com.hazelcast.client.HazelcastClient;
-import com.hazelcast.client.config.ClientConfig;
 
 @Configuration
 public class HazelcastConfig {
 
     @Bean
     public HazelcastInstance hazelcastInstance() {
-        Config config = new Config();
-        config.setClusterName("hazelcast-cluster");
-        config.getJetConfig().setEnabled(true);//ramo
+        ClientConfig clientConfig = new ClientConfig();
+        clientConfig.setClusterName("hazelcast-cluster");
 
-        // Network yapılandırması
-        NetworkConfig networkConfig = config.getNetworkConfig();
-        JoinConfig joinConfig = networkConfig.getJoin();
-        joinConfig.getMulticastConfig().setEnabled(false);
-        joinConfig.getTcpIpConfig().setEnabled(true)
-                .addMember("18.158.110.143:5701")
-                .addMember("18.158.110.143:5702");
+        // TCP/IP bağlantı ayarları
+        ClientNetworkConfig networkConfig = clientConfig.getNetworkConfig();
+        networkConfig.addAddress("18.158.110.143:5701", "18.158.110.143:5702");
+        networkConfig.setSmartRouting(true);
+        networkConfig.setConnectionTimeout(5000); // 5 saniye timeout ayarla
 
-        return Hazelcast.newHazelcastInstance(config);
+        return HazelcastClient.newHazelcastClient(clientConfig);
     }
 }
-
