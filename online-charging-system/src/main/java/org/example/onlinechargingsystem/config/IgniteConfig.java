@@ -4,14 +4,11 @@ import org.apache.ignite.*;
 import org.apache.ignite.configuration.*;
 import org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi;
 import org.apache.ignite.spi.discovery.tcp.ipfinder.vm.TcpDiscoveryVmIpFinder;
-import org.hibernate.cache.spi.RegionFactory;
-import org.hibernate.cfg.Environment;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.Collections;
-import java.util.Properties;
 
 @Configuration
 public class IgniteConfig {
@@ -33,5 +30,10 @@ public class IgniteConfig {
         igniteConfiguration.setDiscoverySpi(discoverySpi);
 
         return igniteConfiguration;
+    }
+
+    @Bean
+    public Ignite igniteInstance() {
+        return Ignition.start(igniteCfg()); // 🔹 Creates an Ignite instance
     }
 }
