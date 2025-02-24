@@ -1,7 +1,7 @@
 package org.example.onlinechargingsystem.service.concrete;
 
 import org.example.onlinechargingsystem.model.entity.Balance;
-import org.example.onlinechargingsystem.repository.Ignite.IgniteBalanceRepository;
+import org.example.onlinechargingsystem.repository.ignite.IgniteBalanceRepository;
 import org.example.onlinechargingsystem.service.abstrct.IBalanceService;
 import org.example.onlinechargingsystem.service.abstrct.IKafkaProducerService;
 import org.example.onlinechargingsystem.model.kafka.KafkaMessage;
