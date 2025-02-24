@@ -6,7 +6,7 @@ import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.map.IMap;
 
 // Hazelcast bağlantısını yöneten sınıf
-class HazelcastClientManager {
+public class HazelcastClientManager {
     private final HazelcastInstance hazelcastClient;
 
     public HazelcastClientManager(String clusterName, String... addresses) {
