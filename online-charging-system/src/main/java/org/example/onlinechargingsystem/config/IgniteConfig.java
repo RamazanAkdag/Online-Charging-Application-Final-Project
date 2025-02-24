@@ -6,9 +6,13 @@ import org.apache.ignite.Ignition;
 import org.apache.ignite.configuration.IgniteConfiguration;
 import org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi;
 import org.apache.ignite.spi.discovery.tcp.ipfinder.vm.TcpDiscoveryVmIpFinder;
+import org.example.onlinechargingsystem.model.entity.Balance;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.Collections;
+import org.apache.ignite.configuration.CacheConfiguration;
 
 import java.util.Collections;
 
@@ -21,7 +25,7 @@ public class IgniteConfig {
     @Bean
     public Ignite igniteInstance() throws IgniteException {
         IgniteConfiguration cfg = new IgniteConfiguration();
-        cfg.setClientMode(true); // Ignite'ı client olarak başlat
+        cfg.setClientMode(true);
         cfg.setPeerClassLoadingEnabled(true);
 
         // Discovery mekanizmasını ayarla
@@ -31,6 +35,12 @@ public class IgniteConfig {
         discoverySpi.setIpFinder(ipFinder);
         cfg.setDiscoverySpi(discoverySpi);
 
+        // Balance Cache Configuration
+        CacheConfiguration<Long, Balance> balanceCacheConfig = new CacheConfiguration<>("BalanceCache");
+        balanceCacheConfig.setIndexedTypes(Long.class, Balance.class);
+        cfg.setCacheConfiguration(balanceCacheConfig);
+
         return Ignition.start(cfg);
     }
 }
+

@@ -8,14 +8,18 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 import org.apache.ignite.springdata.repository.IgniteRepository;
+
 import org.apache.ignite.springdata.repository.config.RepositoryConfig;
-import org.example.onlinechargingsystem.model.entity.Balance;
+import org.apache.ignite.IgniteCache;
 
-import java.util.Optional;
-
+@Repository
+@RepositoryConfig(cacheName = "BalanceCache") // Ignite cache adını burada tanımlıyoruz
 public interface IgniteBalanceRepository extends IgniteRepository<Balance, Long> {
-    Optional<Balance> findBySubscriberId(Long subscriberId); // Eğer subscriberId eklediysek
+    Optional<Balance> findBySubscriberId(Long subscriberId);
+
+    IgniteCache<Long, Balance> cache(); // Cache metodunu elle tanımla
 }
+
 
 
 
