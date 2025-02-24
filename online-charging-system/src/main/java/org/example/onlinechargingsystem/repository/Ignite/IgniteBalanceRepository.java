@@ -9,5 +9,6 @@ import java.util.Optional;
 @Repository
 @RepositoryConfig(cacheName = "BalanceCache", autoCreateCache = true)
 public interface IgniteBalanceRepository extends IgniteRepository<Balance, Long> {
-    Optional<Balance> findBySubscriberId(Long subscriberId); // 🔹 **Metot adı düzeltildi**
+    Optional<Balance> findById(Long id);
 }
+

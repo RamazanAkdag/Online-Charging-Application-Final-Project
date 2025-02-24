@@ -7,6 +7,10 @@
     <list default="true" id="4e36dfc9-06df-4fb0-896c-d0105c657a96" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose-down-up.sh" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose-down-up.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/online-charging-system/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/online-charging-system/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/OnlineChargingSystemApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/OnlineChargingSystemApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/repository/Ignite/IgniteBalanceRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/repository/Ignite/IgniteBalanceRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/service/concrete/BalanceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/service/concrete/BalanceService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
