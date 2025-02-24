@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e36dfc9-06df-4fb0-896c-d0105c657a96" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/controller/OcsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/config/HazelcastConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/config/HazelcastConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/diameter-gateway/src/main/java/org/example/DgwActor.java" beforeDir="false" afterPath="$PROJECT_DIR$/diameter-gateway/src/main/java/org/example/DgwActor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,6 +56,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.DiameterGatewayApplication.executor": "Run",
     "Application.TrafficGeneratorFunctionApplication.executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
@@ -81,7 +82,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Spring Boot.OnlineChargingSystemApplication">
+  <component name="RunManager" selected="Application.DiameterGatewayApplication">
     <configuration name="DiameterGatewayApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.DiameterGatewayApplication" />
       <module name="diameter-gateway" />
