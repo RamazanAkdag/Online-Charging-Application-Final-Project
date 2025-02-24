@@ -1,28 +1,24 @@
 package org.example;
 
-import com.hazelcast.map.IMap;
-
-import java.io.Serializable;
 import java.util.Map;
 
-// Aboneleri yöneten sınıf
-
 public class SubscriberService {
-    private final IMap<String, Long> subscriberMap;
+    private final SubscriberRepository subscriberRepository;
 
-    public SubscriberService(IMap<String, Long> subscriberMap) {
-        this.subscriberMap = subscriberMap;
+    public SubscriberService(SubscriberRepository subscriberRepository) {
+        this.subscriberRepository = subscriberRepository;
     }
 
     public void printSubscribers() {
         System.out.println("----- Güncel Aboneler -----");
-        if (subscriberMap.isEmpty()) {
+        Map<String, Long> subscribers = subscriberRepository.getSubscribers();
+
+        if (subscribers.isEmpty()) {
             System.out.println("Hazelcast'te kayıtlı abone bulunamadı.");
         } else {
-            for (Map.Entry<String, Long> entry : subscriberMap.entrySet()) {
+            for (Map.Entry<String, Long> entry : subscribers.entrySet()) {
                 System.out.println("Telefon: " + entry.getKey() + " -> ID: " + entry.getValue());
             }
         }
     }
-
 }
