@@ -1,6 +1,5 @@
 package org.example.onlinechargingsystem.akka.actor;
 
-
 import akka.actor.typed.Behavior;
 import akka.actor.typed.javadsl.*;
 import org.apache.ignite.Ignite;
@@ -51,11 +50,8 @@ public class OcsWorkerActor extends AbstractBehavior<Command.UsageData> {
             } else {
                 getContext().getLog().info("❌ [{}] Yetersiz Bakiye! Kullanıcı: {} | Bakiye: {}", actorId, data.getUserId(), currentBalance);
             }
-        } else {
-            getContext().getLog().info("❌ [{}] Kullanıcı bulunamadı: {}", actorId, data.getUserId());
         }
 
         return this;
     }
 }
-
