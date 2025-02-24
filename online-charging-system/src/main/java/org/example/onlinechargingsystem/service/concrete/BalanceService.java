@@ -17,11 +17,11 @@ public class BalanceService implements IBalanceService {
     @Autowired
     private IKafkaProducerService kafkaProducerService;
 
-    private static final String KAFKA_TOPIC = "usage-events"; // Kafka topic adı
+    private static final String KAFKA_TOPIC = "usage-events";
 
     @Override
     public Balance getBalance(Long subscriberId) {
-        return balanceRepository.findBySubscriberId(subscriberId)
+        return balanceRepository.findBySubscriberId(subscriberId) // Doğru metot ismini kullan
                 .orElseThrow(() -> new RuntimeException("Balance not found"));
     }
 
@@ -37,7 +37,7 @@ public class BalanceService implements IBalanceService {
         balance.setLevelMinutes(balance.getLevelMinutes() - minutes);
         balance.setLevelSms(balance.getLevelSms() - sms);
         balance.setLevelData(balance.getLevelData() - data);
-        balanceRepository.save(balance); // Ignite Cache'e kaydet
+        balanceRepository.save(balance);
 
         // Kafka'ya Kullanım Verisi Gönderme
         if (minutes > 0) {
@@ -51,6 +51,7 @@ public class BalanceService implements IBalanceService {
         }
     }
 }
+
 
 
 

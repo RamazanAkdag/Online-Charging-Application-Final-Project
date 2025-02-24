@@ -13,9 +13,10 @@ import org.example.onlinechargingsystem.model.entity.Balance;
 
 import java.util.Optional;
 
-@RepositoryConfig(cacheName = "subscriberBalanceCache")
 public interface IgniteBalanceRepository extends IgniteRepository<Balance, Long> {
-    Optional<Balance> findBySubscriberId(Long subscriberId);
+    Optional<Balance> findBySubscriberId(Long subscriberId); // Eğer subscriberId eklediysek
 }
+
+
 
 

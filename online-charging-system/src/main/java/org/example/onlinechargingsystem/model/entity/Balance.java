@@ -15,6 +15,9 @@ public class Balance {
     @Column(name = "BAL_ID")
     private Long id;
 
+    @Column(name = "BAL_SUBSC_ID", nullable = false) // Eğer bu alan varsa ekleyelim
+    private Long subscriberId;
+
     @Column(name = "BAL_PKG_ID")
     private Long packageId;
 
@@ -27,4 +30,5 @@ public class Balance {
     @Column(name = "BAL_LVL_DATA")
     private Integer levelData;
 }
+
 
