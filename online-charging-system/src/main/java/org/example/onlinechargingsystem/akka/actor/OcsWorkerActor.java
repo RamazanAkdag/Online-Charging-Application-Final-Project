@@ -3,7 +3,6 @@ package org.example.onlinechargingsystem.akka.actor;
 import akka.actor.typed.Behavior;
 import akka.actor.typed.javadsl.*;
 import org.apache.ignite.Ignite;
-import org.apache.ignite.IgniteCache;
 import com.ramobeko.akka.Command;
 import org.example.onlinechargingsystem.model.kafka.KafkaMessage;
 import org.example.onlinechargingsystem.service.abstrct.IKafkaProducerService;
@@ -30,27 +29,16 @@ public class OcsWorkerActor extends AbstractBehavior<Command.UsageData> {
     }
 
     private Behavior<Command.UsageData> processUsageData(Command.UsageData data) {
-        IgniteCache<String, Long> balanceCache = ignite.getOrCreateCache("subscriberBalanceCache");
-
         String actorId = getContext().getSelf().path().name(); // Aktörün adını al
 
-        if (balanceCache.containsKey(data.getUserId())) {
-            long currentBalance = balanceCache.get(data.getUserId());
+        // Ignite işlemleri kodda kalsın ancak şimdilik herhangi bir CRUD işlemi yapılmasın
+        getContext().getLog().info("📩 [{}] Mesaj alındı - Kullanıcı: {}, Hizmet: {}, Miktar: {}",
+                actorId, data.getUserId(), data.getServiceType(), data.getUsageAmount());
 
-            if (currentBalance >= data.getUsageAmount()) {
-                // Bakiyeyi düş
-                balanceCache.put(data.getUserId(), currentBalance - data.getUsageAmount());
-                getContext().getLog().info("✅ [{}] Kullanıcı: {} | Yeni Bakiye: {}", actorId, data.getUserId(), currentBalance - data.getUsageAmount());
-
-                // Kafka'ya mesaj gönder
-                KafkaMessage kafkaMessage = new KafkaMessage(Long.parseLong(data.getUserId()), data.getServiceType(), (int) data.getUsageAmount());
-                kafkaProducerService.sendUsageData("usage-events", kafkaMessage);
-
-                getContext().getLog().info("📤 [{}] Kafka'ya gönderildi: {}", actorId, kafkaMessage);
-            } else {
-                getContext().getLog().info("❌ [{}] Yetersiz Bakiye! Kullanıcı: {} | Bakiye: {}", actorId, data.getUserId(), currentBalance);
-            }
-        }
+        // Kafka'ya mesaj gönder
+        KafkaMessage kafkaMessage = new KafkaMessage(Long.parseLong(data.getUserId()), data.getServiceType(), (int) data.getUsageAmount());
+        kafkaProducerService.sendUsageData("usage-events", kafkaMessage);
+        getContext().getLog().info("📤 [{}] Kafka'ya gönderildi: {}", actorId, kafkaMessage);
 
         return this;
     }
