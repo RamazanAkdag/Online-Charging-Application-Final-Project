@@ -8,6 +8,7 @@ import lombok.Setter;
 import org.apache.ignite.cache.query.annotations.QuerySqlField;
 import java.io.Serializable;
 
+
 @Entity
 @Getter
 @Setter
@@ -16,13 +17,13 @@ public class Balance implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @QuerySqlField(index = true) // Ignite için indeksleme
+    @QuerySqlField(index = true) // Ignite için indeksleme ekledik
     @Column(name = "BAL_ID")
     private Long id;
 
-    @QuerySqlField(index = true) // Ignite içinde indeksleme
+    @QuerySqlField(index = true) // Ignite indeksleme için kullanıyor
     @Column(name = "BAL_SUBSC_ID", nullable = false)
-    private Long subscriberId;
+    private Long balSubscId; // subscriberId yerine kullanılacak
 
     @QuerySqlField
     @Column(name = "BAL_PKG_ID")
@@ -40,6 +41,7 @@ public class Balance implements Serializable {
     @Column(name = "BAL_LVL_DATA")
     private Integer levelData;
 }
+
 
 
 

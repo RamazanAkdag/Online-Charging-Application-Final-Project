@@ -14,8 +14,6 @@ import org.springframework.context.annotation.Configuration;
 import java.util.Collections;
 import org.apache.ignite.configuration.CacheConfiguration;
 
-import java.util.Collections;
-
 @Configuration
 public class IgniteConfig {
 
@@ -43,4 +41,5 @@ public class IgniteConfig {
         return Ignition.start(cfg);
     }
 }
+
 
