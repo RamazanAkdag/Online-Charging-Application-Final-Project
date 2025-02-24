@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e36dfc9-06df-4fb0-896c-d0105c657a96" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/config/KafkaConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/config/KafkaConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/controller/OcsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/diameter-gateway/src/main/java/org/example/DgwActor.java" beforeDir="false" afterPath="$PROJECT_DIR$/diameter-gateway/src/main/java/org/example/DgwActor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
