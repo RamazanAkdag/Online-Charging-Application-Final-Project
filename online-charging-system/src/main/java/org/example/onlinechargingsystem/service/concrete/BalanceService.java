@@ -21,7 +21,7 @@ public class BalanceService implements IBalanceService {
 
     @Override
     public Balance getBalance(Long subscriberId) {
-        return balanceRepository.findByBalSubscId(subscriberId) // findBySubscriberId yerine findByBalSubscId kullanıldı
+        return balanceRepository.findBySubscriberId(subscriberId) // 🔹 **Metot düzeltildi**
                 .orElseThrow(() -> new RuntimeException("Balance not found"));
     }
 
@@ -51,8 +51,3 @@ public class BalanceService implements IBalanceService {
         }
     }
 }
-
-
-
-
-
