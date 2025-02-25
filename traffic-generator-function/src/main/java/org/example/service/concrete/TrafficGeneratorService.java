@@ -1,22 +1,25 @@
-package org.example.service;
+package org.example.service.concrete;
 
 import com.ramobeko.akka.Command;
 import org.example.http.abstrct.TrafficSender;
 import org.example.repository.abstrct.SubscriberRepository;
+import org.example.service.abstrct.ITrafficGeneratorService;
+import org.example.util.UsageDataGenerator;
 
 import java.util.Map;
 
-public class TrafficGenerator {
+public class TrafficGeneratorService implements ITrafficGeneratorService {
     private final SubscriberRepository subscriberRepository;
     private final TrafficSender trafficSender;
     private final UsageDataGenerator usageDataGenerator;
 
-    public TrafficGenerator(SubscriberRepository subscriberRepository, UsageDataGenerator usageDataGenerator, TrafficSender trafficSender) {
+    public TrafficGeneratorService(SubscriberRepository subscriberRepository, UsageDataGenerator usageDataGenerator, TrafficSender trafficSender) {
         this.subscriberRepository = subscriberRepository;
         this.trafficSender = trafficSender;
         this.usageDataGenerator = usageDataGenerator;
     }
 
+    @Override
     public void generateAndSendUsageDataForAllSubscribers() {
         if (subscriberRepository.isEmpty()) {
             System.out.println("❌ Hazelcast'te kayıtlı abone yok, trafik üretilemiyor.");

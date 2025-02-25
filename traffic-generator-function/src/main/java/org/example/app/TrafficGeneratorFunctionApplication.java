@@ -1,12 +1,16 @@
 package org.example.app;
 
 import org.example.http.abstrct.TrafficSender;
-import org.example.service.UsageDataGenerator;
+import org.example.util.UsageDataGenerator;
 import org.example.config.HazelcastClientManager;
 import org.example.config.HttpClientManager;
 import org.example.http.concrete.HttpTrafficSender;
 import org.example.repository.concrete.HazelcastSubscriberRepository;
 import org.example.repository.abstrct.SubscriberRepository;
+import org.example.service.abstrct.ITrafficGeneratorService;
+import org.example.service.abstrct.ISubscriberService;
+import org.example.service.concrete.TrafficGeneratorService;
+import org.example.service.concrete.SubscriberService;
 
 import java.util.Arrays;
 import java.util.List;
@@ -24,8 +28,12 @@ public class TrafficGeneratorFunctionApplication {
         List<String> usageTypes = Arrays.asList("SMS", "CALL", "DATA");
         UsageDataGenerator usageDataGenerator = new UsageDataGenerator(usageTypes);
 
-        // Bağımlılıklar enjekte edilerek ApplicationInitializer başlatılıyor
-        ApplicationInitializer app = new ApplicationInitializer(clientManager, subscriberRepository, trafficSender, usageDataGenerator);
+        // Interface'ler kullanılarak bağımlılıklar enjekte ediliyor
+        ISubscriberService subscriberService = new SubscriberService(subscriberRepository);
+        ITrafficGeneratorService trafficGeneratorService = new TrafficGeneratorService(subscriberRepository, usageDataGenerator, trafficSender);
+
+        // ApplicationInitializer başlatılıyor
+        ApplicationInitializer app = new ApplicationInitializer(clientManager, subscriberService, trafficGeneratorService);
         app.run();
     }
 }
