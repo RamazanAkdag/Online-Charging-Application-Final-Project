@@ -1,6 +1,8 @@
-package org.example;
+package org.example.repository;
 
 import com.hazelcast.map.IMap;
+import org.example.repository.SubscriberRepository;
+
 import java.util.Map;
 
 public class HazelcastSubscriberRepository implements SubscriberRepository {

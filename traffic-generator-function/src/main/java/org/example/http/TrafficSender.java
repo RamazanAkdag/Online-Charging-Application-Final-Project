@@ -1,4 +1,4 @@
-package org.example;
+package org.example.http;
 
 
 import com.ramobeko.akka.Command;

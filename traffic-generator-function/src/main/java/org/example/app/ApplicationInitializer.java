@@ -1,4 +1,4 @@
-package org.example;
+package org.example.app;
 
 import org.example.config.HazelcastClientManager;
 import org.example.http.TrafficSender;
