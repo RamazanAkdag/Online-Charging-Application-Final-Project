@@ -1,4 +1,4 @@
-package org.example;
+package org.example.service;
 
 import com.ramobeko.akka.Command;
 import java.util.List;
