@@ -1,9 +1,9 @@
 package org.example.app;
 
 import org.example.config.HazelcastClientManager;
-import org.example.http.TrafficSender;
+import org.example.http.abstrct.TrafficSender;
 import org.example.service.TrafficGenerator;
-import org.example.repository.SubscriberRepository;
+import org.example.repository.abstrct.SubscriberRepository;
 import org.example.service.SubscriberService;
 import org.example.service.UsageDataGenerator;
 

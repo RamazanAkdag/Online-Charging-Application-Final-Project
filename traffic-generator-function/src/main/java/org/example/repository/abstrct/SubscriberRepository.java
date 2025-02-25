@@ -1,4 +1,4 @@
-package org.example.repository;
+package org.example.repository.abstrct;
 
 import java.util.Map;
 

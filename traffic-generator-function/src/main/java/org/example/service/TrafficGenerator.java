@@ -1,8 +1,8 @@
 package org.example.service;
 
 import com.ramobeko.akka.Command;
-import org.example.http.TrafficSender;
-import org.example.repository.SubscriberRepository;
+import org.example.http.abstrct.TrafficSender;
+import org.example.repository.abstrct.SubscriberRepository;
 
 import java.util.Map;
 
