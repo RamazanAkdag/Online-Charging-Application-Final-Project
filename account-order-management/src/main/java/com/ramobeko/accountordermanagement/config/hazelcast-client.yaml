@@ -1,5 +1,5 @@
 hazelcast-client:
-  cluster-name: tutorial-jet-starter
+  cluster-name: hazelcast-cluster
   network:
     cluster-members:
       - 18.158.110.143:5701  # Eğer farklı IP ve port varsa onu yazmalısın.
