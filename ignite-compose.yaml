@@ -10,7 +10,6 @@ services:
       - "47100:47100"  # TCP bağlantı noktası
       - "47500:47500"  # Communication SPI için
       - "49112:49112"  # Discovery SPI için
-      - "8080:8080"
     environment:
       - OPTION_LIBS=ignite-rest-http,ignite-indexing,control-center-agent
       - IGNITE_WORK_DIR=/storage
@@ -18,11 +17,11 @@ services:
     volumes:
       - ignite-storage:/storage
     networks:
-      - hazelcast-ignite-cluster
+      - ignite-cluster
 
 volumes:
   ignite-storage:
 
 networks:
-  hazelcast-ignite-cluster:  # Ortak ağ
+  ignite-cluster:  # Ortak ağ
     driver: bridge

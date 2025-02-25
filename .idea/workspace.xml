@@ -5,6 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e36dfc9-06df-4fb0-896c-d0105c657a96" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ignite-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/ignite-compose.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ignite-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ignite-config.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ignite-dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/ignite-dockerfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -39,14 +43,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="KubernetesApiProvider"><![CDATA[{
-  "contexts": [
+  <component name="KubernetesApiProvider">{
+  &quot;contexts&quot;: [
     {
-      "name": "docker-desktop"
+      &quot;name&quot;: &quot;docker-desktop&quot;
     }
   ],
-  "isMigrated": true
-}]]></component>
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="KubernetesSettings">
     <option name="contextName" value="docker-desktop" />
   </component>
@@ -62,34 +66,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.DiameterGatewayApplication.executor": "Run",
-    "Application.TrafficGeneratorFunctionApplication.executor": "Run",
-    "Docker.ignite-compose.yaml: Compose Deployment.executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Spring Boot.AccountOrderManagementApplication.executor": "Run",
-    "Spring Boot.OnlineChargingSystemApplication.executor": "Run",
-    "git-widget-placeholder": "OCS-Ramo/OCSAkkaFeature",
-    "jdk.selected.JAVA_MODULE": "17",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/berki/Desktop/ocs/Online-Charging-Application-Final-Project",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.33563218",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.DiameterGatewayApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.TrafficGeneratorFunctionApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.ignite-compose.yaml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Spring Boot.AccountOrderManagementApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.OnlineChargingSystemApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;OCS-Ramo/OCSAkkaFeature&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/berki/Desktop/ocs/Online-Charging-Application-Final-Project&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.33563218&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
@@ -98,7 +102,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Docker.ignite-compose.yaml: Compose Deployment">
+  <component name="RunManager" selected="Spring Boot.AccountOrderManagementApplication">
     <configuration name="DiameterGatewayApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.DiameterGatewayApplication" />
       <module name="diameter-gateway" />
@@ -136,7 +140,9 @@
       </method>
     </configuration>
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
-      <deployment type="docker-compose.yml" />
+      <deployment type="docker-compose.yml">
+        <settings />
+      </deployment>
       <method v="2" />
     </configuration>
     <configuration name="ignite-compose.yaml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
@@ -176,7 +182,8 @@
       <workItem from="1740304311076" duration="64000" />
       <workItem from="1740304385503" duration="46000" />
       <workItem from="1740304449163" duration="2751000" />
-      <workItem from="1740328089227" duration="8666000" />
+      <workItem from="1740328089227" duration="10088000" />
+      <workItem from="1740466005939" duration="1265000" />
     </task>
     <servers />
   </component>

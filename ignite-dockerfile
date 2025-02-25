@@ -27,8 +27,8 @@ COPY ./igniterun.sh $IGNITE_HOME/
 # Çalıştırma dosyasına izin ver
 RUN chmod +x $IGNITE_HOME/igniterun.sh
 
+# Ignite için gerekli portları aç
+EXPOSE 10800 47100 47500 49112 8080
+
 # Ignite'ı başlat
 CMD ["sh", "-c", "$IGNITE_HOME/igniterun.sh"]
-
-# Ignite için gerekli portları aç
-EXPOSE 11211 47100 47500 49112
