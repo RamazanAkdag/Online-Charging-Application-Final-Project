@@ -2,25 +2,22 @@ package org.example.app;
 
 import org.example.config.HazelcastClientManager;
 import org.example.http.abstrct.TrafficSender;
-import org.example.service.TrafficGenerator;
-import org.example.repository.abstrct.SubscriberRepository;
-import org.example.service.SubscriberService;
-import org.example.service.UsageDataGenerator;
+import org.example.service.abstrct.ITrafficGeneratorService;
+import org.example.service.abstrct.ISubscriberService;
 
 public class ApplicationInitializer {
-    private final SubscriberService subscriberService;
-    private final TrafficGenerator trafficGenerator;
+    private final ISubscriberService subscriberService;
+    private final ITrafficGeneratorService trafficGeneratorService;
     private final HazelcastClientManager clientManager;
 
     public ApplicationInitializer(
             HazelcastClientManager clientManager,
-            SubscriberRepository subscriberRepository,
-            TrafficSender trafficSender,
-            UsageDataGenerator usageDataGenerator) {
+            ISubscriberService subscriberService,
+            ITrafficGeneratorService trafficGeneratorService) {
 
         this.clientManager = clientManager;
-        this.subscriberService = new SubscriberService(subscriberRepository);
-        this.trafficGenerator = new TrafficGenerator(subscriberRepository, usageDataGenerator, trafficSender);
+        this.subscriberService = subscriberService;
+        this.trafficGeneratorService = trafficGeneratorService;
     }
 
     public void run() {
@@ -28,7 +25,7 @@ public class ApplicationInitializer {
         try {
             while (true) {
                 subscriberService.printSubscribers();
-                trafficGenerator.generateAndSendUsageDataForAllSubscribers();
+                trafficGeneratorService.generateAndSendUsageDataForAllSubscribers();
                 Thread.sleep(5000);
             }
         } catch (InterruptedException e) {

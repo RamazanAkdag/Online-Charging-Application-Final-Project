@@ -1,16 +1,19 @@
-package org.example.service;
+package org.example.service.concrete;
+
 
 import org.example.repository.abstrct.SubscriberRepository;
+import org.example.service.abstrct.ISubscriberService;
 
 import java.util.Map;
 
-public class SubscriberService {
+public class SubscriberService implements ISubscriberService {
     private final SubscriberRepository subscriberRepository;
 
     public SubscriberService(SubscriberRepository subscriberRepository) {
         this.subscriberRepository = subscriberRepository;
     }
 
+    @Override
     public void printSubscribers() {
         System.out.println("----- Güncel Aboneler -----");
         Map<String, Long> subscribers = subscriberRepository.getSubscribers();
@@ -24,3 +27,4 @@ public class SubscriberService {
         }
     }
 }
+
