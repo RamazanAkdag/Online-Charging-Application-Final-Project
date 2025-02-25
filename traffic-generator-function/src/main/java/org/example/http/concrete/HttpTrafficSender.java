@@ -1,8 +1,10 @@
-package org.example.http;
+package org.example.http.concrete;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ramobeko.akka.Command;
+import org.example.http.abstrct.TrafficSender;
+import org.example.config.HttpClientManager;
 
 public class HttpTrafficSender implements TrafficSender {
     private final String endpoint;

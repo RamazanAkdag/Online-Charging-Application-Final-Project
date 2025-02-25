@@ -1,6 +1,6 @@
 package org.example.service;
 
-import org.example.repository.SubscriberRepository;
+import org.example.repository.abstrct.SubscriberRepository;
 
 import java.util.Map;
 

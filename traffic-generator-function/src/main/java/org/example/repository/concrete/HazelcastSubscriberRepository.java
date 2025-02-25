@@ -1,7 +1,7 @@
-package org.example.repository;
+package org.example.repository.concrete;
 
 import com.hazelcast.map.IMap;
-import org.example.repository.SubscriberRepository;
+import org.example.repository.abstrct.SubscriberRepository;
 
 import java.util.Map;
 

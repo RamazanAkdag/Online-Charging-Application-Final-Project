@@ -1,4 +1,4 @@
-package org.example.http;
+package org.example.config;
 
 
 import java.io.OutputStream;
