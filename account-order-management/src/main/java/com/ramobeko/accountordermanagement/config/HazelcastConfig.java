@@ -21,10 +21,16 @@ public class HazelcastConfig {
     public HazelcastInstance hazelcastClient() {
         ClientConfig clientConfig = new ClientConfig();
         clientConfig.setClusterName("hazelcast-cluster");
-        clientConfig.getNetworkConfig().addAddress("127.0.0.1:5701");
+
+        // Ağ yapılandırmasını düzenle
+        clientConfig.getNetworkConfig()
+                .addAddress("18.158.110.143:5701", "18.158.110.144:5701") // Doğru IP'leri ekle
+                .setSmartRouting(false) // Gereksiz bağlantı denemelerini önle
+                .setConnectionTimeout(10000); // Zaman aşımını 10 saniyeye çek
 
         return HazelcastClient.newHazelcastClient(clientConfig);
     }
+
 }
 
 
