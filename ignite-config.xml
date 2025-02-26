@@ -1,79 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="
-           http://www.springframework.org/schema/beans
-           http://www.springframework.org/schema/beans/spring-beans.xsd">
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="ignite.cfg" class="org.apache.ignite.configuration.IgniteConfiguration">
-        <!-- Ignite Cluster Name -->
-        <property name="igniteInstanceName" value="ignite-cluster"/>
+    <bean class="org.apache.ignite.configuration.IgniteConfiguration">
 
-        <!-- Peer Class Loading -->
-        <property name="peerClassLoadingEnabled" value="true"/>
-
-        <property name="connectorConfiguration">
-            <bean class="org.apache.ignite.configuration.ConnectorConfiguration">
-                <property name="port" value="8080"/>  <!-- REST API Portu -->
-                <property name="portRange" value="10"/>  <!-- Alternatif port aralığı -->
-            </bean>
-        </property>
-
-
-        <property name="discoverySpi">
-            <bean class="org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi">
-                <property name="ipFinder">
-                    <bean class="org.apache.ignite.spi.discovery.tcp.ipfinder.vm.TcpDiscoveryVmIpFinder">
-                        <property name="addresses">
-                            <list>
-                                <value>ignite-node-1:47500..47509</value>  <!-- Buraya kendi sunucu IP'ni koy -->
-                            </list>
-                        </property>
-                    </bean>
-                </property>
-            </bean>
-        </property>
-
-
-
-        <!-- Data Storage Configuration -->
-        <property name="dataStorageConfiguration">
-            <bean class="org.apache.ignite.configuration.DataStorageConfiguration">
-                <property name="defaultDataRegionConfiguration">
-                    <bean class="org.apache.ignite.configuration.DataRegionConfiguration">
-                        <property name="persistenceEnabled" value="false"/>
-                    </bean>
-                </property>
-            </bean>
-        </property>
-
-        <!-- Caching Configuration -->
-        <property name="cacheConfiguration">
+        <!-- IPv4 kullanımını zorunlu kıl -->
+        <property name="jvmOptions">
             <list>
-                <bean class="org.apache.ignite.configuration.CacheConfiguration">
-                    <property name="name" value="defaultCache"/>
-                    <property name="queryEntities">
-                        <list>
-                            <bean class="org.apache.ignite.cache.QueryEntity">
-                                <property name="keyType" value="java.lang.String"/>
-                                <property name="valueType" value="java.lang.String"/>
-                            </bean>
-                        </list>
-                    </property>
-                </bean>
+                <value>-Djava.net.preferIPv4Stack=true</value>
             </list>
         </property>
 
-        <!-- Communication Configuration -->
-        <property name="communicationSpi">
-            <bean class="org.apache.ignite.spi.communication.tcp.TcpCommunicationSpi">
-                <property name="localPort" value="47100"/>
-                <property name="localPortRange" value="20"/>
-            </bean>
+        <!-- Discovery SPI ayarları -->
+        <property name="discoverySpi">
+            <bean class="org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi"/>
         </property>
 
-        <!-- Network Configuration -->
-        <property name="networkTimeout" value="5000"/>
-        <property name="failureDetectionTimeout" value="10000"/>
+        <!-- Communication SPI ayarları -->
+        <property name="communicationSpi">
+            <bean class="org.apache.ignite.spi.communication.tcp.TcpCommunicationSpi"/>
+        </property>
+
+        <!-- Bağlantı zaman aşımı ayarları -->
+        <property name="failureDetectionTimeout" value="5000"/>
+        <property name="clientFailureDetectionTimeout" value="10000"/>
     </bean>
+
 </beans>

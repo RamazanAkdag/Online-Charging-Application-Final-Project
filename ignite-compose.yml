@@ -1,16 +1,13 @@
 version: '3'
 services:
   ignite-node-1:
-    build:
-      context: .
-      dockerfile: ignite-dockerfile
+    image: apacheignite/ignite:2.16.0  # Apache Ignite 2.16.0 sürümünü kullanıyoruz
     container_name: ignite-node-1
     ports:
       - "10800:10800"  # JDBC/ODBC bağlantısı için
       - "47100:47100"  # TCP bağlantı noktası
       - "47500:47500"  # Communication SPI için
       - "49112:49112"  # Discovery SPI için
-      - "8080:8080"
     environment:
       - OPTION_LIBS=ignite-rest-http,ignite-indexing,control-center-agent
       - CONFIG_URI=/ignite-config.xml
@@ -18,13 +15,13 @@ services:
       - JAVA_OPTS=-DIGNITE_PEER_CLASS_LOADING=true -DIGNITE_EVENT_DRIVEN_SERVICE_PROCESSOR_ENABLED=true
     volumes:
       - ignite-storage:/storage
-      - ./ignite-config.xml:/ignite-config.xml
+      - ./ignite-config.xml:/ignite-config.xml  # Harici yapılandırma dosyanız
     networks:
-      - hazelcast-ignite-cluster  # Ignite artık Hazelcast ile aynı ağda!
+      - ignite-cluster  # Hazelcast ile ortak ağ
 
 volumes:
   ignite-storage:
 
 networks:
-  hazelcast-ignite-cluster:  # Ortak ağ
+  ignite-cluster:
     driver: bridge
