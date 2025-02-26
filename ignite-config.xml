@@ -1,33 +1,53 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
+<!-- Ignite Spring Configuration -->
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="
         http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean class="org.apache.ignite.configuration.IgniteConfiguration">
+    <!-- Ignite Node Configuration -->
+    <bean id="ignite.cfg" class="org.apache.ignite.configuration.IgniteConfiguration">
 
-        <!-- IPv4 kullanımını zorunlu kıl -->
-        <property name="jvmOptions">
+        <!-- Cache Konfigürasyonu -->
+        <property name="cacheConfiguration">
             <list>
-                <value>-Djava.net.preferIPv4Stack=true</value>
+                <!-- Varsayılan Cache Ayarı -->
+                <bean class="org.apache.ignite.configuration.CacheConfiguration">
+                    <property name="name" value="default"/>
+                    <property name="atomicityMode" value="ATOMIC"/>
+                    <property name="backups" value="1"/>
+                </bean>
             </list>
         </property>
 
-        <!-- Discovery SPI ayarları -->
+        <!-- TCP Discovery SPI -->
         <property name="discoverySpi">
-            <bean class="org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi"/>
+            <bean class="org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi">
+                <property name="ipFinder">
+                    <bean class="org.apache.ignite.spi.discovery.tcp.ipfinder.vm.TcpDiscoveryVmIpFinder">
+                        <property name="addresses">
+                            <list>
+                                <value>18.158.110.143:47500</value> <!-- Ignite Sunucu IP -->
+                                <value>172.18.0.2:47500</value>     <!-- Eğer VM iç IP varsa ekle -->
+                            </list>
+                        </property>
+                    </bean>
+                </property>
+            </bean>
         </property>
 
-        <!-- Communication SPI ayarları -->
-        <property name="communicationSpi">
-            <bean class="org.apache.ignite.spi.communication.tcp.TcpCommunicationSpi"/>
+        <!-- Client Connector Ayarları -->
+        <property name="clientConnectorConfiguration">
+            <bean class="org.apache.ignite.configuration.ClientConnectorConfiguration">
+                <property name="port" value="10800"/> <!-- Ignite Client Port -->
+                <property name="host" value="0.0.0.0"/> <!-- Tüm bağlantıları kabul et -->
+                <property name="threadPoolSize" value="4"/> <!-- Performans iyileştirmesi -->
+                <property name="tcpNoDelay" value="true"/> <!-- Gecikmeyi azalt -->
+                <property name="idleTimeout" value="30000"/> <!-- Bağlantı zaman aşımı -->
+            </bean>
         </property>
 
-        <!-- Bağlantı zaman aşımı ayarları -->
-        <property name="failureDetectionTimeout" value="5000"/>
-        <property name="clientFailureDetectionTimeout" value="10000"/>
     </bean>
 
 </beans>
+
