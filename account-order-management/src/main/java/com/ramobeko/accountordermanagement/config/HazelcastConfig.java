@@ -24,7 +24,7 @@ public class HazelcastConfig {
 
         // Ağ yapılandırmasını düzenle
         clientConfig.getNetworkConfig()
-                .addAddress("18.158.110.143:5701", "18.158.110.144:5701") // Doğru IP'leri ekle
+                .addAddress("18.158.110.143:5701", "18.158.110.143:5702") // Doğru IP'leri ekle
                 .setSmartRouting(false) // Gereksiz bağlantı denemelerini önle
                 .setConnectionTimeout(10000); // Zaman aşımını 10 saniyeye çek
 
