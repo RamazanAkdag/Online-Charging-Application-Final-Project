@@ -1,92 +1,129 @@
 package org.example;
 
+import akka.actor.typed.ActorRef;
 import akka.actor.typed.Behavior;
-import akka.actor.typed.javadsl.AbstractBehavior;
-import akka.actor.typed.javadsl.ActorContext;
-import akka.actor.typed.javadsl.Behaviors;
-import akka.actor.typed.javadsl.Receive;
-import akka.http.javadsl.Http;
-import akka.http.javadsl.model.HttpEntities;
-import akka.http.javadsl.model.HttpRequest;
-import akka.http.javadsl.model.HttpResponse;
-import akka.http.javadsl.model.ContentTypes;
-import akka.http.javadsl.unmarshalling.Unmarshaller;
-import akka.stream.Materializer;
-import akka.stream.SystemMaterializer;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import akka.actor.typed.receptionist.Receptionist;
+import akka.actor.typed.javadsl.*;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.map.IMap;
 import com.ramobeko.akka.Command;
-import java.util.concurrent.CompletionStage;
+import com.ramobeko.akka.Command.UsageData;
+import com.ramobeko.akka.ServiceKeys;
 
+import java.util.Set;
+
+/**
+ * DGW (Data Gateway) aktörü. UsageData mesajlarını alır,
+ * kullanıcıyı doğrular ve OCS Router aktörüne gönderir.
+ */
 public class DgwActor extends AbstractBehavior<Command> {
-    private final HazelcastInstance hazelcastInstance;
-    private final Http http;
-    private final Materializer materializer;
-    private final ObjectMapper objectMapper;
 
-    private static final String OCS_URL = "http://18.158.110.143:8071/ocs/usage"; // OCS API URL
+    // Hazelcast üzerinden kullanıcı doğrulama vb.
+    private final HazelcastInstance hazelcastInstance;
+
+    // OCS tarafındaki router aktörü (bulunca saklarız).
+    private ActorRef<UsageData> ocsRouter = null;
+
+    /**
+     * Factory method (Akka önerisi).
+     * @param hazelcastInstance Hazelcast bağlantısı
+     * @return DgwActor Behavior
+     */
+    public static Behavior<Command> create(HazelcastInstance hazelcastInstance) {
+        return Behaviors.setup(context -> {
+            // (İsteğe bağlı) DGW'yi Receptionist'e kaydedelim:
+            context.getSystem().receptionist().tell(
+                    Receptionist.register(ServiceKeys.DGW_ACTOR_KEY, context.getSelf())
+            );
+
+            return new DgwActor(context, hazelcastInstance);
+        });
+    }
 
     private DgwActor(ActorContext<Command> context, HazelcastInstance hazelcastInstance) {
         super(context);
         this.hazelcastInstance = hazelcastInstance;
-        this.http = Http.get(context.getSystem());
-        this.materializer = SystemMaterializer.get(context.getSystem()).materializer();
-        this.objectMapper = new ObjectMapper();
+
+        // OCS Router'ın ServiceKey'ine abone olmak için:
+        ActorRef<Receptionist.Listing> listingResponseAdapter =
+                context.messageAdapter(Receptionist.Listing.class, OcsRouterListing::new);
+
+        // Artık direkt OcsRouterActor yerine, ortak ServiceKeys üstünden abone oluyoruz
+        context.getSystem().receptionist().tell(
+                Receptionist.subscribe(ServiceKeys.OCS_ROUTER_KEY, listingResponseAdapter)
+        );
     }
 
-    public static Behavior<Command> create(HazelcastInstance hazelcastInstance) {
-        return Behaviors.setup(context -> new DgwActor(context, hazelcastInstance));
-    }
-
+    /**
+     * Aktörün aldığı mesajlar:
+     * - UsageData (asıl iş)
+     * - OcsRouterListing (receptionist’ten gelen sonuç)
+     */
     @Override
     public Receive<Command> createReceive() {
         return newReceiveBuilder()
-                .onMessage(Command.UsageData.class, this::processUsageData)
+                .onMessage(UsageData.class, this::onUsageData)
+                .onMessage(OcsRouterListing.class, this::onOcsRouterListing)
                 .build();
     }
 
-    private Behavior<Command> processUsageData(Command.UsageData data) {
+    /**
+     * UsageData mesajını aldığımızda:
+     * 1. Kullanıcıyı Hazelcast ile doğrular
+     * 2. Doğruysa, OCS Router'a iletir
+     */
+    private Behavior<Command> onUsageData(UsageData data) {
         IMap<String, Long> userCache = hazelcastInstance.getMap("subscriberCache");
-
         String actorId = getContext().getSelf().path().name();
-        System.out.println("🔥 [" + actorId + "] Baba merhaba!");
+
+        getContext().getLog().info("🔥 [{}] Gelen UsageData -> Kullanıcı: {}", actorId, data.getUserId());
 
         if (userCache.containsKey(data.getUserId())) {
             getContext().getLog().info("✅ [{}] Kullanıcı doğrulandı: {}", actorId, data.getUserId());
-            getContext().getLog().info("🔹 [{}] Kullanım Türü: {}", actorId, data.getServiceType());
-            getContext().getLog().info("🔹 [{}] Kullanım Miktarı: {}", actorId, data.getUsageAmount());
+            getContext().getLog().info("🔹 [{}] Service Type: {}", actorId, data.getServiceType());
+            getContext().getLog().info("🔹 [{}] Usage Amount: {}", actorId, data.getUsageAmount());
 
-            // ✅ OCS API'ye HTTP POST isteği gönder
-            sendUsageDataToOcs(data);
+            if (ocsRouter != null) {
+                // OCS Router'a forward
+                ocsRouter.tell(data);
+            } else {
+                getContext().getLog().info(
+                        "❌ [{}] Henüz OCS Router bulunamadı, veri iletilemedi. Data: {}",
+                        actorId, data
+                );
+            }
         } else {
             getContext().getLog().info("❌ [{}] Kullanıcı bulunamadı: {}", actorId, data.getUserId());
         }
-
         return this;
     }
 
-    private void sendUsageDataToOcs(Command.UsageData data) {
-        try {
-            String jsonData = objectMapper.writeValueAsString(data);
-            HttpRequest request = HttpRequest.POST(OCS_URL)
-                    .withEntity(HttpEntities.create(ContentTypes.APPLICATION_JSON, jsonData));
+    /**
+     * Receptionist'ten gelen Listing (OCS Router kaydı) bilgisini yakalıyoruz.
+     * OCS Router aktörünün referansını elde edip saklıyoruz.
+     */
+    private Behavior<Command> onOcsRouterListing(OcsRouterListing listingMsg) {
+        // ServiceKeys.OCS_ROUTER_KEY => ServiceKey<Command.UsageData>
+        Set<ActorRef<UsageData>> serviceInstances =
+                listingMsg.listing.getServiceInstances(ServiceKeys.OCS_ROUTER_KEY);
 
-            // ❌ Hata: http.singleRequest(request, materializer);
-            // ✅ Doğru: materializer kullanmadan tek parametre ile çağır
-            CompletionStage<HttpResponse> response = http.singleRequest(request);
-
-            response.thenAccept(res -> {
-                System.out.println("📡 OCS'ye istek gönderildi, HTTP Yanıt Kodu: " + res.status());
-                if (res.status().isSuccess()) {
-                    System.out.println("✅ OCS başarılı yanıt verdi!");
-                } else {
-                    System.out.println("❌ OCS isteği başarısız oldu!");
-                }
-            });
-        } catch (Exception e) {
-            System.out.println("⚠️ OCS'ye veri gönderirken hata oluştu: " + e.getMessage());
+        // Birden fazla Router varsa basitçe ilkini alıyoruz:
+        if (!serviceInstances.isEmpty()) {
+            this.ocsRouter = serviceInstances.iterator().next();
+            getContext().getLog().info("OCS Router aktörü bulundu: {}", ocsRouter);
         }
+        return this;
     }
 
+    /**
+     * Receptionist.Listing'i sarmalayan mesaj sınıfı.
+     * DgwActor, messageAdapter() ile bu sınıfı kendi mesaj tipine çevirir.
+     */
+    private static final class OcsRouterListing implements Command {
+        final Receptionist.Listing listing;
+
+        OcsRouterListing(Receptionist.Listing listing) {
+            this.listing = listing;
+        }
+    }
 }
