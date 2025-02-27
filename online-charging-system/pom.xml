@@ -147,7 +147,6 @@
 	</dependencies>
 
 
-
 	<build>
 		<plugins>
 			<plugin>
@@ -160,9 +159,13 @@
 						</goals>
 					</execution>
 				</executions>
+				<configuration>
+					<mainClass>org.example.DiameterGatewayApplication</mainClass>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
+
 
 
 

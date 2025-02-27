@@ -22,7 +22,7 @@ public class TrafficGeneratorFunctionApplication {
         SubscriberRepository subscriberRepository = new HazelcastSubscriberRepository(clientManager.getSubscriberMap());
 
         // Trafik gönderimi için HTTP Client
-        TrafficSender trafficSender = new HttpTrafficSender("http://localhost:9091/usage-data", new HttpClientManager());
+        TrafficSender trafficSender = new HttpTrafficSender("http://18.158.110.143:9091/usage-data", new HttpClientManager());
 
         // Kullanım verisini dinamik olarak üreten sınıf
         List<String> usageTypes = Arrays.asList("SMS", "CALL", "DATA");
