@@ -17,6 +17,13 @@
     <description>Data Gateway Module for handling traffic data</description>
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+
         <!-- Akka bağımlılıkları -->
         <dependency>
             <groupId>com.typesafe.akka</groupId>
@@ -60,7 +67,6 @@
             <version>2.0.16</version>
         </dependency>
 
-
         <dependency>
             <groupId>com.ramobeko</groupId>
             <artifactId>common</artifactId>
@@ -71,29 +77,9 @@
 
     <build>
         <plugins>
-            <!-- Maven Compiler Plugin -->
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>${maven.compiler.source}</source>
-                    <target>${maven.compiler.target}</target>
-                </configuration>
-            </plugin>
-
-            <!-- Maven Shade Plugin -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.4</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
     </build>

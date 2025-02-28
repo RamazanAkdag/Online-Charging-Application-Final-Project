@@ -2,11 +2,16 @@ package org.example.http.concrete;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ramobeko.akka.Command;
+import com.ramobeko.dgwtgf.model.UsageRequest;
 import org.example.http.abstrct.TrafficSender;
 import org.example.config.HttpClientManager;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class HttpTrafficSender implements TrafficSender {
+
+    private static final Logger logger = LogManager.getLogger(HttpTrafficSender.class);
     private final String endpoint;
     private final ObjectMapper objectMapper;
     private final HttpClientManager httpClientManager;
@@ -18,14 +23,20 @@ public class HttpTrafficSender implements TrafficSender {
     }
 
     @Override
-    public void sendUsageData(Command.UsageData data) {
+    public void sendUsageData(UsageRequest data) {
         try {
             String jsonPayload = objectMapper.writeValueAsString(data);
+            logger.debug("Sending usage data to endpoint: {}, payload: {}", endpoint, jsonPayload);
+
             int responseCode = httpClientManager.sendPostRequest(endpoint, jsonPayload);
-            System.out.println("HTTP Response Code: " + responseCode);
+            logger.info("HTTP Response Code: {}", responseCode);
+
+            if (responseCode >= 400) {
+                logger.warn("Received non-successful response code: {}", responseCode);
+            }
+
         } catch (Exception e) {
-            System.err.println("Trafik verisi gönderilirken hata oluştu: " + e.getMessage());
+            logger.error("Error sending usage data to endpoint: {}", endpoint, e);
         }
     }
 }
-

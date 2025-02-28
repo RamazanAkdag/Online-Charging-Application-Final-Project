@@ -17,22 +17,18 @@ import java.util.List;
 
 public class TrafficGeneratorFunctionApplication {
     public static void main(String[] args) {
-        // Hazelcast bağlantısı
-        HazelcastClientManager clientManager = new HazelcastClientManager("hazelcast-cluster", "18.158.110.143:5701", "18.158.110.143:5702");
+        HazelcastClientManager clientManager = new HazelcastClientManager("hazelcast-cluster", "127.0.0.1:5701");
         SubscriberRepository subscriberRepository = new HazelcastSubscriberRepository(clientManager.getSubscriberMap());
 
-        // Trafik gönderimi için HTTP Client
-        TrafficSender trafficSender = new HttpTrafficSender("http://localhost:9091/usage-data", new HttpClientManager());
 
-        // Kullanım verisini dinamik olarak üreten sınıf
-        List<String> usageTypes = Arrays.asList("SMS", "CALL", "DATA");
-        UsageDataGenerator usageDataGenerator = new UsageDataGenerator(usageTypes);
+        TrafficSender trafficSender = new HttpTrafficSender("http://localhost:5855/usage", new HttpClientManager());
 
-        // Interface'ler kullanılarak bağımlılıklar enjekte ediliyor
+        UsageDataGenerator usageDataGenerator = new UsageDataGenerator(subscriberRepository);
+
+
         ISubscriberService subscriberService = new SubscriberService(subscriberRepository);
         ITrafficGeneratorService trafficGeneratorService = new TrafficGeneratorService(subscriberRepository, usageDataGenerator, trafficSender);
 
-        // ApplicationInitializer başlatılıyor
         ApplicationInitializer app = new ApplicationInitializer(clientManager, subscriberService, trafficGeneratorService);
         app.run();
     }

@@ -1,11 +1,10 @@
 package com.ramobeko.accountordermanagement;
 
-import com.ramobeko.accountordermanagement.config.HazelcastConfig;
+
 import org.apache.ignite.springdata.repository.config.EnableIgniteRepositories;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.FilterType;
+
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication

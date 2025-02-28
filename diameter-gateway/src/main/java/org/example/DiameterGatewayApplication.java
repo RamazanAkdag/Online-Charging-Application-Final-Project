@@ -1,20 +1,14 @@
 package org.example;
 
-import akka.actor.typed.ActorRef;
-import akka.actor.typed.ActorSystem;
-import akka.actor.typed.Behavior;
-import akka.actor.typed.SupervisorStrategy;
-import akka.actor.typed.javadsl.Behaviors;
-import akka.actor.typed.javadsl.Routers;
-import akka.cluster.typed.Cluster;
-import akka.cluster.typed.Join;
-import com.hazelcast.core.HazelcastInstance;
-import com.ramobeko.akka.Command;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+@SpringBootApplication
 public class DiameterGatewayApplication {
     public static void main(String[] args) {
+        SpringApplication.run(DiameterGatewayApplication.class, args);
 
-        HazelcastInstance hazelcastInstance = HazelcastConfig.createHazelcastClient();
+        /*HazelcastInstance hazelcastInstance = HazelcastConfig.createHazelcastClient();
 
         Behavior<Void> rootBehavior = Behaviors.setup(context -> {
             int poolSize = 4;
@@ -35,6 +29,6 @@ public class DiameterGatewayApplication {
             return Behaviors.empty();
         });
 
-        ActorSystem<Void> system = ActorSystem.create(rootBehavior, "dgw-system");
+        ActorSystem<Void> system = ActorSystem.create(rootBehavior, "dgw-system");*/
     }
 }
