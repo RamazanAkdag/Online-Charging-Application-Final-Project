@@ -125,23 +125,31 @@
         <!-- Apache Ignite Bağımlılıkları -->
         <dependency>
             <groupId>org.apache.ignite</groupId>
+            <artifactId>ignite-spring-data-ext</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.ignite</groupId>
             <artifactId>ignite-core</artifactId>
             <version>${ignite.version}</version>
         </dependency>
+
         <dependency>
             <groupId>org.apache.ignite</groupId>
             <artifactId>ignite-indexing</artifactId>
             <version>${ignite.version}</version>
         </dependency>
+
         <dependency>
             <groupId>org.apache.ignite</groupId>
             <artifactId>ignite-spring</artifactId>
             <version>${ignite.version}</version>
         </dependency>
+
         <dependency>
-            <groupId>org.apache.ignite</groupId>
-            <artifactId>ignite-spring-data-ext</artifactId>
-            <version>3.0.0</version>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-commons</artifactId>
         </dependency>
 
         <dependency>

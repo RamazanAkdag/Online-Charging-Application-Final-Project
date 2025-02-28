@@ -1,10 +1,7 @@
 package com.ramobeko.akka;
 
-import akka.actor.typed.ActorRef;
+
 import akka.serialization.jackson.CborSerializable;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 public interface Command extends CborSerializable {
 
@@ -13,17 +10,10 @@ public interface Command extends CborSerializable {
         private final String serviceType;
         private final int usageAmount;
 
-
-        @JsonCreator
-        public UsageData(
-                @JsonProperty("userId") String userId,
-                @JsonProperty("serviceType") String serviceType,
-                @JsonProperty("usageAmount") int usageAmount
-                 ) {
+        public UsageData(String userId, String serviceType, int usageAmount) {
             this.userId = userId;
             this.serviceType = serviceType;
             this.usageAmount = usageAmount;
-
         }
 
         // Parametresiz constructor (Jackson için gerekli)

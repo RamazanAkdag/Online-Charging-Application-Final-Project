@@ -16,30 +16,30 @@ services:
     ports:
       - "5701:5701"
 
-  hazelcast-node2:
-    image: hazelcast/hazelcast:latest
-    container_name: hazelcast-node2
-    environment:
-      - HZ_CLUSTERNAME=hazelcast-cluster
-      - HZ_NETWORK_JOIN_TCPIP_ENABLED=true
-      - HZ_NETWORK_JOIN_TCPIP_MEMBERS=hazelcast-node1,hazelcast-node2
-      - HZ_NETWORK_PUBLICADDRESS=hazelcast-node2:5701
-      - HZ_NETWORK_JOIN_AUTODETECTION_ENABLED=false
-    networks:
-      - hazelcast-network
-    ports:
-      - "5702:5701"
+  #hazelcast-node2:
+  #  image: hazelcast/hazelcast:latest
+  #  container_name: hazelcast-node2
+  #  environment:
+  #    - HZ_CLUSTERNAME=hazelcast-cluster
+  #    - HZ_NETWORK_JOIN_TCPIP_ENABLED=true
+  #    - HZ_NETWORK_JOIN_TCPIP_MEMBERS=hazelcast-node1,hazelcast-node2
+  #    - HZ_NETWORK_PUBLICADDRESS=hazelcast-node2:5701
+  #    - HZ_NETWORK_JOIN_AUTODETECTION_ENABLED=false
+  #  networks:
+  #    - hazelcast-network
+  #  ports:
+  #    - "5702:5701"
 
-  management-center:
-    image: hazelcast/management-center:latest
-    container_name: hazelcast-mancenter
-    environment:
-      - MC_DEFAULT_CLUSTER=hazelcast-cluster
-      - MC_CLUSTER_MEMBER=hazelcast-node1:5701,hazelcast-node2:5701  # İKİ NODE EKLENDİ
-    networks:
-      - hazelcast-network
-    ports:
-      - "9090:8080"
+  #management-center:
+  #  image: hazelcast/management-center:latest
+  #  container_name: hazelcast-mancenter
+  #  environment:
+  #    - MC_DEFAULT_CLUSTER=hazelcast-cluster
+  #    - MC_CLUSTER_MEMBER=hazelcast-node1:5701,hazelcast-node2:5701  # İKİ NODE EKLENDİ
+  #  networks:
+  #    - hazelcast-network
+  #  ports:
+  #    - "9090:8080"
 
 
 networks:
