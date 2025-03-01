@@ -1,43 +1,45 @@
 package org.example.onlinechargingsystem.akka.actor;
 
-import akka.actor.typed.*;
-import akka.actor.typed.javadsl.*;
+import akka.actor.typed.ActorRef;
+import akka.actor.typed.Behavior;
+import akka.actor.typed.javadsl.AbstractBehavior;
+import akka.actor.typed.javadsl.ActorContext;
+import akka.actor.typed.javadsl.Behaviors;
+import akka.actor.typed.javadsl.Receive;
 import akka.actor.typed.receptionist.Receptionist;
-import akka.actor.typed.receptionist.ServiceKey;
 import com.ramobeko.akka.Command;
+import com.ramobeko.akka.CommonServiceKeys;
 
 import java.util.List;
 
-public class OcsRouterActor extends AbstractBehavior<Command.UsageData> {
+public class OcsRouterActor extends AbstractBehavior<Object> {
 
     private final List<ActorRef<Command.UsageData>> workerActors;
     private int counter = 0; // Round Robin dağıtım için
 
-    // OCS Router'ı Receptionist'a kaydetmek için ServiceKey tanımlıyoruz
-    public static final ServiceKey<Command.UsageData> OCS_ROUTER_KEY =
-            ServiceKey.create(Command.UsageData.class, "OcsRouter");
-
-    public static Behavior<Command.UsageData> create(List<ActorRef<Command.UsageData>> workers) {
+    public static Behavior<Object> create(List<ActorRef<Command.UsageData>> workers) {
         return Behaviors.setup(context -> {
-            context.getSystem().receptionist().tell(Receptionist.register(OCS_ROUTER_KEY, context.getSelf()));
+            context.getSystem().receptionist().tell(
+                    Receptionist.register(CommonServiceKeys.OCS_ROUTER_KEY, context.getSelf().narrow())
+            );
             return new OcsRouterActor(context, workers);
         });
     }
 
-    private OcsRouterActor(ActorContext<Command.UsageData> context, List<ActorRef<Command.UsageData>> workers) {
+    private OcsRouterActor(ActorContext<Object> context, List<ActorRef<Command.UsageData>> workers) {
         super(context);
         this.workerActors = workers;
     }
 
     @Override
-    public Receive<Command.UsageData> createReceive() {
+    public Receive<Object> createReceive() {
         return newReceiveBuilder()
-                .onMessage(Command.UsageData.class, this::routeMessage)
+                .onMessage(Command.UsageData.class, this::onUsageData)
                 .build();
     }
 
-    private Behavior<Command.UsageData> routeMessage(Command.UsageData data) {
-        workerActors.get(counter % workerActors.size()).tell(data); // Round Robin ile iş dağıtımı
+    private Behavior<Object> onUsageData(Command.UsageData data) {
+        workerActors.get(counter % workerActors.size()).tell(data);
         counter++;
         return this;
     }
