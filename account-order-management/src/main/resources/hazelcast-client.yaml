@@ -2,7 +2,8 @@ hazelcast-client:
   cluster-name: hazelcast-cluster
   network:
     cluster-members:
-      - 127.0.0.1:5701  # Buradaki IP'yi Docker'daki servislere göre kontrol et
+      - 127.0.0.1:5701
+      - 127.0.0.1:5702 # Buradaki IP'yi Docker'daki servislere göre kontrol et
     smart-routing: false  # Eğer gereksiz bağlantıları önlemek istiyorsan
     connection-timeout: 10000  # 10 saniyelik zaman aşımı
     redo-operation: true
