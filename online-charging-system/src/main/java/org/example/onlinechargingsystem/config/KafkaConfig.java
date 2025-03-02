@@ -10,13 +10,13 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
 import java.util.HashMap;
 import java.util.Map;
-import org.example.onlinechargingsystem.model.kafka.KafkaMessage; // 🔹 KafkaMessage import et
+import com.ramobeko.kafka.ABMFKafkaMessage; // 🔹 KafkaMessage import et
 
 @Configuration
 public class KafkaConfig {
 
     @Bean
-    public ProducerFactory<String, KafkaMessage> producerFactory() { // 🔹 Burada KafkaMessage kullanıyoruz
+    public ProducerFactory<String, ABMFKafkaMessage> producerFactory() { // 🔹 Burada KafkaMessage kullanıyoruz
         Map<String, Object> configProps = new HashMap<>();
         configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092"); // Kafka broker adresi
         configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
@@ -25,7 +25,7 @@ public class KafkaConfig {
     }
 
     @Bean
-    public KafkaTemplate<String, KafkaMessage> kafkaTemplate() { // 🔹 Burada KafkaMessage tipiyle değiştirildi
+    public KafkaTemplate<String, ABMFKafkaMessage> kafkaTemplate() { // 🔹 Burada KafkaMessage tipiyle değiştirildi
         return new KafkaTemplate<>(producerFactory());
     }
 }

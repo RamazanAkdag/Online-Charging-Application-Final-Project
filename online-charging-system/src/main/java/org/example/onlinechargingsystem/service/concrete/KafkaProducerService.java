@@ -1,7 +1,7 @@
 package org.example.onlinechargingsystem.service.concrete;
 
 
-import org.example.onlinechargingsystem.model.kafka.KafkaMessage;
+import com.ramobeko.kafka.ABMFKafkaMessage;
 import org.example.onlinechargingsystem.service.abstrct.IKafkaProducerService;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
@@ -9,14 +9,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class KafkaProducerService implements IKafkaProducerService {
 
-    private final KafkaTemplate<String, KafkaMessage> kafkaTemplate;
+    private final KafkaTemplate<String, ABMFKafkaMessage> kafkaTemplate;
 
-    public KafkaProducerService(KafkaTemplate<String, KafkaMessage> kafkaTemplate) {
+    public KafkaProducerService(KafkaTemplate<String, ABMFKafkaMessage> kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
     }
 
     @Override
-    public void sendUsageData(String topic, KafkaMessage message) {
+    public void sendUsageData(String topic, ABMFKafkaMessage message) {
         kafkaTemplate.send(topic, message);
     }
 }

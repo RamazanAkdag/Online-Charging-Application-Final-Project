@@ -1,9 +1,8 @@
 package com.ramobeko.accountordermanagement.service.abstrct.ignite;
 
-import com.ramobeko.accountordermanagement.model.entity.ignite.IgniteSubscriber;
-import com.ramobeko.accountordermanagement.model.shared.OracleSubscriber;
 
-import java.util.Optional;
+import com.ramobeko.accountordermanagement.model.shared.OracleSubscriber;
+import com.ramobeko.ignite.IgniteSubscriber;
 
 public interface IIgniteSubscriberService{
 

@@ -1,17 +1,16 @@
 package com.ramobeko.accountordermanagement.service.concrete.ignite;
 
-import com.ramobeko.accountordermanagement.model.entity.ignite.IgniteBalance;
-import com.ramobeko.accountordermanagement.model.entity.ignite.IgniteSubscriber;
-import com.ramobeko.accountordermanagement.model.entity.oracle.OracleBalance;
+import com.ramobeko.ignite.IgniteBalance;
+
 import com.ramobeko.accountordermanagement.model.shared.OracleSubscriber;
 import com.ramobeko.accountordermanagement.repository.ignite.IgniteSubscriberRepository;
 import com.ramobeko.accountordermanagement.service.abstrct.ignite.IIgniteSubscriberService;
+import com.ramobeko.ignite.IgniteSubscriber;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -56,7 +55,7 @@ public class IgniteSubscriberService implements IIgniteSubscriberService {
                         .collect(Collectors.toList()) // ✅ Store full IgniteBalance objects instead of IDs
         );
 
-        repository.save(igniteSubscriber.getId(), igniteSubscriber);
+        repository.save(Long.parseLong(igniteSubscriber.getPhoneNumber()), igniteSubscriber);
         logger.info("Ignite subscriber created successfully with ID: {}", igniteSubscriber.getId());
     }
 
