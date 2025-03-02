@@ -1,7 +1,5 @@
 package com.ramobeko.dgwtgf.model;
 
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 import java.util.Date;
 
 public class UsageRequest {
@@ -12,12 +10,12 @@ public class UsageRequest {
     private String receiverSubscNumber;
     private Date usageTime;
 
-    public UsageRequest(UsageType usageType, double usageAmount, String senderSubscNumber, String receiverSubscNumber, LocalDateTime usageTime) {
+    public UsageRequest(UsageType usageType, double usageAmount, String senderSubscNumber, String receiverSubscNumber, Date usageTime) {
         this.usageType = usageType;
         this.usageAmount = usageAmount;
         this.senderSubscNumber = senderSubscNumber;
         this.receiverSubscNumber = receiverSubscNumber;
-        this.usageTime = Date.from(usageTime.toInstant(ZoneOffset.UTC)); // LocalDateTime'i Date'e dönüştür
+        this.usageTime = usageTime; // Artık direkt Date olarak alıyor
     }
 
     public UsageRequest() {
