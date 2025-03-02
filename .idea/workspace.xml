@@ -5,29 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e36dfc9-06df-4fb0-896c-d0105c657a96" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/config/AkkaConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/online-charging-system/src/main/resources/log4j2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/config/IgniteConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/config/IgniteConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/ramobeko/akka/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/ramobeko/akka/Command.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/ramobeko/akka/CommonServiceKeys.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/ramobeko/akka/CommonServiceKeys.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/ramobeko/dgwtgf/model/UsageRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/ramobeko/dgwtgf/model/UsageRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/diameter-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/diameter-gateway/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/diameter-gateway/src/main/java/org/example/DgwHttpServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/diameter-gateway/src/main/java/org/example/DgwHttpServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/diameter-gateway/src/main/java/org/example/akka/DgwActor.java" beforeDir="false" afterPath="$PROJECT_DIR$/diameter-gateway/src/main/java/org/example/akka/DgwActor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/diameter-gateway/src/main/java/org/example/config/AkkaConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/diameter-gateway/src/main/java/org/example/config/AkkaConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/diameter-gateway/src/main/java/org/example/config/AkkaConfiguration.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/diameter-gateway/src/main/java/org/example/controller/DGWUsageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/diameter-gateway/src/main/java/org/example/controller/DGWUsageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/diameter-gateway/src/main/resources/application.conf" beforeDir="false" afterPath="$PROJECT_DIR$/diameter-gateway/src/main/resources/application.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/online-charging-system/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/online-charging-system/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/OnlineChargingSystemApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/OnlineChargingSystemApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/akka/actor/OcsRouterActor.java" beforeDir="false" afterPath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/akka/actor/OcsRouterActor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/akka/actor/OcsWorkerActor.java" beforeDir="false" afterPath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/akka/actor/OcsWorkerActor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/config/IgniteConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/config/IgniteConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/controller/OcsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/controller/OcsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/model/entity/Balance.java" beforeDir="false" afterPath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/model/entity/Balance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/online-charging-system/src/main/resources/application.conf" beforeDir="false" afterPath="$PROJECT_DIR$/online-charging-system/src/main/resources/application.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/online-charging-system/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/online-charging-system/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/config/KafkaConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/config/KafkaConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/kafka/KafkaMessageListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/kafka/KafkaMessageListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/model/KafkaMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/model/KafkaMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/repository/oracle/OracleBalanceRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/repository/oracle/OracleBalanceRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/util/KafkaMessageDeserializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/util/KafkaMessageDeserializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,12 +86,13 @@
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.AccountBalanceManagementFunctionApplication.executor": "Run",
     "Spring Boot.AccountOrderManagementApplication.executor": "Run",
     "Spring Boot.DiameterGatewayApplication.executor": "Run",
     "Spring Boot.OnlineChargingSystemApplication.executor": "Run",
     "git-widget-placeholder": "OCS-Ramo/ignite",
     "ignore.virus.scanning.warn.message": "true",
-    "jdk.selected.JAVA_MODULE": "openjdk-22",
+    "jdk.selected.JAVA_MODULE": "17",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/___FINAL_PROJECT/ocs-project/online-charging-system/src/main/resources",
     "node.js.detected.package.eslint": "true",
@@ -129,6 +116,10 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\berki\Desktop\ocs\Online-Charging-Application-Final-Project\account-order-management\src\main\resources" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.example.accountbalancemanagementfunction.model" />
+      <recent name="org.example.accountbalancemanagementfunction.config" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="configurationTypes">
@@ -140,7 +131,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.OnlineChargingSystemApplication">
+  <component name="RunManager" selected="Spring Boot.AccountBalanceManagementFunctionApplication">
     <configuration name="TrafficGeneratorFunctionApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="17" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -165,6 +156,19 @@
     <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
       <module name="ocs-project" />
       <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AccountBalanceManagementFunctionApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="account-balance-management-function" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.example.accountbalancemanagementfunction.AccountBalanceManagementFunctionApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.accountbalancemanagementfunction.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -197,7 +201,7 @@
     <configuration name="OnlineChargingSystemApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="C:\Java17\jdk-17.0.10" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <module name="online-charging-system" />
+      <module name="diameter-gateway (1)" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="org.example.onlinechargingsystem.OnlineChargingSystemApplication" />
       <option name="VM_PARAMETERS" value="--add-opens=java.base/jdk.internal.access=ALL-UNNAMED --add-opens=java.base/jdk.internal.misc=ALL-UNNAMED --add-opens=java.base/sun.nio.ch=ALL-UNNAMED --add-opens=java.base/sun.util.calendar=ALL-UNNAMED --add-opens=java.management/com.sun.jmx.mbeanserver=ALL-UNNAMED --add-opens=jdk.internal.jvmstat/sun.jvmstat.monitor=ALL-UNNAMED --add-opens=java.base/sun.reflect.generics.reflectiveObjects=ALL-UNNAMED --add-opens=jdk.management/com.sun.management.internal=ALL-UNNAMED --add-opens=java.base/java.io=ALL-UNNAMED --add-opens=java.base/java.nio=ALL-UNNAMED --add-opens=java.base/java.net=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.util.concurrent=ALL-UNNAMED --add-opens=java.base/java.util.concurrent.locks=ALL-UNNAMED --add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED --add-opens=java.base/java.math=ALL-UNNAMED --add-opens=java.sql/java.sql=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.time=ALL-UNNAMED --add-opens=java.base/java.text=ALL-UNNAMED --add-opens=java.management/sun.management=ALL-UNNAMED --add-opens=java.desktop/java.awt.font=ALL-UNNAMED -DIGNITE_PEER_CLASS_LOADING=true -Djava.net.preferIPv4Stack=true" />
       <method v="2">
@@ -237,10 +241,12 @@
       <item itemvalue="Docker.hazelcast-compose.yml: Compose Deployment" />
       <item itemvalue="Spring Boot.OnlineChargingSystemApplication" />
       <item itemvalue="Spring Boot.AccountOrderManagementApplication" />
+      <item itemvalue="Spring Boot.AccountBalanceManagementFunctionApplication" />
       <item itemvalue="Spring Boot.DiameterGatewayApplication" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.AccountBalanceManagementFunctionApplication" />
         <item itemvalue="Application.TrafficGeneratorFunctionApplication" />
         <item itemvalue="Spring Boot.DiameterGatewayApplication" />
         <item itemvalue="Docker.hazelcast-compose.yml.hazelcast-node1: Compose Deployment" />
@@ -268,11 +274,23 @@
       <workItem from="1740734261882" duration="5000" />
       <workItem from="1740734893222" duration="10332000" />
       <workItem from="1740767928942" duration="4795000" />
+      <workItem from="1740933993830" duration="4596000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="LAST_COMMIT_MESSAGE" value="" />

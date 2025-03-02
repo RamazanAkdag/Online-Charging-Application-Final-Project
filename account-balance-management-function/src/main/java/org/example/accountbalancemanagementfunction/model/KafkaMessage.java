@@ -1,4 +1,4 @@
-package org.example.onlinechargingsystem.model.kafka;
+package org.example.accountbalancemanagementfunction.model;
 
 
 import lombok.*;
