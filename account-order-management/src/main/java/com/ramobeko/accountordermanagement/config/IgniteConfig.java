@@ -32,8 +32,8 @@ public class IgniteConfig {
         igniteConfiguration.setDiscoverySpi(discoverySpi);
 
         return igniteConfiguration;
-    }*/
-
+    }
+*/
     @Bean
     public IgniteClient igniteInstance() {
         return Ignition.startClient(new ClientConfiguration().setAddresses(igniteAddresses));

@@ -1,33 +1,52 @@
 package com.ramobeko.akka;
 
-
 import akka.serialization.jackson.CborSerializable;
+import com.ramobeko.dgwtgf.model.UsageType;
+
+import java.util.Date;
 
 public interface Command extends CborSerializable {
 
     final class UsageData implements Command {
-        private final String userId;
-        private final String serviceType;
-        private final int usageAmount;
+        private final UsageType usageType;
+        private final double usageAmount;
+        private final String senderSubscNumber;
+        private final String receiverSubscNumber;
+        private final Date usageTime;
 
-        public UsageData(String userId, String serviceType, int usageAmount) {
-            this.userId = userId;
-            this.serviceType = serviceType;
+        public UsageData(UsageType usageType, double usageAmount, String senderSubscNumber, String receiverSubscNumber, Date usageTime) {
+            this.usageType = usageType;
             this.usageAmount = usageAmount;
+            this.senderSubscNumber = senderSubscNumber;
+            this.receiverSubscNumber = receiverSubscNumber;
+            this.usageTime = usageTime; // Artık doğrudan Date olarak alınıyor
         }
 
         // Parametresiz constructor (Jackson için gerekli)
         public UsageData() {
-            this.userId = "";
-            this.serviceType = "";
+            this.usageType = null;
             this.usageAmount = 0;
-
+            this.senderSubscNumber = "";
+            this.receiverSubscNumber = "";
+            this.usageTime = new Date();
         }
 
-        public String getUserId() { return userId; }
-        public String getServiceType() { return serviceType; }
-        public int getUsageAmount() { return usageAmount; }
+        public UsageType getUsageType() { return usageType; }
+        public double getUsageAmount() { return usageAmount; }
+        public String getSenderSubscNumber() { return senderSubscNumber; }
+        public String getReceiverSubscNumber() { return receiverSubscNumber; }
+        public Date getUsageTime() { return usageTime; }
 
+        @Override
+        public String toString() {
+            return "UsageData{" +
+                    "usageType=" + usageType +
+                    ", usageAmount=" + usageAmount +
+                    ", senderSubscNumber='" + senderSubscNumber + '\'' +
+                    ", receiverSubscNumber='" + receiverSubscNumber + '\'' +
+                    ", usageTime=" + usageTime +
+                    '}';
+        }
     }
 
     interface Response extends CborSerializable {}

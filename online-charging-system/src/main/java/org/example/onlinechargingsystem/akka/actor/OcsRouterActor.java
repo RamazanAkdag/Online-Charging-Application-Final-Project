@@ -15,12 +15,12 @@ import java.util.List;
 public class OcsRouterActor extends AbstractBehavior<Object> {
 
     private final List<ActorRef<Command.UsageData>> workerActors;
-    private int counter = 0; // Round Robin dağıtım için
+    private int counter = 0;
 
     public static Behavior<Object> create(List<ActorRef<Command.UsageData>> workers) {
         return Behaviors.setup(context -> {
             context.getSystem().receptionist().tell(
-                    Receptionist.register(CommonServiceKeys.OCS_ROUTER_KEY, context.getSelf().narrow())
+                    Receptionist.register(CommonServiceKeys.OCS_SERVICE_KEY, context.getSelf().narrow())
             );
             return new OcsRouterActor(context, workers);
         });

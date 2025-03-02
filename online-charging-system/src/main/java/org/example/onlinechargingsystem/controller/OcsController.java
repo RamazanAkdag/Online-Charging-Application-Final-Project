@@ -1,4 +1,4 @@
-package org.example.onlinechargingsystem.controller;
+/*package org.example.onlinechargingsystem.controller;
 
 
 import com.ramobeko.akka.Command;
@@ -25,5 +25,5 @@ public class OcsController {
         return ResponseEntity.ok("Usage data sent to OCS successfully.");
     }
 }
-
+*/
 

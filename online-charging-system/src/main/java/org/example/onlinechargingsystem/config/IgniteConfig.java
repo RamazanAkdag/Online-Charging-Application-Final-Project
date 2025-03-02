@@ -1,6 +1,7 @@
 package org.example.onlinechargingsystem.config;
 
 import org.apache.ignite.*;
+import org.apache.ignite.client.IgniteClient;
 import org.apache.ignite.configuration.*;
 import org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi;
 import org.apache.ignite.spi.discovery.tcp.ipfinder.vm.TcpDiscoveryVmIpFinder;
@@ -16,7 +17,7 @@ public class IgniteConfig {
     @Value("${ignite.discovery.addresses}")
     private String igniteAddresses;
 
-    @Bean
+   /* @Bean
     public IgniteConfiguration igniteCfg() {
         IgniteConfiguration igniteConfiguration = new IgniteConfiguration();
         igniteConfiguration.setClientMode(true)
@@ -30,10 +31,10 @@ public class IgniteConfig {
         igniteConfiguration.setDiscoverySpi(discoverySpi);
 
         return igniteConfiguration;
-    }
+    }*/
 
     @Bean
-    public Ignite igniteInstance() {
-        return Ignition.start(igniteCfg()); // 🔹 Creates an Ignite instance
+    public IgniteClient igniteInstance() {
+        return Ignition.startClient(new ClientConfiguration().setAddresses(igniteAddresses));
     }
 }

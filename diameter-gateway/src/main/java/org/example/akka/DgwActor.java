@@ -1,4 +1,4 @@
-package org.example.akka;
+/*package org.example.akka;
 
 import akka.actor.typed.ActorRef;
 import akka.actor.typed.Behavior;
@@ -82,4 +82,4 @@ public class DgwActor extends AbstractBehavior<Object> {
             this.listing = listing;
         }
     }
-}
+}*/

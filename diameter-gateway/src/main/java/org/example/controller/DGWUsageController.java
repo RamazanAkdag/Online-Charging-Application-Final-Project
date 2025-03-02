@@ -1,11 +1,11 @@
 package org.example.controller;
 
 import akka.actor.typed.ActorRef;
-import akka.actor.typed.ActorSystem;
 import com.hazelcast.core.HazelcastInstance;
-import com.ramobeko.dgwtgf.model.UsageRequest;
 import com.ramobeko.akka.Command;
-import org.example.akka.DgwActor;
+import com.ramobeko.dgwtgf.model.UsageRequest;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,32 +14,35 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/usage")
 public class DGWUsageController {
 
-    private final ActorSystem<Object> actorSystem;
-    private final HazelcastInstance hazelcastInstance;
-    private final ActorRef<Object> dgwActor;
+    private static final Logger logger = LogManager.getLogger(DGWUsageController.class);
 
-    public DGWUsageController(ActorSystem<Object> actorSystem,
-                              @Qualifier("primaryHazelcastInstance") HazelcastInstance hazelcastInstance) {
-        this.actorSystem = actorSystem;
+    private final HazelcastInstance hazelcastInstance;
+    private final ActorRef<Command.UsageData> router;  // Router Bean
+
+    public DGWUsageController(
+            @Qualifier("primaryHazelcastInstance") HazelcastInstance hazelcastInstance,
+            ActorRef<Command.UsageData> router) {
+
         this.hazelcastInstance = hazelcastInstance;
-        // DGW actor sistemde "dgw-actor" adıyla spawn ediliyor
-        this.dgwActor = actorSystem.systemActorOf(DgwActor.create(hazelcastInstance),
-                "dgw-actor",
-                akka.actor.typed.Props.empty());
+        this.router = router;
     }
 
     @PostMapping
     public ResponseEntity<String> usage(@RequestBody UsageRequest usageRequest) {
-        // UsageRequest'ten Command.UsageData'ya dönüştürme işlemi:
-        // Burada receiverSubscNumber, kullanıcı ID'si (userId) olarak kullanılıyor.
+
+        logger.info("📩 Received usage request: {}", usageRequest);
+
         Command.UsageData usageData = new Command.UsageData(
-                usageRequest.getReceiverSubscNumber(),   // userId
-                usageRequest.getUsageType().toString(),   // serviceType
-                (int) usageRequest.getUsageAmount()             // usageAmount
+                usageRequest.getUsageType(),
+                usageRequest.getUsageAmount(),
+                usageRequest.getSenderSubscNumber(),
+                usageRequest.getReceiverSubscNumber(),
+                usageRequest.getUsageTime()
         );
 
-        // DGW actor'e mesaj gönderiliyor
-        dgwActor.tell(usageData);
+        logger.info("📤 Sending message to router: {}", usageData);
+        router.tell(usageData);
+
         return ResponseEntity.ok("Usage data message sent to DGW actor");
     }
 }
