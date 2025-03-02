@@ -1,9 +1,12 @@
 package org.example.onlinechargingsystem.service.abstrct;
 
+import com.ramobeko.ignite.IgniteBalance;
 import org.example.onlinechargingsystem.model.entity.Balance;
-
 public interface IBalanceService {
-    Balance getBalance(Long subscriberId);
-    void deductBalance(Long subscriberId, int minutes, int sms, int data);
-}
+    IgniteBalance getBalance(Long subscNumber);
+    void deductBalanceForMinutes(Long subscNumber, int amount);
+    void deductBalanceForSms(Long subscNumber, int amount);
 
+    void deductBalanceForData(Long subscNumber, int amount);
+
+}

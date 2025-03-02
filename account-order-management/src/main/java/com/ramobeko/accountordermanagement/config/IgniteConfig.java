@@ -18,22 +18,7 @@ public class IgniteConfig {
     @Value("${ignite.discovery.addresses}")
     private String igniteAddresses;
 
-    /*@Bean
-    public IgniteConfiguration igniteCfg() {
-        IgniteConfiguration igniteConfiguration = new IgniteConfiguration();
-        igniteConfiguration.setClientMode(true)
-                .setPeerClassLoadingEnabled(true);
 
-        TcpDiscoverySpi discoverySpi = new TcpDiscoverySpi();
-        TcpDiscoveryVmIpFinder ipFinder = new TcpDiscoveryVmIpFinder();
-
-        ipFinder.setAddresses(Collections.singletonList(igniteAddresses));
-        discoverySpi.setIpFinder(ipFinder);
-        igniteConfiguration.setDiscoverySpi(discoverySpi);
-
-        return igniteConfiguration;
-    }
-*/
     @Bean
     public IgniteClient igniteInstance() {
         return Ignition.startClient(new ClientConfiguration().setAddresses(igniteAddresses));

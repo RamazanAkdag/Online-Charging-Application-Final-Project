@@ -1,12 +1,16 @@
-package com.ramobeko.accountordermanagement.model.entity.ignite;
+package com.ramobeko.ignite;
 
+import org.apache.ignite.binary.BinaryObject;
+import org.apache.ignite.binary.BinaryReader;
+import org.apache.ignite.binary.BinaryWriter;
+import org.apache.ignite.binary.Binarylizable;
 import org.apache.ignite.cache.query.annotations.QuerySqlField;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class IgniteSubscriber implements Serializable {
+public class IgniteSubscriber implements Binarylizable, Serializable {
 
     @QuerySqlField(index = true)
     private Long id;
@@ -45,6 +49,31 @@ public class IgniteSubscriber implements Serializable {
         this.endDate = endDate;
         this.status = status;
         this.balances = balances;
+    }
+
+    // Binarylizable interface implementation
+    @Override
+    public void writeBinary(BinaryWriter writer) {
+        writer.writeLong("id", id);
+        writer.writeLong("customerId", customerId);
+        writer.writeLong("packagePlanId", packagePlanId);
+        writer.writeString("phoneNumber", phoneNumber);
+        writer.writeDate("startDate", startDate);
+        writer.writeDate("endDate", endDate);
+        writer.writeString("status", status);
+        writer.writeObject("balances", balances);
+    }
+
+    @Override
+    public void readBinary(BinaryReader reader) {
+        this.id = reader.readLong("id");
+        this.customerId = reader.readLong("customerId");
+        this.packagePlanId = reader.readLong("packagePlanId");
+        this.phoneNumber = reader.readString("phoneNumber");
+        this.startDate = reader.readDate("startDate");
+        this.endDate = reader.readDate("endDate");
+        this.status = reader.readString("status");
+        this.balances = reader.readObject("balances");
     }
 
     // Getters and Setters
@@ -110,5 +139,19 @@ public class IgniteSubscriber implements Serializable {
 
     public void setBalances(List<IgniteBalance> balances) {
         this.balances = balances;
+    }
+
+    @Override
+    public String toString() {
+        return "IgniteSubscriber{" +
+                "id=" + id +
+                ", customerId=" + customerId +
+                ", packagePlanId=" + packagePlanId +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", status='" + status + '\'' +
+                ", balances=" + balances +
+                '}';
     }
 }

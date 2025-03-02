@@ -1,10 +1,14 @@
-package com.ramobeko.accountordermanagement.model.entity.ignite;
+package com.ramobeko.ignite;
 
+import org.apache.ignite.binary.Binarylizable;
+import org.apache.ignite.binary.BinaryReader;
+import org.apache.ignite.binary.BinaryWriter;
 import org.apache.ignite.cache.query.annotations.QuerySqlField;
+
 import java.io.Serializable;
 import java.util.Date;
 
-public class IgniteBalance implements Serializable {
+public class IgniteBalance implements Binarylizable, Serializable {
 
     @QuerySqlField(index = true)
     private Long id;
@@ -43,6 +47,31 @@ public class IgniteBalance implements Serializable {
         this.levelData = levelData;
         this.startDate = startDate != null ? startDate : new Date();
         this.endDate = endDate;
+    }
+
+    // ✅ Binarylizable implementation (Apache Ignite Serialization)
+    @Override
+    public void writeBinary(BinaryWriter writer) {
+        writer.writeLong("id", id);
+        writer.writeLong("subscriberId", subscriberId);
+        writer.writeLong("packageId", packageId);
+        writer.writeLong("levelMinutes", levelMinutes);
+        writer.writeLong("levelSms", levelSms);
+        writer.writeLong("levelData", levelData);
+        writer.writeDate("startDate", startDate);
+        writer.writeDate("endDate", endDate);
+    }
+
+    @Override
+    public void readBinary(BinaryReader reader) {
+        this.id = reader.readLong("id");
+        this.subscriberId = reader.readLong("subscriberId");
+        this.packageId = reader.readLong("packageId");
+        this.levelMinutes = reader.readLong("levelMinutes");
+        this.levelSms = reader.readLong("levelSms");
+        this.levelData = reader.readLong("levelData");
+        this.startDate = reader.readDate("startDate");
+        this.endDate = reader.readDate("endDate");
     }
 
     // Getters and Setters
@@ -108,5 +137,19 @@ public class IgniteBalance implements Serializable {
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
+    }
+
+    @Override
+    public String toString() {
+        return "IgniteBalance{" +
+                "id=" + id +
+                ", subscriberId=" + subscriberId +
+                ", packageId=" + packageId +
+                ", levelMinutes=" + levelMinutes +
+                ", levelSms=" + levelSms +
+                ", levelData=" + levelData +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                '}';
     }
 }

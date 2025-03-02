@@ -1,9 +1,9 @@
 package org.example.onlinechargingsystem.service.abstrct;
 
 
-import org.example.onlinechargingsystem.model.kafka.KafkaMessage;
+import com.ramobeko.kafka.ABMFKafkaMessage;
 
 public interface IKafkaProducerService {
-    void sendUsageData(String topic, KafkaMessage message);
+    void sendUsageData(String topic, ABMFKafkaMessage message);
 }
 
