@@ -18,6 +18,7 @@
       <module>online-charging-system</module>
       <module>account-balance-management-function</module>
       <module>common</module>
+      <module>charging-gateway-function</module>
   </modules>
 
   <properties>
