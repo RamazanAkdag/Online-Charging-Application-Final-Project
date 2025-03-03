@@ -1,10 +1,11 @@
 package org.example.charginggatewayfunction.config;
 
-import com.ramobeko.kafka.ABMFKafkaMessage;
-import com.ramobeko.kafka.KafkaMessageDeserializer;
+import com.ramobeko.kafka.CGFKafkaMessage;
+import com.ramobeko.kafka.KafkaMessageDeserializer; // JSON vb. Deserializer
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.example.charginggatewayfunction.kafka.KafkaMessageListener;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.EnableKafka;
@@ -21,29 +22,35 @@ import java.util.Map;
 @EnableKafka
 public class KafkaConfig {
 
-    @Bean
-    public ConsumerFactory<String, ABMFKafkaMessage> consumerFactory() {
-        Map<String, Object> configProps = new HashMap<>();
-        configProps.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
-        configProps.put(ConsumerConfig.GROUP_ID_CONFIG, "cgf_group_id");
-        configProps.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-        // Mesajın value'su ABMFKafkaMessage olduğu için özel Deserializer
-        configProps.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaMessageDeserializer.class);
+    @Value("${kafka.bootstrap.servers}")
+    private String bootstrapServers;
 
-        return new DefaultKafkaConsumerFactory<>(configProps);
+    @Value("${kafka.group.id}")
+    private String groupId;
+
+    @Value("${kafka.topic.name}")
+    private String topicName;
+
+    @Bean
+    public ConsumerFactory<String, CGFKafkaMessage> cgwConsumerFactory() {
+        Map<String, Object> props = new HashMap<>();
+        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
+        props.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
+        props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+        // CGWKafkaMessage için özel Deserializer
+        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaMessageDeserializer.class);
+
+        return new DefaultKafkaConsumerFactory<>(props);
     }
 
     @Bean
-    public MessageListenerContainer cgfMessageListenerContainer(
-            ConsumerFactory<String, ABMFKafkaMessage> consumerFactory,
-            KafkaMessageListener messageListener) {
+    public MessageListenerContainer cgwMessageListenerContainer(
+            ConsumerFactory<String, CGFKafkaMessage> cgwConsumerFactory,
+            KafkaMessageListener kafkaMessageListener) {
 
-        ContainerProperties containerProps = new ContainerProperties("cgf_topic");
-        containerProps.setMessageListener(messageListener);
+        ContainerProperties containerProps = new ContainerProperties(topicName);
+        containerProps.setMessageListener(kafkaMessageListener);
 
-        ConcurrentMessageListenerContainer<String, ABMFKafkaMessage> container =
-                new ConcurrentMessageListenerContainer<>(consumerFactory, containerProps);
-
-        return container;
+        return new ConcurrentMessageListenerContainer<>(cgwConsumerFactory, containerProps);
     }
 }

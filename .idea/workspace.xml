@@ -5,21 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e36dfc9-06df-4fb0-896c-d0105c657a96" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/Repository/OraclePersonalUsageRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/config/KafkaConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/kafka/KafkaMessageListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/model/oracle/PersonalUsage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/service/abstrct/IChargingService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/service/concrete/ChargingService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/util/model/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/util/mapper/PersonalUsageMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/charging-gateway-function/src/test/java/org/example/charginggatewayfunction/CGFKafkaMessageIntegrationTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/ramobeko/kafka/CGFKafkaMessage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/config/KafkaConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/config/KafkaConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/repository/oracle/OracleBalanceRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/repository/oracle/OracleBalanceRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/util/KafkaMessageDeserializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/ramobeko/kafka/KafkaMessageDeserializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charging-gateway-function/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/charging-gateway-function/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/Repository/OraclePersonalUsageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/repository/OraclePersonalUsageRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/config/KafkaConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/config/KafkaConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/kafka/KafkaMessageListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/kafka/KafkaMessageListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/model/oracle/PersonalUsage.java" beforeDir="false" afterPath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/model/oracle/PersonalUsage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/service/abstrct/IChargingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/service/abstrct/IChargingService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/service/concrete/ChargingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/service/concrete/ChargingService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/util/model/Role.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/charging-gateway-function/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/charging-gateway-function/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,6 +85,7 @@
     "Docker.hazelcast-compose.yml: Compose Deployment.executor": "Run",
     "Docker.ignite-compose.yml: Compose Deployment.executor": "Run",
     "Docker.kafka-compose.yml: Compose Deployment.executor": "Run",
+    "JUnit.CGFKafkaMessageIntegrationTest.executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
@@ -95,6 +94,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "Spring Boot.AccountBalanceManagementFunctionApplication.executor": "Run",
     "Spring Boot.AccountOrderManagementApplication.executor": "Run",
+    "Spring Boot.ChargingGatewayFunctionApplication.executor": "Run",
     "Spring Boot.DiameterGatewayApplication.executor": "Run",
     "Spring Boot.OnlineChargingSystemApplication.executor": "Run",
     "git-widget-placeholder": "cgf/beko",
@@ -144,7 +144,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.AccountBalanceManagementFunctionApplication">
+  <component name="RunManager" selected="JUnit.CGFKafkaMessageIntegrationTest">
     <configuration name="TrafficGeneratorFunctionApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="17" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -156,6 +156,21 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CGFKafkaMessageIntegrationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="charging-gateway-function" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.charginggatewayfunction.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example.charginggatewayfunction" />
+      <option name="MAIN_CLASS_NAME" value="org.example.charginggatewayfunction.CGFKafkaMessageIntegrationTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -234,19 +249,6 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="hazelcast-compose.yml.hazelcast-node1: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="services">
-            <list>
-              <option value="hazelcast-node1" />
-            </list>
-          </option>
-          <option name="sourceFilePath" value="hazelcast-compose.yml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
     <configuration name="kafka-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
@@ -258,7 +260,7 @@
     <list>
       <item itemvalue="Application.TrafficGeneratorFunctionApplication" />
       <item itemvalue="Docker.kafka-compose.yml: Compose Deployment" />
-      <item itemvalue="Docker.hazelcast-compose.yml.hazelcast-node1: Compose Deployment" />
+      <item itemvalue="JUnit.CGFKafkaMessageIntegrationTest" />
       <item itemvalue="Spring Boot.ChargingGatewayFunctionApplication" />
       <item itemvalue="Spring Boot.OnlineChargingSystemApplication" />
       <item itemvalue="Spring Boot.AccountOrderManagementApplication" />
@@ -267,11 +269,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.CGFKafkaMessageIntegrationTest" />
         <item itemvalue="Spring Boot.AccountBalanceManagementFunctionApplication" />
         <item itemvalue="Spring Boot.DiameterGatewayApplication" />
         <item itemvalue="Application.TrafficGeneratorFunctionApplication" />
         <item itemvalue="Docker.kafka-compose.yml: Compose Deployment" />
-        <item itemvalue="Docker.hazelcast-compose.yml.hazelcast-node1: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>

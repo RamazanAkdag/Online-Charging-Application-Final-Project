@@ -1,5 +1,6 @@
 package org.example.charginggatewayfunction.model.oracle;
 
+import com.ramobeko.dgwtgf.model.UsageType;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -10,10 +11,7 @@ import java.time.OffsetDateTime;
 public class PersonalUsage {
 
     @Id
-
-    @GeneratedValue(
-            strategy = GenerationType.IDENTITY
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "PERSONAL_USAGE_ID", nullable = false)
     private Long personalUsageId;
 
@@ -26,30 +24,34 @@ public class PersonalUsage {
     @Column(name = "USAGE_DATE")
     private LocalDate usageDate;
 
-    // TIMESTAMP(6) WITH TIME ZONE için OffsetDateTime veya ZonedDateTime kullanılabilir.
-    // Burada OffsetDateTime örnek olarak verilmiştir.
+    // Enum değerini VARCHAR olarak saklamak için:
+    @Enumerated(EnumType.STRING)
     @Column(name = "USAGE_TYPE")
-    private OffsetDateTime usageType;
+    private UsageType usageType;
+
+    // Tam zaman bilgisini saklamak için (TIMESTAMP(6) WITH TIME ZONE):
+    @Column(name = "USAGE_TIMESTAMP")
+    private OffsetDateTime usageTimestamp;
 
     @Column(name = "USAGE_DURATION")
     private Integer usageDuration;
 
-    // Boş constructor
     public PersonalUsage() {
     }
 
-    // Dolu constructor
+    // İsteğe bağlı tüm alanları içeren constructor
     public PersonalUsage(Long personalUsageId, Long userId, Long giverId,
-                         LocalDate usageDate, OffsetDateTime usageType, Integer usageDuration) {
+                         LocalDate usageDate, UsageType usageType,
+                         OffsetDateTime usageTimestamp, Integer usageDuration) {
         this.personalUsageId = personalUsageId;
         this.userId = userId;
         this.giverId = giverId;
         this.usageDate = usageDate;
         this.usageType = usageType;
+        this.usageTimestamp = usageTimestamp;
         this.usageDuration = usageDuration;
     }
 
-    // Getter ve Setter metotları
     public Long getPersonalUsageId() {
         return personalUsageId;
     }
@@ -66,12 +68,12 @@ public class PersonalUsage {
         this.userId = userId;
     }
 
-    public Long getBidderId() {
+    public Long getGiverId() {
         return giverId;
     }
 
-    public void setBidderId(Long bidderId) {
-        this.giverId = bidderId;
+    public void setGiverId(Long giverId) {
+        this.giverId = giverId;
     }
 
     public LocalDate getUsageDate() {
@@ -82,12 +84,20 @@ public class PersonalUsage {
         this.usageDate = usageDate;
     }
 
-    public OffsetDateTime getUsageType() {
+    public UsageType getUsageType() {
         return usageType;
     }
 
-    public void setUsageType(OffsetDateTime usageType) {
+    public void setUsageType(UsageType usageType) {
         this.usageType = usageType;
+    }
+
+    public OffsetDateTime getUsageTimestamp() {
+        return usageTimestamp;
+    }
+
+    public void setUsageTimestamp(OffsetDateTime usageTimestamp) {
+        this.usageTimestamp = usageTimestamp;
     }
 
     public Integer getUsageDuration() {
@@ -98,4 +108,3 @@ public class PersonalUsage {
         this.usageDuration = usageDuration;
     }
 }
-
