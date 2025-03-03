@@ -18,6 +18,10 @@ public class ABMFKafkaMessage {
         this.usageAmount = usageAmount;
 
     }
+    public ABMFKafkaMessage() {
+        // Jackson için boş constructor
+    }
+
 
     // Getter ve Setter Metotları
     public Long getSenderSubscNumber() {
