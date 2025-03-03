@@ -1,5 +1,6 @@
 package org.example.app;
 
+import org.example.config.ConfigLoader;
 import org.example.http.abstrct.TrafficSender;
 import org.example.util.UsageDataGenerator;
 import org.example.config.HazelcastClientManager;
@@ -12,22 +13,27 @@ import org.example.service.abstrct.ISubscriberService;
 import org.example.service.concrete.TrafficGeneratorService;
 import org.example.service.concrete.SubscriberService;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class TrafficGeneratorFunctionApplication {
     public static void main(String[] args) {
-        HazelcastClientManager clientManager = new HazelcastClientManager("hazelcast-cluster", "127.0.0.1:5701");
+        // config.properties dosyasını classpath üzerinden yükler
+        ConfigLoader configLoader = new ConfigLoader();
+
+        // Konfigürasyon değerlerini al
+        String clusterName = configLoader.getProperty("hazelcast.cluster.name");
+        String address = configLoader.getProperty("hazelcast.address");
+        String trafficUrl = configLoader.getProperty("traffic.url");
+
+        // Hazelcast ve HTTP client ayarlarını konfigürasyon değerlerinden al
+        HazelcastClientManager clientManager = new HazelcastClientManager(clusterName, address);
         SubscriberRepository subscriberRepository = new HazelcastSubscriberRepository(clientManager.getSubscriberMap());
 
-
-        TrafficSender trafficSender = new HttpTrafficSender("http://localhost:5855/usage", new HttpClientManager());
-
+        TrafficSender trafficSender = new HttpTrafficSender(trafficUrl, new HttpClientManager());
         UsageDataGenerator usageDataGenerator = new UsageDataGenerator(subscriberRepository);
 
-
         ISubscriberService subscriberService = new SubscriberService(subscriberRepository);
-        ITrafficGeneratorService trafficGeneratorService = new TrafficGeneratorService(subscriberRepository, usageDataGenerator, trafficSender);
+        ITrafficGeneratorService trafficGeneratorService = new TrafficGeneratorService(
+                subscriberRepository, usageDataGenerator, trafficSender
+        );
 
         ApplicationInitializer app = new ApplicationInitializer(clientManager, subscriberService, trafficGeneratorService);
         app.run();
