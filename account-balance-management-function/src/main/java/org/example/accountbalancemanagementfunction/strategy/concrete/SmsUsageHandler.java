@@ -1,7 +1,6 @@
 package org.example.accountbalancemanagementfunction.strategy.concrete;
 
 
-import org.example.accountbalancemanagementfunction.exception.InsufficientBalanceException;
 import org.example.accountbalancemanagementfunction.model.oracle.OracleBalance;
 import com.ramobeko.dgwtgf.model.UsageType;
 import org.example.accountbalancemanagementfunction.strategy.abstrct.UsageHandler;
@@ -18,7 +17,7 @@ public class SmsUsageHandler implements UsageHandler {
     @Override
     public void handle(OracleBalance balance, double usageAmount) {
         if (balance.getLevelSms() < usageAmount) {
-            throw new InsufficientBalanceException("Insufficient SMS balance");
+            throw new RuntimeException("Insufficient SMS balance");
         }
         balance.setLevelSms(balance.getLevelSms() - (long) usageAmount);
         // İsteğe bağlı ek log veya işlem

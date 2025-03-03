@@ -37,39 +37,32 @@ public class OracleCustomerService implements IOracleCustomerService {
 
     @Override
     public String authenticateCustomer(AuthRequest request) {
-        logger.info("Authenticating customer with email: {}", request.getEmail());
+        logger.info("🔐 [authenticateCustomer] Kullanıcı doğrulama: {}", request.getEmail());
 
         OracleCustomer customer = findCustomerByEmail(request.getEmail());
 
         if (!passwordEncoder.matches(request.getPassword(), customer.getPassword())) {
-            logger.error("Authentication failed for customer: {}", request.getEmail());
+            logger.error("❌ [authenticateCustomer] Doğrulama başarısız: {}", request.getEmail());
             throw new BadCredentialsException("Invalid email or password");
         }
 
         String token = jwtUtil.generateToken(customer.getId(), customer.getEmail(), customer.getRole().name());
-        logger.info("Authentication successful for customer: {}", request.getEmail());
+        logger.info("✅ [authenticateCustomer] Doğrulama başarılı: {}", request.getEmail());
         return token;
     }
 
-
     @Override
     public void create(Long id, OracleCustomerDTO oracleCustomerDTO) {
-        /**
-         * ⚠️ This method is a wrapper for `register()`
-         *
-         * - Directly redirects to `register()`, ensuring password encryption and validation.
-         * - If additional logic is required, modify this method accordingly.
-         */
-        logger.info("Redirecting create() to register() for customer: {}", oracleCustomerDTO.getEmail());
+        logger.info("🔄 [create] create() -> register() yönlendiriliyor: {}", oracleCustomerDTO.getEmail());
         //register(request);
     }
 
-
     @Override
     public OracleCustomer register(RegisterRequest request) {
-        logger.info("Registering new customer: {} in Oracle DB", request.getEmail());
+        logger.info("📝 [register] Yeni kullanıcı kaydı: {}", request.getEmail());
 
         if (oracleCustomerRepository.existsByEmail(request.getEmail())) {
+            logger.warn("⚠️ [register] E-posta zaten kullanımda: {}", request.getEmail());
             throw new IllegalArgumentException("Email already exists");
         }
 
@@ -83,30 +76,26 @@ public class OracleCustomerService implements IOracleCustomerService {
         customer.setRole(request.getRole() != null ? request.getRole() : Role.USER);
 
         OracleCustomer savedCustomer = oracleCustomerRepository.save(customer);
-        logger.info("Customer registered successfully in Oracle DB: {}", savedCustomer.getEmail());
+        logger.info("🎉 [register] Kullanıcı başarıyla kaydedildi: {}", savedCustomer.getEmail());
 
         return savedCustomer;
     }
 
     @Override
     public OracleCustomer readById(Long id) {
-        logger.info("Reading customer by ID: {}", id);
+        logger.info("🔍 [readById] Kullanıcı ID ile getiriliyor: {}", id);
         return findCustomerById(id);
     }
 
-
-
     @Override
     public List<OracleCustomer> readAll() {
-        logger.info("Reading all customers from Oracle DB");
+        logger.info("📄 [readAll] Tüm kullanıcılar getiriliyor.");
         return oracleCustomerRepository.findAll();
     }
 
-
-
     @Override
     public void update(OracleCustomerDTO oracleCustomerDTO) {
-        logger.info("Updating customer with ID: {}", oracleCustomerDTO.getId());
+        logger.info("🔄 [update] Kullanıcı güncelleniyor: {}", oracleCustomerDTO.getId());
 
         OracleCustomer existingCustomer = findCustomerById(oracleCustomerDTO.getId());
 
@@ -115,50 +104,48 @@ public class OracleCustomerService implements IOracleCustomerService {
         existingCustomer.setStatus(oracleCustomerDTO.getStatus());
 
         OracleCustomer updatedCustomer = oracleCustomerRepository.save(existingCustomer);
-        logger.info("Customer updated successfully in Oracle DB with ID: {}", updatedCustomer.getId());
-
+        logger.info("✅ [update] Kullanıcı güncellendi: {}", updatedCustomer.getId());
     }
-
 
     @Override
     public void delete(Long id) {
-        logger.info("Deleting customer with ID: {}", id);
+        logger.info("🗑️ [delete] Kullanıcı siliniyor: {}", id);
 
         if (!oracleCustomerRepository.existsById(id)) {
-            logger.error("Customer not found with ID: {}", id);
+            logger.error("❌ [delete] Kullanıcı bulunamadı: {}", id);
             throw new IllegalArgumentException("Customer not found");
         }
 
         oracleCustomerRepository.deleteById(id);
-        logger.info("Customer deleted successfully from Oracle DB with ID: {}", id);
+        logger.info("✅ [delete] Kullanıcı silindi: {}", id);
     }
 
     @Override
     public void changePassword(ChangePasswordRequest request) {
-        logger.info("Changing password for customer: {}", request.getEmail());
+        logger.info("🔑 [changePassword] Kullanıcı şifresi değiştiriliyor: {}", request.getEmail());
 
         OracleCustomer customer = findCustomerByEmail(request.getEmail());
 
         if (!passwordEncoder.matches(request.getOldPassword(), customer.getPassword())) {
-            logger.error("Incorrect old password for customer: {}", request.getEmail());
+            logger.error("❌ [changePassword] Eski şifre hatalı: {}", request.getEmail());
             throw new IllegalArgumentException("Invalid old password");
         }
 
         customer.setPassword(passwordEncoder.encode(request.getNewPassword()));
         oracleCustomerRepository.save(customer);
-        logger.info("Password changed successfully for customer: {}", request.getEmail());
+        logger.info("✅ [changePassword] Şifre başarıyla değiştirildi: {}", request.getEmail());
     }
 
     @Override
     public OracleCustomer getCustomerDetails(String email) {
-        logger.info("Retrieving customer details for email: {}", email);
+        logger.info("📌 [getCustomerDetails] Kullanıcı detayları alınıyor: {}", email);
         return findCustomerByEmail(email);
     }
 
     public OracleCustomer findCustomerByEmail(String email) {
         return oracleCustomerRepository.findByEmail(email)
                 .orElseThrow(() -> {
-                    logger.error("Customer not found with email: {}", email);
+                    logger.error("❌ [findCustomerByEmail] Kullanıcı bulunamadı: {}", email);
                     return new IllegalArgumentException("Customer not found with email: " + email);
                 });
     }
@@ -166,11 +153,8 @@ public class OracleCustomerService implements IOracleCustomerService {
     private OracleCustomer findCustomerById(Long id) {
         return oracleCustomerRepository.findById(id)
                 .orElseThrow(() -> {
-                    logger.error("Customer not found with ID: {}", id);
+                    logger.error("❌ [findCustomerById] Kullanıcı bulunamadı: {}", id);
                     return new IllegalArgumentException("Customer not found with ID: " + id);
                 });
     }
-
-
-
 }
