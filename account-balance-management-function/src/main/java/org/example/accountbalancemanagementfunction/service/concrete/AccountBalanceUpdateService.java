@@ -5,12 +5,19 @@ import com.ramobeko.kafka.ABMFKafkaMessage;
 import lombok.RequiredArgsConstructor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.example.accountbalancemanagementfunction.exception.InsufficientBalanceException;
+import org.example.accountbalancemanagementfunction.exception.BalanceNotFoundException;
+import org.example.accountbalancemanagementfunction.exception.InvalidUsageAmountException;
+import org.example.accountbalancemanagementfunction.exception.SubscriberNotFoundException;
+import org.example.accountbalancemanagementfunction.exception.UnknownUsageTypeException;
+import org.example.accountbalancemanagementfunction.model.oracle.OracleBalance;
 import org.example.accountbalancemanagementfunction.repository.oracle.OracleBalanceRepository;
 import org.example.accountbalancemanagementfunction.repository.oracle.OracleSubscriberRepository;
 import org.example.accountbalancemanagementfunction.service.abstrct.IAccountBalanceUpdateService;
+import org.example.accountbalancemanagementfunction.strategy.abstrct.UsageHandler;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -21,81 +28,66 @@ public class AccountBalanceUpdateService implements IAccountBalanceUpdateService
     private final OracleSubscriberRepository subscriberRepository;
     private final OracleBalanceRepository balanceRepository;
 
+    // Tüm UsageHandler implementasyonları Spring tarafından taranıp buraya enjekte edilir
+    private final List<UsageHandler> usageHandlers;
+
     @Override
     @Transactional
     public void updateBalance(ABMFKafkaMessage message) {
+        // 1) Kafka mesajından telefon numarasını çek
         String phoneNumber = String.valueOf(message.getSenderSubscNumber());
         double usageAmount = message.getUsageAmount();
         UsageType usageType = message.getUsageType();
 
-        logger.info("Gelen Kafka mesajı: phoneNumber={}, usageType={}, usageAmount={}",
+        logger.info("🔔 [updateBalance] Gelen Kafka mesajı: phoneNumber={}, usageType={}, usageAmount={}",
                 phoneNumber, usageType, usageAmount);
 
+        // 2) Subscriber bul
         var subscriber = subscriberRepository.findByPhoneNumber(phoneNumber)
                 .orElseThrow(() -> {
-                    logger.error("Subscriber bulunamadı (phoneNumber={})", phoneNumber);
-                    return new RuntimeException("Subscriber not found in Oracle DB with phoneNumber: " + phoneNumber);
+                    logger.error("❌ [updateBalance] Subscriber bulunamadı (phoneNumber={})", phoneNumber);
+                    // Domain'e özel bir hata:
+                    throw new SubscriberNotFoundException("Subscriber not found in DB with phoneNumber: " + phoneNumber);
                 });
-
-        logger.info("Subscriber bulundu: {}", subscriber);
+        logger.info("🔎 [updateBalance] Subscriber bulundu: {}", subscriber);
 
         Long subscId = subscriber.getId();
 
-        var balance = balanceRepository.findBalanceBySubscriberId(subscId)
+        // 3) Balance bul
+        OracleBalance balance = balanceRepository.findBalanceBySubscriberId(subscId)
                 .orElseThrow(() -> {
-                    logger.error("Balance kaydı bulunamadı (subscId={})", subscId);
-                    return new RuntimeException("Balance not found in Oracle DB for subscriber: " + subscId);
+                    logger.error("❌ [updateBalance] Balance kaydı bulunamadı (subscId={})", subscId);
+                    // Domain'e özel bir hata:
+                    throw new BalanceNotFoundException("Balance not found in DB for subscriber: " + subscId);
+                });
+        logger.info("📄 [updateBalance] Mevcut balance kaydı: {}", balance);
+
+        // 4) usageAmount pozitif mi?
+        if (usageAmount <= 0) {
+            logger.error("⚠️ [updateBalance] Kullanım miktarı 0 veya negatif olamaz. usageAmount={}", usageAmount);
+            // Domain'e özel bir hata:
+            throw new InvalidUsageAmountException("Usage amount must be positive, given: " + usageAmount);
+        }
+
+        // 5) Uygun stratejiyi (UsageHandler) bul
+        UsageHandler handler = usageHandlers.stream()
+                .filter(h -> h.supports(usageType))
+                .findFirst()
+                .orElseThrow(() -> {
+                    logger.error("❓ [updateBalance] No UsageHandler found for usageType={}", usageType);
+                    // Domain'e özel bir hata:
+                    throw new UnknownUsageTypeException("No handler found for usage type: " + usageType);
                 });
 
+        // 6) Stratejiyi uygula (bakiyeden düşme veya hata)
+        // Bu aşamada, UsageHandler implementasyonu içinde
+        // yetersiz bakiye (InsufficientBalanceException) fırlatılabilir.
+        handler.handle(balance, usageAmount);
 
-        logger.info("Mevcut balance kaydı: {}", balance);
-
-        if (usageAmount <= 0) {
-            logger.error("Kullanım miktarı 0 veya negatif olamaz. usageAmount={}", usageAmount);
-            throw new RuntimeException("Usage amount must be positive");
-        }
-
-        switch (usageType) {
-            case MINUTE:
-                if (balance.getLevelData() < usageAmount) {
-                    throw new InsufficientBalanceException("Insufficient minute balance");
-                }
-
-                balance.setLevelMinutes(balance.getLevelMinutes() - (int) usageAmount);
-                logger.info("Dakika bakiyesi güncellendi: yeni seviye={}", balance.getLevelMinutes());
-                break;
-
-            case SMS:
-                if (balance.getLevelSms() < usageAmount) {
-                    logger.error("Yetersiz SMS bakiyesi. Gerekli={}, Mevcut={}",
-                            usageAmount, balance.getLevelSms());
-                    throw new InsufficientBalanceException("Insufficient sms balance");
-                }
-                balance.setLevelSms(balance.getLevelSms() - (int) usageAmount);
-                logger.info("SMS bakiyesi güncellendi: yeni seviye={}", balance.getLevelSms());
-                break;
-
-            case DATA:
-                if (balance.getLevelData() < usageAmount) {
-                    logger.error("Yetersiz data bakiyesi. Gerekli={}, Mevcut={}",
-                            usageAmount, balance.getLevelData());
-                    throw new InsufficientBalanceException("Insufficient data balance");
-                }
-                balance.setLevelData(balance.getLevelData() - (int) usageAmount);
-                logger.info("Data bakiyesi güncellendi: yeni seviye={}", balance.getLevelData());
-                break;
-
-            default:
-                logger.error("Bilinmeyen kullanım tipi: {}", usageType);
-                throw new RuntimeException("Unknown usage type: " + usageType);
-        }
-
-        // 4) Güncellenmiş balance kaydını veritabanına kaydet
+        // 7) Kaydet
         balanceRepository.save(balance);
-        logger.info("Balance kaydı başarıyla güncellendi ve kaydedildi (subscId={})", subscId);
+        logger.info("💾 [updateBalance] Balance kaydı güncellendi ve kaydedildi (subscId={})", subscId);
 
-        // 5) Ek loglama veya bildirim
-        logger.info("Subscriber (subscId={}) balance updated successfully.", subscId);
+        logger.info("🎉 [updateBalance] Subscriber (subscId={}) balance updated successfully.", subscId);
     }
 }
-
