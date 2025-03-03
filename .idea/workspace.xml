@@ -5,27 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e36dfc9-06df-4fb0-896c-d0105c657a96" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/exception/InsufficientBalanceException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/model/oracle/OracleBalance.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/model/oracle/OracleCustomer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/model/oracle/OraclePackage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/model/oracle/OracleSubscriber.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/repository/oracle/OracleSubscriberRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/service/abstrct/IAccountBalanceUpdateService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/service/concrete/AccountBalanceUpdateService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/util/model/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-balance-management-function/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/account-balance-management-function/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/config/KafkaConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/config/KafkaConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/kafka/KafkaMessageListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/kafka/KafkaMessageListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/model/KafkaMessage.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/repository/oracle/OracleBalanceRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/repository/oracle/OracleBalanceRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/util/KafkaMessageDeserializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/util/KafkaMessageDeserializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/ramobeko/kafka/ABMFKafkaMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/ramobeko/kafka/ABMFKafkaMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/traffic-generator-function/dependency-reduced-pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/traffic-generator-function/dependency-reduced-pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/exception/InsufficientBalanceException.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/exception/InsufficientBalanceException.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

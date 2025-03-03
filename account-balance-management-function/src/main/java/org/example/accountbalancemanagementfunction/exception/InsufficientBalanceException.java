@@ -7,6 +7,5 @@ public class InsufficientBalanceException extends RuntimeException {
         super(message);
     }
 
-    // İsterseniz farklı constructor'lar veya alanlar ekleyebilirsiniz
 }
 
