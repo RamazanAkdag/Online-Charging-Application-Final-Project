@@ -22,7 +22,6 @@ public class AkkaConfig {
     public ActorSystem<Void> actorSystem() {
         logger.info("Starting Actor System...");
         ActorSystem<Void> system = ActorSystem.create(Behaviors.empty(), "ClusterSystem");
-
         logger.info("Akka Actor System successfully started.");
         return system;
     }
@@ -30,10 +29,8 @@ public class AkkaConfig {
     @Bean
     public ActorRef<Command.UsageData> router(ActorSystem<Void> system) {
         logger.info("Creating GroupRouter for OcsWorker actors...");
-
         GroupRouter<Command.UsageData> groupRouter = Routers.group(CommonServiceKeys.OCS_SERVICE_KEY);
         ActorRef<Command.UsageData> router = system.systemActorOf(groupRouter, "ocsRouter", Props.empty());
-
         logger.info("GroupRouter successfully created.");
         return router;
     }
