@@ -6,7 +6,6 @@ import com.ramobeko.akka.Command;
 import com.ramobeko.dgwtgf.model.UsageRequest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.example.exception.UsageRequestException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,7 +48,7 @@ public class DGWUsageController {
             return ResponseEntity.ok("Usage data message sent to DGW actor");
         } catch (Exception e) {
             logger.error("Error processing usage request", e);
-            throw new UsageRequestException("Error processing usage request", e);
+            throw new RuntimeException("Error processing usage request", e);
         }
     }
 
