@@ -5,18 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e36dfc9-06df-4fb0-896c-d0105c657a96" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/util/mapper/PersonalUsageMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charging-gateway-function/src/test/java/org/example/charginggatewayfunction/CGFKafkaMessageIntegrationTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/ramobeko/kafka/CGFKafkaMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/util/mapper/CGFKafkaMessageDeserializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/util/mapper/CGFKafkaMessageSerializer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charging-gateway-function/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/charging-gateway-function/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/Repository/OraclePersonalUsageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/repository/OraclePersonalUsageRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/config/KafkaConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/config/KafkaConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/kafka/KafkaMessageListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/kafka/KafkaMessageListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/model/oracle/PersonalUsage.java" beforeDir="false" afterPath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/model/oracle/PersonalUsage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/service/abstrct/IChargingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/service/abstrct/IChargingService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/service/concrete/ChargingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/service/concrete/ChargingService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/util/model/Role.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/util/mapper/PersonalUsageMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/util/mapper/PersonalUsageMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/charging-gateway-function/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/charging-gateway-function/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

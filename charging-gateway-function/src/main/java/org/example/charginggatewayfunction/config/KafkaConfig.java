@@ -14,6 +14,7 @@ import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.listener.ConcurrentMessageListenerContainer;
 import org.springframework.kafka.listener.ContainerProperties;
 import org.springframework.kafka.listener.MessageListenerContainer;
+import org.springframework.kafka.support.serializer.JsonDeserializer;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,25 +33,25 @@ public class KafkaConfig {
     private String topicName;
 
     @Bean
-    public ConsumerFactory<String, CGFKafkaMessage> cgwConsumerFactory() {
+    public ConsumerFactory<String, CGFKafkaMessage> cgfConsumerFactory() {
         Map<String, Object> props = new HashMap<>();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
         props.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
-        props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-        // CGWKafkaMessage için özel Deserializer
+        props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
+        // CGFKafkaMessage için özel Deserializer
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaMessageDeserializer.class);
 
         return new DefaultKafkaConsumerFactory<>(props);
     }
 
     @Bean
-    public MessageListenerContainer cgwMessageListenerContainer(
-            ConsumerFactory<String, CGFKafkaMessage> cgwConsumerFactory,
+    public MessageListenerContainer cgfMessageListenerContainer(
+            ConsumerFactory<String, CGFKafkaMessage> cgfConsumerFactory,
             KafkaMessageListener kafkaMessageListener) {
 
         ContainerProperties containerProps = new ContainerProperties(topicName);
         containerProps.setMessageListener(kafkaMessageListener);
 
-        return new ConcurrentMessageListenerContainer<>(cgwConsumerFactory, containerProps);
+        return new ConcurrentMessageListenerContainer<>(cgfConsumerFactory, containerProps);
     }
 }

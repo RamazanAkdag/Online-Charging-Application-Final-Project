@@ -27,7 +27,7 @@ public class KafkaMessageListener implements MessageListener<String, CGFKafkaMes
 
         try {
             // Servis katmanındaki iş mantığı metodu
-            chargingService.processCGWMessage(message);
+            chargingService.processCGFMessage(message);
 
             // ✅ Başarılı işlem
             logger.info("✅ Mesaj işleme başarıyla tamamlandı: {}", message);
