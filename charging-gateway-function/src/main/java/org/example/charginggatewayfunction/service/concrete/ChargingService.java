@@ -21,10 +21,10 @@ public class ChargingService implements IChargingService {
     }
 
     @Override
-    public void processCGWMessage(CGFKafkaMessage message) {
-        logger.info("🚀 Processing CGWKafkaMessage: {}", message);
+    public void processCGFMessage(CGFKafkaMessage message) {
+        logger.info("🚀 Processing CGFKafkaMessage: {}", message);
 
-        // CGWKafkaMessage -> PersonalUsage dönüşümü
+        // CGFKafkaMessage -> PersonalUsage dönüşümü
         PersonalUsage personalUsage = PersonalUsageMapper.mapToPersonalUsage(message);
 
         // Veritabanına kaydetme

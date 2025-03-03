@@ -46,7 +46,7 @@ public class PersonalUsageMapper {
         usage.setUsageDuration((int) message.getUsageAmount());
 
         // 🎉 Başarılı dönüşüm logu
-        logger.info("🎉 Successfully mapped CGWKafkaMessage to PersonalUsage entity");
+        logger.info("🎉 Successfully mapped CGFKafkaMessage to PersonalUsage entity");
 
         return usage;
     }
