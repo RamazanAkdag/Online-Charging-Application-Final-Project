@@ -16,6 +16,7 @@
       <module>traffic-generator-function</module>
       <module>diameter-gateway</module>
       <module>online-charging-system</module>
+      <module>account-balance-management-function</module>
       <module>common</module>
   </modules>
 
