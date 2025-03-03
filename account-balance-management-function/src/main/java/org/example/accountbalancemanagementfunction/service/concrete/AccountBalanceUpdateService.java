@@ -24,7 +24,6 @@ public class AccountBalanceUpdateService implements IAccountBalanceUpdateService
     @Override
     @Transactional
     public void updateBalance(ABMFKafkaMessage message) {
-        // Burada subscriberNumber aslında "phone number" olarak yorumlanıyor
         String phoneNumber = String.valueOf(message.getSenderSubscNumber());
         double usageAmount = message.getUsageAmount();
         UsageType usageType = message.getUsageType();
@@ -32,7 +31,6 @@ public class AccountBalanceUpdateService implements IAccountBalanceUpdateService
         logger.info("Gelen Kafka mesajı: phoneNumber={}, usageType={}, usageAmount={}",
                 phoneNumber, usageType, usageAmount);
 
-        // 1) Subscriber var mı diye kontrol (telefon numarası üzerinden)
         var subscriber = subscriberRepository.findByPhoneNumber(phoneNumber)
                 .orElseThrow(() -> {
                     logger.error("Subscriber bulunamadı (phoneNumber={})", phoneNumber);
@@ -41,10 +39,8 @@ public class AccountBalanceUpdateService implements IAccountBalanceUpdateService
 
         logger.info("Subscriber bulundu: {}", subscriber);
 
-        // subscriber tablosunda ID alanını alıyoruz (ör: getSubscId)
         Long subscId = subscriber.getId();
 
-        // 2) Balance kaydını al (subscId üzerinden)
         var balance = balanceRepository.findBalanceBySubscriberId(subscId)
                 .orElseThrow(() -> {
                     logger.error("Balance kaydı bulunamadı (subscId={})", subscId);
@@ -54,13 +50,11 @@ public class AccountBalanceUpdateService implements IAccountBalanceUpdateService
 
         logger.info("Mevcut balance kaydı: {}", balance);
 
-        // 2.1) usageAmount pozitif mi kontrol
         if (usageAmount <= 0) {
             logger.error("Kullanım miktarı 0 veya negatif olamaz. usageAmount={}", usageAmount);
             throw new RuntimeException("Usage amount must be positive");
         }
 
-        // 3) usageType'a göre ilgili alanı düş
         switch (usageType) {
             case MINUTE:
                 if (balance.getLevelData() < usageAmount) {
