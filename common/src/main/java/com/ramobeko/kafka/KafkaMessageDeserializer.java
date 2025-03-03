@@ -1,7 +1,6 @@
-package org.example.accountbalancemanagementfunction.util;
+package com.ramobeko.kafka;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ramobeko.kafka.ABMFKafkaMessage;
 import org.apache.kafka.common.serialization.Deserializer;
 
 public class KafkaMessageDeserializer implements Deserializer<ABMFKafkaMessage> {
