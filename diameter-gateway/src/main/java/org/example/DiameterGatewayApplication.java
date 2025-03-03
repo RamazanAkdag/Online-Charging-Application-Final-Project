@@ -1,34 +1,18 @@
 package org.example;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class DiameterGatewayApplication {
+
+    private static final Logger logger = LogManager.getLogger(DiameterGatewayApplication.class);
+
     public static void main(String[] args) {
+        logger.info("Starting DiameterGatewayApplication...");
         SpringApplication.run(DiameterGatewayApplication.class, args);
-
-        /*HazelcastInstance hazelcastInstance = HazelcastConfig.createHazelcastClient();
-
-        Behavior<Void> rootBehavior = Behaviors.setup(context -> {
-            int poolSize = 4;
-
-            ActorRef<Command> dgwRouter = context.spawn(
-                    Routers.pool(poolSize,
-                            Behaviors.supervise(DgwActor.create(hazelcastInstance))
-                                    .onFailure(SupervisorStrategy.restart())
-                    ),
-                    "dgwRouter"
-            );
-
-            Cluster cluster = Cluster.get(context.getSystem());
-            cluster.manager().tell(Join.create(cluster.selfMember().address()));
-
-            new DgwHttpServer(context.getSystem(), dgwRouter).startHttpServer();
-
-            return Behaviors.empty();
-        });
-
-        ActorSystem<Void> system = ActorSystem.create(rootBehavior, "dgw-system");*/
+        logger.info("DiameterGatewayApplication started successfully.");
     }
 }
