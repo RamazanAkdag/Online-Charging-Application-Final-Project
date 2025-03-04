@@ -1,4 +1,4 @@
-package org.example.notificationfunction.repository;
+package com.ramobeko.oracle.repository;
 
 import com.ramobeko.oracle.model.OracleSubscriber;
 import org.springframework.data.jpa.repository.JpaRepository;
