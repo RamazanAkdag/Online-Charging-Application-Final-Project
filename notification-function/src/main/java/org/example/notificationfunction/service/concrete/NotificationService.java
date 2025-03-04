@@ -11,7 +11,6 @@ import org.example.notificationfunction.service.abstrct.INotificationService;
 import org.example.notificationfunction.util.mapper.NFKafkaMessageMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -21,14 +20,17 @@ public class NotificationService implements INotificationService {
 
     private static final Logger logger = LoggerFactory.getLogger(NotificationService.class);
 
-    @Autowired
-    private OracleNotificationLogsRepository notificationLogRepository;
+    private final OracleNotificationLogsRepository notificationLogRepository;
+    private final OracleSubscriberRepository subscriberRepository;
+    private final EmailService emailService;
 
-    @Autowired
-    private OracleSubscriberRepository subscriberRepository;
-
-    @Autowired
-    private EmailService emailService;
+    public NotificationService(OracleNotificationLogsRepository notificationLogRepository,
+                               OracleSubscriberRepository subscriberRepository,
+                               EmailService emailService) {
+        this.notificationLogRepository = notificationLogRepository;
+        this.subscriberRepository = subscriberRepository;
+        this.emailService = emailService;
+    }
 
     @Transactional
     public void saveNotification(NFKafkaMessage kafkaMessage) {

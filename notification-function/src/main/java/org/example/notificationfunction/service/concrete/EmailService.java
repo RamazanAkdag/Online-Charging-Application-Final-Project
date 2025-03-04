@@ -1,5 +1,7 @@
 package org.example.notificationfunction.service.concrete;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -7,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class EmailService {
+
+    private static final Logger logger = LoggerFactory.getLogger(EmailService.class);
 
     @Autowired
     private JavaMailSender javaMailSender;
@@ -22,8 +26,7 @@ public class EmailService {
         // E-posta gönder
         javaMailSender.send(message);
 
-        // E-posta gönderildiğinde loglama
-        System.out.println("Email sent to: " + to);
+        // E-posta gönderildiğinde loglama (emojilerle)
+        logger.info("📧 Email sent to: {}", to);
     }
 }
-
