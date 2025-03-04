@@ -2,7 +2,7 @@ package org.example.onlinechargingsystem.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.kafka.common.serialization.Serializer;
-import com.ramobeko.kafka.ABMFKafkaMessage;
+import com.ramobeko.kafka.message.ABMFKafkaMessage;
 
 public class KafkaMessageSerializer implements Serializer<ABMFKafkaMessage> {
     private final ObjectMapper objectMapper = new ObjectMapper();

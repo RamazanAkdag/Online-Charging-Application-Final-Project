@@ -10,7 +10,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
 import java.util.HashMap;
 import java.util.Map;
-import com.ramobeko.kafka.ABMFKafkaMessage; // 🔹 KafkaMessage import et
+import com.ramobeko.kafka.message.ABMFKafkaMessage; // 🔹 KafkaMessage import et
 
 @Configuration
 public class KafkaConfig {

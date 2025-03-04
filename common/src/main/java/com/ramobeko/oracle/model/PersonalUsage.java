@@ -1,13 +1,16 @@
-package org.example.charginggatewayfunction.model.oracle;
+package com.ramobeko.oracle.model;
 
 import com.ramobeko.dgwtgf.model.UsageType;
-import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 
+
+import jakarta.persistence.*;
+
+
 @Entity
-@Table(name = "PERSONAL_USAGE_TB")
+@Table(name = "T_PERSONAL_USAGE")
 public class PersonalUsage {
 
     @Id
@@ -15,8 +18,8 @@ public class PersonalUsage {
     @Column(name = "PERSONAL_USAGE_ID", nullable = false)
     private Long personalUsageId;
 
-    @Column(name = "USER_ID")
-    private Long userId;
+    @Column(name = "RECEIVER_ID")
+    private Long receiverId;
 
     @Column(name = "GIVER_ID")
     private Long giverId;
@@ -29,10 +32,6 @@ public class PersonalUsage {
     @Column(name = "USAGE_TYPE")
     private UsageType usageType;
 
-    // Tam zaman bilgisini saklamak için (TIMESTAMP(6) WITH TIME ZONE):
-    @Column(name = "USAGE_TIMESTAMP")
-    private OffsetDateTime usageTimestamp;
-
     @Column(name = "USAGE_DURATION")
     private Integer usageDuration;
 
@@ -44,11 +43,10 @@ public class PersonalUsage {
                          LocalDate usageDate, UsageType usageType,
                          OffsetDateTime usageTimestamp, Integer usageDuration) {
         this.personalUsageId = personalUsageId;
-        this.userId = userId;
+        this.receiverId = userId;
         this.giverId = giverId;
         this.usageDate = usageDate;
         this.usageType = usageType;
-        this.usageTimestamp = usageTimestamp;
         this.usageDuration = usageDuration;
     }
 
@@ -61,11 +59,11 @@ public class PersonalUsage {
     }
 
     public Long getUserId() {
-        return userId;
+        return receiverId;
     }
 
     public void setUserId(Long userId) {
-        this.userId = userId;
+        this.receiverId = userId;
     }
 
     public Long getGiverId() {
@@ -92,19 +90,19 @@ public class PersonalUsage {
         this.usageType = usageType;
     }
 
-    public OffsetDateTime getUsageTimestamp() {
-        return usageTimestamp;
-    }
-
-    public void setUsageTimestamp(OffsetDateTime usageTimestamp) {
-        this.usageTimestamp = usageTimestamp;
-    }
-
     public Integer getUsageDuration() {
         return usageDuration;
     }
 
     public void setUsageDuration(Integer usageDuration) {
         this.usageDuration = usageDuration;
+    }
+
+    public Long getReceiverId() {
+        return receiverId;
+    }
+
+    public void setReceiverId(Long receiverId) {
+        this.receiverId = receiverId;
     }
 }

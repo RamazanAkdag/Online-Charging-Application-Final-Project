@@ -17,19 +17,39 @@
     <description>Data Gateway Module for handling traffic data</description>
 
     <dependencies>
-
+        <!-- Spring Boot Web Starter -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <!-- Common module: Ignite bağımlılıklarını dışlayan tanım -->
+        <dependency>
+            <groupId>com.ramobeko</groupId>
+            <artifactId>common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.ignite</groupId>
+                    <artifactId>ignite-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.ignite</groupId>
+                    <artifactId>ignite-spring</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.ignite</groupId>
+                    <artifactId>ignite-indexing</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
 
         <!-- Akka bağımlılıkları -->
         <dependency>
             <groupId>com.typesafe.akka</groupId>
             <artifactId>akka-actor-typed_${scala.binary.version}</artifactId>
         </dependency>
-
         <dependency>
             <groupId>com.typesafe.akka</groupId>
             <artifactId>akka-cluster-typed_${scala.binary.version}</artifactId>
@@ -48,6 +68,7 @@
             <version>5.5.0</version>
         </dependency>
 
+        <!-- Log4j -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
@@ -57,18 +78,11 @@
             <artifactId>log4j-core</artifactId>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+        <!-- SLF4J Simple -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
             <version>2.0.16</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.ramobeko</groupId>
-            <artifactId>common</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
 
@@ -80,5 +94,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

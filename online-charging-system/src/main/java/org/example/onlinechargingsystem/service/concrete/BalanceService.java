@@ -3,7 +3,7 @@ package org.example.onlinechargingsystem.service.concrete;
 import com.ramobeko.dgwtgf.model.UsageType;
 import com.ramobeko.ignite.IgniteSubscriber;
 import com.ramobeko.ignite.IgniteBalance;
-import com.ramobeko.kafka.ABMFKafkaMessage;
+import com.ramobeko.kafka.message.ABMFKafkaMessage;
 import lombok.RequiredArgsConstructor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

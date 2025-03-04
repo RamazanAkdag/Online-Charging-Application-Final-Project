@@ -1,6 +1,6 @@
 package org.example.charginggatewayfunction.kafka;
 
-import com.ramobeko.kafka.CGFKafkaMessage;
+import com.ramobeko.kafka.message.CGFKafkaMessage;
 import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.logging.log4j.LogManager;

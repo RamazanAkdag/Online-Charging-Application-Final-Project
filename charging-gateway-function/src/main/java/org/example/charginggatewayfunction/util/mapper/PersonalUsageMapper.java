@@ -1,7 +1,7 @@
 package org.example.charginggatewayfunction.util.mapper;
 
-import com.ramobeko.kafka.CGFKafkaMessage;
-import org.example.charginggatewayfunction.model.oracle.PersonalUsage;
+import com.ramobeko.kafka.message.CGFKafkaMessage;
+import com.ramobeko.oracle.model.PersonalUsage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,10 +36,6 @@ public class PersonalUsageMapper {
                             .toLocalDate()
             );
 
-            usage.setUsageTimestamp(
-                    message.getUsageTime().toInstant()
-                            .atOffset(ZoneOffset.UTC)
-            );
         }
 
         // usageAmount -> usageDuration

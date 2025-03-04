@@ -1,13 +1,13 @@
 package org.example.accountbalancemanagementfunction.config;
 
-import com.ramobeko.kafka.KafkaMessageDeserializer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.example.accountbalancemanagementfunction.kafka.KafkaMessageListener;
+import org.example.accountbalancemanagementfunction.util.kafka.ABMFKafkaMessageDeserializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.EnableKafka;
-import com.ramobeko.kafka.ABMFKafkaMessage;
+import com.ramobeko.kafka.message.ABMFKafkaMessage;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.listener.*;
@@ -28,7 +28,7 @@ public class KafkaConfig {
         configProps.put(ConsumerConfig.GROUP_ID_CONFIG, "abmf_group_id");
         configProps.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         // Mesajın value'su ABMFKafkaMessage olduğu için özel Deserializer
-        configProps.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaMessageDeserializer.class);
+        configProps.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ABMFKafkaMessageDeserializer.class);
 
         return new DefaultKafkaConsumerFactory<>(configProps);
     }

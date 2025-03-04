@@ -1,10 +1,9 @@
-package org.example.accountbalancemanagementfunction.model.oracle;
+package com.ramobeko.oracle.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
 
 import java.util.Date;
-
+import jakarta.persistence.*;
 @Entity
 @Table(name = "t_balance", schema = "aom")
 public class OracleBalance {

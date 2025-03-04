@@ -1,4 +1,4 @@
-package org.example.accountbalancemanagementfunction.model.oracle;
+package com.ramobeko.oracle.model;
 
 import jakarta.persistence.*;
 

@@ -1,8 +1,10 @@
-package org.example.accountbalancemanagementfunction.model.oracle;
+package com.ramobeko.oracle.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.ramobeko.oracle.util.Role;
 import jakarta.persistence.*;
-import org.example.accountbalancemanagementfunction.util.model.Role;
+
+
 import java.util.Date;
 
 @Entity
