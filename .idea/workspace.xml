@@ -5,50 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e36dfc9-06df-4fb0-896c-d0105c657a96" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/repository/OracleSubscriberRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/util/kafka/CGFKafkaMessageDeserializer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/util/model/Role.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/ramobeko/oracle/util/Role.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/ramobeko/kafka/message/NFKafkaMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/ramobeko/oracle/model/NotificationLog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notification-function/src/main/java/org/example/notificationfunction/config/KafkaConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notification-function/src/main/java/org/example/notificationfunction/kafka/KafkaMessageListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notification-function/src/main/java/org/example/notificationfunction/repository/OracleCustomerRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notification-function/src/main/java/org/example/notificationfunction/repository/OracleNotificationLogsRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notification-function/src/main/java/org/example/notificationfunction/repository/OracleSubscriberRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notification-function/src/main/java/org/example/notificationfunction/service/abstrct/IEmailService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notification-function/src/main/java/org/example/notificationfunction/service/abstrct/INotificationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notification-function/src/main/java/org/example/notificationfunction/service/concrete/EmailService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notification-function/src/main/java/org/example/notificationfunction/service/concrete/NotificationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notification-function/src/main/java/org/example/notificationfunction/util/kafka/NFKafkaMessageDeserializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notification-function/src/main/java/org/example/notificationfunction/util/mapper/NFKafkaMessageMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/AccountBalanceManagementFunctionApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/AccountBalanceManagementFunctionApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/config/KafkaConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/config/KafkaConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/kafka/KafkaMessageListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/kafka/KafkaMessageListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/model/oracle/OracleBalance.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/ramobeko/oracle/model/OracleBalance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/model/oracle/OracleCustomer.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/ramobeko/oracle/model/OracleCustomer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/model/oracle/OraclePackage.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/ramobeko/oracle/model/OraclePackage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/model/oracle/OracleSubscriber.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/ramobeko/oracle/model/OracleSubscriber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/repository/oracle/OracleBalanceRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/repository/oracle/OracleBalanceRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/repository/oracle/OracleSubscriberRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/repository/oracle/OracleSubscriberRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/service/abstrct/IAccountBalanceUpdateService.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/service/abstrct/IAccountBalanceUpdateService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/service/concrete/AccountBalanceUpdateService.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/service/concrete/AccountBalanceUpdateService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/strategy/abstrct/UsageHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/strategy/abstrct/UsageHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/strategy/concrete/DataUsageHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/strategy/concrete/DataUsageHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/strategy/concrete/MinuteUsageHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/strategy/concrete/MinuteUsageHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/strategy/concrete/SmsUsageHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/strategy/concrete/SmsUsageHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/ChargingGatewayFunctionApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/ChargingGatewayFunctionApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/config/KafkaConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/config/KafkaConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/kafka/KafkaMessageListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/kafka/KafkaMessageListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/model/oracle/PersonalUsage.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/ramobeko/oracle/model/PersonalUsage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/repository/OraclePersonalUsageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/repository/OraclePersonalUsageRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/service/abstrct/IChargingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/service/abstrct/IChargingService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/service/concrete/ChargingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/service/concrete/ChargingService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/util/mapper/CGFKafkaMessageDeserializer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/util/mapper/CGFKafkaMessageSerializer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/util/mapper/PersonalUsageMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/util/mapper/PersonalUsageMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charging-gateway-function/src/test/java/org/example/charginggatewayfunction/CGFKafkaMessageIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/charging-gateway-function/src/test/java/org/example/charginggatewayfunction/CGFKafkaMessageIntegrationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/ramobeko/kafka/ABMFKafkaMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/ramobeko/kafka/message/ABMFKafkaMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/ramobeko/kafka/CGFKafkaMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/ramobeko/kafka/message/CGFKafkaMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/ramobeko/kafka/KafkaMessageDeserializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/util/kafka/ABMFKafkaMessageDeserializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/diameter-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/diameter-gateway/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/diameter-gateway/src/main/java/org/example/DiameterGatewayApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/diameter-gateway/src/main/java/org/example/DiameterGatewayApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/OnlineChargingSystemApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/OnlineChargingSystemApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/config/KafkaConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/config/KafkaConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/service/abstrct/IKafkaProducerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/service/abstrct/IKafkaProducerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/service/concrete/BalanceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/service/concrete/BalanceService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/service/concrete/KafkaProducerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/service/concrete/KafkaProducerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/util/KafkaMessageSerializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/util/KafkaMessageSerializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/online-charging-system/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/online-charging-system/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/util/model/Role.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/ramobeko/oracle/model/OracleCustomer.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/ramobeko/oracle/model/OracleCustomer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,12 +103,13 @@
     "Spring Boot.AccountOrderManagementApplication.executor": "Run",
     "Spring Boot.ChargingGatewayFunctionApplication.executor": "Run",
     "Spring Boot.DiameterGatewayApplication.executor": "Run",
+    "Spring Boot.NotificationFunctionApplication.executor": "Run",
     "Spring Boot.OnlineChargingSystemApplication.executor": "Run",
-    "git-widget-placeholder": "cgf/beko",
+    "git-widget-placeholder": "nf/beko",
     "ignore.virus.scanning.warn.message": "true",
     "jdk.selected.JAVA_MODULE": "17",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/berki/Desktop/ocs/Online-Charging-Application-Final-Project/common/src/main/java/com/ramobeko/oracle",
+    "last_opened_file_path": "C:/Users/berki/Desktop/ocs/Online-Charging-Application-Final-Project/notification-function/src/main/java/org/example/notificationfunction",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -147,22 +124,23 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\berki\Desktop\ocs\Online-Charging-Application-Final-Project\notification-function\src\main\java\org\example\notificationfunction" />
+      <recent name="C:\Users\berki\Desktop\ocs\Online-Charging-Application-Final-Project\notification-function\src" />
       <recent name="C:\Users\berki\Desktop\ocs\Online-Charging-Application-Final-Project\common\src\main\java\com\ramobeko\oracle" />
       <recent name="C:\Users\berki\Desktop\ocs\Online-Charging-Application-Final-Project\charging-gateway-function\src\main\java\org\example\charginggatewayfunction" />
       <recent name="C:\Users\berki\Desktop\ocs\Online-Charging-Application-Final-Project\charging-gateway-function\src\main\java\org\example\charginggatewayfunction\model\oracle" />
-      <recent name="C:\Users\berki\Desktop\ocs\Online-Charging-Application-Final-Project\charging-gateway-function" />
-      <recent name="C:\Users\berki\Desktop\ocs\Online-Charging-Application-Final-Project\charging-gateway-function\src\main\java" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\berki\Desktop\ocs\Online-Charging-Application-Final-Project\notification-function\src\main\java\org\example\notificationfunction" />
       <recent name="C:\Users\berki\Desktop\ocs\Online-Charging-Application-Final-Project\traffic-generator-function\src\main\resources" />
       <recent name="C:\Users\berki\Desktop\ocs\Online-Charging-Application-Final-Project\account-order-management\src\main\resources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.example.notificationfunction.repository" />
+      <recent name="org.example.notificationfunction.kafka" />
       <recent name="org.example.accountbalancemanagementfunction.util.kafka" />
       <recent name="com.ramobeko.util.model" />
       <recent name="org.example.charginggatewayfunction.repository" />
-      <recent name="org.example.charginggatewayfunction.util.model" />
-      <recent name="org.example.charginggatewayfunction.model.oracle" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -175,7 +153,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.AccountBalanceManagementFunctionApplication">
+  <component name="RunManager" selected="Spring Boot.NotificationFunctionApplication">
     <configuration name="TrafficGeneratorFunctionApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="17" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -264,6 +242,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="NotificationFunctionApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="notification-function" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.example.notificationfunction.NotificationFunctionApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="OnlineChargingSystemApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-17" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -293,6 +278,7 @@
       <item itemvalue="Docker.kafka-compose.yml: Compose Deployment" />
       <item itemvalue="JUnit.CGFKafkaMessageIntegrationTest" />
       <item itemvalue="Spring Boot.ChargingGatewayFunctionApplication" />
+      <item itemvalue="Spring Boot.NotificationFunctionApplication" />
       <item itemvalue="Spring Boot.OnlineChargingSystemApplication" />
       <item itemvalue="Spring Boot.AccountOrderManagementApplication" />
       <item itemvalue="Spring Boot.AccountBalanceManagementFunctionApplication" />

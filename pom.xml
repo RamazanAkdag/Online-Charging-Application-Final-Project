@@ -19,6 +19,7 @@
       <module>account-balance-management-function</module>
       <module>common</module>
       <module>charging-gateway-function</module>
+      <module>notification-function</module>
   </modules>
 
   <properties>
