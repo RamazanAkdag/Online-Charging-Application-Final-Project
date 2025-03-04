@@ -6,9 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="4e36dfc9-06df-4fb0-896c-d0105c657a96" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notification-function/src/main/java/org/example/notificationfunction/NotificationFunctionApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/notification-function/src/main/java/org/example/notificationfunction/NotificationFunctionApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notification-function/src/main/java/org/example/notificationfunction/repository/OracleCustomerRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/notification-function/src/main/java/org/example/notificationfunction/service/concrete/NotificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/notification-function/src/main/java/org/example/notificationfunction/service/concrete/NotificationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/config/KafkaConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-balance-management-function/src/main/java/org/example/accountbalancemanagementfunction/config/KafkaConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-balance-management-function/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/account-balance-management-function/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -299,7 +298,7 @@
       <workItem from="1740734893222" duration="10332000" />
       <workItem from="1740767928942" duration="4795000" />
       <workItem from="1740933993830" duration="4596000" />
-      <workItem from="1741116522970" duration="394000" />
+      <workItem from="1741116522970" duration="1834000" />
     </task>
     <servers />
   </component>
