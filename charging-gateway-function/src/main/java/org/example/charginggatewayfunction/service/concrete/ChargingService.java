@@ -42,6 +42,7 @@ public class ChargingService implements IChargingService {
         // 3) CGFKafkaMessage -> PersonalUsage dönüşümü
         PersonalUsage personalUsage = PersonalUsageMapper.mapToPersonalUsage(message);
 
+
         // 4) GiverId ve ReceiverId alanlarını bulduğumuz subscriber ID'leriyle set et
         personalUsage.setGiverId(giver.getId());
         personalUsage.setReceiverId(receiver.getId());
