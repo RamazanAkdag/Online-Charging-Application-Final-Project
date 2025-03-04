@@ -1,7 +1,7 @@
 package org.example.accountbalancemanagementfunction.strategy.abstrct;
 
-import org.example.accountbalancemanagementfunction.model.oracle.OracleBalance;
 import com.ramobeko.dgwtgf.model.UsageType;
+import com.ramobeko.oracle.model.OracleBalance;
 
 public interface UsageHandler {
     /**

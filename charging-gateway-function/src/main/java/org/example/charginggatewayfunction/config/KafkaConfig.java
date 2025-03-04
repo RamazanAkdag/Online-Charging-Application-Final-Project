@@ -1,10 +1,9 @@
 package org.example.charginggatewayfunction.config;
 
-import com.ramobeko.kafka.CGFKafkaMessage;
-import com.ramobeko.kafka.KafkaMessageDeserializer; // JSON vb. Deserializer
+import com.ramobeko.kafka.message.CGFKafkaMessage;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
-import org.apache.kafka.common.serialization.StringDeserializer;
 import org.example.charginggatewayfunction.kafka.KafkaMessageListener;
+import org.example.charginggatewayfunction.util.kafka.CGFKafkaMessageDeserializer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -39,7 +38,7 @@ public class KafkaConfig {
         props.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
         // CGFKafkaMessage için özel Deserializer
-        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaMessageDeserializer.class);
+        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, CGFKafkaMessageDeserializer.class);
 
         return new DefaultKafkaConsumerFactory<>(props);
     }

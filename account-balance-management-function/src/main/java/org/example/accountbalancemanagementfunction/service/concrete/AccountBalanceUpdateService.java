@@ -1,11 +1,11 @@
 package org.example.accountbalancemanagementfunction.service.concrete;
 
 import com.ramobeko.dgwtgf.model.UsageType;
-import com.ramobeko.kafka.ABMFKafkaMessage;
+import com.ramobeko.kafka.message.ABMFKafkaMessage;
+import com.ramobeko.oracle.model.OracleBalance;
 import lombok.RequiredArgsConstructor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.example.accountbalancemanagementfunction.model.oracle.OracleBalance;
 import org.example.accountbalancemanagementfunction.repository.oracle.OracleBalanceRepository;
 import org.example.accountbalancemanagementfunction.repository.oracle.OracleSubscriberRepository;
 import org.example.accountbalancemanagementfunction.service.abstrct.IAccountBalanceUpdateService;

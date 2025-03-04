@@ -1,8 +1,8 @@
 package org.example.accountbalancemanagementfunction.strategy.concrete;
 
 
-import org.example.accountbalancemanagementfunction.model.oracle.OracleBalance;
 import com.ramobeko.dgwtgf.model.UsageType;
+import com.ramobeko.oracle.model.OracleBalance;
 import org.example.accountbalancemanagementfunction.strategy.abstrct.UsageHandler;
 import org.springframework.stereotype.Component;
 

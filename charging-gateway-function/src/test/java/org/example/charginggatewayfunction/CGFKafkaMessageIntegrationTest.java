@@ -1,7 +1,7 @@
 package org.example.charginggatewayfunction;
 
 import com.ramobeko.dgwtgf.model.UsageType;
-import com.ramobeko.kafka.CGFKafkaMessage;
+import com.ramobeko.kafka.message.CGFKafkaMessage;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

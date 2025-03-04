@@ -5,7 +5,7 @@ import org.example.accountbalancemanagementfunction.service.abstrct.IAccountBala
 import org.springframework.kafka.listener.MessageListener;
 import org.springframework.stereotype.Component;
 
-import com.ramobeko.kafka.ABMFKafkaMessage;
+import com.ramobeko.kafka.message.ABMFKafkaMessage;
 import lombok.RequiredArgsConstructor;
 
 // 🔹 Log4j importları

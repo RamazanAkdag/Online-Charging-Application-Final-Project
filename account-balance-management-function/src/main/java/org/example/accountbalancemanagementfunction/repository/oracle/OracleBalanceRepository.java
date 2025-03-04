@@ -1,6 +1,6 @@
 package org.example.accountbalancemanagementfunction.repository.oracle;
 
-import org.example.accountbalancemanagementfunction.model.oracle.OracleBalance;
+import com.ramobeko.oracle.model.OracleBalance;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

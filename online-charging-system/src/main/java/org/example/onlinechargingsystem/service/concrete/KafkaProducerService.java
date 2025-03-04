@@ -1,7 +1,7 @@
 package org.example.onlinechargingsystem.service.concrete;
 
 
-import com.ramobeko.kafka.ABMFKafkaMessage;
+import com.ramobeko.kafka.message.ABMFKafkaMessage;
 import org.example.onlinechargingsystem.service.abstrct.IKafkaProducerService;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;

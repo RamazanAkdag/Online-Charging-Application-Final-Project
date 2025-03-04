@@ -1,4 +1,4 @@
-package com.ramobeko.kafka;
+package com.ramobeko.kafka.message;
 
 import com.ramobeko.dgwtgf.model.UsageType;
 

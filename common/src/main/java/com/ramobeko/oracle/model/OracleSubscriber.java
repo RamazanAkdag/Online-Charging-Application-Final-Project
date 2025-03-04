@@ -1,10 +1,8 @@
-package org.example.accountbalancemanagementfunction.model.oracle;
-
-import jakarta.persistence.*;
+package com.ramobeko.oracle.model;
 
 import java.util.Date;
 import java.util.List;
-
+import jakarta.persistence.*;
 @Entity
 @Table(name = "t_subscriber", schema = "aom")
 public class OracleSubscriber {
