@@ -8,14 +8,13 @@ import com.ramobeko.accountordermanagement.model.entity.oracle.OracleCustomer;
 import com.ramobeko.accountordermanagement.repository.oracle.OracleCustomerRepository;
 import com.ramobeko.accountordermanagement.security.JwtUtil;
 import com.ramobeko.accountordermanagement.service.abstrct.oracle.IOracleCustomerService;
-import com.ramobeko.accountordermanagement.util.mapper.OracleCustomerMapper;
+import com.ramobeko.accountordermanagement.util.mapper.oracle.OracleCustomerMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 
 @Service

@@ -1,4 +1,4 @@
-package com.ramobeko.accountordermanagement.util.mapper;
+package com.ramobeko.accountordermanagement.util.mapper.ignite;
 
 import com.ramobeko.accountordermanagement.model.entity.ignite.IgniteCustomer;
 import com.ramobeko.accountordermanagement.model.entity.oracle.OracleCustomer;

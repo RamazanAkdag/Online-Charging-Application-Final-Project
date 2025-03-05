@@ -12,13 +12,12 @@ import com.ramobeko.accountordermanagement.repository.oracle.OraclePackageReposi
 import com.ramobeko.accountordermanagement.repository.oracle.OracleSubscriberRepository;
 import com.ramobeko.accountordermanagement.service.abstrct.oracle.IOracleSubscriberService;
 import com.ramobeko.accountordermanagement.util.generator.ITelephoneNumberGenerator;
-import com.ramobeko.accountordermanagement.util.mapper.OracleSubscriberMapper;
+import com.ramobeko.accountordermanagement.util.mapper.oracle.OracleSubscriberMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Service

@@ -3,11 +3,11 @@ package com.ramobeko.accountordermanagement.service.concrete.ignite;
 import com.ramobeko.accountordermanagement.model.entity.ignite.IgniteCustomer;
 import com.ramobeko.accountordermanagement.repository.ignite.IgniteCustomerRepository;
 import com.ramobeko.accountordermanagement.service.abstrct.ignite.IIgniteCustomerService;
+import com.ramobeko.accountordermanagement.util.helper.IgniteCustomerInitializer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import com.ramobeko.accountordermanagement.util.factory.IgniteCustomerInitializer;
 
 @Service
 public class IgniteCustomerService implements IIgniteCustomerService {

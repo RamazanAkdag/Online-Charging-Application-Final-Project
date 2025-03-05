@@ -1,4 +1,4 @@
-package com.ramobeko.accountordermanagement.util.mapper;
+package com.ramobeko.accountordermanagement.util.mapper.oracle;
 
 import com.ramobeko.accountordermanagement.model.dto.request.SubscriberRequest;
 import com.ramobeko.accountordermanagement.model.dto.request.SubscriberUpdateRequest;
