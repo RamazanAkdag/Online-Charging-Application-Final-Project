@@ -20,7 +20,6 @@ public class MinuteUsageHandler implements UsageHandler {
             throw new RuntimeException("Insufficient minute balance");
         }
         balance.setLevelMinutes(balance.getLevelMinutes() - (long) usageAmount);
-        // İsteğe bağlı ek log veya işlem
     }
 }
 

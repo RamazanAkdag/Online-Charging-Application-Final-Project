@@ -32,28 +32,25 @@ public class AccountBalanceUpdateService implements IAccountBalanceUpdateService
         double usageAmount = message.getUsageAmount();
         UsageType usageType = message.getUsageType();
 
-        logger.info("🔔 [updateBalance] Gelen Kafka mesajı: phoneNumber={}, usageType={}, usageAmount={}",
+        logger.info("[updateBalance] Processing update for phoneNumber={}, usageType={}, usageAmount={}",
                 phoneNumber, usageType, usageAmount);
 
         var subscriber = subscriberRepository.findByPhoneNumber(phoneNumber)
                 .orElseThrow(() -> {
-                    logger.error("❌ [updateBalance] Subscriber bulunamadı (phoneNumber={})", phoneNumber);
-                    throw new RuntimeException("Subscriber not found in DB with phoneNumber: " + phoneNumber);
+                    logger.error("[updateBalance] Subscriber not found for phoneNumber={}", phoneNumber);
+                    return new RuntimeException("Subscriber not found in DB with phoneNumber: " + phoneNumber);
                 });
 
-        logger.info("🔎 [updateBalance] Subscriber bulundu: {}", subscriber);
         Long subscId = subscriber.getId();
 
         OracleBalance balance = balanceRepository.findBalanceBySubscriberId(subscId)
                 .orElseThrow(() -> {
-                    logger.error("❌ [updateBalance] Balance kaydı bulunamadı (subscId={})", subscId);
-                    throw new RuntimeException("Balance not found in DB for subscriber: " + subscId);
+                    logger.error("[updateBalance] Balance record not found for subscriber id={}", subscId);
+                    return new RuntimeException("Balance not found in DB for subscriber: " + subscId);
                 });
 
-        logger.info("📄 [updateBalance] Mevcut balance kaydı: {}", balance);
-
         if (usageAmount <= 0) {
-            logger.error("⚠️ [updateBalance] Kullanım miktarı 0 veya negatif olamaz. usageAmount={}", usageAmount);
+            logger.error("[updateBalance] Usage amount must be positive, given: {}", usageAmount);
             throw new RuntimeException("Usage amount must be positive, given: " + usageAmount);
         }
 
@@ -61,15 +58,13 @@ public class AccountBalanceUpdateService implements IAccountBalanceUpdateService
                 .filter(h -> h.supports(usageType))
                 .findFirst()
                 .orElseThrow(() -> {
-                    logger.error("❓ [updateBalance] No UsageHandler found for usageType={}", usageType);
-                    throw new RuntimeException("No handler found for usage type: " + usageType);
+                    logger.error("[updateBalance] No handler found for usageType={}", usageType);
+                    return new RuntimeException("No handler found for usage type: " + usageType);
                 });
 
         handler.handle(balance, usageAmount);
         balanceRepository.save(balance);
 
-        logger.info("💾 [updateBalance] Balance kaydı güncellendi ve kaydedildi (subscId={})", subscId);
-        logger.info("🎉 [updateBalance] Subscriber (subscId={}) balance updated successfully.", subscId);
+        logger.info("[updateBalance] Balance updated successfully for subscriber id={}", subscId);
     }
 }
-

@@ -20,7 +20,6 @@ public class DataUsageHandler implements UsageHandler {
             throw new RuntimeException("Insufficient data balance");
         }
         balance.setLevelData(balance.getLevelData() - (long) usageAmount);
-        // İsteğe bağlı ek log veya işlem
     }
 }
 
