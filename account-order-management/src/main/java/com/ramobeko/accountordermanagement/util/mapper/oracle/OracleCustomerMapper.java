@@ -1,4 +1,4 @@
-package com.ramobeko.accountordermanagement.util.mapper;
+package com.ramobeko.accountordermanagement.util.mapper.oracle;
 
 import com.ramobeko.accountordermanagement.model.dto.OracleCustomerDTO;
 import com.ramobeko.accountordermanagement.model.dto.RegisterRequest;

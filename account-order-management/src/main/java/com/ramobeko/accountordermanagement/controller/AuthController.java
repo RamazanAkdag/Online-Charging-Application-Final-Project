@@ -9,7 +9,7 @@ import com.ramobeko.accountordermanagement.model.entity.ignite.IgniteCustomer;
 import com.ramobeko.accountordermanagement.model.entity.oracle.OracleCustomer;
 import com.ramobeko.accountordermanagement.service.abstrct.ignite.IIgniteCustomerService;
 import com.ramobeko.accountordermanagement.service.abstrct.oracle.IOracleCustomerService;
-import com.ramobeko.accountordermanagement.util.mapper.OracleToIgniteCustomerMapper;
+import com.ramobeko.accountordermanagement.util.mapper.ignite.OracleToIgniteCustomerMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;

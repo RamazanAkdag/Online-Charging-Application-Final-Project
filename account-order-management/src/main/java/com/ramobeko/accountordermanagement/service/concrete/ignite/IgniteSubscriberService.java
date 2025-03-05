@@ -3,7 +3,7 @@ package com.ramobeko.accountordermanagement.service.concrete.ignite;
 import com.ramobeko.accountordermanagement.model.shared.OracleSubscriber;
 import com.ramobeko.accountordermanagement.repository.ignite.IgniteSubscriberRepository;
 import com.ramobeko.accountordermanagement.service.abstrct.ignite.IIgniteSubscriberService;
-import com.ramobeko.accountordermanagement.util.mapper.IgniteSubscriberMapper;
+import com.ramobeko.accountordermanagement.util.mapper.ignite.IgniteSubscriberMapper;
 import com.ramobeko.ignite.IgniteSubscriber;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
