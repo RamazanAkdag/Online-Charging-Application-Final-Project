@@ -1,18 +1,13 @@
 package com.ramobeko.accountordermanagement.service.concrete.ignite;
 
-
 import com.ramobeko.accountordermanagement.model.entity.ignite.IgniteCustomer;
 import com.ramobeko.accountordermanagement.repository.ignite.IgniteCustomerRepository;
 import com.ramobeko.accountordermanagement.service.abstrct.ignite.IIgniteCustomerService;
-import com.ramobeko.accountordermanagement.util.model.Role;
-
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
-
-import java.util.Date;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+import com.ramobeko.accountordermanagement.util.factory.IgniteCustomerInitializer;
 
 @Service
 public class IgniteCustomerService implements IIgniteCustomerService {
@@ -20,36 +15,22 @@ public class IgniteCustomerService implements IIgniteCustomerService {
     private static final Logger logger = LogManager.getLogger(IgniteCustomerService.class);
 
     private final IgniteCustomerRepository igniteCustomerRepository;
-    private final PasswordEncoder passwordEncoder;
+    private final IgniteCustomerInitializer igniteCustomerInitializer;
 
-    public IgniteCustomerService(IgniteCustomerRepository igniteCustomerRepository, PasswordEncoder passwordEncoder) {
+    public IgniteCustomerService(IgniteCustomerRepository igniteCustomerRepository,
+                                 PasswordEncoder passwordEncoder,
+                                 IgniteCustomerInitializer igniteCustomerInitializer) {
         this.igniteCustomerRepository = igniteCustomerRepository;
-        this.passwordEncoder = passwordEncoder;
+        this.igniteCustomerInitializer = igniteCustomerInitializer;
     }
 
     @Override
     public IgniteCustomer register(IgniteCustomer igniteCustomer) {
-        logger.info(" Registering new customer to ignite: {}", igniteCustomer.getEmail());
-
-        if (igniteCustomer.getId() == null) {
-            igniteCustomer.setId(System.currentTimeMillis());
-        }
-        if (igniteCustomer.getStatus() == null) {
-            igniteCustomer.setStatus("ACTIVE");
-        }
-        if (igniteCustomer.getStartDate() == null) {
-            igniteCustomer.setStartDate(new Date());
-        }
-        if (igniteCustomer.getRole() == null) {
-            igniteCustomer.setRole(Role.USER);
-        }
-        if (igniteCustomer.getPassword() != null) {
-            igniteCustomer.setPassword(passwordEncoder.encode(igniteCustomer.getPassword()));
-        }
-
-        IgniteCustomer savedigniteCustomer = igniteCustomerRepository.save(igniteCustomer.getId(),igniteCustomer);
-        logger.info("✅ Customer registered successfully to ignite: {}", savedigniteCustomer.getEmail());
-        return savedigniteCustomer;
+        logger.info("Registering new customer to ignite: {}", igniteCustomer.getEmail());
+        igniteCustomerInitializer.initializeCustomer(igniteCustomer);
+        IgniteCustomer savedCustomer = igniteCustomerRepository.save(igniteCustomer.getId(), igniteCustomer);
+        logger.info("✅ Customer registered successfully to ignite: {}", savedCustomer.getEmail());
+        return savedCustomer;
     }
 
     @Override
@@ -62,7 +43,6 @@ public class IgniteCustomerService implements IIgniteCustomerService {
     @Override
     public void update(IgniteCustomer entity) {
         logger.info("🔄 Updating customer: {}", entity.getId());
-
         if (igniteCustomerRepository.existsById(entity.getId())) {
             igniteCustomerRepository.save(entity);
             logger.info("✅ Customer updated: {}", entity.getId());

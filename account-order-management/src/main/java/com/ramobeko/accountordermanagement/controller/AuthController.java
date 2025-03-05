@@ -5,12 +5,11 @@ import com.ramobeko.accountordermanagement.model.dto.request.AuthRequest;
 import com.ramobeko.accountordermanagement.model.dto.request.ChangePasswordRequest;
 import com.ramobeko.accountordermanagement.model.dto.response.ApiResponse;
 import com.ramobeko.accountordermanagement.model.dto.response.AuthResponse;
-import com.ramobeko.accountordermanagement.model.entity.hazelcast.HazelcastSubscriber;
 import com.ramobeko.accountordermanagement.model.entity.ignite.IgniteCustomer;
 import com.ramobeko.accountordermanagement.model.entity.oracle.OracleCustomer;
-import com.ramobeko.accountordermanagement.service.abstrct.hazelcast.IHazelcastService;
 import com.ramobeko.accountordermanagement.service.abstrct.ignite.IIgniteCustomerService;
 import com.ramobeko.accountordermanagement.service.abstrct.oracle.IOracleCustomerService;
+import com.ramobeko.accountordermanagement.util.mapper.OracleToIgniteCustomerMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -39,19 +38,13 @@ public class AuthController {
         OracleCustomer customer = oracleCustomerService.register(request);
         logger.info("Customer registered in Oracle DB with email: {}", customer.getEmail());
 
-        IgniteCustomer igniteCustomer = new IgniteCustomer();
-        igniteCustomer.setId(customer.getId());
-        igniteCustomer.setName(customer.getName());
-        igniteCustomer.setRole(customer.getRole());
-        igniteCustomer.setEmail(customer.getEmail());
-        igniteCustomer.setStartDate(customer.getStartDate());
-        igniteCustomer.setStatus(customer.getStatus());
-        igniteCustomer.setAddress(customer.getAddress());
-
+        // Mapper kullanılarak IgniteCustomer oluşturuluyor.
+        IgniteCustomer igniteCustomer = OracleToIgniteCustomerMapper.map(customer);
         igniteCustomerService.register(igniteCustomer);
 
         return ResponseEntity.ok(new ApiResponse("Customer registered successfully!"));
     }
+
 
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> authenticateCustomer(@RequestBody AuthRequest request) {

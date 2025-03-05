@@ -25,7 +25,6 @@ public class NotificationService implements INotificationService {
     private final OracleSubscriberRepository subscriberRepository;
     private final EmailService emailService;
 
-    // E-posta içeriği için yapılandırma dosyasından alınan değerler.
     @Value("${notification.email.subject.prefix}")
     private String emailSubjectPrefix;
 
@@ -58,10 +57,8 @@ public class NotificationService implements INotificationService {
             notificationLogRepository.save(notificationLog);
             logger.info("✅ Bildirim başarıyla kaydedildi: {}", notificationLog);
 
-            // Müşterinin e-posta adresini al
             String customerEmail = customer.getEmail();
             if (customerEmail != null && !customerEmail.isEmpty()) {
-                // Dinamik içerik oluşturmak için şablonda yer alan placeholder'ları değiştirin
                 String subject = emailSubjectPrefix + " " + notificationLog.getNotificationType();
                 String body = emailBodyTemplate
                         .replace("{notificationType}", notificationLog.getNotificationType())
