@@ -12,6 +12,7 @@ import com.ramobeko.accountordermanagement.repository.oracle.OraclePackageReposi
 import com.ramobeko.accountordermanagement.repository.oracle.OracleSubscriberRepository;
 import com.ramobeko.accountordermanagement.service.abstrct.oracle.IOracleSubscriberService;
 import com.ramobeko.accountordermanagement.util.generator.ITelephoneNumberGenerator;
+import com.ramobeko.accountordermanagement.util.mapper.OracleSubscriberMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 @Service
 public class OracleSubscriberService implements IOracleSubscriberService {
 
@@ -28,13 +30,13 @@ public class OracleSubscriberService implements IOracleSubscriberService {
     private final OracleCustomerRepository customerRepository;
     private final OracleBalanceRepository balanceRepository;
     private final OraclePackageRepository packageRepository;
-    private final ITelephoneNumberGenerator telephoneNumberGenerator; // 📌 Telefon numarası üreten servis
+    private final ITelephoneNumberGenerator telephoneNumberGenerator;
 
     public OracleSubscriberService(OracleSubscriberRepository subscriberRepository,
                                    OracleCustomerRepository customerRepository,
                                    OracleBalanceRepository balanceRepository,
                                    OraclePackageRepository packageRepository,
-                                   ITelephoneNumberGenerator telephoneNumberGenerator) { // 📌 Yeni bağımlılık eklendi
+                                   ITelephoneNumberGenerator telephoneNumberGenerator) {
         this.subscriberRepository = subscriberRepository;
         this.customerRepository = customerRepository;
         this.balanceRepository = balanceRepository;
@@ -55,34 +57,21 @@ public class OracleSubscriberService implements IOracleSubscriberService {
         OracleCustomer customer = customerRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Customer not found with ID: " + id));
 
-        // 📌 Telefon numarası artık TelephoneNumberGenerator kullanılarak oluşturuluyor
+        // Telefon numarası üretiliyor.
         String phoneNumber = telephoneNumberGenerator.generate();
-        if (request.getPackageId() != null) {
-            // Paket bilgisi varsa, balance oluştur
 
+        if (request.getPackageId() != null) {
             OraclePackage packagePlan = packageRepository.findById(request.getPackageId())
                     .orElseThrow(() -> new IllegalArgumentException("Package not found with ID: " + request.getPackageId()));
-            OracleSubscriber subscriber = new OracleSubscriber();
-            subscriber.setCustomer(customer);
-            subscriber.setPackagePlan(packagePlan);
-            subscriber.setPhoneNumber(phoneNumber);
-            subscriber.setStartDate(request.getStartDate() != null ? request.getStartDate() : new Date());
-            subscriber.setStatus("ACTIVE");
 
+            // Mapper kullanılarak subscriber oluşturuluyor.
+            OracleSubscriber subscriber = OracleSubscriberMapper.fromSubscriberRequest(customer, packagePlan, request, phoneNumber);
             OracleSubscriber savedSubscriber = subscriberRepository.save(subscriber);
 
-
-
-            OracleBalance balance = new OracleBalance();
-            balance.setSubscriber(savedSubscriber);
-            balance.setPackagePlan(packagePlan);
-            balance.setLevelMinutes(packagePlan.getAmountMinutes());
-            balance.setLevelSms(packagePlan.getAmountSms());
-            balance.setLevelData(packagePlan.getAmountData());
-            balance.setStartDate(new Date());
-            balance.setEndDate(null);
-
+            // Balance, mapper kullanılarak oluşturuluyor.
+            OracleBalance balance = OracleSubscriberMapper.createBalance(savedSubscriber, packagePlan);
             balanceRepository.save(balance);
+
             logger.info("Balance created successfully for subscriberId: {}", savedSubscriber.getId());
         } else {
             logger.warn("No packageId specified. Balance creation skipped.");
@@ -98,33 +87,16 @@ public class OracleSubscriberService implements IOracleSubscriberService {
         OracleCustomer customer = customerRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Customer not found with ID: " + id));
 
-        // 📌 Telefon numarası artık TelephoneNumberGenerator kullanılarak oluşturuluyor
         String phoneNumber = telephoneNumberGenerator.generate();
-        if (request.getPackageId() != null) {
-            // Paket bilgisi varsa, balance oluştur
 
+        if (request.getPackageId() != null) {
             OraclePackage packagePlan = packageRepository.findById(request.getPackageId())
                     .orElseThrow(() -> new IllegalArgumentException("Package not found with ID: " + request.getPackageId()));
-            OracleSubscriber subscriber = new OracleSubscriber();
-            subscriber.setCustomer(customer);
-            subscriber.setPackagePlan(packagePlan);
-            subscriber.setPhoneNumber(phoneNumber);
-            subscriber.setStartDate(request.getStartDate() != null ? request.getStartDate() : new Date());
-            subscriber.setStatus("ACTIVE");
 
+            OracleSubscriber subscriber = OracleSubscriberMapper.fromSubscriberRequest(customer, packagePlan, request, phoneNumber);
             OracleSubscriber savedSubscriber = subscriberRepository.save(subscriber);
 
-
-
-            OracleBalance balance = new OracleBalance();
-            balance.setSubscriber(savedSubscriber);
-            balance.setPackagePlan(packagePlan);
-            balance.setLevelMinutes(packagePlan.getAmountMinutes());
-            balance.setLevelSms(packagePlan.getAmountSms());
-            balance.setLevelData(packagePlan.getAmountData());
-            balance.setStartDate(new Date());
-            balance.setEndDate(null);
-
+            OracleBalance balance = OracleSubscriberMapper.createBalance(savedSubscriber, packagePlan);
             balanceRepository.save(balance);
 
             List<OracleBalance> balances = new ArrayList<>();
@@ -138,8 +110,6 @@ public class OracleSubscriberService implements IOracleSubscriberService {
             logger.warn("No packageId specified. Balance creation skipped.");
             return null;
         }
-
-
     }
 
     @Override
@@ -149,10 +119,7 @@ public class OracleSubscriberService implements IOracleSubscriberService {
     }
 
     @Override
-    // This method is not used because updates are handled using SubscriberUpdateRequest.
-    // The system does not use SubscriberRequest for updating subscribers.
     public void update(SubscriberRequest subscriberRequest) {
-        // Unused method: The system uses SubscriberUpdateRequest instead.
     }
 
     @Override
@@ -160,12 +127,9 @@ public class OracleSubscriberService implements IOracleSubscriberService {
         logger.info("Updating subscriber with subscriberId: {}", request.getSubscriberId());
 
         OracleSubscriber subscriber = findSubscriberById(request.getSubscriberId());
+        OracleSubscriber updatedSubscriber = OracleSubscriberMapper.updateSubscriber(subscriber, request);
+        subscriberRepository.save(updatedSubscriber);
 
-        subscriber.setStartDate(request.getStartDate());
-        subscriber.setEndDate(request.getEndDate());
-        subscriber.setStatus(request.getStatus());
-
-        subscriberRepository.save(subscriber);
         logger.info("Subscriber updated successfully with subscriberId: {}", request.getSubscriberId());
     }
 
@@ -174,8 +138,8 @@ public class OracleSubscriberService implements IOracleSubscriberService {
         logger.info("Deleting subscriber for subscriberId: {}", id);
 
         OracleSubscriber subscriber = findSubscriberById(id);
-
         subscriberRepository.delete(subscriber);
+
         logger.info("Subscriber deleted successfully for subscriberId: {}", id);
     }
 

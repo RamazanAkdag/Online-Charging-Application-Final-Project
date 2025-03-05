@@ -1,18 +1,15 @@
 package com.ramobeko.accountordermanagement.service.concrete.ignite;
 
-import com.ramobeko.ignite.IgniteBalance;
-
 import com.ramobeko.accountordermanagement.model.shared.OracleSubscriber;
 import com.ramobeko.accountordermanagement.repository.ignite.IgniteSubscriberRepository;
 import com.ramobeko.accountordermanagement.service.abstrct.ignite.IIgniteSubscriberService;
+import com.ramobeko.accountordermanagement.util.mapper.IgniteSubscriberMapper;
 import com.ramobeko.ignite.IgniteSubscriber;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class IgniteSubscriberService implements IIgniteSubscriberService {
@@ -33,28 +30,9 @@ public class IgniteSubscriberService implements IIgniteSubscriberService {
 
         logger.info("Creating Ignite subscriber from Oracle subscriber with ID: {}", oracleSubscriber.getId());
 
-        IgniteSubscriber igniteSubscriber = new IgniteSubscriber(
-                oracleSubscriber.getId(),
-                oracleSubscriber.getCustomer() != null ? oracleSubscriber.getCustomer().getId() : null,
-                oracleSubscriber.getPackagePlan() != null ? oracleSubscriber.getPackagePlan().getId() : null,
-                oracleSubscriber.getPhoneNumber(),
-                oracleSubscriber.getStartDate() != null ? oracleSubscriber.getStartDate() : new Date(),
-                oracleSubscriber.getEndDate(),
-                oracleSubscriber.getStatus(),
-                oracleSubscriber.getBalances().stream()
-                        .map(balance -> new IgniteBalance(
-                                balance.getId(),
-                                balance.getSubscriber() != null ? balance.getSubscriber().getId() : null,
-                                balance.getPackagePlan() != null ? balance.getPackagePlan().getId() : null,
-                                balance.getLevelMinutes(),
-                                balance.getLevelSms(),
-                                balance.getLevelData(),
-                                balance.getStartDate(),
-                                balance.getEndDate()
-                        ))
-                        .collect(Collectors.toList()) // ✅ Store full IgniteBalance objects instead of IDs
-        );
+        IgniteSubscriber igniteSubscriber = IgniteSubscriberMapper.mapOracleToIgnite(oracleSubscriber);
 
+        // Örneğin, phone number'ı key olarak kullanıyorsanız:
         repository.save(Long.parseLong(igniteSubscriber.getPhoneNumber()), igniteSubscriber);
         logger.info("Ignite subscriber created successfully with ID: {}", igniteSubscriber.getId());
     }
@@ -95,28 +73,7 @@ public class IgniteSubscriberService implements IIgniteSubscriberService {
 
         Optional<IgniteSubscriber> existingSubscriber = repository.findById(oracleSubscriber.getId());
         if (existingSubscriber.isPresent()) {
-            IgniteSubscriber igniteSubscriber = new IgniteSubscriber(
-                    oracleSubscriber.getId(),
-                    oracleSubscriber.getCustomer() != null ? oracleSubscriber.getCustomer().getId() : null,
-                    oracleSubscriber.getPackagePlan() != null ? oracleSubscriber.getPackagePlan().getId() : null,
-                    oracleSubscriber.getPhoneNumber(),
-                    oracleSubscriber.getStartDate(),
-                    oracleSubscriber.getEndDate(),
-                    oracleSubscriber.getStatus(),
-                    oracleSubscriber.getBalances().stream()
-                            .map(balance -> new IgniteBalance(
-                                    balance.getId(),
-                                    balance.getSubscriber() != null ? balance.getSubscriber().getId() : null,
-                                    balance.getPackagePlan() != null ? balance.getPackagePlan().getId() : null,
-                                    balance.getLevelMinutes(),
-                                    balance.getLevelSms(),
-                                    balance.getLevelData(),
-                                    balance.getStartDate(),
-                                    balance.getEndDate()
-                            ))
-                            .collect(Collectors.toList()) // ✅ Update full IgniteBalance objects
-            );
-
+            IgniteSubscriber igniteSubscriber = IgniteSubscriberMapper.mapOracleToIgnite(oracleSubscriber);
             repository.save(igniteSubscriber.getId(), igniteSubscriber);
             logger.info("Ignite subscriber updated successfully with ID: {}", igniteSubscriber.getId());
         } else {
