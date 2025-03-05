@@ -16,17 +16,14 @@ public class EmailService {
     private JavaMailSender javaMailSender;
 
     public void sendEmail(String to, String subject, String body) {
-        // Basit bir e-posta mesajı oluştur
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("no-reply@bekoramoonline.com");  // E-posta gönderici adresi
-        message.setTo(to);  // Alıcı adresi
-        message.setSubject(subject);  // Konu
-        message.setText(body);  // Mesaj içeriği
+        message.setFrom("no-reply@bekoramoonline.com");
+        message.setTo(to);
+        message.setSubject(subject);
+        message.setText(body);
 
-        // E-posta gönder
         javaMailSender.send(message);
 
-        // E-posta gönderildiğinde loglama (emojilerle)
         logger.info("📧 Email sent to: {}", to);
     }
 }

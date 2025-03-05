@@ -21,18 +21,14 @@ public class KafkaMessageListener implements MessageListener<String, CGFKafkaMes
     public void onMessage(ConsumerRecord<String, CGFKafkaMessage> record) {
         CGFKafkaMessage message = record.value();
 
-        // ✅ Mesaj alındı
         logger.info("✅ Kafka'dan mesaj alındı. Topic: {}, Partition: {}, Offset: {}, Key: {}, Value: {}",
                 record.topic(), record.partition(), record.offset(), record.key(), message);
 
         try {
-            // Servis katmanındaki iş mantığı metodu
             chargingService.processCGFMessage(message);
 
-            // ✅ Başarılı işlem
             logger.info("✅ Mesaj işleme başarıyla tamamlandı: {}", message);
         } catch (Exception e) {
-            // ❌ Hata durumunu logla
             logger.error("❌ Mesaj işlenirken hata oluştu: {}", e.getMessage(), e);
         }
     }

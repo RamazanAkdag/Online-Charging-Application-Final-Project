@@ -11,6 +11,7 @@ import org.example.notificationfunction.service.abstrct.INotificationService;
 import org.example.notificationfunction.util.mapper.NFKafkaMessageMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -24,6 +25,13 @@ public class NotificationService implements INotificationService {
     private final OracleSubscriberRepository subscriberRepository;
     private final EmailService emailService;
 
+    // E-posta içeriği için yapılandırma dosyasından alınan değerler.
+    @Value("${notification.email.subject.prefix}")
+    private String emailSubjectPrefix;
+
+    @Value("${notification.email.body.template}")
+    private String emailBodyTemplate;
+
     public NotificationService(OracleNotificationLogsRepository notificationLogRepository,
                                OracleSubscriberRepository subscriberRepository,
                                EmailService emailService) {
@@ -34,7 +42,6 @@ public class NotificationService implements INotificationService {
 
     @Transactional
     public void saveNotification(NFKafkaMessage kafkaMessage) {
-        // 1. Kafka mesajındaki senderSubscNumber'ı kullanarak abone bilgisini al
         logger.info("🔍 Mesaj alındı, senderSubscNumber: {}", kafkaMessage.getSenderSubscNumber());
 
         Optional<OracleSubscriber> optionalSubscriber =
@@ -45,24 +52,20 @@ public class NotificationService implements INotificationService {
             OracleCustomer customer = subscriber.getCustomer();
             logger.info("✅ Abone bulundu: {}, customerId: {}", subscriber.getPhoneNumber(), customer.getId());
 
-            // 2. Kafka mesajını NotificationLog nesnesine dönüştür
             NotificationLog notificationLog = NFKafkaMessageMapper.mapToNotificationLog(kafkaMessage);
             notificationLog.setCustomerId(customer.getId());
 
-            // 3. NotificationLog'u veritabanına kaydet
             notificationLogRepository.save(notificationLog);
             logger.info("✅ Bildirim başarıyla kaydedildi: {}", notificationLog);
 
-            // 4. Müşterinin e-posta adresini doğrudan customer nesnesinden al
+            // Müşterinin e-posta adresini al
             String customerEmail = customer.getEmail();
             if (customerEmail != null && !customerEmail.isEmpty()) {
-                // 5. E-posta gönder
-                String subject = "Yeni Bildirim: " + notificationLog.getNotificationType();
-                String body = "Merhaba,\n\n" +
-                        "Yeni bir bildiriminiz var. Detaylar:\n" +
-                        "Tip: " + notificationLog.getNotificationType() + "\n" +
-                        "Zaman: " + notificationLog.getNotificationTime() + "\n\n" +
-                        "İyi günler dileriz.";
+                // Dinamik içerik oluşturmak için şablonda yer alan placeholder'ları değiştirin
+                String subject = emailSubjectPrefix + " " + notificationLog.getNotificationType();
+                String body = emailBodyTemplate
+                        .replace("{notificationType}", notificationLog.getNotificationType())
+                        .replace("{notificationTime}", notificationLog.getNotificationTime().toString());
 
                 emailService.sendEmail(customerEmail, subject, body);
                 logger.info("✅ E-posta gönderildi: {}", customerEmail);
@@ -70,7 +73,6 @@ public class NotificationService implements INotificationService {
                 logger.warn("❌ Müşterinin e-posta adresi bulunamadı. E-posta gönderilemedi.");
             }
         } else {
-            // Abone bulunamadığında loglama
             logger.warn("❌ Abone bulunamadı. senderSubscNumber: {}", kafkaMessage.getSenderSubscNumber());
         }
     }

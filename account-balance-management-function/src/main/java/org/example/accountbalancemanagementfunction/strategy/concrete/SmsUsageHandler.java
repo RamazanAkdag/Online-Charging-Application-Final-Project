@@ -20,7 +20,6 @@ public class SmsUsageHandler implements UsageHandler {
             throw new RuntimeException("Insufficient SMS balance");
         }
         balance.setLevelSms(balance.getLevelSms() - (long) usageAmount);
-        // İsteğe bağlı ek log veya işlem
     }
 }
 
