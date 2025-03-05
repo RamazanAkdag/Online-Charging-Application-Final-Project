@@ -1,12 +1,9 @@
 package org.example.config;
 
-
 import com.hazelcast.client.HazelcastClient;
 import com.hazelcast.client.config.ClientConfig;
 import com.hazelcast.core.HazelcastInstance;
-
 import com.hazelcast.map.IMap;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -14,12 +11,28 @@ public class HazelcastClientManager {
 
     private static final Logger logger = LogManager.getLogger(HazelcastClientManager.class);
     private final HazelcastInstance hazelcastClient;
+    private final String subscriberCacheName;
 
-    public HazelcastClientManager(String clusterName, String... addresses) {
+    public HazelcastClientManager(String... addresses) {
+        // ConfigLoader ile gerekli konfigürasyon bilgilerini okuyalım.
+        ConfigLoader configLoader = new ConfigLoader();
+
+        String clusterName = configLoader.getProperty("hazelcast.cluster.name");
+        if (clusterName == null || clusterName.isEmpty()) {
+            throw new IllegalStateException("Hazelcast cluster name is not configured in config.properties.");
+        }
+
+        subscriberCacheName = configLoader.getProperty("hazelcast.subscriber.cache.name");
+        if (subscriberCacheName == null || subscriberCacheName.isEmpty()) {
+            throw new IllegalStateException("Hazelcast subscriber cache name is not configured in config.properties.");
+        }
+
         logger.info("Initializing HazelcastClientManager with clusterName: {} and addresses: {}", clusterName, addresses);
+
         ClientConfig clientConfig = new ClientConfig();
         clientConfig.setClusterName(clusterName);
         clientConfig.getNetworkConfig().addAddress(addresses);
+
         try {
             this.hazelcastClient = HazelcastClient.newHazelcastClient(clientConfig);
             logger.info("Hazelcast client successfully created and connected.");
@@ -30,13 +43,13 @@ public class HazelcastClientManager {
     }
 
     public IMap<String, Long> getSubscriberMap() {
-        logger.debug("Retrieving subscriberCache IMap.");
+        logger.debug("Retrieving {} IMap.", subscriberCacheName);
         try {
-            IMap<String, Long> subscriberMap = hazelcastClient.getMap("subscriberCache");
-            logger.debug("SubscriberCache IMap retrieved successfully.");
+            IMap<String, Long> subscriberMap = hazelcastClient.getMap(subscriberCacheName);
+            logger.debug("{} IMap retrieved successfully.", subscriberCacheName);
             return subscriberMap;
         } catch (Exception e) {
-            logger.error("Error retrieving subscriberCache IMap: {}", e.getMessage(), e);
+            logger.error("Error retrieving {} IMap: {}", subscriberCacheName, e.getMessage(), e);
             throw e;
         }
     }
