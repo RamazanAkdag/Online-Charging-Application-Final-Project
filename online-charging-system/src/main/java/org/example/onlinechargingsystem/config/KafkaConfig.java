@@ -10,22 +10,54 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
 import java.util.HashMap;
 import java.util.Map;
-import com.ramobeko.kafka.message.ABMFKafkaMessage; // 🔹 KafkaMessage import et
+
+import com.ramobeko.kafka.message.ABMFKafkaMessage;
+import com.ramobeko.kafka.message.CGFKafkaMessage;
+import com.ramobeko.kafka.message.NFKafkaMessage;
 
 @Configuration
 public class KafkaConfig {
 
-    @Bean
-    public ProducerFactory<String, ABMFKafkaMessage> producerFactory() { // 🔹 Burada KafkaMessage kullanıyoruz
+    private Map<String, Object> producerConfigs() {
         Map<String, Object> configProps = new HashMap<>();
-        configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092"); // Kafka broker adresi
+        configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
         configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-        configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaMessageSerializer.class); // 🔹 Özel Serializer eklendi
+        return configProps;
+    }
+
+    @Bean
+    public ProducerFactory<String, ABMFKafkaMessage> abmfProducerFactory() {
+        Map<String, Object> configProps = new HashMap<>(producerConfigs());
+        configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaMessageSerializer.class);
         return new DefaultKafkaProducerFactory<>(configProps);
     }
 
     @Bean
-    public KafkaTemplate<String, ABMFKafkaMessage> kafkaTemplate() { // 🔹 Burada KafkaMessage tipiyle değiştirildi
-        return new KafkaTemplate<>(producerFactory());
+    public ProducerFactory<String, CGFKafkaMessage> cgfProducerFactory() {
+        Map<String, Object> configProps = new HashMap<>(producerConfigs());
+        configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaMessageSerializer.class);
+        return new DefaultKafkaProducerFactory<>(configProps);
+    }
+
+    @Bean
+    public ProducerFactory<String, NFKafkaMessage> nfProducerFactory() {
+        Map<String, Object> configProps = new HashMap<>(producerConfigs());
+        configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaMessageSerializer.class);
+        return new DefaultKafkaProducerFactory<>(configProps);
+    }
+
+    @Bean
+    public KafkaTemplate<String, ABMFKafkaMessage> abmfKafkaTemplate() {
+        return new KafkaTemplate<>(abmfProducerFactory());
+    }
+
+    @Bean
+    public KafkaTemplate<String, CGFKafkaMessage> cgfKafkaTemplate() {
+        return new KafkaTemplate<>(cgfProducerFactory());
+    }
+
+    @Bean
+    public KafkaTemplate<String, NFKafkaMessage> nfKafkaTemplate() {
+        return new KafkaTemplate<>(nfProducerFactory());
     }
 }

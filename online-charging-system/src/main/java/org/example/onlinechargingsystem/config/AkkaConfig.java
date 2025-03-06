@@ -14,6 +14,9 @@ import org.springframework.context.annotation.Configuration;
 import com.ramobeko.akka.CommonServiceKeys;
 import com.ramobeko.akka.Command;
 import org.example.onlinechargingsystem.akka.actor.OcsWorkerActor;
+import org.example.onlinechargingsystem.repository.ignite.IgniteSubscriberRepository;
+import org.example.onlinechargingsystem.service.abstrct.IKafkaProducerService;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,34 +25,36 @@ import java.util.List;
 public class AkkaConfig {
 
     private static final Logger logger = LogManager.getLogger(AkkaConfig.class);
+    private final OcsWorkerConfig ocsWorkerConfig;
 
-    private final IBalanceService balanceService;
-
-    public AkkaConfig(IBalanceService balanceService) {
-        this.balanceService = balanceService;
+    public AkkaConfig(IBalanceService balanceService,
+                      IgniteSubscriberRepository igniteSubscriberRepository,
+                      IKafkaProducerService kafkaProducerService,
+                      @Value("${cgf.topic}") String cgfTopic) {
+        this.ocsWorkerConfig = new OcsWorkerConfig(balanceService, igniteSubscriberRepository, kafkaProducerService, cgfTopic);
     }
 
     @Bean
     public ActorSystem<Void> actorSystem() {
         logger.info("🔄 Initializing Actor System...");
-        ActorSystem<Void> system = ActorSystem.create(rootBehavior(balanceService), "ClusterSystem");
+        ActorSystem<Void> system = ActorSystem.create(rootBehavior(ocsWorkerConfig), "ClusterSystem");
         logger.info("✅ Actor System successfully initialized.");
         return system;
     }
 
-    private static Behavior<Void> rootBehavior(IBalanceService balanceService) {
+    private static Behavior<Void> rootBehavior(OcsWorkerConfig ocsWorkerConfig) {
         return Behaviors.setup(context -> {
-            registerWorkers(context, balanceService);
+            registerWorkers(context, ocsWorkerConfig);
             return Behaviors.empty();
         });
     }
 
-    private static void registerWorkers(ActorContext<Void> context, IBalanceService balanceService) {
+    private static void registerWorkers(ActorContext<Void> context, OcsWorkerConfig ocsWorkerConfig) {
         Logger workerLogger = LogManager.getLogger("WorkerRegistration");
         List<ActorRef<Command.UsageData>> workers = new ArrayList<>();
 
         for (int i = 1; i <= 4; i++) {
-            ActorRef<Command.UsageData> worker = context.spawn(OcsWorkerActor.create(balanceService), "OcsWorker-" + i);
+            ActorRef<Command.UsageData> worker = context.spawn(OcsWorkerActor.create(ocsWorkerConfig), "OcsWorker-" + i);
             workers.add(worker);
             context.getSystem().receptionist().tell(Receptionist.register(CommonServiceKeys.OCS_SERVICE_KEY, worker));
             workerLogger.info("✅ OcsWorker-{} has been successfully registered.", i);
