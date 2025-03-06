@@ -10,6 +10,9 @@ import org.apache.logging.log4j.Logger;
 import org.example.onlinechargingsystem.repository.ignite.IgniteSubscriberRepository;
 import org.example.onlinechargingsystem.service.abstrct.IBalanceService;
 import org.example.onlinechargingsystem.service.abstrct.IKafkaProducerService;
+import org.example.onlinechargingsystem.strategy.abstrct.IUsageDeductionStrategy;
+import org.example.onlinechargingsystem.strategy.concrete.UsageDeductionStrategyFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,7 +24,8 @@ public class BalanceService implements IBalanceService {
     private final IgniteSubscriberRepository igniteSubscriberRepository;
     private final IKafkaProducerService kafkaProducerService;
 
-    private static final String KAFKA_TOPIC = "usage-events";
+    @Value("${abmf.topic}")
+    private String KAFKA_TOPIC;
 
     @Override
     public IgniteBalance getBalance(Long subscNumber) {
@@ -33,19 +37,19 @@ public class BalanceService implements IBalanceService {
                     return new RuntimeException("Subscriber not found");
                 });
 
-        logger.info("📜 Subscriber details: {}", subscriber); // Aboneyi logla
+        logger.info("📜 Subscriber details: {}", subscriber);
 
         if (subscriber.getBalances().isEmpty()) {
             logger.error("❌ No balance record found for subscriber: {}", subscNumber);
             throw new RuntimeException("Balance not found");
         }
 
-        return subscriber.getBalances().get(0); // İlk kayıt alınıyor, gerekirse filtreleme yapılabilir
+        return subscriber.getBalances().get(0);
     }
 
     @Override
-    public void deductBalanceForMinutes(Long subscNumber, int amount) {
-        logger.info("📉 Deducting {} minutes from balance for subscNumber: {}", amount, subscNumber);
+    public void deductBalance(Long subscNumber, int amount, UsageType usageType) {
+        logger.info("📉 Deducting {} {} from balance for subscNumber: {}", amount, usageType, subscNumber);
 
         IgniteSubscriber subscriber = igniteSubscriberRepository.findById(subscNumber)
                 .orElseThrow(() -> {
@@ -53,74 +57,15 @@ public class BalanceService implements IBalanceService {
                     return new RuntimeException("Subscriber not found");
                 });
 
-        logger.info("📜 Subscriber details before deduction: {}", subscriber); // Aboneyi logla
+        logger.info("📜 Subscriber details before deduction: {}", subscriber);
 
-        IgniteBalance balance = getBalance(subscNumber);
-        if (balance.getLevelMinutes() < amount) {
-            logger.error("❌ Insufficient minutes balance for subscNumber: {}", subscNumber);
-            throw new RuntimeException("Insufficient minutes balance");
-        }
+        // Strateji Seçme
+        IUsageDeductionStrategy strategy = UsageDeductionStrategyFactory.getStrategy(usageType);
+        strategy.deductBalance(subscriber, amount, igniteSubscriberRepository, subscNumber);
 
-        balance.setLevelMinutes(balance.getLevelMinutes() - amount);
-        igniteSubscriberRepository.save(subscNumber, subscriber);
-        logger.info("✅ Updated minutes balance for subscNumber: {}", subscNumber);
-
-        ABMFKafkaMessage message = new ABMFKafkaMessage(subscNumber, UsageType.MINUTE, amount);
-        kafkaProducerService.sendUsageData(KAFKA_TOPIC, message);
-        logger.info("📤 Kafka message sent: {}", message);
-    }
-
-    @Override
-    public void deductBalanceForSms(Long subscNumber, int amount) {
-        logger.info("📉 Deducting {} SMS from balance for subscNumber: {}", amount, subscNumber);
-
-        IgniteSubscriber subscriber = igniteSubscriberRepository.findById(subscNumber)
-                .orElseThrow(() -> {
-                    logger.error("❌ Subscriber not found: {}", subscNumber);
-                    return new RuntimeException("Subscriber not found");
-                });
-
-        logger.info("📜 Subscriber details before deduction: {}", subscriber); // Aboneyi logla
-
-        IgniteBalance balance = getBalance(subscNumber);
-        if (balance.getLevelSms() < amount) {
-            logger.error("❌ Insufficient SMS balance for subscNumber: {}", subscNumber);
-            throw new RuntimeException("Insufficient SMS balance");
-        }
-
-        balance.setLevelSms(balance.getLevelSms() - amount);
-        igniteSubscriberRepository.save(subscNumber, subscriber);
-        logger.info("✅ Updated SMS balance for subscNumber: {}", subscNumber);
-
-        ABMFKafkaMessage message = new ABMFKafkaMessage(subscNumber, UsageType.SMS, amount);
-        kafkaProducerService.sendUsageData(KAFKA_TOPIC, message);
-        logger.info("📤 Kafka message sent: {}", message);
-    }
-
-    @Override
-    public void deductBalanceForData(Long subscNumber, int amount) {
-        logger.info("📉 Deducting {} MB data from balance for subscNumber: {}", amount, subscNumber);
-
-        IgniteSubscriber subscriber = igniteSubscriberRepository.findById(subscNumber)
-                .orElseThrow(() -> {
-                    logger.error("❌ Subscriber not found: {}", subscNumber);
-                    return new RuntimeException("Subscriber not found");
-                });
-
-        logger.info("📜 Subscriber details before deduction: {}", subscriber); // Aboneyi logla
-
-        IgniteBalance balance = getBalance(subscNumber);
-        if (balance.getLevelData() < amount) {
-            logger.error("❌ Insufficient data balance for subscNumber: {}", subscNumber);
-            throw new RuntimeException("Insufficient data balance");
-        }
-
-        balance.setLevelData(balance.getLevelData() - amount);
-        igniteSubscriberRepository.save(subscNumber, subscriber);
-        logger.info("✅ Updated data balance for subscNumber: {}", subscNumber);
-
-        ABMFKafkaMessage message = new ABMFKafkaMessage(subscNumber, UsageType.DATA, amount);
-        kafkaProducerService.sendUsageData(KAFKA_TOPIC, message);
+        // Kafka Mesajı Gönderme
+        ABMFKafkaMessage message = new ABMFKafkaMessage(subscNumber, usageType, amount);
+        kafkaProducerService.sendABMFUsageData(KAFKA_TOPIC, message);
         logger.info("📤 Kafka message sent: {}", message);
     }
 }
