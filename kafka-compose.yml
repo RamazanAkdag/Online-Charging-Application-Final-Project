@@ -17,17 +17,33 @@ services:
     restart: always
     ports:
       - "9092:9092"
+      - "29092:29092"  # İç ağ (internal) bağlantıları için yeni port
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,PLAINTEXT_INTERNAL://0.0.0.0:29092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092,PLAINTEXT_INTERNAL://kafka:29092
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT_INTERNAL
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_LOG_RETENTION_HOURS: 168  # Log dosyalarını 7 gün sakla
       KAFKA_MESSAGE_MAX_BYTES: 2000000  # Maksimum mesaj boyutunu ayarla (opsiyonel)
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"  # Otomatik topic oluşturmayı aç
     depends_on:
       - zookeeper
+    networks:
+      - kafka_network
+
+  kafdrop:
+    image: obsidiandynamics/kafdrop:latest
+    container_name: kafdrop
+    restart: always
+    ports:
+      - "9000:9000"
+    environment:
+      KAFKA_BROKERCONNECT: kafka:29092
+    depends_on:
+      - kafka
     networks:
       - kafka_network
 
