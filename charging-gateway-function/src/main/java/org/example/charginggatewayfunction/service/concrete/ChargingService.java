@@ -27,24 +27,22 @@ public class ChargingService implements IChargingService {
 
     @Override
     public void processCGFMessage(CGFKafkaMessage message) {
-        logger.info("🚀 Processing CGFKafkaMessage: {}", message);
+        logger.info("📥 Gelen CGFKafkaMessage: {}", message);
 
         OracleSubscriber giver = subscriberRepository.findByPhoneNumber(message.getSenderSubscNumber())
                 .orElseThrow(() -> new RuntimeException(
                         "Giver subscriber bulunamadı! Phone: " + message.getSenderSubscNumber()));
 
         OracleSubscriber receiver = subscriberRepository.findByPhoneNumber(message.getReceiverSubscNumber())
-                .orElseThrow(() -> new RuntimeException(
-                        "Receiver subscriber bulunamadı! Phone: " + message.getReceiverSubscNumber()));
+                .orElse(null); // Eğer receiver yoksa, `null` olarak devam etsin.
 
         PersonalUsage personalUsage = PersonalUsageMapper.mapToPersonalUsage(message);
 
-
         personalUsage.setGiverId(giver.getId());
-        personalUsage.setReceiverId(receiver.getId());
+        personalUsage.setReceiverId(receiver != null ? receiver.getId() : null); // receiver `null` ise ID de `null` olur.
 
         personalUsageRepository.save(personalUsage);
-
         logger.info("🎉 PersonalUsage kaydedildi. ID: {}", personalUsage.getPersonalUsageId());
     }
+
 }
