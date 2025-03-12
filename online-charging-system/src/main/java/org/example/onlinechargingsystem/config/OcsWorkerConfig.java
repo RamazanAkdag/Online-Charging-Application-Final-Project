@@ -21,6 +21,9 @@ public class OcsWorkerConfig {
     @Value("${abmf.topic}")
     private String abmfTopic;
 
+    @Value("${nf.topic}")
+    private String nfTopic;
+
     public OcsWorkerConfig(IBalanceService balanceService,
                            IgniteSubscriberRepository igniteSubscriberRepository,
                            IKafkaProducerService kafkaProducerService) {
@@ -48,5 +51,9 @@ public class OcsWorkerConfig {
 
     public String getAbmfTopic() {
         return Objects.requireNonNull(abmfTopic, "❌ abmf.topic is missing in application.properties!");
+    }
+
+    public String getNfTopic(){
+        return Objects.requireNonNull(nfTopic, "❌ nf.topic is missing in application.properties!");
     }
 }

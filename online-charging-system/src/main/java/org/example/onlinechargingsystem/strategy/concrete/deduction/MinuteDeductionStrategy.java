@@ -1,4 +1,4 @@
-package org.example.onlinechargingsystem.strategy.concrete;
+package org.example.onlinechargingsystem.strategy.concrete.deduction;
 
 import com.ramobeko.ignite.IgniteSubscriber;
 import com.ramobeko.ignite.IgniteBalance;
@@ -7,20 +7,20 @@ import org.apache.logging.log4j.Logger;
 import org.example.onlinechargingsystem.repository.ignite.IgniteSubscriberRepository;
 import org.example.onlinechargingsystem.strategy.abstrct.IUsageDeductionStrategy;
 
-public class SMSDeductionStrategy implements IUsageDeductionStrategy {
-    private static final Logger logger = LogManager.getLogger(SMSDeductionStrategy.class);
+public class MinuteDeductionStrategy implements IUsageDeductionStrategy {
+    private static final Logger logger = LogManager.getLogger(MinuteDeductionStrategy.class);
 
     @Override
     public void deductBalance(IgniteSubscriber subscriber, int amount, IgniteSubscriberRepository igniteSubscriberRepository, Long subscNumber) {
         IgniteBalance balance = subscriber.getBalances().get(0);
 
-        if (balance.getLevelSms() < amount) {
-            logger.error("❌ Insufficient SMS balance for subscNumber: {}", subscNumber);
-            throw new RuntimeException("Insufficient SMS balance");
+        if (balance.getLevelMinutes() < amount) {
+            logger.error("❌ Insufficient minutes balance for subscNumber: {}", subscNumber);
+            throw new RuntimeException("Insufficient minutes balance");
         }
 
-        balance.setLevelSms(balance.getLevelSms() - amount);
+        balance.setLevelMinutes(balance.getLevelMinutes() - amount);
         igniteSubscriberRepository.save(subscNumber, subscriber);
-        logger.info("✅ Updated SMS balance for subscNumber: {}", subscNumber);
+        logger.info("✅ Updated minutes balance for subscNumber: {}", subscNumber);
     }
 }
