@@ -7,16 +7,23 @@ import com.hazelcast.map.IMap;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.logging.Level;
+
+
 public class HazelcastClientManager {
 
     private static final Logger logger = LogManager.getLogger(HazelcastClientManager.class);
     private final HazelcastInstance hazelcastClient;
     private final String subscriberCacheName;
 
-    public HazelcastClientManager(String... addresses) {
-        // ConfigLoader ile gerekli konfigürasyon bilgilerini okuyalım.
-        ConfigLoader configLoader = new ConfigLoader();
+    static {
+        // Hazelcast loglarını INFO yerine WARNING seviyesine çek
+        java.util.logging.Logger hazelcastLogger = java.util.logging.Logger.getLogger("com.hazelcast");
+        hazelcastLogger.setLevel(java.util.logging.Level.WARNING);
+    }
 
+    public HazelcastClientManager(String... addresses) {
+        ConfigLoader configLoader = new ConfigLoader();
         String clusterName = configLoader.getProperty("hazelcast.cluster.name");
         if (clusterName == null || clusterName.isEmpty()) {
             throw new IllegalStateException("Hazelcast cluster name is not configured in config.properties.");

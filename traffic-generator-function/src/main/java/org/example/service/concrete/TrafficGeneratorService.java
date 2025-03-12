@@ -2,6 +2,7 @@ package org.example.service.concrete;
 
 import com.ramobeko.akka.Command;
 import com.ramobeko.dgwtgf.model.UsageRequest;
+import com.ramobeko.dgwtgf.model.UsageType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.example.http.abstrct.TrafficSender;
@@ -9,7 +10,7 @@ import org.example.repository.abstrct.SubscriberRepository;
 import org.example.service.abstrct.ITrafficGeneratorService;
 import org.example.util.UsageDataGenerator;
 
-import java.util.Map;
+import java.util.*;
 
 public class TrafficGeneratorService implements ITrafficGeneratorService {
 
@@ -49,4 +50,58 @@ public class TrafficGeneratorService implements ITrafficGeneratorService {
         }
         logger.info("Usage data generation and sending completed.");
     }
+
+    @Override
+    public void generateAndSendUsageDataForSubscriber(String subscNumber, UsageType usageType, int amount) {
+        logger.info("Generating and sending usage data for subscriber: {}", subscNumber);
+
+        if (!subscriberRepository.getSubscribers().containsKey(subscNumber)) {
+            logger.warn("Subscriber {} not found in Hazelcast, skipping traffic generation.", subscNumber);
+            return;
+        }
+
+        String receiverSubscNumber = getRandomReceiver(subscNumber);
+
+        Date usageTime = new Date();
+
+        UsageRequest usageData;
+        if (usageType == null || amount == -1) {
+            usageData = usageDataGenerator.generateUsageData(subscNumber);
+        } else {
+            usageData = new UsageRequest(usageType, amount, subscNumber, receiverSubscNumber, usageTime);
+        }
+
+        logger.debug("Usage data generated -> {}", usageData);
+
+        try {
+            trafficSender.sendUsageData(usageData);
+            logger.debug("Usage data sent successfully for subscriber: {}", subscNumber);
+        } catch (Exception e) {
+            logger.error("Error sending usage data for subscriber: {}", subscNumber, e);
+        }
+    }
+
+    /**
+     * 🔹 **Veritabanından rastgele bir alıcı (receiver) seçer.**
+     * 📌 **Gönderici ile aynı kişi olmamalıdır.**
+     */
+    private String getRandomReceiver(String senderSubscNumber) {
+        List<String> subscribers = new ArrayList<>(subscriberRepository.getSubscribers().keySet());
+
+        if (subscribers.size() <= 1) {
+            logger.warn("Only one subscriber exists, setting receiver as sender itself.");
+            return senderSubscNumber;
+        }
+
+        Random random = new Random();
+        String receiverSubscNumber;
+
+        do {
+            receiverSubscNumber = subscribers.get(random.nextInt(subscribers.size()));
+        } while (receiverSubscNumber.equals(senderSubscNumber));
+
+        logger.debug("Selected random receiver: {}", receiverSubscNumber);
+        return receiverSubscNumber;
+    }
+
 }

@@ -22,14 +22,18 @@ public class OcsWorkerActor extends AbstractBehavior<Command.UsageData> {
     private OcsWorkerActor(ActorContext<Command.UsageData> context, OcsWorkerConfig config) {
         super(context);
 
-
         this.cgfPublisher = context.spawn(
                 CGFPublisherActor.create(config.getKafkaProducerService(), config.getCgfTopic()),
                 "CgfPublisherActor"
         );
 
         this.balanceManager = context.spawn(
-                BalanceManagerActor.create(config.getBalanceService(), config.getIgniteSubscriberRepository()),
+                BalanceManagerActor.create(
+                        config.getBalanceService(),
+                        config.getIgniteSubscriberRepository(),
+                        config.getKafkaProducerService(),
+                        config.getAbmfTopic()
+                ),
                 "BalanceManagerActor"
         );
     }

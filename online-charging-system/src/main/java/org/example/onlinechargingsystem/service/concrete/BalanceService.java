@@ -3,16 +3,13 @@ package org.example.onlinechargingsystem.service.concrete;
 import com.ramobeko.dgwtgf.model.UsageType;
 import com.ramobeko.ignite.IgniteSubscriber;
 import com.ramobeko.ignite.IgniteBalance;
-import com.ramobeko.kafka.message.ABMFKafkaMessage;
 import lombok.RequiredArgsConstructor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.example.onlinechargingsystem.repository.ignite.IgniteSubscriberRepository;
 import org.example.onlinechargingsystem.service.abstrct.IBalanceService;
-import org.example.onlinechargingsystem.service.abstrct.IKafkaProducerService;
 import org.example.onlinechargingsystem.strategy.abstrct.IUsageDeductionStrategy;
 import org.example.onlinechargingsystem.strategy.concrete.UsageDeductionStrategyFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,10 +19,6 @@ public class BalanceService implements IBalanceService {
     private static final Logger logger = LogManager.getLogger(BalanceService.class);
 
     private final IgniteSubscriberRepository igniteSubscriberRepository;
-    private final IKafkaProducerService kafkaProducerService;
-
-    @Value("${abmf.topic}")
-    private String KAFKA_TOPIC;
 
     @Override
     public IgniteBalance getBalance(Long subscNumber) {
@@ -59,13 +52,10 @@ public class BalanceService implements IBalanceService {
 
         logger.info("📜 Subscriber details before deduction: {}", subscriber);
 
-        // Strateji Seçme
+        // Kullanım Stratejisini Seç
         IUsageDeductionStrategy strategy = UsageDeductionStrategyFactory.getStrategy(usageType);
         strategy.deductBalance(subscriber, amount, igniteSubscriberRepository, subscNumber);
 
-        // Kafka Mesajı Gönderme
-        ABMFKafkaMessage message = new ABMFKafkaMessage(subscNumber, usageType, amount);
-        kafkaProducerService.sendABMFUsageData(KAFKA_TOPIC, message);
-        logger.info("📤 Kafka message sent: {}", message);
+        logger.info("✅ Balance updated for subscriber: {}, UsageType: {}, Amount Deducted: {}", subscNumber, usageType, amount);
     }
 }
