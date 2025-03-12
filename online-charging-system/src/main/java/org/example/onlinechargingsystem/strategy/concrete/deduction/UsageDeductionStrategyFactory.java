@@ -1,4 +1,4 @@
-package org.example.onlinechargingsystem.strategy.concrete;
+package org.example.onlinechargingsystem.strategy.concrete.deduction;
 
 import com.ramobeko.dgwtgf.model.UsageType;
 import org.example.onlinechargingsystem.strategy.abstrct.IUsageDeductionStrategy;

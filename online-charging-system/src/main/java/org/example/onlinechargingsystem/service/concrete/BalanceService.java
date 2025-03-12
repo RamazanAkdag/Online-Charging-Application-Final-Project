@@ -9,7 +9,7 @@ import org.apache.logging.log4j.Logger;
 import org.example.onlinechargingsystem.repository.ignite.IgniteSubscriberRepository;
 import org.example.onlinechargingsystem.service.abstrct.IBalanceService;
 import org.example.onlinechargingsystem.strategy.abstrct.IUsageDeductionStrategy;
-import org.example.onlinechargingsystem.strategy.concrete.UsageDeductionStrategyFactory;
+import org.example.onlinechargingsystem.strategy.concrete.deduction.UsageDeductionStrategyFactory;
 import org.springframework.stereotype.Service;
 
 @Service
