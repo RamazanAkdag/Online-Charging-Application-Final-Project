@@ -1,8 +1,7 @@
 package com.ramobeko.oracle.model;
 
 import jakarta.persistence.*;
-
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 @Entity
 @Table(name = "T_NOTIFICATION_LOGS")
@@ -16,13 +15,24 @@ public class NotificationLog {
     @Column(name = "NOTIFICATION_TYPE", nullable = false, length = 50)
     private String notificationType;
 
-    @Column(name = "NOTIFICATION_TIME")
-    private LocalDateTime notificationTime;
+    @Column(name = "NOTIFICATION_TIME", nullable = false)
+    private Instant notificationTime;
 
     @Column(name = "CUSTOMER_ID")
     private Long customerId;
 
-    // Getters and setters
+    // Parametresiz Constructor
+    public NotificationLog() {
+    }
+
+    // Tüm alanları içeren Constructor
+    public NotificationLog(String notificationType, Instant notificationTime, Long customerId) {
+        this.notificationType = notificationType;
+        this.notificationTime = notificationTime;
+        this.customerId = customerId;
+    }
+
+    // Getter ve Setter Metotları
     public Long getNotificationId() {
         return notificationId;
     }
@@ -39,11 +49,11 @@ public class NotificationLog {
         this.notificationType = notificationType;
     }
 
-    public LocalDateTime getNotificationTime() {
+    public Instant getNotificationTime() {
         return notificationTime;
     }
 
-    public void setNotificationTime(LocalDateTime notificationTime) {
+    public void setNotificationTime(Instant notificationTime) {
         this.notificationTime = notificationTime;
     }
 
@@ -65,4 +75,3 @@ public class NotificationLog {
                 '}';
     }
 }
-

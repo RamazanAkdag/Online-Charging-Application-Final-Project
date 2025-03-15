@@ -1,33 +1,21 @@
 package com.ramobeko.kafka.message;
 
-import org.apache.kafka.common.serialization.Serializer;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.nio.charset.StandardCharsets;
+import java.time.Instant;
 
 public class NFKafkaMessage {
 
     private String notificationType;
     private String senderSubscNumber;
-    private String notificationTime;
+    private Instant notificationTime; // Instant olarak saklanıyor
 
-
-    // Parametresiz constructor (Jackson için)
     public NFKafkaMessage() {
     }
-    // Constructor
-    public NFKafkaMessage(String notificationType, String senderSubscNumber, String notificationTime) {
 
+    public NFKafkaMessage(String notificationType, String senderSubscNumber, Instant notificationTime) {
         this.notificationType = notificationType;
         this.senderSubscNumber = senderSubscNumber;
         this.notificationTime = notificationTime;
     }
-
-    // Getters and Setters
-
-
-
 
     public String getNotificationType() {
         return notificationType;
@@ -41,39 +29,24 @@ public class NFKafkaMessage {
         return senderSubscNumber;
     }
 
-    public void setgetSenderSubscNumber(String senderSubscNumber) {
+    public void setSenderSubscNumber(String senderSubscNumber) {
         this.senderSubscNumber = senderSubscNumber;
     }
 
-    public String getNotificationTime() {
+    public Instant getNotificationTime() {
         return notificationTime;
     }
 
-    public void setNotificationTime(String notificationTime) {
+    public void setNotificationTime(Instant notificationTime) {
         this.notificationTime = notificationTime;
-    }
-
-    // Method to create Kafka message key
-
-
-    // Method to create Kafka message value (JSON or any other format)
-    public String getKafkaMessageValue() {
-        return "{" +
-                "\"notificationType\":\"" + notificationType + "\"," +
-                "\"customerId\":" + senderSubscNumber + "," +
-                "\"notificationTime\":\"" + notificationTime + "\"" +
-                "}";
     }
 
     @Override
     public String toString() {
         return "NFKafkaMessage{" +
-                ", notificationType='" + notificationType + '\'' +
-                ", senderId=" + senderSubscNumber +
-                ", notificationTime='" + notificationTime + '\'' +
+                "notificationType='" + notificationType + '\'' +
+                ", senderSubscNumber='" + senderSubscNumber + '\'' +
+                ", notificationTime=" + notificationTime +
                 '}';
     }
-
-
 }
-

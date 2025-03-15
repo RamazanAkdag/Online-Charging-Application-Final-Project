@@ -1,32 +1,28 @@
 package org.example.notificationfunction.kafka;
 
-import com.ramobeko.kafka.message.NFKafkaMessage;
 import lombok.RequiredArgsConstructor;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import org.example.notificationfunction.service.abstrct.INotificationService;
-import org.springframework.kafka.listener.MessageListener;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
+import com.ramobeko.kafka.message.NFKafkaMessage;
 
 @Component
 @RequiredArgsConstructor
-public class KafkaMessageListener implements MessageListener<String, NFKafkaMessage> {
+public class KafkaMessageListener {
 
     private static final Logger logger = LogManager.getLogger(KafkaMessageListener.class);
 
-    // NotificationService servisini constructor injection ile enjekte ediyoruz
     private final INotificationService notificationService;
 
-    @Override
-    public void onMessage(ConsumerRecord<String, NFKafkaMessage> record) {
-        NFKafkaMessage message = record.value();
-
+    @KafkaListener(topics = "${spring.kafka.topic.nf-topic}", groupId = "${spring.kafka.consumer.group-id}")
+    public void listen(NFKafkaMessage message) {
         try {
-            logger.info("✅ Kafka'dan mesaj alındı. Topic: {}, Partition: {}, Offset: {}, Key: {}, Value: {}",
-                    record.topic(), record.partition(), record.offset(), record.key(), message);
+            logger.info("✅ Kafka'dan mesaj alındı. Value: {}", message);
 
-            // NotificationService'i çağırarak bildirimi kaydet
+            // NotificationService ile bildirimi işle
             notificationService.saveNotification(message);
 
             logger.info("✅ Mesaj işleme başarıyla tamamlandı: {}", message);
