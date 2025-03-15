@@ -6,22 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="4e36dfc9-06df-4fb0-896c-d0105c657a96" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/config/KafkaConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/ramobeko/kafka/message/NFKafkaMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/ramobeko/kafka/message/NFKafkaMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/ramobeko/oracle/model/NotificationLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/ramobeko/oracle/model/NotificationLog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/diameter-gateway/src/main/resources/application.conf" beforeDir="false" afterPath="$PROJECT_DIR$/diameter-gateway/src/main/resources/application.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notification-function/src/main/java/org/example/notificationfunction/config/KafkaConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/notification-function/src/main/java/org/example/notificationfunction/kafka/KafkaMessageListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/notification-function/src/main/java/org/example/notificationfunction/kafka/KafkaMessageListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notification-function/src/main/java/org/example/notificationfunction/util/mapper/NFKafkaMessageMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/notification-function/src/main/java/org/example/notificationfunction/util/mapper/NFKafkaMessageMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notification-function/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/notification-function/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/akka/actor/NFPublisherActor.java" beforeDir="false" afterPath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/akka/actor/NFPublisherActor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/akka/actor/OcsWorkerActor.java" beforeDir="false" afterPath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/akka/actor/OcsWorkerActor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/config/KafkaConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/online-charging-system/src/main/resources/application.conf" beforeDir="false" afterPath="$PROJECT_DIR$/online-charging-system/src/main/resources/application.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/online-charging-system/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/online-charging-system/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/traffic-generator-function/src/main/java/org/example/app/ApplicationInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/traffic-generator-function/src/main/java/org/example/app/ApplicationInitializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/traffic-generator-function/src/main/java/org/example/service/abstrct/ISubscriberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/traffic-generator-function/src/main/java/org/example/service/abstrct/ISubscriberService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/traffic-generator-function/src/main/java/org/example/service/concrete/SubscriberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/traffic-generator-function/src/main/java/org/example/service/concrete/SubscriberService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +88,7 @@
     "Spring Boot.DiameterGatewayApplication.executor": "Run",
     "Spring Boot.NotificationFunctionApplication.executor": "Run",
     "Spring Boot.OnlineChargingSystemApplication.executor": "Run",
-    "git-widget-placeholder": "Ramo/LastFeatures",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "jdk.selected.JAVA_MODULE": "17",
     "kotlin-language-version-configured": "true",
