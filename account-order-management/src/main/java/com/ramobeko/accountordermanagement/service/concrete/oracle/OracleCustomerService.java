@@ -52,7 +52,7 @@ public class OracleCustomerService implements IOracleCustomerService {
 
     @Override
     public void create(Long id, OracleCustomerDTO oracleCustomerDTO) {
-        logger.info("🔄 [create] create() -> register() yönlendiriliyor: {}", oracleCustomerDTO.getEmail());
+        //logger.info("🔄 [create] create() -> register() yönlendiriliyor: {}", oracleCustomerDTO.getEmail());
     }
 
     @Override
