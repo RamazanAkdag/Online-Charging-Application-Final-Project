@@ -4,7 +4,10 @@ package org.example.service.concrete;
 import org.example.repository.abstrct.SubscriberRepository;
 import org.example.service.abstrct.ISubscriberService;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -34,4 +37,10 @@ public class SubscriberService implements ISubscriberService {
             }
         }
     }
+
+    @Override
+    public List<String> getAllSubscriberNumbers() {
+        return new ArrayList<>(subscriberRepository.getSubscribers().keySet());
+    }
+
 }

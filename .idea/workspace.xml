@@ -5,15 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e36dfc9-06df-4fb0-896c-d0105c657a96" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/model/dto/OraclePackageDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/abstrct/oracle/IOraclePackageService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/concrete/oracle/OraclePackageService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/util/mapper/oracle/OraclePackageMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/controller/PackageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/controller/PackageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/concrete/oracle/OracleCustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/concrete/oracle/OracleCustomerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charging-gateway-function/src/main/java/org/example/charginggatewayfunction/config/KafkaConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/ramobeko/kafka/message/NFKafkaMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/ramobeko/kafka/message/NFKafkaMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/ramobeko/oracle/model/NotificationLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/ramobeko/oracle/model/NotificationLog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/diameter-gateway/src/main/resources/application.conf" beforeDir="false" afterPath="$PROJECT_DIR$/diameter-gateway/src/main/resources/application.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-function/src/main/java/org/example/notificationfunction/config/KafkaConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-function/src/main/java/org/example/notificationfunction/kafka/KafkaMessageListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/notification-function/src/main/java/org/example/notificationfunction/kafka/KafkaMessageListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-function/src/main/java/org/example/notificationfunction/util/mapper/NFKafkaMessageMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/notification-function/src/main/java/org/example/notificationfunction/util/mapper/NFKafkaMessageMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-function/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/notification-function/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/akka/actor/NFPublisherActor.java" beforeDir="false" afterPath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/akka/actor/NFPublisherActor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/akka/actor/OcsWorkerActor.java" beforeDir="false" afterPath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/akka/actor/OcsWorkerActor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/online-charging-system/src/main/java/org/example/onlinechargingsystem/config/KafkaConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/online-charging-system/src/main/resources/application.conf" beforeDir="false" afterPath="$PROJECT_DIR$/online-charging-system/src/main/resources/application.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/online-charging-system/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/online-charging-system/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/traffic-generator-function/src/main/java/org/example/app/ApplicationInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/traffic-generator-function/src/main/java/org/example/app/ApplicationInitializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/traffic-generator-function/src/main/java/org/example/service/abstrct/ISubscriberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/traffic-generator-function/src/main/java/org/example/service/abstrct/ISubscriberService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/traffic-generator-function/src/main/java/org/example/service/concrete/SubscriberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/traffic-generator-function/src/main/java/org/example/service/concrete/SubscriberService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,47 +80,47 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.DiameterGatewayApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.IgniteTest.executor&quot;: &quot;Run&quot;,
-    &quot;Application.TrafficGeneratorFunctionApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.hazelcast-compose.yml.hazelcast-node1: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.hazelcast-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.ignite-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.kafka-compose.yml.kafdrop: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.kafka-compose.yml.kafka: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.kafka-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CGFKafkaMessageIntegrationTest.executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;Spring Boot.AccountBalanceManagementFunctionApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.AccountOrderManagementApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.ChargingGatewayFunctionApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.DiameterGatewayApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.NotificationFunctionApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.OnlineChargingSystemApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Ramo/LastFeatures&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/berki/Desktop/ocs/Online-Charging-Application-Final-Project/notification-function/src/main/java/org/example/notificationfunction&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.33563218&quot;,
-    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.DiameterGatewayApplication.executor": "Run",
+    "Application.IgniteTest.executor": "Run",
+    "Application.TrafficGeneratorFunctionApplication.executor": "Run",
+    "Docker.hazelcast-compose.yml.hazelcast-node1: Compose Deployment.executor": "Run",
+    "Docker.hazelcast-compose.yml: Compose Deployment.executor": "Run",
+    "Docker.ignite-compose.yml: Compose Deployment.executor": "Run",
+    "Docker.kafka-compose.yml.kafdrop: Compose Deployment.executor": "Run",
+    "Docker.kafka-compose.yml.kafka: Compose Deployment.executor": "Run",
+    "Docker.kafka-compose.yml: Compose Deployment.executor": "Run",
+    "JUnit.CGFKafkaMessageIntegrationTest.executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.AccountBalanceManagementFunctionApplication.executor": "Run",
+    "Spring Boot.AccountOrderManagementApplication.executor": "Run",
+    "Spring Boot.ChargingGatewayFunctionApplication.executor": "Run",
+    "Spring Boot.DiameterGatewayApplication.executor": "Run",
+    "Spring Boot.NotificationFunctionApplication.executor": "Run",
+    "Spring Boot.OnlineChargingSystemApplication.executor": "Run",
+    "git-widget-placeholder": "Ramo/LastFeatures",
+    "ignore.virus.scanning.warn.message": "true",
+    "jdk.selected.JAVA_MODULE": "17",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/berki/Desktop/ocs/Online-Charging-Application-Final-Project/notification-function/src/main/java/org/example/notificationfunction",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.33563218",
+    "run.configurations.included.in.services": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\berki\Desktop\ocs\Online-Charging-Application-Final-Project\notification-function\src\main\java\org\example\notificationfunction" />
@@ -217,6 +225,8 @@
       </method>
     </configuration>
     <configuration name="NotificationFunctionApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="17" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <module name="notification-function" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="org.example.notificationfunction.NotificationFunctionApplication" />
       <method v="2">
@@ -279,17 +289,17 @@
       <item itemvalue="Docker.kafka-compose.yml.kafdrop: Compose Deployment" />
       <item itemvalue="Docker.kafka-compose.yml.kafka: Compose Deployment" />
       <item itemvalue="Docker.kafka-compose.yml: Compose Deployment" />
+      <item itemvalue="Spring Boot.ChargingGatewayFunctionApplication" />
+      <item itemvalue="Spring Boot.NotificationFunctionApplication" />
       <item itemvalue="Spring Boot.AccountBalanceManagementFunctionApplication" />
       <item itemvalue="Spring Boot.AccountOrderManagementApplication" />
       <item itemvalue="Spring Boot.OnlineChargingSystemApplication" />
-      <item itemvalue="Spring Boot.ChargingGatewayFunctionApplication" />
-      <item itemvalue="Spring Boot.NotificationFunctionApplication" />
       <item itemvalue="Spring Boot.DiameterGatewayApplication" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.TrafficGeneratorFunctionApplication" />
         <item itemvalue="Spring Boot.DiameterGatewayApplication" />
+        <item itemvalue="Application.TrafficGeneratorFunctionApplication" />
         <item itemvalue="Docker.kafka-compose.yml: Compose Deployment" />
         <item itemvalue="Docker.kafka-compose.yml.kafka: Compose Deployment" />
         <item itemvalue="Docker.kafka-compose.yml.kafdrop: Compose Deployment" />
@@ -324,7 +334,7 @@
       <workItem from="1741767716296" duration="16116000" />
       <workItem from="1741795606869" duration="417000" />
       <workItem from="1741816982214" duration="861000" />
-      <workItem from="1742035557425" duration="3430000" />
+      <workItem from="1742035557425" duration="7409000" />
     </task>
     <servers />
   </component>

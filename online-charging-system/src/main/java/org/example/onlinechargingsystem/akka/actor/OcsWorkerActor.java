@@ -60,6 +60,7 @@ public class OcsWorkerActor extends AbstractBehavior<Command.UsageData> {
 
     private Behavior<Command.UsageData> handleUsageData(Command.UsageData data) {
         String actorId = getContext().getSelf().path().name();
+        System.out.println("------------------------------------------------------------");
         logger.info("📩 [{}] Received message - Checking balance for usage type {}", actorId, data.getUsageType());
 
 

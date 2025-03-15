@@ -77,15 +77,13 @@ public class NFPublisherActor extends AbstractBehavior<Command.UsageData> {
             sendNotification(subscNumber, "50% Threshold Exceeded");
         }
 
-        logger.info("✅ [{}] Forwarding usage data to CGFPublisher & BalanceManager", actorId);
-
         return this;
     }
 
     private void sendNotification(long subscNumber, String notificationType) {
         try {
             // Create NF Kafka message
-            NFKafkaMessage message = new NFKafkaMessage(notificationType, String.valueOf(subscNumber), Instant.now().toString());
+            NFKafkaMessage message = new NFKafkaMessage(notificationType, String.valueOf(subscNumber), Instant.now());
 
             // Send to Kafka using KafkaProducerService
             kafkaProducerService.sendNotificationData(this.nfTopic, message);
