@@ -12,7 +12,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.ramobeko.ocsandroidapp.OCSAndroidApp;
 import com.ramobeko.ocsandroidapp.R;
-import com.ramobeko.ocsandroidapp.data.model.RegisterRequest;
+import com.ramobeko.ocsandroidapp.data.model.auth.RegisterRequest;
 import com.ramobeko.ocsandroidapp.data.repository.RegisterRepository;
 import com.ramobeko.ocsandroidapp.databinding.ActivityRegisterBinding;
 import com.ramobeko.ocsandroidapp.ui.login.LoginActivity;

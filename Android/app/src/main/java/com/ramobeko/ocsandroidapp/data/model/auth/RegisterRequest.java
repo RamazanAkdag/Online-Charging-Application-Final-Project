@@ -1,4 +1,4 @@
-package com.ramobeko.ocsandroidapp.data.model;
+package com.ramobeko.ocsandroidapp.data.model.auth;
 
 public class RegisterRequest {
     private String name;
