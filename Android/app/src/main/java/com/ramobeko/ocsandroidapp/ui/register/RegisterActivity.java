@@ -1,4 +1,4 @@
-package com.ramobeko.ocsandroidapp;
+package com.ramobeko.ocsandroidapp.ui.register;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,15 +10,19 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.ramobeko.ocsandroidapp.databinding.ActivityMainBinding;
-import com.ramobeko.ocsandroidapp.ui.register.RegisterActivity;
+import com.ramobeko.ocsandroidapp.R;
+import com.ramobeko.ocsandroidapp.databinding.ActivityRegisterBinding;
+import com.ramobeko.ocsandroidapp.ui.login.LoginActivity;
 
-public class MainActivity extends AppCompatActivity {
-    private ActivityMainBinding binding;
+public class RegisterActivity extends AppCompatActivity {
+
+    private ActivityRegisterBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+
+        binding = ActivityRegisterBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
         EdgeToEdge.enable(this);
@@ -28,19 +32,14 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        binding.loginButton.setOnClickListener(new View.OnClickListener() {
+        binding.loginRedirect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(intent);
-                finish();
             }
         });
 
 
     }
-
-
-
-
 }
