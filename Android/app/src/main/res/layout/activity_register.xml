@@ -69,22 +69,7 @@
         app:layout_constraintTop_toBottomOf="@id/register_subtitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintWidth_percent="0.85" />
-
-    <!-- Surname -->
-    <EditText
-        android:id="@+id/input_surname"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:hint="Soyisim"
-        android:background="@drawable/rounded_edittext"
-        android:paddingHorizontal="16dp"
-        android:inputType="textPersonName"
-        android:layout_marginTop="12dp"
-        app:layout_constraintTop_toBottomOf="@id/input_name"
-        app:layout_constraintStart_toStartOf="@id/input_name"
-        app:layout_constraintEnd_toEndOf="@id/input_name" />
 
     <!-- Email -->
     <EditText
@@ -96,7 +81,21 @@
         android:paddingHorizontal="16dp"
         android:inputType="textEmailAddress"
         android:layout_marginTop="12dp"
-        app:layout_constraintTop_toBottomOf="@id/input_surname"
+        app:layout_constraintTop_toBottomOf="@id/input_name"
+        app:layout_constraintStart_toStartOf="@id/input_name"
+        app:layout_constraintEnd_toEndOf="@id/input_name" />
+
+    <!-- Address -->
+    <EditText
+        android:id="@+id/input_address"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:hint="Adres"
+        android:background="@drawable/rounded_edittext"
+        android:paddingHorizontal="16dp"
+        android:inputType="textPostalAddress"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/input_email"
         app:layout_constraintStart_toStartOf="@id/input_name"
         app:layout_constraintEnd_toEndOf="@id/input_name" />
 
@@ -110,7 +109,7 @@
         android:paddingHorizontal="16dp"
         android:inputType="textPassword"
         android:layout_marginTop="12dp"
-        app:layout_constraintTop_toBottomOf="@id/input_email"
+        app:layout_constraintTop_toBottomOf="@id/input_address"
         app:layout_constraintStart_toStartOf="@id/input_name"
         app:layout_constraintEnd_toEndOf="@id/input_name" />
 
