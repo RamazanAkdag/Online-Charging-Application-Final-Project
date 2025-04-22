@@ -4,4 +4,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="bg_blue">#0addc4</color>
     <color name="main_blue">#0ad7dd</color>
+    <color name="usage_progress_default">#49C8D9</color> <!-- Açık mavi -->
+    <color name="usage_progress_alt">#F39C12</color> <!-- Alternatif renk (örneğin sarı) -->
 </resources>
