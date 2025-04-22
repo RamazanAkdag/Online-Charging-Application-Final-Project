@@ -11,4 +11,6 @@ public interface IOracleSubscriberService extends IOracleService<OracleSubscribe
     public void update(SubscriberUpdateRequest request);
 
     public OracleSubscriber createSubscriber(Long id, SubscriberRequest request);
+
+    List<OracleSubscriber> getCustomerSubscribers(Long customerId);
 }

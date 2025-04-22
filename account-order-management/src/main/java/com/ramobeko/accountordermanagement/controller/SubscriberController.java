@@ -3,6 +3,7 @@ package com.ramobeko.accountordermanagement.controller;
 import com.ramobeko.accountordermanagement.model.dto.request.SubscriberRequest;
 import com.ramobeko.accountordermanagement.model.dto.request.SubscriberUpdateRequest;
 import com.ramobeko.accountordermanagement.model.dto.response.ApiResponse;
+import com.ramobeko.accountordermanagement.model.dto.response.SubscriberResponse;
 import com.ramobeko.accountordermanagement.model.shared.OracleSubscriber;
 import com.ramobeko.accountordermanagement.service.abstrct.hazelcast.IHazelcastService;
 import com.ramobeko.accountordermanagement.service.abstrct.ignite.IIgniteSubscriberService;
@@ -140,4 +141,20 @@ public class SubscriberController {
 
 
     // TODO getCustomerSubscriptions...
+
+    @GetMapping("/customer-subscribers")
+    public ResponseEntity<List<OracleSubscriber>> getCustomerSubscribers(HttpServletRequest request){
+        Long customerId = (Long) request.getAttribute("userId");
+        if (customerId == null) {
+            return ResponseEntity.status(401).body(null);
+        }
+
+        List<OracleSubscriber> subscribers = oracleSubscriberService.getCustomerSubscribers(customerId);
+
+        if (subscribers.isEmpty()) {
+            return ResponseEntity.status(404).body(null);
+        }
+
+        return ResponseEntity.ok(subscribers);
+    }
 }

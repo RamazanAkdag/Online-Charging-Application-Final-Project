@@ -10,4 +10,6 @@ import java.util.Optional;
 @Repository
 public interface OracleSubscriberRepository extends JpaRepository<OracleSubscriber, Long> {
     List<OracleSubscriber> findByCustomer_Id(Long userId);
+
+    List<OracleSubscriber> findByCustomerId(Long customerId);
 }
