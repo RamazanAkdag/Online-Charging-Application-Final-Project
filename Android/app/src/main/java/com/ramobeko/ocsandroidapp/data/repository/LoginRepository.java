@@ -1,12 +1,14 @@
 package com.ramobeko.ocsandroidapp.data.repository;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.ramobeko.ocsandroidapp.data.model.auth.LoginRequest;
 import com.ramobeko.ocsandroidapp.data.model.auth.AuthResponse;
 import com.ramobeko.ocsandroidapp.data.remote.ApiClient;
 import com.ramobeko.ocsandroidapp.data.remote.ApiService;
+import com.ramobeko.ocsandroidapp.utils.SecurePrefs;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,7 +28,12 @@ public class LoginRepository {
             public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     Toast.makeText(context, "Giriş başarılı", Toast.LENGTH_SHORT).show();
-                    // Optional: save token → response.body().getToken()
+                    String token = response.body().getToken();
+                    //Save token to local storage secure way.
+                    SecurePrefs.saveToken(context, token);
+
+
+                    Log.i("LoginRepository","token : " + SecurePrefs.getToken(context));
                     onSuccess.run();
                 } else {
                     Toast.makeText(context, "Giriş başarısız", Toast.LENGTH_SHORT).show();

@@ -35,6 +35,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.security.state)
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.appcompat)
