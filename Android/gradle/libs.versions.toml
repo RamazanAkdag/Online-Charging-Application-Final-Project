@@ -8,8 +8,11 @@ material = "1.10.0"
 activity = "1.10.1"
 constraintlayout = "2.1.4"
 retrofit = "2.9.0"
+securityCrypto = "1.1.0-beta01"
+securityState = "1.0.0-beta01"
 
 [libraries]
+security-crypto = { module = "androidx.security:security-crypto", version.ref = "securityCrypto" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
@@ -19,6 +22,9 @@ material = { group = "com.google.android.material", name = "material", version.r
 activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+security-state = { module = "androidx.security:security-state", version.ref = "securityState" }
+
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

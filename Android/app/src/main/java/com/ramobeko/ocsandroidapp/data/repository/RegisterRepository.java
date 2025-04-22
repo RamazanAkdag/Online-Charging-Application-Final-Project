@@ -36,7 +36,6 @@ public class RegisterRepository {
             @Override
             public void onFailure(Call<ApiResponse> call, Throwable t) {
                 Toast.makeText(context, "Hata: " + t.getMessage(), Toast.LENGTH_LONG).show();
-                t.printStackTrace();
                 onFailure.run();
             }
         });
