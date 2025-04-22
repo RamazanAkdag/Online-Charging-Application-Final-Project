@@ -112,6 +112,26 @@ public class OracleSubscriberService implements IOracleSubscriberService {
     }
 
     @Override
+    public List<OracleSubscriber> getCustomerSubscribers(Long customerId) {
+        // Ensure that the customerId is valid
+        if (customerId == null) {
+            throw new IllegalArgumentException("Customer ID cannot be null");
+        }
+
+        // Fetch the subscribers associated with the given customerId
+        List<OracleSubscriber> subscribers = subscriberRepository.findByCustomerId(customerId);
+
+        // Optionally, check if the list is empty and log or handle accordingly
+        if (subscribers.isEmpty()) {
+            // You can log or handle the empty case here if needed
+            // For example: logger.warn("No subscribers found for customerId: {}", customerId);
+        }
+
+        return subscribers;
+    }
+
+
+    @Override
     public OracleSubscriber readById(Long id) {
         logger.info("Fetching subscriber by ID: {}", id);
         return findSubscriberById(id);
