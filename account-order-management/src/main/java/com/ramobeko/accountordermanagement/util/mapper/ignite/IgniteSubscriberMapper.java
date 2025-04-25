@@ -1,15 +1,15 @@
 package com.ramobeko.accountordermanagement.util.mapper.ignite;
 
 import com.ramobeko.accountordermanagement.model.shared.OracleSubscriber;
-import com.ramobeko.ignite.IgniteSubscriber;
 import com.ramobeko.ignite.IgniteBalance;
+import com.ramobeko.ignite.IgniteSubscriber;
 
 import java.util.Date;
 import java.util.stream.Collectors;
 
 public class IgniteSubscriberMapper {
 
-    public static IgniteSubscriber mapOracleToIgnite(OracleSubscriber oracleSubscriber) {
+    public static IgniteSubscriber fromOracle(OracleSubscriber oracleSubscriber) {
         if (oracleSubscriber == null) {
             throw new IllegalArgumentException("OracleSubscriber cannot be null");
         }

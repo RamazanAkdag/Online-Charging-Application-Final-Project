@@ -30,9 +30,8 @@ public class IgniteSubscriberService implements IIgniteSubscriberService {
 
         logger.info("Creating Ignite subscriber from Oracle subscriber with ID: {}", oracleSubscriber.getId());
 
-        IgniteSubscriber igniteSubscriber = IgniteSubscriberMapper.mapOracleToIgnite(oracleSubscriber);
+        IgniteSubscriber igniteSubscriber = IgniteSubscriberMapper.fromOracle(oracleSubscriber);
 
-        // Örneğin, phone number'ı key olarak kullanıyorsanız:
         repository.save(Long.parseLong(igniteSubscriber.getPhoneNumber()), igniteSubscriber);
         logger.info("Ignite subscriber created successfully with ID: {}", igniteSubscriber.getId());
     }
@@ -73,7 +72,7 @@ public class IgniteSubscriberService implements IIgniteSubscriberService {
 
         Optional<IgniteSubscriber> existingSubscriber = repository.findById(oracleSubscriber.getId());
         if (existingSubscriber.isPresent()) {
-            IgniteSubscriber igniteSubscriber = IgniteSubscriberMapper.mapOracleToIgnite(oracleSubscriber);
+            IgniteSubscriber igniteSubscriber = IgniteSubscriberMapper.fromOracle(oracleSubscriber);
             repository.save(igniteSubscriber.getId(), igniteSubscriber);
             logger.info("Ignite subscriber updated successfully with ID: {}", igniteSubscriber.getId());
         } else {

@@ -1,12 +1,10 @@
 package com.ramobeko.accountordermanagement.service.concrete.oracle;
 
-
 import com.ramobeko.accountordermanagement.model.dto.OraclePackageDTO;
-
 import com.ramobeko.accountordermanagement.model.entity.oracle.OraclePackage;
 import com.ramobeko.accountordermanagement.repository.oracle.OraclePackageRepository;
 import com.ramobeko.accountordermanagement.service.abstrct.oracle.IOraclePackageService;
-import com.ramobeko.accountordermanagement.util.mapper.oracle.OraclePackageMapper;
+import com.ramobeko.accountordermanagement.util.mapper.dto.PackageMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,7 +26,7 @@ public class OraclePackageService implements IOraclePackageService {
 
     @Override
     public void create(OraclePackageDTO oraclePackageDTO) {
-        OraclePackage oraclePackage = OraclePackageMapper.toEntity(oraclePackageDTO);
+        OraclePackage oraclePackage = PackageMapper.toEntity(oraclePackageDTO);
         oraclePackageRepository.save(oraclePackage);
     }
 
