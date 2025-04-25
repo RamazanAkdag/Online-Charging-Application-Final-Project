@@ -5,11 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e36dfc9-06df-4fb0-896c-d0105c657a96" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/controller/ResetPasswordController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/model/dto/request/ForgotPasswordRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/model/dto/request/ResetPasswordRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/concrete/ForgotPasswordService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/util/mail/EmailSender.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/account-order-management/src/main/resources/templates/reset-password.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/account-order-management/src/main/resources/templates/reset-result.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/controller/SubscriberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/controller/SubscriberController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/repository/oracle/OracleSubscriberRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/repository/oracle/OracleSubscriberRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/abstrct/oracle/IOracleSubscriberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/abstrct/oracle/IOracleSubscriberService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/concrete/oracle/OracleSubscriberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/concrete/oracle/OracleSubscriberService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/model/entity/oracle/OracleCustomer.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/model/entity/oracle/OracleCustomer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/repository/oracle/OracleCustomerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/repository/oracle/OracleCustomerRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/security/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/security/JwtAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/security/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/security/JwtUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/account-order-management/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -69,47 +79,47 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.DiameterGatewayApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.IgniteTest.executor&quot;: &quot;Run&quot;,
-    &quot;Application.TrafficGeneratorFunctionApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.hazelcast-compose.yml.hazelcast-node1: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.hazelcast-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.ignite-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.kafka-compose.yml.kafdrop: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.kafka-compose.yml.kafka: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.kafka-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CGFKafkaMessageIntegrationTest.executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;Spring Boot.AccountBalanceManagementFunctionApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.AccountOrderManagementApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.ChargingGatewayFunctionApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.DiameterGatewayApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.NotificationFunctionApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.OnlineChargingSystemApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/berki/Desktop/ocs/Online-Charging-Application-Final-Project/notification-function/src/main/java/org/example/notificationfunction&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.33563218&quot;,
-    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.DiameterGatewayApplication.executor": "Run",
+    "Application.IgniteTest.executor": "Run",
+    "Application.TrafficGeneratorFunctionApplication.executor": "Run",
+    "Docker.hazelcast-compose.yml.hazelcast-node1: Compose Deployment.executor": "Run",
+    "Docker.hazelcast-compose.yml: Compose Deployment.executor": "Run",
+    "Docker.ignite-compose.yml: Compose Deployment.executor": "Run",
+    "Docker.kafka-compose.yml.kafdrop: Compose Deployment.executor": "Run",
+    "Docker.kafka-compose.yml.kafka: Compose Deployment.executor": "Run",
+    "Docker.kafka-compose.yml: Compose Deployment.executor": "Run",
+    "JUnit.CGFKafkaMessageIntegrationTest.executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.AccountBalanceManagementFunctionApplication.executor": "Run",
+    "Spring Boot.AccountOrderManagementApplication.executor": "Run",
+    "Spring Boot.ChargingGatewayFunctionApplication.executor": "Run",
+    "Spring Boot.DiameterGatewayApplication.executor": "Run",
+    "Spring Boot.NotificationFunctionApplication.executor": "Run",
+    "Spring Boot.OnlineChargingSystemApplication.executor": "Run",
+    "git-widget-placeholder": "AOM-ForgotPasswordFeature",
+    "ignore.virus.scanning.warn.message": "true",
+    "jdk.selected.JAVA_MODULE": "17",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/berki/Desktop/ocs/Online-Charging-Application-Final-Project/notification-function/src/main/java/org/example/notificationfunction",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.33563218",
+    "run.configurations.included.in.services": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\berki\Desktop\ocs\Online-Charging-Application-Final-Project\notification-function\src\main\java\org\example\notificationfunction" />
@@ -325,6 +335,8 @@
       <workItem from="1741816982214" duration="861000" />
       <workItem from="1742035557425" duration="7409000" />
       <workItem from="1745232478365" duration="410000" />
+      <workItem from="1745486507639" duration="701000" />
+      <workItem from="1745581725333" duration="8340000" />
     </task>
     <servers />
   </component>
