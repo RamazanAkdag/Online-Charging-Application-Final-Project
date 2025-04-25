@@ -27,7 +27,7 @@ public class LoginRepository {
             @Override
             public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    Toast.makeText(context, "Giriş başarılı", Toast.LENGTH_SHORT).show();
+
                     String token = response.body().getToken();
                     //Save token to local storage secure way.
                     SecurePrefs.saveToken(context, token);

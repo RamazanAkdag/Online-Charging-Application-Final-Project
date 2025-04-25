@@ -1,11 +1,13 @@
 package com.ramobeko.ocsandroidapp.data.repository;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 
 import com.ramobeko.ocsandroidapp.data.model.Subscriber;
 import com.ramobeko.ocsandroidapp.data.remote.ApiClient;
 import com.ramobeko.ocsandroidapp.data.remote.ApiService;
+import com.ramobeko.ocsandroidapp.ui.login.LoginActivity;
 import com.ramobeko.ocsandroidapp.utils.SecurePrefs;
 
 import java.util.List;
@@ -32,8 +34,23 @@ public class SubscriberRepository {
         apiService.getSubscribers("Bearer " + token).enqueue(new Callback<List<Subscriber>>() {
             @Override
             public void onResponse(Call<List<Subscriber>> call, Response<List<Subscriber>> response) {
+                if (response.code() == 401) {
+                    SecurePrefs.saveToken(context, null);
+
+                    callback.onFailure("Token invalid or expired. Login required.");
+
+                    Intent intent = new Intent(context, LoginActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    context.startActivity(intent);
+                    return;
+                }
+
+                if (response.code() == 404) {
+                    callback.onFailure("Aboneliğiniz bulunmamaktadır.");
+                    return;
+                }
+
                 if (response.isSuccessful() && response.body() != null) {
-                    // Log the subscriber data to the console
                     List<Subscriber> subscribers = response.body();
                     for (Subscriber subscriber : subscribers) {
                         Log.d("SubscriberRepository", "Subscriber ID: " + subscriber.getId());
@@ -41,10 +58,7 @@ public class SubscriberRepository {
                         Log.d("SubscriberRepository", "Phone Number: " + subscriber.getPhoneNumber());
                         Log.d("SubscriberRepository", "Package Plan: " + subscriber.getPackagePlan().getName());
                         Log.d("SubscriberRepository", "Start Date: " + subscriber.getStartDate());
-                        // Add more details as needed
                     }
-
-                    // Pass the result to the callback
                     callback.onSuccess(subscribers);
                 } else {
                     callback.onFailure("Failed to get subscribers");
@@ -59,7 +73,6 @@ public class SubscriberRepository {
         });
     }
 
-    // Define the callback interface to handle success/failure
     public interface SubscriberCallback {
         void onSuccess(List<Subscriber> subscribers);
         void onFailure(String errorMessage);

@@ -12,6 +12,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.ramobeko.ocsandroidapp.databinding.ActivityMainBinding;
 import com.ramobeko.ocsandroidapp.ui.register.RegisterActivity;
+import com.ramobeko.ocsandroidapp.ui.subscribers.SubscribersActivity;
+import com.ramobeko.ocsandroidapp.utils.SecurePrefs;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
@@ -28,9 +30,18 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+
+
         binding.loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String token = SecurePrefs.getToken(MainActivity.this);
+                if (token != null && !token.isEmpty()) {
+                    Intent intent = new Intent(MainActivity.this, SubscribersActivity.class);
+                    startActivity(intent);
+                    finish();
+                    return;
+                }
                 Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
                 startActivity(intent);
                 finish();
