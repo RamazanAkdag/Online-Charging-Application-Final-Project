@@ -2,6 +2,8 @@ package com.ramobeko.ocsandroidapp.utils;
 
 import android.util.Base64;
 
+import com.ramobeko.ocsandroidapp.BuildConfig;
+
 import java.nio.charset.StandardCharsets;
 import java.security.SecureRandom;
 
@@ -10,7 +12,7 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.GCMParameterSpec;
 
 public class CryptoUtils {
-    private static final String TRANSFORMATION = "AES/GCM/NoPadding";
+    private static final String TRANSFORMATION = BuildConfig.AES_TRANSFORMATION;
     private static final int IV_SIZE = 12;
     private static final int TAG_LENGTH = 128;
 

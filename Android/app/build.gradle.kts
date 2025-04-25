@@ -14,7 +14,17 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "BASE_URL", "\"http://10.0.2.2:5831\"")
+        buildConfigField("String", "AES_TRANSFORMATION", "\"AES/GCM/NoPadding\"")
+        buildConfigField("String", "KEY_ALIAS", "\"secure_key\"")
+        buildConfigField("String", "PREF_NAME", "\"secure\"")
+        buildConfigField("String", "TOKEN_KEY", "\"token\"")
+        buildConfigField("String", "IV_KEY", "\"iv\"")
+
+
     }
+
 
     buildTypes {
         release {
@@ -27,6 +37,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11

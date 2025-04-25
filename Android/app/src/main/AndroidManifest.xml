@@ -17,6 +17,9 @@
         android:theme="@style/Theme.OCSAndroidApp"
         tools:targetApi="31">
         <activity
+            android:name=".ui.forgotpassword.ForgotPasswordActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.subscribers.SubscribersActivity"
             android:exported="false" />
         <activity
