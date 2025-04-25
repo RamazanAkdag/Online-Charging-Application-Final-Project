@@ -8,7 +8,8 @@ import com.ramobeko.accountordermanagement.model.entity.oracle.OracleCustomer;
 import com.ramobeko.accountordermanagement.repository.oracle.OracleCustomerRepository;
 import com.ramobeko.accountordermanagement.security.JwtUtil;
 import com.ramobeko.accountordermanagement.service.abstrct.oracle.IOracleCustomerService;
-import com.ramobeko.accountordermanagement.util.mapper.oracle.OracleCustomerMapper;
+import com.ramobeko.accountordermanagement.util.mapper.dto.CustomerMapper;
+import com.ramobeko.accountordermanagement.util.mapper.request.RegisterRequestMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -52,7 +53,7 @@ public class OracleCustomerService implements IOracleCustomerService {
 
     @Override
     public void create(Long id, OracleCustomerDTO oracleCustomerDTO) {
-        //logger.info("🔄 [create] create() -> register() yönlendiriliyor: {}", oracleCustomerDTO.getEmail());
+        // Gereksizse boş bırakıldı
     }
 
     @Override
@@ -64,7 +65,7 @@ public class OracleCustomerService implements IOracleCustomerService {
             throw new IllegalArgumentException("Email already exists");
         }
 
-        OracleCustomer customer = OracleCustomerMapper.fromRegisterRequest(request, passwordEncoder);
+        OracleCustomer customer = RegisterRequestMapper.toEntity(request, passwordEncoder);
         OracleCustomer savedCustomer = oracleCustomerRepository.save(customer);
         logger.info("🎉 [register] Kullanıcı başarıyla kaydedildi: {}", savedCustomer.getEmail());
 
@@ -88,8 +89,7 @@ public class OracleCustomerService implements IOracleCustomerService {
         logger.info("🔄 [update] Kullanıcı güncelleniyor: {}", oracleCustomerDTO.getId());
 
         OracleCustomer existingCustomer = findCustomerById(oracleCustomerDTO.getId());
-        // Mapper kullanılarak mevcut entity DTO bilgileriyle güncelleniyor.
-        OracleCustomer updatedCustomer = OracleCustomerMapper.updateFromDTO(oracleCustomerDTO, existingCustomer);
+        OracleCustomer updatedCustomer = CustomerMapper.updateFromDTO(oracleCustomerDTO, existingCustomer);
         oracleCustomerRepository.save(updatedCustomer);
         logger.info("✅ [update] Kullanıcı güncellendi: {}", updatedCustomer.getId());
     }
