@@ -1,8 +1,9 @@
 package com.ramobeko.ocsandroidapp.data.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Customer {
+public class Customer implements Serializable {
     private Long id;
     private String name;
     private String email;
@@ -93,5 +94,13 @@ public class Customer {
 
     public void setAuthorities(List<String> authorities) {
         this.authorities = authorities;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

@@ -1,6 +1,7 @@
 package com.ramobeko.ocsandroidapp.ui.dashboard;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -20,7 +21,7 @@ import java.util.List;
 public class DashboardActivity extends AppCompatActivity {
 
     private ActivityDashboardBinding binding;
-    private SubscriberRepository subscriberRepository;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,28 +37,15 @@ public class DashboardActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        Subscriber subscriber = (Subscriber) getIntent().getSerializableExtra("subscriber");
 
-        // Retrieve the SubscriberRepository from AppContainer
-        OCSAndroidApp app = (OCSAndroidApp) getApplication();
-        subscriberRepository = app.appContainer.subscriberRepository;
+        if( subscriber != null ){
+            Log.i("DashboardActivity", "subscriber : " + subscriber);
+        }else  {
+            Log.i("DashboardActivity","Subscriber is null");
+        }
 
-        // Fetch customer subscriptions
-        fetchCustomerSubscriptions();
     }
 
-    private void fetchCustomerSubscriptions() {
-        subscriberRepository.getSubscriptions(this, new SubscriberRepository.SubscriberCallback() {
-            @Override
-            public void onSuccess(List<Subscriber> subscribers) {
-                // Log the success message
-                Toast.makeText(DashboardActivity.this, "Başarılı", Toast.LENGTH_SHORT).show();
-            }
 
-            @Override
-            public void onFailure(String errorMessage) {
-                // Handle failure
-                Toast.makeText(DashboardActivity.this, "Error: " + errorMessage, Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
 }

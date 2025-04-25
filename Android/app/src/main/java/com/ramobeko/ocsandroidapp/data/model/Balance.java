@@ -1,8 +1,9 @@
 package com.ramobeko.ocsandroidapp.data.model;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public  class Balance {
+public  class Balance implements Serializable {
     private Long id;
     private int levelMinutes;
     private int levelSms;
@@ -58,4 +59,6 @@ public  class Balance {
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
+
+
 }
