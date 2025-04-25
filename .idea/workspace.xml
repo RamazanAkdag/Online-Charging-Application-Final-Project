@@ -5,22 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e36dfc9-06df-4fb0-896c-d0105c657a96" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/controller/ResetPasswordController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/model/dto/request/ForgotPasswordRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/model/dto/request/ResetPasswordRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/concrete/ForgotPasswordService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/util/mail/EmailSender.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/account-order-management/src/main/resources/templates/reset-password.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/account-order-management/src/main/resources/templates/reset-result.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/model/entity/oracle/OracleCustomer.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/model/entity/oracle/OracleCustomer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/repository/oracle/OracleCustomerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/repository/oracle/OracleCustomerRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/security/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/security/JwtAuthenticationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/security/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/security/JwtUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/resources/templates/reset-password.html" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/resources/templates/reset-password.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/resources/templates/reset-result.html" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/resources/templates/reset-result.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +90,7 @@
     "Spring Boot.DiameterGatewayApplication.executor": "Run",
     "Spring Boot.NotificationFunctionApplication.executor": "Run",
     "Spring Boot.OnlineChargingSystemApplication.executor": "Run",
-    "git-widget-placeholder": "AOM-ForgotPasswordFeature",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "jdk.selected.JAVA_MODULE": "17",
     "kotlin-language-version-configured": "true",
