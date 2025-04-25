@@ -12,7 +12,8 @@ import com.ramobeko.accountordermanagement.repository.oracle.OraclePackageReposi
 import com.ramobeko.accountordermanagement.repository.oracle.OracleSubscriberRepository;
 import com.ramobeko.accountordermanagement.service.abstrct.oracle.IOracleSubscriberService;
 import com.ramobeko.accountordermanagement.util.generator.ITelephoneNumberGenerator;
-import com.ramobeko.accountordermanagement.util.mapper.oracle.OracleSubscriberMapper;
+import com.ramobeko.accountordermanagement.util.mapper.dto.SubscriberMapper;
+import com.ramobeko.accountordermanagement.util.mapper.common.BalanceMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
@@ -56,19 +57,16 @@ public class OracleSubscriberService implements IOracleSubscriberService {
         OracleCustomer customer = customerRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Customer not found with ID: " + id));
 
-        // Telefon numarası üretiliyor.
         String phoneNumber = telephoneNumberGenerator.generate();
 
         if (request.getPackageId() != null) {
             OraclePackage packagePlan = packageRepository.findById(request.getPackageId())
                     .orElseThrow(() -> new IllegalArgumentException("Package not found with ID: " + request.getPackageId()));
 
-            // Mapper kullanılarak subscriber oluşturuluyor.
-            OracleSubscriber subscriber = OracleSubscriberMapper.fromSubscriberRequest(customer, packagePlan, request, phoneNumber);
+            OracleSubscriber subscriber = SubscriberMapper.fromRequest(customer, packagePlan, request, phoneNumber);
             OracleSubscriber savedSubscriber = subscriberRepository.save(subscriber);
 
-            // Balance, mapper kullanılarak oluşturuluyor.
-            OracleBalance balance = OracleSubscriberMapper.createBalance(savedSubscriber, packagePlan);
+            OracleBalance balance = BalanceMapper.createFromPackage(savedSubscriber, packagePlan);
             balanceRepository.save(balance);
 
             logger.info("Balance created successfully for subscriberId: {}", savedSubscriber.getId());
@@ -92,10 +90,10 @@ public class OracleSubscriberService implements IOracleSubscriberService {
             OraclePackage packagePlan = packageRepository.findById(request.getPackageId())
                     .orElseThrow(() -> new IllegalArgumentException("Package not found with ID: " + request.getPackageId()));
 
-            OracleSubscriber subscriber = OracleSubscriberMapper.fromSubscriberRequest(customer, packagePlan, request, phoneNumber);
+            OracleSubscriber subscriber = SubscriberMapper.fromRequest(customer, packagePlan, request, phoneNumber);
             OracleSubscriber savedSubscriber = subscriberRepository.save(subscriber);
 
-            OracleBalance balance = OracleSubscriberMapper.createBalance(savedSubscriber, packagePlan);
+            OracleBalance balance = BalanceMapper.createFromPackage(savedSubscriber, packagePlan);
             balanceRepository.save(balance);
 
             List<OracleBalance> balances = new ArrayList<>();
@@ -119,6 +117,7 @@ public class OracleSubscriberService implements IOracleSubscriberService {
 
     @Override
     public void update(SubscriberRequest subscriberRequest) {
+        // Kullanılmıyor, boş bırakılabilir.
     }
 
     @Override
@@ -126,7 +125,7 @@ public class OracleSubscriberService implements IOracleSubscriberService {
         logger.info("Updating subscriber with subscriberId: {}", request.getSubscriberId());
 
         OracleSubscriber subscriber = findSubscriberById(request.getSubscriberId());
-        OracleSubscriber updatedSubscriber = OracleSubscriberMapper.updateSubscriber(subscriber, request);
+        OracleSubscriber updatedSubscriber = SubscriberMapper.update(subscriber, request);
         subscriberRepository.save(updatedSubscriber);
 
         logger.info("Subscriber updated successfully with subscriberId: {}", request.getSubscriberId());
