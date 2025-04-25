@@ -11,4 +11,6 @@ public interface OracleCustomerRepository extends JpaRepository<OracleCustomer, 
     Optional<OracleCustomer> findByEmail(String email);
 
     boolean existsByEmail(String email);
+
+    OracleCustomer findByResetToken(String token);
 }

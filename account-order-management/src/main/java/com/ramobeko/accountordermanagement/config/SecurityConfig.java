@@ -60,7 +60,13 @@ public class SecurityConfig {
                                 "/swagger-resources/**",
                                 "/webjars/**"
                         ).permitAll()
-                        .requestMatchers("/api/auth/register", "/api/auth/login", "/api/auth/customer-details").permitAll()
+                        .requestMatchers("/api/auth/register",
+                                "/api/auth/login",
+                                "/api/auth/customer-details",
+                                "/error",
+                                "/api/auth/forgot-password",
+                                "/api/reset-password",
+                                "/api/reset-password/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
