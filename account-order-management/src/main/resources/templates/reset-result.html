@@ -3,9 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <title>Şifre Sıfırlama Sonucu</title>
+    <style>
+        body {
+            background-color: #0addc4; /* bg_blue */
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #ffffff; /* white */
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            width: 320px;
+            text-align: center;
+        }
+        h2 {
+            color: #174f2b; /* letter_green */
+            margin-bottom: 24px;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 24px;
+            background-color: #0ad7dd; /* main_blue */
+            color: #ffffff; /* white */
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        a:hover {
+            background-color: #0ab7dd; /* cust_blue */
+        }
+    </style>
 </head>
 <body>
-<h2 th:text="${message}"></h2>
-<a href="/login">Giriş Yap</a>
+<div class="container">
+    <h2 th:text="${message}"></h2>
+    <a href="/login">Giriş Yap</a>
+</div>
 </body>
 </html>
