@@ -11,6 +11,10 @@ public class SecurePrefs {
 
 
     public static void saveToken(Context ctx, String token) {
+        if (token == null) {
+            removeToken(ctx);
+            return;
+        }
         KeyStoreUtil.generateSecretKeyIfNeeded();
         EncryptionResult result = CryptoUtils.encrypt(token);
         storeInPrefs(ctx, result.ciphertext, result.iv);
@@ -22,6 +26,14 @@ public class SecurePrefs {
         byte[] iv = getIV(ctx);
         if (encrypted == null || iv == null) return null;
         return CryptoUtils.decrypt(encrypted, iv);
+    }
+
+    public static void removeToken(Context ctx) {
+        SharedPreferences prefs = ctx.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
+        prefs.edit()
+                .remove(TOKEN_KEY)
+                .remove(IV_KEY)
+                .apply();
     }
 
     private static void storeInPrefs(Context ctx, byte[] encrypted, byte[] iv) {

@@ -61,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
             LoginRequest request = new LoginRequest(email, password);
 
             loginRepository.loginUser(this, request, () -> {
-                Toast.makeText(this, "Hoş geldiniz!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Giriş başarılı", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, SubscribersActivity.class);
                 startActivity(intent);
                 finish();

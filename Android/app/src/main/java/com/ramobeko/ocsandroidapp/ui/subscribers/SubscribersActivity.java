@@ -1,5 +1,6 @@
 package com.ramobeko.ocsandroidapp.ui.subscribers;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -11,6 +12,8 @@ import com.ramobeko.ocsandroidapp.R;
 import com.ramobeko.ocsandroidapp.data.model.Subscriber;
 import com.ramobeko.ocsandroidapp.data.repository.SubscriberRepository;
 import com.ramobeko.ocsandroidapp.databinding.ActivitySubscribersBinding;
+import com.ramobeko.ocsandroidapp.ui.login.LoginActivity;
+import com.ramobeko.ocsandroidapp.utils.SecurePrefs;
 
 import java.util.List;
 
@@ -26,6 +29,15 @@ public class SubscribersActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         repository = ((OCSAndroidApp) getApplication()).appContainer.subscriberRepository;
+
+        binding.btnLogout.setOnClickListener(v -> {
+            SecurePrefs.removeToken(this);
+
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        });
+
 
         repository.getSubscriptions(this, new SubscriberRepository.SubscriberCallback() {
             @Override
