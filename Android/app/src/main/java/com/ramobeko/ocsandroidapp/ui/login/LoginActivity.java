@@ -16,6 +16,7 @@ import com.ramobeko.ocsandroidapp.data.model.auth.LoginRequest;
 import com.ramobeko.ocsandroidapp.data.repository.LoginRepository;
 import com.ramobeko.ocsandroidapp.databinding.ActivityLoginBinding;
 import com.ramobeko.ocsandroidapp.ui.dashboard.DashboardActivity;
+import com.ramobeko.ocsandroidapp.ui.forgotpassword.ForgotPasswordActivity;
 import com.ramobeko.ocsandroidapp.ui.register.RegisterActivity;
 import com.ramobeko.ocsandroidapp.ui.subscribers.SubscribersActivity;
 
@@ -46,6 +47,11 @@ public class LoginActivity extends AppCompatActivity {
         // 🔁 Navigate to Register
         binding.registerLink.setOnClickListener(v -> {
             startActivity(new Intent(this, RegisterActivity.class));
+        });
+
+        binding.forgotPassword.setOnClickListener(v -> {
+            Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
+            startActivity(intent);
         });
 
         // ✅ Handle Login

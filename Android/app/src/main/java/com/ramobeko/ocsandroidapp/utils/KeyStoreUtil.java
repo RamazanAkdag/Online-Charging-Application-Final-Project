@@ -3,6 +3,8 @@ package com.ramobeko.ocsandroidapp.utils;
 import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyProperties;
 
+import com.ramobeko.ocsandroidapp.BuildConfig;
+
 import java.security.InvalidAlgorithmParameterException;
 import java.security.KeyStore;
 import java.security.NoSuchAlgorithmException;
@@ -12,7 +14,7 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 
 public class KeyStoreUtil {
-    private static final String KEY_ALIAS="secure_key";
+    private static final String KEY_ALIAS= BuildConfig.KEY_ALIAS;
 
     public static void generateSecretKeyIfNeeded() {
         try {

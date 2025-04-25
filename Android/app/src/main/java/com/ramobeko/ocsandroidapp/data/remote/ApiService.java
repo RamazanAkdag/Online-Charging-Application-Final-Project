@@ -1,6 +1,7 @@
 package com.ramobeko.ocsandroidapp.data.remote;
 
 import com.ramobeko.ocsandroidapp.data.model.ApiResponse;
+import com.ramobeko.ocsandroidapp.data.model.ForgotPasswordRequest;
 import com.ramobeko.ocsandroidapp.data.model.Subscriber;
 import com.ramobeko.ocsandroidapp.data.model.auth.AuthResponse;
 import com.ramobeko.ocsandroidapp.data.model.auth.LoginRequest;
@@ -23,5 +24,9 @@ public interface ApiService {
 
     @GET("/api/subscriber/customer-subscribers")
     Call<List<Subscriber>> getSubscribers(@Header("Authorization") String token);
+
+    @POST("/api/auth/forgot-password")
+    Call<ApiResponse> forgotPassword(@Body ForgotPasswordRequest request);
+
 
 }
