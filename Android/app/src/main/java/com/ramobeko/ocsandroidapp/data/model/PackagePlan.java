@@ -1,6 +1,8 @@
 package com.ramobeko.ocsandroidapp.data.model;
 
-public class PackagePlan {
+import java.io.Serializable;
+
+public class PackagePlan implements Serializable {
     private Long id;
     private String name;
     private int amountMinutes;
@@ -55,5 +57,13 @@ public class PackagePlan {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "PackagePlan{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

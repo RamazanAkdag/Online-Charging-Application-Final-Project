@@ -17,6 +17,7 @@ import com.ramobeko.ocsandroidapp.data.repository.LoginRepository;
 import com.ramobeko.ocsandroidapp.databinding.ActivityLoginBinding;
 import com.ramobeko.ocsandroidapp.ui.dashboard.DashboardActivity;
 import com.ramobeko.ocsandroidapp.ui.register.RegisterActivity;
+import com.ramobeko.ocsandroidapp.ui.subscribers.SubscribersActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -61,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
 
             loginRepository.loginUser(this, request, () -> {
                 Toast.makeText(this, "Hoş geldiniz!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, DashboardActivity.class);
+                Intent intent = new Intent(this, SubscribersActivity.class);
                 startActivity(intent);
                 finish();
             }, () -> {

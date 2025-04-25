@@ -54,6 +54,7 @@ public class SubscriberRepository {
             @Override
             public void onFailure(Call<List<Subscriber>> call, Throwable t) {
                 callback.onFailure("Error: " + t.getMessage());
+                t.printStackTrace();
             }
         });
     }
