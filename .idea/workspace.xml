@@ -6,8 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="4e36dfc9-06df-4fb0-896c-d0105c657a96" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/resources/templates/reset-password.html" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/resources/templates/reset-password.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/resources/templates/reset-result.html" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/resources/templates/reset-result.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-balance-management-function/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/account-balance-management-function/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charging-gateway-function/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/charging-gateway-function/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-function/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/notification-function/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +91,7 @@
     "Spring Boot.DiameterGatewayApplication.executor": "Run",
     "Spring Boot.NotificationFunctionApplication.executor": "Run",
     "Spring Boot.OnlineChargingSystemApplication.executor": "Run",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "Ramo-Main",
     "ignore.virus.scanning.warn.message": "true",
     "jdk.selected.JAVA_MODULE": "17",
     "kotlin-language-version-configured": "true",
@@ -284,8 +285,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.DiameterGatewayApplication" />
         <item itemvalue="Application.TrafficGeneratorFunctionApplication" />
+        <item itemvalue="Spring Boot.DiameterGatewayApplication" />
         <item itemvalue="Docker.kafka-compose.yml: Compose Deployment" />
         <item itemvalue="Docker.kafka-compose.yml.kafka: Compose Deployment" />
         <item itemvalue="Docker.kafka-compose.yml.kafdrop: Compose Deployment" />
