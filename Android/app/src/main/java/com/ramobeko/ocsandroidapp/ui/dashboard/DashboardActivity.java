@@ -86,12 +86,6 @@ public class DashboardActivity extends AppCompatActivity {
                     currentBalance.getLevelMinutes(),
                     subscriber.getPackagePlan().getAmountMinutes(),
                     "Dk");
-
-            // Büyük Detay için (örn: İnternet kullanımı büyük gösterim)
-            setUsageData(binding.usageBigDetail,
-                    currentBalance.getLevelData(),
-                    subscriber.getPackagePlan().getAmountData(),
-                    "GB");
         }
 
 
