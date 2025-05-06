@@ -19,7 +19,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-
 @Service
 public class OracleSubscriberService implements IOracleSubscriberService {
 
@@ -31,16 +30,20 @@ public class OracleSubscriberService implements IOracleSubscriberService {
     private final OraclePackageRepository packageRepository;
     private final ITelephoneNumberGenerator telephoneNumberGenerator;
 
+    private final OracleSubscriberMapper oracleSubscriberMapper;
+
     public OracleSubscriberService(OracleSubscriberRepository subscriberRepository,
                                    OracleCustomerRepository customerRepository,
                                    OracleBalanceRepository balanceRepository,
                                    OraclePackageRepository packageRepository,
-                                   ITelephoneNumberGenerator telephoneNumberGenerator) {
+                                   ITelephoneNumberGenerator telephoneNumberGenerator,
+                                   OracleSubscriberMapper oracleSubscriberMapper) {
         this.subscriberRepository = subscriberRepository;
         this.customerRepository = customerRepository;
         this.balanceRepository = balanceRepository;
         this.packageRepository = packageRepository;
         this.telephoneNumberGenerator = telephoneNumberGenerator;
+        this.oracleSubscriberMapper = oracleSubscriberMapper;
     }
 
     @Override
@@ -56,7 +59,6 @@ public class OracleSubscriberService implements IOracleSubscriberService {
         OracleCustomer customer = customerRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Customer not found with ID: " + id));
 
-        // Telefon numarası üretiliyor.
         String phoneNumber = telephoneNumberGenerator.generate();
 
         if (request.getPackageId() != null) {
@@ -64,11 +66,11 @@ public class OracleSubscriberService implements IOracleSubscriberService {
                     .orElseThrow(() -> new IllegalArgumentException("Package not found with ID: " + request.getPackageId()));
 
             // Mapper kullanılarak subscriber oluşturuluyor.
-            OracleSubscriber subscriber = OracleSubscriberMapper.fromSubscriberRequest(customer, packagePlan, request, phoneNumber);
+            OracleSubscriber subscriber = oracleSubscriberMapper.create(customer, packagePlan, request, phoneNumber);
             OracleSubscriber savedSubscriber = subscriberRepository.save(subscriber);
 
-            // Balance, mapper kullanılarak oluşturuluyor.
-            OracleBalance balance = OracleSubscriberMapper.createBalance(savedSubscriber, packagePlan);
+            // Balance da mapper ile oluşturuluyor.
+            OracleBalance balance = oracleSubscriberMapper.createBalance(savedSubscriber, packagePlan);
             balanceRepository.save(balance);
 
             logger.info("Balance created successfully for subscriberId: {}", savedSubscriber.getId());
@@ -92,10 +94,10 @@ public class OracleSubscriberService implements IOracleSubscriberService {
             OraclePackage packagePlan = packageRepository.findById(request.getPackageId())
                     .orElseThrow(() -> new IllegalArgumentException("Package not found with ID: " + request.getPackageId()));
 
-            OracleSubscriber subscriber = OracleSubscriberMapper.fromSubscriberRequest(customer, packagePlan, request, phoneNumber);
+            OracleSubscriber subscriber = oracleSubscriberMapper.create(customer, packagePlan, request, phoneNumber);
             OracleSubscriber savedSubscriber = subscriberRepository.save(subscriber);
 
-            OracleBalance balance = OracleSubscriberMapper.createBalance(savedSubscriber, packagePlan);
+            OracleBalance balance = oracleSubscriberMapper.createBalance(savedSubscriber, packagePlan);
             balanceRepository.save(balance);
 
             List<OracleBalance> balances = new ArrayList<>();
@@ -113,23 +115,13 @@ public class OracleSubscriberService implements IOracleSubscriberService {
 
     @Override
     public List<OracleSubscriber> getCustomerSubscribers(Long customerId) {
-        // Ensure that the customerId is valid
         if (customerId == null) {
             throw new IllegalArgumentException("Customer ID cannot be null");
         }
 
-        // Fetch the subscribers associated with the given customerId
         List<OracleSubscriber> subscribers = subscriberRepository.findByCustomerId(customerId);
-
-        // Optionally, check if the list is empty and log or handle accordingly
-        if (subscribers.isEmpty()) {
-            // You can log or handle the empty case here if needed
-            // For example: logger.warn("No subscribers found for customerId: {}", customerId);
-        }
-
         return subscribers;
     }
-
 
     @Override
     public OracleSubscriber readById(Long id) {
@@ -139,6 +131,7 @@ public class OracleSubscriberService implements IOracleSubscriberService {
 
     @Override
     public void update(SubscriberRequest subscriberRequest) {
+        // Boş
     }
 
     @Override
@@ -146,8 +139,8 @@ public class OracleSubscriberService implements IOracleSubscriberService {
         logger.info("Updating subscriber with subscriberId: {}", request.getSubscriberId());
 
         OracleSubscriber subscriber = findSubscriberById(request.getSubscriberId());
-        OracleSubscriber updatedSubscriber = OracleSubscriberMapper.updateSubscriber(subscriber, request);
-        subscriberRepository.save(updatedSubscriber);
+        oracleSubscriberMapper.updateFromDto(request, subscriber);
+        subscriberRepository.save(subscriber);
 
         logger.info("Subscriber updated successfully with subscriberId: {}", request.getSubscriberId());
     }
