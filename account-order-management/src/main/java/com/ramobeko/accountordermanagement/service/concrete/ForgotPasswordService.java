@@ -1,4 +1,4 @@
-package com.ramobeko.accountordermanagement.service;
+package com.ramobeko.accountordermanagement.service.concrete;
 
 import com.ramobeko.accountordermanagement.model.entity.oracle.OracleCustomer;
 import com.ramobeko.accountordermanagement.repository.oracle.OracleCustomerRepository;
