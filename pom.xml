@@ -17,7 +17,6 @@
       <module>diameter-gateway</module>
       <module>online-charging-system</module>
       <module>account-balance-management-function</module>
-      <module>common</module>
       <module>charging-gateway-function</module>
       <module>notification-function</module>
   </modules>
@@ -67,23 +66,33 @@
     </repositories>
 
   <build>
-    <plugins>
-      <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-      </plugin>
-  <!-- Maven Compiler Plugin -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <!-- 3.8.1 veya daha güncel bir sürüm -->
-                <version>3.8.1</version>
-                <configuration>
-                    <source>${maven.compiler.source}</source>
-                    <target>${maven.compiler.target}</target>
-                </configuration>
-            </plugin>
-    </plugins>
+      <pluginManagement>
+          <plugins>
+              <plugin>
+                  <groupId>com.google.cloud.tools</groupId>
+                  <artifactId>jib-maven-plugin</artifactId>
+                  <version>3.4.1</version>
+              </plugin>
+          </plugins>
+      </pluginManagement>
+
+
+      <plugins>
+          <plugin>
+              <groupId>org.springframework.boot</groupId>
+              <artifactId>spring-boot-maven-plugin</artifactId>
+          </plugin>
+          <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-compiler-plugin</artifactId>
+              <version>3.8.1</version>
+              <configuration>
+                  <source>${maven.compiler.source}</source>
+                  <target>${maven.compiler.target}</target>
+              </configuration>
+          </plugin>
+      </plugins>
+
   </build>
 
 </project>
