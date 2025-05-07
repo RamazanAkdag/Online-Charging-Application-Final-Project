@@ -122,7 +122,7 @@ The **OCS Project** (Online Charging System) is a distributed, scalable telecomm
 * Business logic isolated in **service layers**.
 * Lightweight **controllers**.
 * Follows **SOLID** and **clean architecture**.
-* Automated testing and containerized deployment.
+* GOAL : Automated testing and containerized deployment.
 
 ## 🔍 Monitoring
 
