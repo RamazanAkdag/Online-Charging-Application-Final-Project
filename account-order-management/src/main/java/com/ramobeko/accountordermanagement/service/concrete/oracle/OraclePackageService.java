@@ -6,19 +6,21 @@ import com.ramobeko.accountordermanagement.model.dto.OraclePackageDTO;
 import com.ramobeko.accountordermanagement.model.entity.oracle.OraclePackage;
 import com.ramobeko.accountordermanagement.repository.oracle.OraclePackageRepository;
 import com.ramobeko.accountordermanagement.service.abstrct.oracle.IOraclePackageService;
-import com.ramobeko.accountordermanagement.util.mapper.oracle.OraclePackageMapper;
+import com.ramobeko.accountordermanagement.util.mapper.dto.OraclePackageMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
 @Service
 public class OraclePackageService implements IOraclePackageService {
 
     private final OraclePackageRepository oraclePackageRepository;
+    private final OraclePackageMapper oraclePackageMapper;
 
-    public OraclePackageService(OraclePackageRepository oraclePackageRepository) {
+    public OraclePackageService(OraclePackageRepository oraclePackageRepository,
+                                OraclePackageMapper oraclePackageMapper) {
         this.oraclePackageRepository = oraclePackageRepository;
+        this.oraclePackageMapper = oraclePackageMapper;
     }
 
     @Override
@@ -28,13 +30,12 @@ public class OraclePackageService implements IOraclePackageService {
 
     @Override
     public void create(OraclePackageDTO oraclePackageDTO) {
-        OraclePackage oraclePackage = OraclePackageMapper.toEntity(oraclePackageDTO);
+        OraclePackage oraclePackage = oraclePackageMapper.toEntity(oraclePackageDTO);
         oraclePackageRepository.save(oraclePackage);
     }
 
     @Override
     public void create(Long id, OraclePackageDTO oraclePackageDTO) {
-        // Bu metod ICrudService tarafından zorunlu kılındığı için ama kullanılmayacağı için boş bırakılabilir
         throw new UnsupportedOperationException("Bu metot kullanılmamalıdır.");
     }
 
@@ -49,15 +50,14 @@ public class OraclePackageService implements IOraclePackageService {
 
         if (existingPackageOpt.isPresent()) {
             OraclePackage existingPackage = existingPackageOpt.get();
-            existingPackage.setName(oraclePackageDTO.getName());
-            existingPackage.setAmountMinutes(oraclePackageDTO.getAmountMinutes());
-            existingPackage.setAmountSms(oraclePackageDTO.getAmountSms());
-            existingPackage.setAmountData(oraclePackageDTO.getAmountData());
-            existingPackage.setPrice(oraclePackageDTO.getPrice());
+
+            // Mapper üzerinden güncelleme
+            oraclePackageMapper.updateFromDto(oraclePackageDTO, existingPackage);
 
             oraclePackageRepository.save(existingPackage);
         }
     }
+
 
     @Override
     public void delete(Long id) {

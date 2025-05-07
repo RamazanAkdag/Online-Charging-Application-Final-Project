@@ -146,6 +146,29 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<configuration>
+					<from>
+						<image>eclipse-temurin:17-jdk</image>
+					</from>
+					<to>
+						<image>beko2001/online-charging-system:latest</image>
+					</to>
+					<container>
+						<environment>
+							<SPRING_PROFILES_ACTIVE>docker</SPRING_PROFILES_ACTIVE>
+						</environment>
+						<jvmFlags>
+							<jvmFlag>--add-opens</jvmFlag>
+							<jvmFlag>java.base/java.nio=ALL-UNNAMED</jvmFlag>
+							<jvmFlag>-DIGNITE_JNI_DISABLE=true</jvmFlag>
+						</jvmFlags>
+					</container>
+				</configuration>
+			</plugin>
+
 		</plugins>
 	</build>
 

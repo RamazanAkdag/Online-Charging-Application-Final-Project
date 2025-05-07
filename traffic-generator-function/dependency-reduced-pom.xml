@@ -29,6 +29,15 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>com.google.cloud.tools</groupId>
+        <artifactId>jib-maven-plugin</artifactId>
+        <configuration>
+          <to>
+            <image>beko2001/traffic-generator-function:latest</image>
+          </to>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
   <dependencies>

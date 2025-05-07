@@ -9,17 +9,17 @@ import com.ramobeko.accountordermanagement.model.dto.response.ApiResponse;
 import com.ramobeko.accountordermanagement.model.dto.response.AuthResponse;
 import com.ramobeko.accountordermanagement.model.entity.ignite.IgniteCustomer;
 import com.ramobeko.accountordermanagement.model.entity.oracle.OracleCustomer;
-import com.ramobeko.accountordermanagement.service.ForgotPasswordService;
 import com.ramobeko.accountordermanagement.service.abstrct.ignite.IIgniteCustomerService;
 import com.ramobeko.accountordermanagement.service.abstrct.oracle.IOracleCustomerService;
-import com.ramobeko.accountordermanagement.util.mapper.ignite.OracleToIgniteCustomerMapper;
+import com.ramobeko.accountordermanagement.service.concrete.ForgotPasswordService;
+import com.ramobeko.accountordermanagement.util.mapper.ignite.OracleCustomerToIgniteCustomerMapper;
+import com.ramobeko.accountordermanagement.util.mapper.ignite.OracleCustomerToIgniteCustomerMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -28,15 +28,19 @@ public class AuthController {
 
     private final IOracleCustomerService oracleCustomerService;
     private final IIgniteCustomerService igniteCustomerService;
-
     private final ForgotPasswordService forgotPasswordService;
 
+    // Yeni eklenen mapper dependency
+    private final OracleCustomerToIgniteCustomerMapper oracleCustomerToIgniteCustomerMapper;
+
     public AuthController(IOracleCustomerService oracleCustomerService,
-                          IIgniteCustomerService igniteCustomerService, ForgotPasswordService forgotPasswordService) {
+                          IIgniteCustomerService igniteCustomerService,
+                          ForgotPasswordService forgotPasswordService,
+                          OracleCustomerToIgniteCustomerMapper oracleCustomerToIgniteCustomerMapper) {
         this.oracleCustomerService = oracleCustomerService;
         this.igniteCustomerService = igniteCustomerService;
-
         this.forgotPasswordService = forgotPasswordService;
+        this.oracleCustomerToIgniteCustomerMapper = oracleCustomerToIgniteCustomerMapper;
     }
 
     @PostMapping("/register")
@@ -46,13 +50,12 @@ public class AuthController {
         OracleCustomer customer = oracleCustomerService.register(request);
         logger.info("Customer registered in Oracle DB with email: {}", customer.getEmail());
 
-        // Mapper kullanılarak IgniteCustomer oluşturuluyor.
-        IgniteCustomer igniteCustomer = OracleToIgniteCustomerMapper.map(customer);
+        // Güncellenen kullanım - Bean üzerinden çağırıyoruz
+        IgniteCustomer igniteCustomer = oracleCustomerToIgniteCustomerMapper.toIgnite(customer);
         igniteCustomerService.register(igniteCustomer);
 
         return ResponseEntity.ok(new ApiResponse("Customer registered successfully!"));
     }
-
 
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> authenticateCustomer(@RequestBody AuthRequest request) {
@@ -83,7 +86,4 @@ public class AuthController {
                     .body(new ApiResponse("E-posta adresi sistemde bulunamadı."));
         }
     }
-
-
-
 }

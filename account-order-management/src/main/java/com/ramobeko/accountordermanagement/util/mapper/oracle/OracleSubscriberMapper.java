@@ -6,24 +6,24 @@ import com.ramobeko.accountordermanagement.model.entity.oracle.OracleBalance;
 import com.ramobeko.accountordermanagement.model.entity.oracle.OracleCustomer;
 import com.ramobeko.accountordermanagement.model.entity.oracle.OraclePackage;
 import com.ramobeko.accountordermanagement.model.shared.OracleSubscriber;
+import org.mapstruct.BeanMapping;
+import org.mapstruct.Mapper;
+import org.mapstruct.MappingTarget;
+import org.mapstruct.NullValuePropertyMappingStrategy;
 
 import java.util.Date;
 
-public class OracleSubscriberMapper {
+@Mapper(componentModel = "spring")
+public interface OracleSubscriberMapper {
 
-    /**
-     * OracleSubscriber nesnesini, verilen müşteri, paket, istek ve telefon numarası bilgileriyle oluşturur.
-     *
-     * @param customer      OracleCustomer nesnesi
-     * @param packagePlan   OraclePackage nesnesi (null ise subscriber oluşturulmaz)
-     * @param request       SubscriberRequest nesnesi
-     * @param phoneNumber   Oluşturulmuş telefon numarası
-     * @return Yeni oluşturulan OracleSubscriber nesnesi
-     */
-    public static OracleSubscriber fromSubscriberRequest(OracleCustomer customer,
-                                                         OraclePackage packagePlan,
-                                                         SubscriberRequest request,
-                                                         String phoneNumber) {
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    void updateFromDto(SubscriberUpdateRequest dto, @MappingTarget OracleSubscriber subscriber);
+
+    // Subscriber oluşturma özel mantık içerdiğinden default method
+    default OracleSubscriber create(OracleCustomer customer,
+                                    OraclePackage packagePlan,
+                                    SubscriberRequest request,
+                                    String phoneNumber) {
         OracleSubscriber subscriber = new OracleSubscriber();
         subscriber.setCustomer(customer);
         subscriber.setPackagePlan(packagePlan);
@@ -33,14 +33,7 @@ public class OracleSubscriberMapper {
         return subscriber;
     }
 
-    /**
-     * Verilen subscriber ve paket bilgilerini kullanarak yeni bir OracleBalance nesnesi oluşturur.
-     *
-     * @param subscriber  Oluşturulan veya mevcut OracleSubscriber nesnesi
-     * @param packagePlan OraclePackage nesnesi
-     * @return Oluşturulan OracleBalance nesnesi
-     */
-    public static OracleBalance createBalance(OracleSubscriber subscriber, OraclePackage packagePlan) {
+    default OracleBalance createBalance(OracleSubscriber subscriber, OraclePackage packagePlan) {
         OracleBalance balance = new OracleBalance();
         balance.setSubscriber(subscriber);
         balance.setPackagePlan(packagePlan);
@@ -50,22 +43,6 @@ public class OracleSubscriberMapper {
         balance.setStartDate(new Date());
         balance.setEndDate(null);
         return balance;
-    }
-
-    /**
-     * Var olan OracleSubscriber nesnesini, verilen SubscriberUpdateRequest bilgileriyle günceller.
-     *
-     * @param subscriber Var olan OracleSubscriber nesnesi
-     * @param request    SubscriberUpdateRequest nesnesi
-     * @return Güncellenmiş OracleSubscriber nesnesi
-     */
-    public static OracleSubscriber updateSubscriber(OracleSubscriber subscriber, SubscriberUpdateRequest request) {
-        if (request.getStartDate() != null) {
-            subscriber.setStartDate(request.getStartDate());
-        }
-        subscriber.setEndDate(request.getEndDate());
-        subscriber.setStatus(request.getStatus());
-        return subscriber;
     }
 }
 

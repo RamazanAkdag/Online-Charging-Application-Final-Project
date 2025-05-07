@@ -1,6 +1,6 @@
 package com.ramobeko.accountordermanagement.controller;
 
-import com.ramobeko.accountordermanagement.service.ForgotPasswordService;
+import com.ramobeko.accountordermanagement.service.concrete.ForgotPasswordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

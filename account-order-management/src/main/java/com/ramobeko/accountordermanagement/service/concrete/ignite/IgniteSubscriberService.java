@@ -3,22 +3,25 @@ package com.ramobeko.accountordermanagement.service.concrete.ignite;
 import com.ramobeko.accountordermanagement.model.shared.OracleSubscriber;
 import com.ramobeko.accountordermanagement.repository.ignite.IgniteSubscriberRepository;
 import com.ramobeko.accountordermanagement.service.abstrct.ignite.IIgniteSubscriberService;
-import com.ramobeko.accountordermanagement.util.mapper.ignite.IgniteSubscriberMapper;
+import com.ramobeko.accountordermanagement.util.mapper.ignite.OracleSubscriberToIgniteSubscriberMapper;
 import com.ramobeko.ignite.IgniteSubscriber;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-
 @Service
 public class IgniteSubscriberService implements IIgniteSubscriberService {
 
     private static final Logger logger = LogManager.getLogger(IgniteSubscriberService.class);
     private final IgniteSubscriberRepository repository;
 
-    public IgniteSubscriberService(IgniteSubscriberRepository repository) {
+    private final OracleSubscriberToIgniteSubscriberMapper oracleSubscriberToIgniteSubscriberMapper;
+
+    public IgniteSubscriberService(IgniteSubscriberRepository repository,
+                                   OracleSubscriberToIgniteSubscriberMapper oracleSubscriberToIgniteSubscriberMapper) {
         this.repository = repository;
+        this.oracleSubscriberToIgniteSubscriberMapper = oracleSubscriberToIgniteSubscriberMapper;
     }
 
     @Override
@@ -30,9 +33,9 @@ public class IgniteSubscriberService implements IIgniteSubscriberService {
 
         logger.info("Creating Ignite subscriber from Oracle subscriber with ID: {}", oracleSubscriber.getId());
 
-        IgniteSubscriber igniteSubscriber = IgniteSubscriberMapper.mapOracleToIgnite(oracleSubscriber);
+        IgniteSubscriber igniteSubscriber =
+                oracleSubscriberToIgniteSubscriberMapper.toIgniteWithBalances(oracleSubscriber);
 
-        // Örneğin, phone number'ı key olarak kullanıyorsanız:
         repository.save(Long.parseLong(igniteSubscriber.getPhoneNumber()), igniteSubscriber);
         logger.info("Ignite subscriber created successfully with ID: {}", igniteSubscriber.getId());
     }
@@ -73,7 +76,8 @@ public class IgniteSubscriberService implements IIgniteSubscriberService {
 
         Optional<IgniteSubscriber> existingSubscriber = repository.findById(oracleSubscriber.getId());
         if (existingSubscriber.isPresent()) {
-            IgniteSubscriber igniteSubscriber = IgniteSubscriberMapper.mapOracleToIgnite(oracleSubscriber);
+            IgniteSubscriber igniteSubscriber =
+                    oracleSubscriberToIgniteSubscriberMapper.toIgniteWithBalances(oracleSubscriber);
             repository.save(igniteSubscriber.getId(), igniteSubscriber);
             logger.info("Ignite subscriber updated successfully with ID: {}", igniteSubscriber.getId());
         } else {
@@ -96,3 +100,4 @@ public class IgniteSubscriberService implements IIgniteSubscriberService {
         }
     }
 }
+

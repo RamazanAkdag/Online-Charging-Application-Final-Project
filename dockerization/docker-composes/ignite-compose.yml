@@ -1,13 +1,12 @@
-version: '3'
 services:
   ignite-node-1:
-    image: apacheignite/ignite:2.16.0  # Apache Ignite 2.16.0 sürümünü kullanıyoruz
+    image: apacheignite/ignite:2.16.0
     container_name: ignite-node-1
     ports:
-      - "10800:10800"  # JDBC/ODBC bağlantısı için
-      - "47100:47100"  # TCP bağlantı noktası
-      - "47500:47500"  # Communication SPI için
-      - "49112:49112"  # Discovery SPI için
+      - "10800:10800"
+      - "47100:47100"
+      - "47500:47500"
+      - "49112:49112"
     environment:
       - OPTION_LIBS=ignite-rest-http,ignite-indexing,control-center-agent
       - CONFIG_URI=/ignite-config.xml
@@ -15,9 +14,10 @@ services:
       - JVM_OPTS=-DIGNITE_QUIET=false -Djava.net.preferIPv4Stack=true -DIGNITE_PEER_CLASS_LOADING=true -DIGNITE_EVENT_DRIVEN_SERVICE_PROCESSOR_ENABLED=true
     volumes:
       - ignite-storage:/storage
-      - ./ignite-config.xml:/ignite-config.xml  # Harici yapılandırma dosyanız
+      - ./ignite-config.xml:/ignite-config.xml
     networks:
-      - ignite-cluster  # Hazelcast ile ortak ağ
+      - ignite-cluster
+      - ocs-network
 
 volumes:
   ignite-storage:
@@ -25,3 +25,5 @@ volumes:
 networks:
   ignite-cluster:
     driver: bridge
+  ocs-network:
+    external: true     # <<< EKLEDİK

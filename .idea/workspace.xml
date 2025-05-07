@@ -5,10 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e36dfc9-06df-4fb0-896c-d0105c657a96" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/util/mapper/dto/DtoToOracleCustomerMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/util/mapper/dto/OracleCustomerToDtoMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/util/mapper/dto/OraclePackageMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/util/mapper/ignite/OracleCustomerToIgniteCustomerMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/util/mapper/ignite/OracleSubscriberToIgniteSubscriberMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-balance-management-function/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/account-balance-management-function/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charging-gateway-function/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/charging-gateway-function/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notification-function/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/notification-function/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/controller/ResetPasswordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/controller/ResetPasswordController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/concrete/ForgotPasswordService.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/concrete/ForgotPasswordService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/concrete/ignite/IgniteSubscriberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/concrete/ignite/IgniteSubscriberService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/concrete/oracle/OracleCustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/concrete/oracle/OracleCustomerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/concrete/oracle/OraclePackageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/concrete/oracle/OraclePackageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/concrete/oracle/OracleSubscriberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/concrete/oracle/OracleSubscriberService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/util/mapper/ignite/IgniteSubscriberMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/util/mapper/ignite/OracleToIgniteCustomerMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/util/mapper/oracle/OracleCustomerMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/util/mapper/oracle/OraclePackageMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/util/mapper/oracle/OracleSubscriberMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/util/mapper/oracle/OracleSubscriberMapper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,12 +60,19 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Berko01&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/RamazanAkdag/Online-Charging-Application-Final-Project.git&quot;,
+    &quot;accountId&quot;: &quot;6315eb29-e73d-4069-bd58-2108a88118eb&quot;
+  }
+}</component>
   <component name="KubernetesApiProvider">{
-  &quot;contexts&quot;: [
-    {
-      &quot;name&quot;: &quot;docker-desktop&quot;
-    }
-  ],
   &quot;isMigrated&quot;: true
 }</component>
   <component name="KubernetesSettings">
@@ -62,7 +85,6 @@
   &quot;associatedIndex&quot;: 1
 }</component>
   <component name="ProjectId" id="2tR4PBh8Igj76J8NtPsU0ehXcTV" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -72,6 +94,16 @@
     "Application.DiameterGatewayApplication.executor": "Run",
     "Application.IgniteTest.executor": "Run",
     "Application.TrafficGeneratorFunctionApplication.executor": "Run",
+    "Docker.docker-composes/hazelcast-compose.yml.hazelcast-node1: Compose Deployment.executor": "Run",
+    "Docker.docker-composes/hazelcast-compose.yml: Compose Deployment.executor": "Run",
+    "Docker.docker-composes/ignite-compose.yml.ignite-node-1: Compose Deployment.executor": "Run",
+    "Docker.docker-composes/ignite-compose.yml: Compose Deployment.executor": "Run",
+    "Docker.docker-composes/kafka-compose.yml: Compose Deployment.executor": "Run",
+    "Docker.docker-composes/ocs-compose.yml.account-balance-management-function: Compose Deployment.executor": "Run",
+    "Docker.docker-composes/ocs-compose.yml.account-order-management: Compose Deployment.executor": "Run",
+    "Docker.docker-composes/ocs-compose.yml.diameter-gateway: Compose Deployment.executor": "Run",
+    "Docker.docker-composes/ocs-compose.yml.online-charging-system: Compose Deployment.executor": "Run",
+    "Docker.docker-composes/ocs-compose.yml: Compose Deployment.executor": "Run",
     "Docker.hazelcast-compose.yml.hazelcast-node1: Compose Deployment.executor": "Run",
     "Docker.hazelcast-compose.yml: Compose Deployment.executor": "Run",
     "Docker.ignite-compose.yml: Compose Deployment.executor": "Run",
@@ -79,23 +111,25 @@
     "Docker.kafka-compose.yml.kafka: Compose Deployment.executor": "Run",
     "Docker.kafka-compose.yml: Compose Deployment.executor": "Run",
     "JUnit.CGFKafkaMessageIntegrationTest.executor": "Run",
+    "Maven.ocs-project [clean,compile,-DskipTests].executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "Spring Boot.AccountBalanceManagementFunctionApplication.executor": "Run",
     "Spring Boot.AccountOrderManagementApplication.executor": "Run",
     "Spring Boot.ChargingGatewayFunctionApplication.executor": "Run",
     "Spring Boot.DiameterGatewayApplication.executor": "Run",
     "Spring Boot.NotificationFunctionApplication.executor": "Run",
     "Spring Boot.OnlineChargingSystemApplication.executor": "Run",
-    "git-widget-placeholder": "Ramo-Main",
+    "git-widget-placeholder": "new-main",
     "ignore.virus.scanning.warn.message": "true",
     "jdk.selected.JAVA_MODULE": "17",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/berki/Desktop/ocs/Online-Charging-Application-Final-Project/notification-function/src/main/java/org/example/notificationfunction",
+    "last_opened_file_path": "/Users/beko/Desktop/OCS/Online-Charging-Application-Final-Project",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -104,6 +138,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.33563218",
+    "run.code.analysis.last.selected.profile": "pProject Default",
     "run.configurations.included.in.services": "true",
     "vue.rearranger.settings.migration": "true"
   }
@@ -117,6 +152,7 @@
       <recent name="C:\Users\berki\Desktop\ocs\Online-Charging-Application-Final-Project\charging-gateway-function\src\main\java\org\example\charginggatewayfunction\model\oracle" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\berki\Desktop\ocs\Online-Charging-Application-Final-Project" />
       <recent name="C:\Users\berki\Desktop\ocs\Online-Charging-Application-Final-Project\notification-function\src\main\java\org\example\notificationfunction" />
       <recent name="C:\Users\berki\Desktop\ocs\Online-Charging-Application-Final-Project\traffic-generator-function\src\main\resources" />
       <recent name="C:\Users\berki\Desktop\ocs\Online-Charging-Application-Final-Project\account-order-management\src\main\resources" />
@@ -129,6 +165,13 @@
       <recent name="org.example.charginggatewayfunction.repository" />
     </key>
   </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value=" mvn clean compile jib:dockerBuild -DskipTests^" />
+      <command value=" mvn clean compile jib:dockerBuild -DskipTests" />
+      <command value="mvn clean compile -DskipTests" />
+    </option>
+  </component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
@@ -139,22 +182,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.AccountOrderManagementApplication">
-    <configuration name="TrafficGeneratorFunctionApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="17" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="org.example.app.TrafficGeneratorFunctionApplication" />
-      <module name="traffic-generator-function" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.example.repository.abstrct.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Docker.docker-composes/ocs-compose.yml.online-charging-system: Compose Deployment">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="ocs-project" />
       <method v="2">
@@ -196,17 +224,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DiameterGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="17" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+    <configuration name="DiameterGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="diameter-gateway" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="org.example.DiameterGatewayApplication" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.example.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -221,9 +241,9 @@
       </method>
     </configuration>
     <configuration name="OnlineChargingSystemApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="C:\Java17\jdk-17.0.10" />
+      <option name="ALTERNATIVE_JRE_PATH" value="17" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <module name="online-charging-system" />
+      <module name="diameter-gateway (1)" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="org.example.onlinechargingsystem.OnlineChargingSystemApplication" />
       <option name="VM_PARAMETERS" value="--add-opens=java.base/jdk.internal.access=ALL-UNNAMED --add-opens=java.base/jdk.internal.misc=ALL-UNNAMED --add-opens=java.base/sun.nio.ch=ALL-UNNAMED --add-opens=java.base/sun.util.calendar=ALL-UNNAMED --add-opens=java.management/com.sun.jmx.mbeanserver=ALL-UNNAMED --add-opens=jdk.internal.jvmstat/sun.jvmstat.monitor=ALL-UNNAMED --add-opens=java.base/sun.reflect.generics.reflectiveObjects=ALL-UNNAMED --add-opens=jdk.management/com.sun.management.internal=ALL-UNNAMED --add-opens=java.base/java.io=ALL-UNNAMED --add-opens=java.base/java.nio=ALL-UNNAMED --add-opens=java.base/java.net=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.util.concurrent=ALL-UNNAMED --add-opens=java.base/java.util.concurrent.locks=ALL-UNNAMED --add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED --add-opens=java.base/java.math=ALL-UNNAMED --add-opens=java.sql/java.sql=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.time=ALL-UNNAMED --add-opens=java.base/java.text=ALL-UNNAMED --add-opens=java.management/sun.management=ALL-UNNAMED --add-opens=java.desktop/java.awt.font=ALL-UNNAMED -DIGNITE_PEER_CLASS_LOADING=true -Djava.net.preferIPv4Stack=true" />
       <method v="2">
@@ -236,60 +256,81 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="kafka-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+    <configuration name="docker-composes/kafka-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
-          <option name="envFilePath" value="" />
-          <option name="sourceFilePath" value="kafka-compose.yml" />
+          <option name="sourceFilePath" value="dockerization/docker-composes/kafka-compose.yml" />
         </settings>
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="kafka-compose.yml.kafdrop: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+    <configuration name="docker-composes/ocs-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
-          <option name="services">
-            <list>
-              <option value="kafdrop" />
-            </list>
-          </option>
-          <option name="sourceFilePath" value="kafka-compose.yml" />
+          <option name="sourceFilePath" value="dockerization/docker-composes/ocs-compose.yml" />
         </settings>
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="kafka-compose.yml.kafka: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+    <configuration name="docker-composes/ocs-compose.yml.account-order-management: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
           <option name="services">
             <list>
-              <option value="kafka" />
+              <option value="account-order-management" />
             </list>
           </option>
-          <option name="sourceFilePath" value="kafka-compose.yml" />
+          <option name="sourceFilePath" value="dockerization/docker-composes/ocs-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-composes/ocs-compose.yml.diameter-gateway: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="diameter-gateway" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="dockerization/docker-composes/ocs-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-composes/ocs-compose.yml.online-charging-system: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="online-charging-system" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="dockerization/docker-composes/ocs-compose.yml" />
         </settings>
       </deployment>
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Application.TrafficGeneratorFunctionApplication" />
-      <item itemvalue="Docker.kafka-compose.yml.kafdrop: Compose Deployment" />
-      <item itemvalue="Docker.kafka-compose.yml.kafka: Compose Deployment" />
-      <item itemvalue="Docker.kafka-compose.yml: Compose Deployment" />
+      <item itemvalue="Docker.docker-composes/ocs-compose.yml.diameter-gateway: Compose Deployment" />
+      <item itemvalue="Docker.docker-composes/ocs-compose.yml.account-order-management: Compose Deployment" />
+      <item itemvalue="Docker.docker-composes/ocs-compose.yml.online-charging-system: Compose Deployment" />
+      <item itemvalue="Docker.docker-composes/kafka-compose.yml: Compose Deployment" />
+      <item itemvalue="Docker.docker-composes/ocs-compose.yml: Compose Deployment" />
+      <item itemvalue="Spring Boot.DiameterGatewayApplication" />
       <item itemvalue="Spring Boot.ChargingGatewayFunctionApplication" />
       <item itemvalue="Spring Boot.NotificationFunctionApplication" />
       <item itemvalue="Spring Boot.AccountBalanceManagementFunctionApplication" />
       <item itemvalue="Spring Boot.AccountOrderManagementApplication" />
       <item itemvalue="Spring Boot.OnlineChargingSystemApplication" />
-      <item itemvalue="Spring Boot.DiameterGatewayApplication" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.TrafficGeneratorFunctionApplication" />
-        <item itemvalue="Spring Boot.DiameterGatewayApplication" />
-        <item itemvalue="Docker.kafka-compose.yml: Compose Deployment" />
-        <item itemvalue="Docker.kafka-compose.yml.kafka: Compose Deployment" />
-        <item itemvalue="Docker.kafka-compose.yml.kafdrop: Compose Deployment" />
+        <item itemvalue="Docker.docker-composes/ocs-compose.yml.online-charging-system: Compose Deployment" />
+        <item itemvalue="Docker.docker-composes/ocs-compose.yml.diameter-gateway: Compose Deployment" />
+        <item itemvalue="Docker.docker-composes/ocs-compose.yml.account-order-management: Compose Deployment" />
+        <item itemvalue="Docker.docker-composes/ocs-compose.yml: Compose Deployment" />
+        <item itemvalue="Docker.docker-composes/kafka-compose.yml: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
@@ -325,6 +366,12 @@
       <workItem from="1745232478365" duration="410000" />
       <workItem from="1745486507639" duration="701000" />
       <workItem from="1745581725333" duration="8340000" />
+      <workItem from="1746517979513" duration="5632000" />
+      <workItem from="1746540889814" duration="10402000" />
+      <workItem from="1746551535073" duration="6329000" />
+      <workItem from="1746596404972" duration="2774000" />
+      <workItem from="1746600971558" duration="1024000" />
+      <workItem from="1746602716786" duration="2099000" />
     </task>
     <servers />
   </component>
