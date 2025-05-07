@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: online-charging-system
+  labels:
+    app: online-charging-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: online-charging-system
+  template:
+    metadata:
+      labels:
+        app: online-charging-system
+    spec:
+      hostname: online-charging-system
+      containers:
+      - name: online-charging-system
+        image: beko2001/online-charging-system:latest
+        ports:
+        - containerPort: 8071
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: docker
+        - name: AKKA_HOST
+          value: online-charging-system

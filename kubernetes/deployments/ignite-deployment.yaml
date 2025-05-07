@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ignite-node-1
+  labels:
+    app: ignite-node-1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ignite-node-1
+  template:
+    metadata:
+      labels:
+        app: ignite-node-1
+    spec:
+      containers:
+      - name: ignite
+        image: apacheignite/ignite:2.16.0
+        ports:
+        - containerPort: 10800
+        - containerPort: 10801
+        - containerPort: 10802
+        - containerPort: 10803
+        env:
+        - name: IGNITE_INSTANCE_NAME
+          value: ignite-node-1

@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: charging-gateway-function
+  labels:
+    app: charging-gateway-function
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: charging-gateway-function
+  template:
+    metadata:
+      labels:
+        app: charging-gateway-function
+    spec:
+      containers:
+      - name: charging-gateway-function
+        image: beko2001/charging-gateway-function:latest
+        ports:
+        - containerPort: 5833
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: docker

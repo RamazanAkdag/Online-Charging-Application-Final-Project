@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: diameter-gateway
+  labels:
+    app: diameter-gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: diameter-gateway
+  template:
+    metadata:
+      labels:
+        app: diameter-gateway
+    spec:
+      hostname: diameter-gateway
+      containers:
+      - name: diameter-gateway
+        image: beko2001/diameter-gateway:latest
+        ports:
+        - containerPort: 5855
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: docker
+        - name: AKKA_HOST
+          value: diameter-gateway

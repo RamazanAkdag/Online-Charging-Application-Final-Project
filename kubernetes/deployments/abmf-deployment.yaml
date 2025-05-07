@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: account-balance-management-function
+  labels:
+    app: account-balance-management-function
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: account-balance-management-function
+  template:
+    metadata:
+      labels:
+        app: account-balance-management-function
+    spec:
+      containers:
+      - name: account-balance-management-function
+        image: beko2001/account-balance-management-function:latest
+        ports:
+        - containerPort: 5832
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: docker

@@ -5,26 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e36dfc9-06df-4fb0-896c-d0105c657a96" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/util/mapper/dto/DtoToOracleCustomerMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/util/mapper/dto/OracleCustomerToDtoMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/util/mapper/dto/OraclePackageMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/util/mapper/ignite/OracleCustomerToIgniteCustomerMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/util/mapper/ignite/OracleSubscriberToIgniteSubscriberMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/controller/ResetPasswordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/controller/ResetPasswordController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/concrete/ForgotPasswordService.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/concrete/ForgotPasswordService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/concrete/ignite/IgniteSubscriberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/concrete/ignite/IgniteSubscriberService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/concrete/oracle/OracleCustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/concrete/oracle/OracleCustomerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/concrete/oracle/OraclePackageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/concrete/oracle/OraclePackageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/concrete/oracle/OracleSubscriberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/service/concrete/oracle/OracleSubscriberService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/util/mapper/ignite/IgniteSubscriberMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/util/mapper/ignite/OracleToIgniteCustomerMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/util/mapper/oracle/OracleCustomerMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/util/mapper/oracle/OraclePackageMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/util/mapper/oracle/OracleSubscriberMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/java/com/ramobeko/accountordermanagement/util/mapper/oracle/OracleSubscriberMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kubernetes/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/kubernetes/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,6 +67,7 @@
   &quot;associatedIndex&quot;: 1
 }</component>
   <component name="ProjectId" id="2tR4PBh8Igj76J8NtPsU0ehXcTV" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -110,6 +93,11 @@
     "Docker.kafka-compose.yml.kafdrop: Compose Deployment.executor": "Run",
     "Docker.kafka-compose.yml.kafka: Compose Deployment.executor": "Run",
     "Docker.kafka-compose.yml: Compose Deployment.executor": "Run",
+    "Docker.kubernetes.account-order-management: Compose Deployment.executor": "Run",
+    "Docker.kubernetes.hazelcast-node1: Compose Deployment.executor": "Run",
+    "Docker.kubernetes.hazelcast: Compose Deployment.executor": "Run",
+    "Docker.kubernetes.management-center: Compose Deployment.executor": "Run",
+    "Docker.kubernetes: Compose Deployment.executor": "Run",
     "JUnit.CGFKafkaMessageIntegrationTest.executor": "Run",
     "Maven.ocs-project [clean,compile,-DskipTests].executor": "Run",
     "RequestMappingsPanelOrder0": "0",
@@ -182,7 +170,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Docker.docker-composes/ocs-compose.yml.online-charging-system: Compose Deployment">
+  <component name="RunManager" selected="Docker.kubernetes.account-order-management: Compose Deployment">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="ocs-project" />
       <method v="2">
@@ -256,23 +244,15 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker-composes/kafka-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+    <configuration name="kubernetes: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
-          <option name="sourceFilePath" value="dockerization/docker-composes/kafka-compose.yml" />
+          <option name="sourceFilePath" value="kubernetes/docker-compose.yml" />
         </settings>
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker-composes/ocs-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="sourceFilePath" value="dockerization/docker-composes/ocs-compose.yml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
-    <configuration name="docker-composes/ocs-compose.yml.account-order-management: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+    <configuration name="kubernetes.account-order-management: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
           <option name="services">
@@ -280,43 +260,56 @@
               <option value="account-order-management" />
             </list>
           </option>
-          <option name="sourceFilePath" value="dockerization/docker-composes/ocs-compose.yml" />
+          <option name="sourceFilePath" value="kubernetes/docker-compose.yml" />
         </settings>
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker-composes/ocs-compose.yml.diameter-gateway: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+    <configuration name="kubernetes.hazelcast-node1: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
           <option name="services">
             <list>
-              <option value="diameter-gateway" />
+              <option value="hazelcast-node1" />
             </list>
           </option>
-          <option name="sourceFilePath" value="dockerization/docker-composes/ocs-compose.yml" />
+          <option name="sourceFilePath" value="kubernetes/docker-compose.yml" />
         </settings>
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker-composes/ocs-compose.yml.online-charging-system: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+    <configuration name="kubernetes.hazelcast: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
           <option name="services">
             <list>
-              <option value="online-charging-system" />
+              <option value="hazelcast" />
             </list>
           </option>
-          <option name="sourceFilePath" value="dockerization/docker-composes/ocs-compose.yml" />
+          <option name="sourceFilePath" value="kubernetes/docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="kubernetes.management-center: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="management-center" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="kubernetes/docker-compose.yml" />
         </settings>
       </deployment>
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Docker.docker-composes/ocs-compose.yml.diameter-gateway: Compose Deployment" />
-      <item itemvalue="Docker.docker-composes/ocs-compose.yml.account-order-management: Compose Deployment" />
-      <item itemvalue="Docker.docker-composes/ocs-compose.yml.online-charging-system: Compose Deployment" />
-      <item itemvalue="Docker.docker-composes/kafka-compose.yml: Compose Deployment" />
-      <item itemvalue="Docker.docker-composes/ocs-compose.yml: Compose Deployment" />
+      <item itemvalue="Docker.kubernetes.account-order-management: Compose Deployment" />
+      <item itemvalue="Docker.kubernetes.hazelcast-node1: Compose Deployment" />
+      <item itemvalue="Docker.kubernetes.hazelcast: Compose Deployment" />
+      <item itemvalue="Docker.kubernetes.management-center: Compose Deployment" />
+      <item itemvalue="Docker.kubernetes: Compose Deployment" />
       <item itemvalue="Spring Boot.DiameterGatewayApplication" />
       <item itemvalue="Spring Boot.ChargingGatewayFunctionApplication" />
       <item itemvalue="Spring Boot.NotificationFunctionApplication" />
@@ -326,11 +319,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Docker.docker-composes/ocs-compose.yml.online-charging-system: Compose Deployment" />
-        <item itemvalue="Docker.docker-composes/ocs-compose.yml.diameter-gateway: Compose Deployment" />
-        <item itemvalue="Docker.docker-composes/ocs-compose.yml.account-order-management: Compose Deployment" />
-        <item itemvalue="Docker.docker-composes/ocs-compose.yml: Compose Deployment" />
-        <item itemvalue="Docker.docker-composes/kafka-compose.yml: Compose Deployment" />
+        <item itemvalue="Docker.kubernetes.account-order-management: Compose Deployment" />
+        <item itemvalue="Docker.kubernetes: Compose Deployment" />
+        <item itemvalue="Docker.kubernetes.management-center: Compose Deployment" />
+        <item itemvalue="Docker.kubernetes.hazelcast-node1: Compose Deployment" />
+        <item itemvalue="Docker.kubernetes.hazelcast: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>

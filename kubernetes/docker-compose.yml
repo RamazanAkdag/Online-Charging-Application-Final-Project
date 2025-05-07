@@ -1,0 +1,139 @@
+version: '3.9'
+
+services:
+  # Kafka Ekosistemi
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    ports:
+      - "2181:2181"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+    networks:
+      - ocs-network
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    ports:
+      - "9092:9092"
+      - "29092:29092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    depends_on:
+      - zookeeper
+    networks:
+      - ocs-network
+
+  kafdrop:
+    image: obsidiandynamics/kafdrop:latest
+    ports:
+      - "9000:9000"
+    environment:
+      KAFKA_BROKER_CONNECT: kafka:9092
+    depends_on:
+      - kafka
+    networks:
+      - ocs-network
+
+  # Ignite
+  ignite-node-1:
+    image: apacheignite/ignite:2.16.0
+    ports:
+      - "10800:10800"
+      - "10801:10801"
+      - "10802:10802"
+      - "10803:10803"
+    environment:
+      - IGNITE_INSTANCE_NAME=ignite-node-1
+    networks:
+      - ocs-network
+
+  # Hazelcast
+  hazelcast-node1:
+    image: hazelcast/hazelcast:latest
+    container_name: hazelcast-node1
+    environment:
+      - HZ_CLUSTERNAME=hazelcast-cluster
+      - HZ_NETWORK_JOIN_TCPIP_MEMBERS=hazelcast-node1
+      - HZ_JET_ENABLED=true
+    networks:
+      - ocs-network
+    ports:
+      - "5701:5701"
+
+  management-center:
+    image: hazelcast/management-center:latest
+    environment:
+      - MC_DEFAULT_CLUSTER=hazelcast-cluster
+      - MC_CLUSTER_MEMBER=hazelcast-node1:5701
+    networks:
+      - ocs-network
+    ports:
+      - "8080:8080"
+
+
+  account-balance-management-function:
+    image: beko2001/account-balance-management-function:latest
+    ports:
+      - "5832:5832"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    networks:
+      - ocs-network
+
+  account-order-management:
+    image: beko2001/account-order-management:latest
+    ports:
+      - "5831:5831"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    networks:
+      - ocs-network
+
+  charging-gateway-function:
+    image: beko2001/charging-gateway-function:latest
+    ports:
+      - "5833:5833"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    networks:
+      - ocs-network
+
+  notification-function:
+    image: beko2001/notification-function:latest
+    ports:
+      - "5834:5834"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    networks:
+      - ocs-network
+
+  diameter-gateway:
+    image: beko2001/diameter-gateway:latest
+    hostname: diameter-gateway
+    ports:
+      - "5855:5855"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - AKKA_HOST=diameter-gateway
+    networks:
+      - ocs-network
+
+  online-charging-system:
+    image: beko2001/online-charging-system:latest
+    hostname: online-charging-system
+    ports:
+      - "8071:8071"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - AKKA_HOST=online-charging-system
+    networks:
+      - ocs-network
+
+networks:
+  ocs-network:
+    driver: bridge

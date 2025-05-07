@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: account-order-management
+  labels:
+    app: account-order-management
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: account-order-management
+  template:
+    metadata:
+      labels:
+        app: account-order-management
+    spec:
+      containers:
+      - name: account-order-management
+        image: beko2001/account-order-management:latest
+        ports:
+        - containerPort: 5831
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: docker
