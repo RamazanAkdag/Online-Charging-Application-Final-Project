@@ -4,7 +4,6 @@
 
 # OCS Project (Online Charging System)
 
-![OCS Project Banner](./Pictures/banner.png)
 
 **Description:**
 A distributed, microservice-based Online Charging System (OCS) designed for real-time telecommunications billing. Built with Spring Boot, Kafka, Hazelcast, and Kubernetes for scalability, resilience, and high availability.
