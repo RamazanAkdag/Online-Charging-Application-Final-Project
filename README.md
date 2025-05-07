@@ -1,8 +1,3 @@
-Harika! O zaman resimlerin bulunduğu dizin şu şekilde:
-
-`/Pictures/`
-
-Bu yolu kullanarak **README.md** içerisine görselleri otomatik gösteren bağlantılar ekleyelim. İşte son haliyle tam README:
 
 ---
 
@@ -102,4 +97,3 @@ MIT License.
 
 ---
 
-**Bonus:** Eğer istersen `README.md` için GitHub’da güzel bir kapak resmi (banner) de yapabilirim. Projeyi daha profesyonel gösterir. İster misin? 👇
