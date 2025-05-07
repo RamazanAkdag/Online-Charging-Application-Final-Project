@@ -8,11 +8,11 @@ Bu yolu kullanarak **README.md** içerisine görselleri otomatik gösteren bağl
 
 # OCS Project (Online Charging System)
 
-## 📖 Overview
+##  Overview
 
 The **OCS Project** (Online Charging System) is a distributed, scalable telecommunications solution that handles real-time charging for services like voice, SMS, and data. The architecture includes microservices, distributed caching, containerization, and automated deployment.
 
-## 🏗 Architecture
+##  Architecture
 
 **Main Components:**
 
@@ -34,19 +34,19 @@ The **OCS Project** (Online Charging System) is a distributed, scalable telecomm
 
 ## 🗂 System Design
 
-### 📌 Architectural Design
+###  Architectural Design
 
 ![Architectural Design](./Pictures/architecturaldesign.png)
 
-### 📌 Database Design
+###  Database Design
 
 ![Database Design](./Pictures/dbdesign.png)
 
-### 📌 Use Case Diagram
+###  Use Case Diagram
 
 ![Use Case](./Pictures/usecase.png)
 
-## 🔧 Modules and Their Diagrams
+##  Modules and Their Diagrams
 
 * **Diameter Gateway**
   ![DGW](./Pictures/dgw.png)
@@ -69,7 +69,7 @@ The **OCS Project** (Online Charging System) is a distributed, scalable telecomm
 * **Mobile App**
   ![Mobile App](./Pictures/mobileapp.png)
 
-## 🔄 CI/CD Pipeline
+##  CI/CD Pipeline
 
 ![CI/CD Pipeline](./Pictures/ci-cd.png)
 
