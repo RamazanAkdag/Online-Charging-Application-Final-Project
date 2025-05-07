@@ -100,6 +100,8 @@
     "Docker.docker-composes/ignite-compose.yml: Compose Deployment.executor": "Run",
     "Docker.docker-composes/kafka-compose.yml: Compose Deployment.executor": "Run",
     "Docker.docker-composes/ocs-compose.yml.account-balance-management-function: Compose Deployment.executor": "Run",
+    "Docker.docker-composes/ocs-compose.yml.account-order-management: Compose Deployment.executor": "Run",
+    "Docker.docker-composes/ocs-compose.yml.online-charging-system: Compose Deployment.executor": "Run",
     "Docker.docker-composes/ocs-compose.yml: Compose Deployment.executor": "Run",
     "Docker.hazelcast-compose.yml.hazelcast-node1: Compose Deployment.executor": "Run",
     "Docker.hazelcast-compose.yml: Compose Deployment.executor": "Run",
@@ -179,7 +181,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.OnlineChargingSystemApplication">
+  <component name="RunManager" selected="Docker.docker-composes/ocs-compose.yml.account-order-management: Compose Deployment">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="ocs-project" />
       <method v="2">
@@ -253,14 +255,6 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker-composes/hazelcast-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="sourceFilePath" value="dockerization/docker-composes/hazelcast-compose.yml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
     <configuration name="docker-composes/ignite-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
@@ -285,12 +279,25 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker-composes/ocs-compose.yml.account-balance-management-function: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+    <configuration name="docker-composes/ocs-compose.yml.account-order-management: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
           <option name="services">
             <list>
-              <option value="account-balance-management-function" />
+              <option value="account-order-management" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="dockerization/docker-composes/ocs-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-composes/ocs-compose.yml.online-charging-system: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="online-charging-system" />
             </list>
           </option>
           <option name="sourceFilePath" value="dockerization/docker-composes/ocs-compose.yml" />
@@ -299,8 +306,8 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Docker.docker-composes/ocs-compose.yml.account-balance-management-function: Compose Deployment" />
-      <item itemvalue="Docker.docker-composes/hazelcast-compose.yml: Compose Deployment" />
+      <item itemvalue="Docker.docker-composes/ocs-compose.yml.account-order-management: Compose Deployment" />
+      <item itemvalue="Docker.docker-composes/ocs-compose.yml.online-charging-system: Compose Deployment" />
       <item itemvalue="Docker.docker-composes/ignite-compose.yml: Compose Deployment" />
       <item itemvalue="Docker.docker-composes/kafka-compose.yml: Compose Deployment" />
       <item itemvalue="Docker.docker-composes/ocs-compose.yml: Compose Deployment" />
@@ -313,11 +320,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Docker.docker-composes/ocs-compose.yml.account-order-management: Compose Deployment" />
+        <item itemvalue="Docker.docker-composes/ocs-compose.yml.online-charging-system: Compose Deployment" />
         <item itemvalue="Docker.docker-composes/ocs-compose.yml: Compose Deployment" />
         <item itemvalue="Docker.docker-composes/kafka-compose.yml: Compose Deployment" />
         <item itemvalue="Docker.docker-composes/ignite-compose.yml: Compose Deployment" />
-        <item itemvalue="Docker.docker-composes/hazelcast-compose.yml: Compose Deployment" />
-        <item itemvalue="Docker.docker-composes/ocs-compose.yml.account-balance-management-function: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
@@ -355,7 +362,8 @@
       <workItem from="1745581725333" duration="8340000" />
       <workItem from="1746517979513" duration="5632000" />
       <workItem from="1746540889814" duration="10402000" />
-      <workItem from="1746551535073" duration="6067000" />
+      <workItem from="1746551535073" duration="6329000" />
+      <workItem from="1746596404972" duration="2454000" />
     </task>
     <servers />
   </component>
