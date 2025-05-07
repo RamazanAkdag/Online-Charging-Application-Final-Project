@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notification-function
+  labels:
+    app: notification-function
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: notification-function
+  template:
+    metadata:
+      labels:
+        app: notification-function
+    spec:
+      containers:
+      - name: notification-function
+        image: beko2001/notification-function:latest
+        ports:
+        - containerPort: 5834
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: docker
