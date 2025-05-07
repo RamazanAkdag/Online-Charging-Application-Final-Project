@@ -1,109 +1,105 @@
+Harika! O zaman resimlerin bulunduğu dizin şu şekilde:
+
+`/Pictures/`
+
+Bu yolu kullanarak **README.md** içerisine görselleri otomatik gösteren bağlantılar ekleyelim. İşte son haliyle tam README:
 
 ---
 
 # OCS Project (Online Charging System)
 
-## Overview
+## 📖 Overview
 
-The **OCS Project** (Online Charging System) is a scalable and distributed solution designed to handle real-time charging operations for telecommunications services. The architecture leverages microservices and distributed caching for high availability, fault tolerance, and efficient data processing.
+The **OCS Project** (Online Charging System) is a distributed, scalable telecommunications solution that handles real-time charging for services like voice, SMS, and data. The architecture includes microservices, distributed caching, containerization, and automated deployment.
 
-## Architecture Components
+## 🏗 Architecture
+
+**Main Components:**
+
+* **Diameter Gateway (DGW)** – Diameter message handling with Akka Cluster.
+* **Charging Gateway Function (CGF)** – Business rule application and event processing.
+* **Account Order Management (AOM)** – Manages user accounts and orders.
+* **Account Balance Management Function (ABMF)** – Manages balances and top-ups.
+* **Notification Framework (NF)** – Sends real-time notifications.
+* **Traffic Generator Function (TGF)** – Generates synthetic traffic for testing and validation.
+* **Mobile App** – End-user application.
+
+**Microservices use:**
+
+* **Spring Boot**
+* **Kafka** & **Kafdrop**
+* **Hazelcast Cluster**
+* **Apache Ignite**
+* **Docker & Kubernetes**
+
+## 🗂 System Design
+
+### 📌 Architectural Design
+
+![Architectural Design](./Pictures/architecturaldesign.png)
+
+### 📌 Database Design
+
+![Database Design](./Pictures/dbdesign.png)
+
+### 📌 Use Case Diagram
+
+![Use Case](./Pictures/usecase.png)
+
+## 🔧 Modules and Their Diagrams
 
 * **Diameter Gateway**
-  Handles Diameter protocol messages, translating them into internal service calls.
+  ![DGW](./Pictures/dgw.png)
 
-* **Charging Gateway**
-  Processes charging events, applying business rules and interacting with account management services.
+* **Charging Gateway Function**
+  ![CGF](./Pictures/cgf.png)
 
-* **Hazelcast Cluster**
-  Provides distributed caching and clustering to ensure data consistency and horizontal scalability.
+* **Account Order Management**
+  ![AOM](./Pictures/aom.png)
 
-* **Apache Ignite**
-  Used for distributed computation and caching, enhancing performance for data-intensive operations.
+* **Account Balance Management Function**
+  ![ABMF](./Pictures/abmf.png)
 
-* **Kafka & Kafdrop**
-  Kafka facilitates event streaming between services. Kafdrop is used for monitoring and managing Kafka topics.
+* **Notification Framework**
+  ![NF](./Pictures/nf.png)
 
-* **Management Center**
-  A monitoring dashboard that provides insights into cluster health and performance.
+* **Traffic Generator Function**
+  ![TGF](./Pictures/tgf.png)
 
-## Technologies Used
+* **Mobile App**
+  ![Mobile App](./Pictures/mobileapp.png)
 
-* **Java 17**
-* **Spring Boot**
-* **Hazelcast**
-* **Apache Ignite**
-* **Apache Kafka**
-* **Docker & Kubernetes**
-* **Akka Cluster (for Diameter Gateway)**
+## 🔄 CI/CD Pipeline
 
-## Key Features
+![CI/CD Pipeline](./Pictures/ci-cd.png)
 
-* **Real-Time Charging:**
-  Supports instant charging for voice, data, and SMS services.
+*Describes the continuous integration and deployment workflow from development to production.*
 
-* **Microservices Architecture:**
-  Each component runs independently for better scalability and maintainability.
+## ⚙ Technologies
 
-* **High Availability & Fault Tolerance:**
-  Uses clustering (Hazelcast, Ignite) and container orchestration for resilience.
+* **Java 17** / **Spring Boot**
+* **Hazelcast / Ignite / Kafka**
+* **Docker / Kubernetes**
+* **Akka Cluster**
+* **PostgreSQL / MongoDB** *(if applicable to DB design)*
 
-* **Event-Driven Communication:**
-  Kafka enables efficient, scalable messaging between services.
+## ✅ Development Principles
 
-## Setup & Deployment
+* Business logic isolated in **service layers**.
+* Lightweight **controllers**.
+* Follows **SOLID** and **clean architecture**.
+* Automated testing and containerized deployment.
 
-1. **Clone the repository**
+## 🔍 Monitoring
 
-   ```bash
-   git clone <your-repository-url>
-   ```
+* **Hazelcast Management Center**
+* **Ignite Dashboard**
+* **Kafdrop** for Kafka topic inspection.
 
-2. **Build microservices**
+## 📜 License
 
-   ```bash
-   ./mvnw clean package
-   ```
-
-3. **Docker & Kubernetes**
-
-   * Use provided `Dockerfile`s and `k8s` manifests to deploy services.
-   * Example:
-
-     ```bash
-     kubectl apply -f k8s/diameter-gateway.yaml
-     kubectl apply -f k8s/charging-gateway.yaml
-     ```
-
-4. **Monitoring**
-
-   * Access Management Center UI for Hazelcast and Ignite cluster metrics.
-   * Use Kafdrop to inspect Kafka topics and message flows.
-
-## Development Standards
-
-* Business logic resides strictly in the **service layer**.
-* Controllers are kept lightweight, focusing only on HTTP request handling.
-* Code follows **SOLID** and **clean architecture** principles.
-
-## Known Issues & Troubleshooting
-
-* **Pod ContainerCreating Errors:**
-  Ensure all volumes and network policies are correctly configured.
-
-* **Detached HEAD Warnings in Git:**
-  Always complete merges or resolve conflicts before switching branches.
-
-## Contributing
-
-1. Fork the repository.
-2. Create a new branch: `feature/your-feature-name`.
-3. Submit a pull request following the project's coding standards.
-
-## License
-
-This project is licensed under the MIT License. See the `LICENSE` file for details.
+MIT License.
 
 ---
 
-
+**Bonus:** Eğer istersen `README.md` için GitHub’da güzel bir kapak resmi (banner) de yapabilirim. Projeyi daha profesyonel gösterir. İster misin? 👇
