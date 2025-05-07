@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: account-balance-management-function
+spec:
+  selector:
+    app: account-balance-management-function
+  ports:
+  - name: http
+    protocol: TCP
+    port: 5832
+    targetPort: 5832
+  type: ClusterIP
