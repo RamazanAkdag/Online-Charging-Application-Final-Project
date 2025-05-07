@@ -197,7 +197,20 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
+        <!-- MapStruct core -->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>1.5.5.Final</version>
+        </dependency>
 
+        <!-- MapStruct processor (annotation processor) -->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
+            <version>1.5.5.Final</version>
+            <scope>provided</scope>
+        </dependency>
 
 
 
@@ -233,6 +246,29 @@
                     </compilerArgs>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <configuration>
+                    <from>
+                        <image>eclipse-temurin:17-jdk</image>
+                    </from>
+                    <to>
+                        <image>beko2001/account-order-management:latest</image>
+                    </to>
+                    <container>
+                        <environment>
+                            <SPRING_PROFILES_ACTIVE>docker</SPRING_PROFILES_ACTIVE>
+                        </environment>
+                        <jvmFlags>
+                            <jvmFlag>--add-opens</jvmFlag>
+                            <jvmFlag>java.base/java.nio=ALL-UNNAMED</jvmFlag>
+                            <jvmFlag>-DIGNITE_JNI_DISABLE=true</jvmFlag>
+                        </jvmFlags>
+                    </container>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
 

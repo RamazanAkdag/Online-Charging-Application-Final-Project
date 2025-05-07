@@ -13,6 +13,7 @@ services:
       - HZ_JET_ENABLED=true
     networks:
       - hazelcast-network
+      - ocs-network
     ports:
       - "5701:5701"
 
@@ -27,6 +28,7 @@ services:
   #    - HZ_NETWORK_JOIN_AUTODETECTION_ENABLED=false
   #  networks:
   #    - hazelcast-network
+  #    - ocs-network
   #  ports:
   #    - "5702:5701"
 
@@ -35,13 +37,15 @@ services:
   #  container_name: hazelcast-mancenter
   #  environment:
   #    - MC_DEFAULT_CLUSTER=hazelcast-cluster
-  #    - MC_CLUSTER_MEMBER=hazelcast-node1:5701,hazelcast-node2:5701  # İKİ NODE EKLENDİ
+  #    - MC_CLUSTER_MEMBER=hazelcast-node1:5701,hazelcast-node2:5701
   #  networks:
   #    - hazelcast-network
+  #    - ocs-network
   #  ports:
   #    - "9090:8080"
-
 
 networks:
   hazelcast-network:
     driver: bridge
+  ocs-network:
+    external: true    # <<< EKLENDİ!

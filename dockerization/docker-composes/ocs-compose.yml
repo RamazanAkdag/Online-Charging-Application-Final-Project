@@ -1,0 +1,61 @@
+version: "3.8"
+
+services:
+
+  account-balance-management-function:
+    image: beko2001/account-balance-management-function:latest
+    ports:
+      - "5832:5832"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    networks:
+      - ocs-network
+
+  account-order-management:
+    image: beko2001/account-order-management:latest
+    ports:
+      - "5831:5831"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    networks:
+      - ocs-network
+
+  charging-gateway-function:
+    image: beko2001/charging-gateway-function:latest
+    ports:
+      - "5833:5833"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    networks:
+      - ocs-network
+
+  notification-function:
+    image: beko2001/notification-function:latest
+    ports:
+      - "5834:5834"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    networks:
+      - ocs-network
+
+  diameter-gateway:
+    image: beko2001/diameter-gateway:latest
+    hostname: diameter-gateway        # ← isterseniz açıkça da verebilirsiniz
+    ports: ["5855:5855"]              # dış HTTP portu; Akka için açmanıza gerek yok
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - AKKA_HOST=diameter-gateway    # Akka'nın kullanacağı host adı
+    networks: [ocs-network]
+
+  online-charging-system:
+    image: beko2001/online-charging-system:latest
+    hostname: online-charging-system
+    ports: ["8071:8071"]
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - AKKA_HOST=online-charging-system
+    networks: [ocs-network]
+
+networks:
+  ocs-network:
+    external: true
