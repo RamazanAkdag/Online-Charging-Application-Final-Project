@@ -49,6 +49,7 @@
                     <artifactId>ignite-indexing</artifactId>
                 </exclusion>
             </exclusions>
+
         </dependency>
 
         <dependency>
