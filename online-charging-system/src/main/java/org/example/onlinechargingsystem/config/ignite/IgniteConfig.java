@@ -1,4 +1,4 @@
-package org.example.onlinechargingsystem.config;
+package org.example.onlinechargingsystem.config.ignite;
 
 
 import org.apache.ignite.Ignition;

@@ -6,13 +6,10 @@ import akka.actor.typed.javadsl.*;
 
 import com.ramobeko.akka.Command;
 import com.ramobeko.dgwtgf.model.UsageType;
-import com.ramobeko.ignite.IgniteBalance;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.example.onlinechargingsystem.config.OcsWorkerConfig;
+import org.example.onlinechargingsystem.config.akka.OcsWorkerConfig;
 import org.example.onlinechargingsystem.service.abstrct.IBalanceService;
-import org.example.onlinechargingsystem.strategy.abstrct.IUsageBalanceChecker;
-import org.example.onlinechargingsystem.strategy.concrete.checker.UsageBalanceCheckerFactory;
 
 public class OcsWorkerActor extends AbstractBehavior<Command.UsageData> {
 
@@ -63,24 +60,19 @@ public class OcsWorkerActor extends AbstractBehavior<Command.UsageData> {
         System.out.println("------------------------------------------------------------");
         logger.info("📩 [{}] Received message - Checking balance for usage type {}", actorId, data.getUsageType());
 
-
         long subscNumber = Long.parseLong(data.getSenderSubscNumber());
         double usageAmount = data.getUsageAmount();
         UsageType usageType = data.getUsageType();
 
-        IgniteBalance currentBalance = balanceService.getBalance(subscNumber);
+        boolean sufficient = balanceService.hasSufficientBalance(subscNumber, usageAmount, usageType);
 
-        IUsageBalanceChecker balanceChecker = UsageBalanceCheckerFactory.getChecker(usageType);
-        double availableBalance = balanceChecker.getAvailableBalance(currentBalance);
-
-        if (availableBalance < usageAmount) {
-            logger.warn("⛔ [{}] Insufficient balance for subscriber: {} (Type: {}, Available: {})", actorId, subscNumber, usageType, availableBalance);
+        if (!sufficient) {
+            logger.warn("⛔ [{}] Insufficient balance for subscriber: {}", actorId, subscNumber);
             nfPublisher.tell(data);
             return this;
         }
 
         logger.info("✅ [{}] User has sufficient balance. Forwarding to CGFPublisher & BalanceManager", actorId);
-
 
         cgfPublisher.tell(data);
         balanceManager.tell(data);

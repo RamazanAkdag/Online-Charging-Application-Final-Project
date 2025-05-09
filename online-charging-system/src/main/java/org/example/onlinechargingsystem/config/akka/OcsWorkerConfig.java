@@ -1,4 +1,4 @@
-package org.example.onlinechargingsystem.config;
+package org.example.onlinechargingsystem.config.akka;
 
 import org.example.onlinechargingsystem.service.abstrct.IBalanceService;
 import org.example.onlinechargingsystem.repository.ignite.IgniteSubscriberRepository;

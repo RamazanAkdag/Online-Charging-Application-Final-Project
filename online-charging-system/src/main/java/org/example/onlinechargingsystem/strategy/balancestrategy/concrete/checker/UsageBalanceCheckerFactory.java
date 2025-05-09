@@ -1,7 +1,7 @@
-package org.example.onlinechargingsystem.strategy.concrete.checker;
+package org.example.onlinechargingsystem.strategy.balancestrategy.concrete.checker;
 
 import com.ramobeko.dgwtgf.model.UsageType;
-import org.example.onlinechargingsystem.strategy.abstrct.IUsageBalanceChecker;
+import org.example.onlinechargingsystem.strategy.balancestrategy.abstrct.IUsageBalanceChecker;
 
 import java.util.HashMap;
 import java.util.Map;

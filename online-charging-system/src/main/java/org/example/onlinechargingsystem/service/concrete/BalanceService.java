@@ -8,9 +8,14 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.example.onlinechargingsystem.repository.ignite.IgniteSubscriberRepository;
 import org.example.onlinechargingsystem.service.abstrct.IBalanceService;
-import org.example.onlinechargingsystem.strategy.abstrct.IUsageDeductionStrategy;
-import org.example.onlinechargingsystem.strategy.concrete.deduction.UsageDeductionStrategyFactory;
+import org.example.onlinechargingsystem.strategy.balancestrategy.abstrct.IUsageBalanceChecker;
+import org.example.onlinechargingsystem.strategy.balancestrategy.abstrct.IUsageDeductionStrategy;
+import org.example.onlinechargingsystem.strategy.balancestrategy.concrete.checker.UsageBalanceCheckerFactory;
+import org.example.onlinechargingsystem.strategy.balancestrategy.concrete.deduction.UsageDeductionStrategyFactory;
+import org.example.onlinechargingsystem.strategy.thresholdstrategy.concrete.UsageThresholdPolicy;
 import org.springframework.stereotype.Service;
+import com.ramobeko.kafka.message.NFKafkaMessage;
+
 
 @Service
 @RequiredArgsConstructor
@@ -19,6 +24,8 @@ public class BalanceService implements IBalanceService {
     private static final Logger logger = LogManager.getLogger(BalanceService.class);
 
     private final IgniteSubscriberRepository igniteSubscriberRepository;
+
+    private final UsageThresholdPolicy thresholdPolicy;
 
     @Override
     public IgniteBalance getBalance(Long subscNumber) {
@@ -58,4 +65,44 @@ public class BalanceService implements IBalanceService {
 
         logger.info("✅ Balance updated for subscriber: {}, UsageType: {}, Amount Deducted: {}", subscNumber, usageType, amount);
     }
+
+    @Override
+    public String evaluateUsageThreshold(Long subscNumber, double usageAmount, UsageType usageType) {
+        logger.info("🔎 Evaluating usage threshold for subscriber: {}, UsageAmount: {}, UsageType: {}",
+                subscNumber, usageAmount, usageType);
+
+        IgniteBalance balance = getBalance(subscNumber);
+        IUsageBalanceChecker balanceChecker = UsageBalanceCheckerFactory.getChecker(usageType);
+        double initialBalance = balanceChecker.getAvailableBalance(balance);
+
+        if (initialBalance <= 0) {
+            logger.warn("⚠️ Subscriber {} has zero or negative balance. Skipping threshold evaluation.", subscNumber);
+            return null;
+        }
+
+        double usagePercentage = (usageAmount / initialBalance) * 100;
+        logger.info("🔢 Usage Percentage: {}%", String.format("%.2f", usagePercentage));
+
+
+        return thresholdPolicy
+                .evaluate(subscNumber, usageType, usagePercentage)
+                .map(NFKafkaMessage::getNotificationType) // Burada mesaj başlığı alınıyor
+                .orElse(null);
+    }
+
+
+    @Override
+    public boolean hasSufficientBalance(Long subscNumber, double usageAmount, UsageType usageType) {
+        logger.info("🔎 Checking if subscriber {} has sufficient balance for {} usage of amount {}", subscNumber, usageType, usageAmount);
+
+        IgniteBalance balance = getBalance(subscNumber);
+        IUsageBalanceChecker balanceChecker = UsageBalanceCheckerFactory.getChecker(usageType);
+        double availableBalance = balanceChecker.getAvailableBalance(balance);
+
+        logger.info("💰 Available balance: {}, Required usage amount: {}", availableBalance, usageAmount);
+
+        return availableBalance >= usageAmount;
+    }
+
+
 }
