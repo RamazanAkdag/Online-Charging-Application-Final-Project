@@ -1,7 +1,7 @@
-package org.example.onlinechargingsystem.strategy.concrete.deduction;
+package org.example.onlinechargingsystem.strategy.balancestrategy.concrete.deduction;
 
 import com.ramobeko.dgwtgf.model.UsageType;
-import org.example.onlinechargingsystem.strategy.abstrct.IUsageDeductionStrategy;
+import org.example.onlinechargingsystem.strategy.balancestrategy.abstrct.IUsageDeductionStrategy;
 
 import java.util.HashMap;
 import java.util.Map;

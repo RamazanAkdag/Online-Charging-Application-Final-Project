@@ -1,10 +1,10 @@
-package org.example.onlinechargingsystem.strategy.concrete;
+package org.example.onlinechargingsystem.strategy.balancestrategy.concrete;
 
 import org.example.onlinechargingsystem.repository.ignite.IgniteSubscriberRepository;
-import org.example.onlinechargingsystem.strategy.abstrct.IUsageBalanceChecker;
-import org.example.onlinechargingsystem.strategy.abstrct.IUsageDeductionStrategy;
-import org.example.onlinechargingsystem.strategy.concrete.checker.UsageBalanceCheckerFactory;
-import org.example.onlinechargingsystem.strategy.concrete.deduction.UsageDeductionStrategyFactory;
+import org.example.onlinechargingsystem.strategy.balancestrategy.abstrct.IUsageBalanceChecker;
+import org.example.onlinechargingsystem.strategy.balancestrategy.abstrct.IUsageDeductionStrategy;
+import org.example.onlinechargingsystem.strategy.balancestrategy.concrete.checker.UsageBalanceCheckerFactory;
+import org.example.onlinechargingsystem.strategy.balancestrategy.concrete.deduction.UsageDeductionStrategyFactory;
 import com.ramobeko.dgwtgf.model.UsageType;
 import com.ramobeko.ignite.IgniteBalance;
 import com.ramobeko.ignite.IgniteSubscriber;

@@ -1,11 +1,15 @@
-package org.example.onlinechargingsystem.strategy.thresholdstrategy.concrete;
+package org.example.onlinechargingsystem.strategy.thresholdstrategy.concrete.rules;
 
 import com.ramobeko.dgwtgf.model.UsageType;
 import com.ramobeko.kafka.message.NFKafkaMessage;
 import org.example.onlinechargingsystem.strategy.thresholdstrategy.abstrct.UsageThresholdRule;
+import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
 
 import java.time.Instant;
 
+@Order(2) // Önce 100%
+@Component
 public class EightyPercentRule implements UsageThresholdRule {
 
     @Override

@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import com.ramobeko.akka.Command;
 import org.example.onlinechargingsystem.service.abstrct.IKafkaProducerService;
 import com.ramobeko.kafka.message.CGFKafkaMessage;
+import org.example.onlinechargingsystem.util.mapper.CGFKafkaMessageMapper;
 
 public class CGFPublisherActor extends AbstractBehavior<Command.UsageData> {
 
@@ -39,16 +40,8 @@ public class CGFPublisherActor extends AbstractBehavior<Command.UsageData> {
                 data.getSenderSubscNumber(), data.getReceiverSubscNumber(), data.getUsageTime());
 
         try {
-            // CGFKafkaMessage oluştur
-            CGFKafkaMessage message = new CGFKafkaMessage(
-                    data.getUsageType(),
-                    data.getUsageAmount(),
-                    data.getSenderSubscNumber(),
-                    data.getReceiverSubscNumber(),
-                    data.getUsageTime()
-            );
+            CGFKafkaMessage message = CGFKafkaMessageMapper.toKafkaMessage(data);
 
-            // Kafka'ya gönder
             kafkaProducerService.sendCGFUsageData(cgfTopic, message);
             logger.info("✅ [{}] Successfully sent CGF message to Kafka: {}", actorId, message);
 

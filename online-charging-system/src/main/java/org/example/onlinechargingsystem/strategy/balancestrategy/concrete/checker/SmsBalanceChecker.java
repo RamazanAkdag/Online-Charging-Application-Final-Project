@@ -1,7 +1,7 @@
-package org.example.onlinechargingsystem.strategy.concrete.checker;
+package org.example.onlinechargingsystem.strategy.balancestrategy.concrete.checker;
 
 import com.ramobeko.ignite.IgniteBalance;
-import org.example.onlinechargingsystem.strategy.abstrct.IUsageBalanceChecker;
+import org.example.onlinechargingsystem.strategy.balancestrategy.abstrct.IUsageBalanceChecker;
 
 public class SmsBalanceChecker implements IUsageBalanceChecker {
     @Override

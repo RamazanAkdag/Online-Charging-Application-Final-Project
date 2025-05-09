@@ -1,11 +1,11 @@
-package org.example.onlinechargingsystem.strategy.concrete.deduction;
+package org.example.onlinechargingsystem.strategy.balancestrategy.concrete.deduction;
 
 import com.ramobeko.ignite.IgniteSubscriber;
 import com.ramobeko.ignite.IgniteBalance;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.example.onlinechargingsystem.repository.ignite.IgniteSubscriberRepository;
-import org.example.onlinechargingsystem.strategy.abstrct.IUsageDeductionStrategy;
+import org.example.onlinechargingsystem.strategy.balancestrategy.abstrct.IUsageDeductionStrategy;
 
 public class DataDeductionStrategy implements IUsageDeductionStrategy {
     private static final Logger logger = LogManager.getLogger(DataDeductionStrategy.class);
