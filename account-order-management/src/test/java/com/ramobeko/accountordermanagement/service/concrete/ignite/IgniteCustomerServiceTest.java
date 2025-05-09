@@ -80,7 +80,9 @@ class IgniteCustomerServiceTest {
 
         assertEquals("Customer not found with ID: 3", exception.getMessage());
 
-        verify(igniteCustomerRepository, never()).save(any());
+        // Save hiç çağrılmamalı
+        verify(igniteCustomerRepository, never()).save(any(IgniteCustomer.class));
+
     }
 
     @Test
