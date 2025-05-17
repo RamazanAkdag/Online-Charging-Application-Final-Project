@@ -1,4 +1,5 @@
 output "all_ips" {
+  description = "Public IP addresses of all EC2 instances"
   value = {
     sonarqube = module.sonarqube.public_ip
     nexus     = module.nexus.public_ip
