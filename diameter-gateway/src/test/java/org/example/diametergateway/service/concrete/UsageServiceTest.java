@@ -5,9 +5,12 @@ import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.map.IMap;
 import com.ramobeko.akka.Command;
 import com.ramobeko.dgwtgf.model.UsageRequest;
+import org.example.service.concrete.UsageService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.*;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
@@ -29,8 +32,10 @@ class UsageServiceTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        when(hazelcastInstance.getMap("subscriberCache")).thenReturn(subscriberMap);
+        // güvenli mocklama - doReturn().when(...) ile
+        doReturn(subscriberMap).when(hazelcastInstance).getMap("subscriberCache");
 
+        // alternatif olarak constructor sonrası atama:
         usageService = new UsageService(hazelcastInstance, router);
     }
 
@@ -40,7 +45,7 @@ class UsageServiceTest {
         UsageRequest request = new UsageRequest();
         request.setSenderSubscNumber("905555555555");
 
-        when(subscriberMap.containsKey("905555555555")).thenReturn(true);
+        doReturn(true).when(subscriberMap).containsKey("905555555555");
 
         // Act
         String result = usageService.processUsageRequest(request);
@@ -56,7 +61,7 @@ class UsageServiceTest {
         UsageRequest request = new UsageRequest();
         request.setSenderSubscNumber("905555555555");
 
-        when(subscriberMap.containsKey("905555555555")).thenReturn(false);
+        doReturn(false).when(subscriberMap).containsKey("905555555555");
 
         // Act
         String result = usageService.processUsageRequest(request);
@@ -66,4 +71,3 @@ class UsageServiceTest {
         verify(router, never()).tell(any());
     }
 }
-

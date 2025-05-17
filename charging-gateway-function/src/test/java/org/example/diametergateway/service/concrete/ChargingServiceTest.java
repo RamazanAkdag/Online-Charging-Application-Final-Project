@@ -1,4 +1,4 @@
-package org.example.charginggatewayfunction.service.concrete;
+package org.example.diametergateway.service.concrete;
 
 import com.ramobeko.kafka.message.CGFKafkaMessage;
 import com.ramobeko.oracle.model.OracleSubscriber;
@@ -30,7 +30,7 @@ class ChargingServiceTest {
     private OracleSubscriberRepository subscriberRepository;
 
     @InjectMocks
-    private ChargingService chargingService;
+    private org.example.charginggatewayfunction.service.concrete.ChargingService chargingService;
 
     @Captor
     ArgumentCaptor<PersonalUsage> usageCaptor;
