@@ -4,8 +4,9 @@ resource "aws_lambda_function" "this" {
   handler       = "index.handler"
   runtime       = "python3.9"
 
-  filename         = var.lambda_zip_path
-  source_code_hash = filebase64sha256(var.lambda_zip_path)
+  filename         = data.archive_file.lambda_zip.output_path
+  source_code_hash = data.archive_file.lambda_zip.output_base64sha256
+
 
   file_system_config {
     arn              = var.efs_access_point_arn
@@ -39,3 +40,10 @@ resource "aws_iam_role_policy_attachment" "lambda_policy" {
   role       = aws_iam_role.lambda_exec.name
   policy_arn = "arn:aws:iam::aws:policy/AWSLambdaFullAccess"
 }
+
+data "archive_file" "lambda_zip" {
+  type        = "zip"
+  source_file = "${path.module}/index.py"
+  output_path = "${path.module}/efs_backup_lambda.zip"
+}
+

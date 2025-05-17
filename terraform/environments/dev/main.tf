@@ -40,7 +40,7 @@ module "sonarqube" {
   key_name           = "ramo-beko-key"
   volume_size        = 20
   instance_name      = "sonarqube"
-  security_group_ids = [module.app_sg.this.id]
+  security_group_ids = [module.app_sg.security_group_id]
 }
 
 module "nexus" {
@@ -50,7 +50,7 @@ module "nexus" {
   key_name           = "ramo-beko-key"
   volume_size        = 20
   instance_name      = "nexus"
-  security_group_ids = [module.app_sg.this.id]
+  security_group_ids = [module.app_sg.security_group_id]
 }
 
 module "k8s_master" {
@@ -60,7 +60,7 @@ module "k8s_master" {
   key_name           = "ramo-beko-key"
   volume_size        = 25
   instance_name      = "kubernetes-master"
-  security_group_ids = [module.app_sg.this.id]
+  security_group_ids = [module.app_sg.security_group_id]
 }
 
 module "k8s_slave_1" {
@@ -70,7 +70,7 @@ module "k8s_slave_1" {
   key_name           = "ramo-beko-key"
   volume_size        = 25
   instance_name      = "kubernetes-slave-1"
-  security_group_ids = [module.app_sg.this.id]
+  security_group_ids = [module.app_sg.security_group_id]
 }
 
 module "k8s_slave_2" {
@@ -80,7 +80,7 @@ module "k8s_slave_2" {
   key_name           = "ramo-beko-key"
   volume_size        = 25
   instance_name      = "kubernetes-slave-2"
-  security_group_ids = [module.app_sg.this.id]
+  security_group_ids = [module.app_sg.security_group_id]
 }
 
 module "backup_bucket" {
@@ -91,15 +91,6 @@ module "backup_bucket" {
 module "efs" {
   source            = "../../modules/efs"
   name              = "efs-backup"
-  subnet_id         = "subnet-xxxxxxxx"
-  security_group_id = "sg-xxxxxxxx"
+  subnet_id         = module.network.public_subnet_id
+  security_group_id = module.app_sg.security_group_id
 }
-
-module "efs_backup_lambda" {
-  source               = "../../modules/lambda"
-  name                 = "efs-to-s3-backup"
-  lambda_zip_path      = "${path.module}/lambda/efs_backup_lambda.zip"
-  efs_access_point_arn = module.efs.access_point_arn
-  target_s3_bucket     = module.backup_bucket.bucket_name
-}
-
