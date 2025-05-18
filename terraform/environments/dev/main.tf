@@ -47,12 +47,17 @@ module "app_sg" {
   ]
 }
 
+module "keypair" {
+  source    = "../../modules/keypair"
+  key_name  = "ocs-key"
+}
+
 # 📌 EC2 Modülleri
 module "sonarqube" {
   source             = "../../modules/ec2_instance"
   ami_id             = data.aws_ami.ubuntu_latest.id
   instance_type      = "t2.medium"
-  key_name = aws_key_pair.ocs_key.key_name
+  key_name = module.keypair.key_name
   volume_size        = 20
   instance_name      = "sonarqube"
   subnet_id          = data.aws_subnet.first.id
@@ -66,7 +71,7 @@ module "nexus" {
   source             = "../../modules/ec2_instance"
   ami_id             = data.aws_ami.ubuntu_latest.id
   instance_type      = "t2.medium"
-  key_name = aws_key_pair.ocs_key.key_name
+  key_name = module.keypair.key_name
   volume_size        = 20
   instance_name      = "nexus"
   subnet_id          = data.aws_subnet.first.id
@@ -80,7 +85,7 @@ module "k8s_master" {
   source             = "../../modules/ec2_instance"
   ami_id             = data.aws_ami.ubuntu_latest.id
   instance_type      = "t2.medium"
-  key_name = aws_key_pair.ocs_key.key_name
+  key_name = module.keypair.key_name
   volume_size        = 25
   instance_name      = "kubernetes-master"
   subnet_id          = data.aws_subnet.first.id
@@ -94,7 +99,7 @@ module "k8s_slave_1" {
   source             = "../../modules/ec2_instance"
   ami_id             = data.aws_ami.ubuntu_latest.id
   instance_type      = "t2.medium"
-  key_name = aws_key_pair.ocs_key.key_name
+  key_name = module.keypair.key_name
   volume_size        = 25
   instance_name      = "kubernetes-slave-1"
   subnet_id          = data.aws_subnet.first.id
@@ -107,7 +112,7 @@ module "k8s_slave_1" {
 module "k8s_slave_2" {
   source             = "../../modules/ec2_instance"
   ami_id             = data.aws_ami.ubuntu_latest.id
-  key_name = aws_key_pair.ocs_key.key_name     
+  key_name = module.keypair.key_name  
   instance_type   = "t2.medium"
   volume_size        = 25
   instance_name      = "kubernetes-slave-2"
@@ -134,10 +139,34 @@ module "efs" {
   depends_on = [module.app_sg]
 }
 
+module "lambda_exec_role" {
+  source = "../../modules/iam_role"
+
+  role_name = "efs-lambda-role"
+
+  assume_role_policy_json = jsonencode({
+    Version = "2012-10-17",
+    Statement = [{
+      Effect = "Allow",
+      Principal = {
+        Service = "lambda.amazonaws.com"
+      },
+      Action = "sts:AssumeRole"
+    }]
+  })
+
+  policy_arns = [
+    "arn:aws:iam::aws:policy/AWSLambda_FullAccess",
+    "arn:aws:iam::aws:policy/AmazonElasticFileSystemClientFullAccess",
+    "arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
+  ]
+}
+
 module "efs_backup_lambda" {
   source               = "../../modules/lambda"
   name                 = "efs-to-s3-backup"
   lambda_zip_path      = "${path.root}/../../modules/lambda/efs_backup_lambda.zip"
+  lambda_role_arn      = module.lambda_exec_role.role_arn
   efs_access_point_arn = module.efs.access_point_arn
   target_s3_bucket     = module.backup_bucket.bucket_name
   subnet_ids           = [data.aws_subnet.first.id]
