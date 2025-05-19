@@ -1,0 +1,47 @@
+- name: Install Java (required for Nexus)
+  apt:
+    name: openjdk-11-jdk
+    state: present
+    update_cache: yes
+
+- name: Add Nexus user
+  user:
+    name: nexus
+    shell: /bin/bash
+    create_home: yes
+
+- name: Download Nexus
+  get_url:
+    url: https://download.sonatype.com/nexus/3/latest-unix.tar.gz
+    dest: /opt/nexus.tar.gz
+
+- name: Extract Nexus
+  unarchive:
+    src: /opt/nexus.tar.gz
+    dest: /opt/
+    remote_src: yes
+
+- name: Create Nexus service
+  copy:
+    dest: /etc/systemd/system/nexus.service
+    content: |
+      [Unit]
+      Description=nexus service
+      After=network.target
+
+      [Service]
+      Type=forking
+      LimitNOFILE=65536
+      ExecStart=/opt/nexus-*/bin/nexus start
+      ExecStop=/opt/nexus-*/bin/nexus stop
+      User=nexus
+      Restart=on-abort
+
+      [Install]
+      WantedBy=multi-user.target
+
+- name: Enable & Start Nexus
+  systemd:
+    name: nexus
+    enabled: yes
+    state: started

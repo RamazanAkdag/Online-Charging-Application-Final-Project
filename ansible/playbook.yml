@@ -1,0 +1,23 @@
+- name: Setup Nexus
+  hosts: nexus
+  become: true
+  roles:
+    - nexus
+
+- name: Setup SonarQube
+  hosts: sonarqube
+  become: true
+  roles:
+    - sonarqube
+
+- name: Setup Kubernetes Master
+  hosts: k8s_master
+  become: true
+  roles:
+    - { role: k8s, tasks_from: master }
+
+- name: Setup Kubernetes Slaves
+  hosts: k8s_slaves
+  become: true
+  roles:
+    - { role: k8s, tasks_from: slaves }

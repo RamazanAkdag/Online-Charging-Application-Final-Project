@@ -1,0 +1,40 @@
+- name: Install Kubernetes packages
+  apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+    state: present
+    update_cache: yes
+
+- name: Add Kubernetes GPG key
+  shell: |
+    curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+
+- name: Add Kubernetes repo
+  copy:
+    dest: /etc/apt/sources.list.d/kubernetes.list
+    content: |
+      deb https://apt.kubernetes.io/ kubernetes-xenial main
+
+- name: Install kubelet, kubeadm
+  apt:
+    name:
+      - kubelet
+      - kubeadm
+    state: present
+    update_cache: yes
+
+- name: Disable swap
+  command: swapoff -a
+  when: ansible_swaptotal_mb > 0
+
+- name: Fetch join command from master node
+  fetch:
+    src: /tmp/kubeadm_join_cmd.sh
+    dest: /tmp/kubeadm_join_cmd.sh
+    flat: yes
+  delegate_to: "{{ groups['k8s_master'][0] }}"
+
+- name: Join Kubernetes cluster
+  command: bash /tmp/kubeadm_join_cmd.sh
