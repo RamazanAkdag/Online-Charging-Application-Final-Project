@@ -1,4 +1,4 @@
-- name: Install Java (required for Nexus)
+- name: Install Java
   apt:
     name: openjdk-11-jdk
     state: present
@@ -10,9 +10,9 @@
     shell: /bin/bash
     create_home: yes
 
-- name: Download Nexus
+- name: Download Nexus (Linux version)
   get_url:
-    url: https://download.sonatype.com/nexus/3/latest-unix.tar.gz
+    url: https://download.sonatype.com/nexus/3/nexus-3.80.0-06-linux-x86_64.tar.gz
     dest: /opt/nexus.tar.gz
 
 - name: Extract Nexus
@@ -21,27 +21,55 @@
     dest: /opt/
     remote_src: yes
 
-- name: Create Nexus service
+- name: Set directory ownership
+  file:
+    path: /opt/nexus-3.80.0-06
+    owner: nexus
+    group: nexus
+    recurse: yes
+
+- name: Create working directory
+  file:
+    path: /opt/sonatype-work/nexus3
+    state: directory
+    owner: nexus
+    group: nexus
+    mode: '0755'
+    recurse: yes
+
+- name: Configure nexus.rc
+  copy:
+    dest: /opt/nexus-3.80.0-06/bin/nexus.rc
+    content: |
+      RUN_AS_USER=nexus
+      HOME=/opt/nexus-3.80.0-06
+    owner: nexus
+    group: nexus
+    mode: '0644'
+
+- name: Create systemd service
   copy:
     dest: /etc/systemd/system/nexus.service
     content: |
       [Unit]
-      Description=nexus service
+      Description=Nexus Repository Manager
       After=network.target
 
       [Service]
       Type=forking
       LimitNOFILE=65536
-      ExecStart=/opt/nexus-*/bin/nexus start
-      ExecStop=/opt/nexus-*/bin/nexus stop
+      ExecStart=/opt/nexus-3.80.0-06/bin/nexus start
+      ExecStop=/opt/nexus-3.80.0-06/bin/nexus stop
       User=nexus
       Restart=on-abort
 
       [Install]
       WantedBy=multi-user.target
 
-- name: Enable & Start Nexus
-  systemd:
-    name: nexus
-    enabled: yes
-    state: started
+- name: Reload and start Nexus service
+  block:
+    - command: systemctl daemon-reload
+    - systemd:
+        name: nexus
+        enabled: yes
+        state: started

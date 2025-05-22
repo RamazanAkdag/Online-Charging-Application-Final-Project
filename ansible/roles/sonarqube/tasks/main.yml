@@ -1,7 +1,7 @@
-- name: Install dependencies
+- name: Install dependencies (Java 17 + unzip)
   apt:
     name:
-      - openjdk-11-jdk
+      - openjdk-17-jdk
       - unzip
     state: present
     update_cache: yes
@@ -39,17 +39,22 @@
       After=network.target
 
       [Service]
-      Type=simple
+      Type=forking
       ExecStart=/opt/sonarqube-10.4.1.88267/bin/linux-x86-64/sonar.sh start
       ExecStop=/opt/sonarqube-10.4.1.88267/bin/linux-x86-64/sonar.sh stop
       User=sonarqube
-      Restart=on-abort
+      Restart=on-failure
+      LimitNOFILE=65536
 
       [Install]
       WantedBy=multi-user.target
+
+- name: Reload systemd
+  command: systemctl daemon-reload
 
 - name: Enable & Start SonarQube
   systemd:
     name: sonarqube
     enabled: yes
     state: started
+

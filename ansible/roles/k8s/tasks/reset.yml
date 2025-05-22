@@ -1,0 +1,122 @@
+- name: Stop kubelet service if exists
+  systemd:
+    name: kubelet
+    state: stopped
+    enabled: no
+  ignore_errors: yes
+
+- name: Stop containerd service
+  systemd:
+    name: containerd
+    state: stopped
+    enabled: no
+  ignore_errors: yes
+
+- name: Reset Kubernetes cluster (if master)
+  command: kubeadm reset -f
+  ignore_errors: yes
+
+- name: Remove Kubernetes packages
+  apt:
+    name:
+      - kubeadm
+      - kubelet
+      - kubectl
+      - containerd
+    state: absent
+    purge: yes
+  ignore_errors: yes
+
+- name: Update APT cache after removal
+  apt:
+    update_cache: yes
+
+
+- name: Remove Kubernetes repo list
+  file:
+    path: /etc/apt/sources.list.d/kubernetes.list
+    state: absent
+  ignore_errors: yes
+
+- name: Remove Kubernetes GPG key
+  file:
+    path: /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+    state: absent
+  ignore_errors: yes
+
+- name: Remove .kube directory (ubuntu user)
+  file:
+    path: /home/ubuntu/.kube
+    state: absent
+  ignore_errors: yes
+
+- name: Remove configuration files and folders
+  file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - /etc/kubernetes
+    - /var/lib/kubelet
+    - /var/lib/etcd
+    - /var/lib/containerd
+    - /etc/containerd
+  ignore_errors: yes
+
+- name: Clean iptables
+  shell: |
+    iptables -F && iptables -t nat -F && iptables -t mangle -F && iptables -X
+  ignore_errors: yes
+
+- name: Remove swapoff persist entry
+  replace:
+    path: /etc/fstab
+    regexp: '^.*swap.*$'
+    replace: ''
+    backup: yes  
+  ignore_errors: yes
+
+
+#######################
+# 🧹 Calico Cleanup
+#######################
+
+- name: Delete Calico CNI plugin binaries
+  file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - /opt/cni/bin/calico
+    - /opt/cni/bin/calico-ipam
+    - /opt/cni/bin/install
+    - /opt/cni/bin/loopback
+    - /opt/cni/bin/host-local
+    - /opt/cni/bin/portmap
+    - /opt/cni/bin/bandwidth
+    - /opt/cni/bin/flannel
+  ignore_errors: yes
+
+- name: Remove CNI configuration directory
+  file:
+    path: /etc/cni
+    state: absent
+  ignore_errors: yes
+
+- name: Remove CNI network plugins directory
+  file:
+    path: /opt/cni
+    state: absent
+  ignore_errors: yes
+
+- name: Delete Calico-related CRDs (if still accessible)
+  shell: |
+    kubectl delete crd $(kubectl get crd | grep calico | awk '{print $1}')
+  environment:
+    KUBECONFIG: /etc/kubernetes/admin.conf
+  ignore_errors: yes
+
+- name: Delete kube-system namespace pods related to Calico
+  shell: |
+    kubectl delete pods --all -n kube-system
+  environment:
+    KUBECONFIG: /etc/kubernetes/admin.conf
+  ignore_errors: yes
