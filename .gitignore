@@ -36,3 +36,5 @@ build/
 
 terraform/environments/dev/.terraform/
 
+jenkins/
+
