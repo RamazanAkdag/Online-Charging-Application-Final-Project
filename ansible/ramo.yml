@@ -1,0 +1,29 @@
+- name: Setup Nexus
+  hosts: nexus
+  become: true
+  roles:
+    - nexus
+
+- name: Setup SonarQube
+  hosts: sonarqube
+  become: true
+  roles:
+    - sonarqube
+
+- name: Setup Kubernetes
+  hosts: k8s_master:k8s_slaves
+  become: true
+  vars:
+    is_dev: false
+  tasks:
+    - name: Include main task file
+      import_tasks: roles/k8s/tasks/main.yml
+
+- name: Setup Jenkins
+  hosts: jenkins
+  become: true
+  vars_files:
+    - group_vars/jenkins.yml
+  roles:
+    - jenkins
+

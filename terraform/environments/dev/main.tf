@@ -118,6 +118,21 @@ module "k8s_slave_2" {
   depends_on = [module.app_sg]
 }
 
+module "jenkins" {
+  source             = "../../modules/ec2_instance"
+  ami_id             = data.aws_ami.ubuntu_latest.id
+  instance_type      = "t2.medium"
+  key_name           = aws_key_pair.ocs_key.key_name
+  volume_size        = 20
+  instance_name      = "jenkins"
+  subnet_id          = data.aws_subnet.first.id
+  vpc_id             = data.aws_vpc.default.id
+  security_group_ids = [module.app_sg.security_group_id]
+
+  depends_on = [module.app_sg]
+}
+
+
 # 📌 S3 Bucket Modülü
 module "backup_bucket" {
   source      = "../../modules/s3_bucket"
