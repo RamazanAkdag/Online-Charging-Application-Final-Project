@@ -55,3 +55,33 @@
     dest: fetched_join_cmds/
     flat: yes
   run_once: true
+
+- name: Copy kubeconfig as Jenkins-use secret
+  copy:
+    src: /etc/kubernetes/admin.conf
+    dest: /tmp/kubernetes_master_secret
+    remote_src: yes
+
+- name: Fetch kubeconfig from master
+  fetch:
+    src: /tmp/kubernetes_master_secret
+    dest: /tmp/secrets/
+    flat: yes
+  run_once: true
+
+- name: Copy kubeconfig to Jenkins
+  copy:
+    src: /tmp/secrets/kubernetes_master_secret
+    dest: /opt/secrets/kubeconfig
+  delegate_to: "{{ groups['jenkins'][0] }}"
+  run_once: true
+
+- name: Set ownership and permissions for Kubernetes master secret on Jenkins
+  file:
+    path: /opt/secrets/kubeconfig
+    owner: jenkins
+    group: jenkins
+    mode: '0600'
+  delegate_to: "{{ groups['jenkins'][0] }}"
+  run_once: true
+

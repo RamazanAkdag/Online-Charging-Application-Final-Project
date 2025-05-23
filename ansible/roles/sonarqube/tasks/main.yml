@@ -58,3 +58,80 @@
     enabled: yes
     state: started
 
+- name: Wait for SonarQube to be available
+  uri:
+    url: "http://localhost:9000/api/system/status"
+    method: GET
+    status_code: 200
+    return_content: yes
+    force_basic_auth: yes
+  register: sonar_status
+  until: "'UP' in sonar_status.content"
+  retries: 30
+  delay: 5
+
+- name: Generate sonar-token with default admin credentials
+  uri:
+    url: "http://localhost:9000/api/user_tokens/generate"
+    method: POST
+    user: "admin"
+    password: "admin"
+    force_basic_auth: yes
+    status_code: 200
+    body_format: form-urlencoded
+    body:
+      name: "sonar-token"
+  register: sonar_token_response
+  ignore_errors: yes
+
+- name: Save token to file
+  copy:
+    content: "{{ sonar_token_response.json.token | default('') }}"
+    dest: "/tmp/sonarqube_secret"
+  when: sonar_token_response.json.token is defined
+
+- name: Fetch SonarQube secret from SonarQube host
+  fetch:
+    src: /tmp/sonarqube_secret
+    dest: /tmp/secrets/
+    flat: yes
+
+- name: Copy SonarQube secret to Jenkins
+  copy:
+    src: /tmp/secrets/sonarqube_secret
+    dest: /opt/secrets/sonarqube_secret
+  delegate_to: "{{ groups['jenkins'][0] }}"
+
+- name: Set ownership and permissions for SonarQube secret on Jenkins
+  file:
+    path: /opt/secrets/sonarqube_secret
+    owner: jenkins
+    group: jenkins
+    mode: '0600'
+  delegate_to: "{{ groups['jenkins'][0] }}"
+
+- name: Write SonarQube IP to temp file
+  copy:
+    content: "{{ ansible_host }}"
+    dest: /tmp/sonarqube_ip
+
+- name: Fetch SonarQube IP file
+  fetch:
+    src: /tmp/sonarqube_ip
+    dest: /tmp/secrets/
+    flat: yes
+
+- name: Copy SonarQube IP file to Jenkins
+  copy:
+    src: /tmp/secrets/sonarqube_ip
+    dest: /opt/secrets/sonarqube_ip
+  delegate_to: "{{ groups['jenkins'][0] }}"
+
+- name: Set owner and permissions for SonarQube IP file on Jenkins
+  file:
+    path: /opt/secrets/sonarqube_ip
+    owner: jenkins
+    group: jenkins
+    mode: '0600'
+  delegate_to: "{{ groups['jenkins'][0] }}"
+

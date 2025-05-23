@@ -38,3 +38,5 @@ terraform/environments/dev/.terraform/
 
 jenkins/
 
+### terraform/environments/dev/ocs-key.pem
+

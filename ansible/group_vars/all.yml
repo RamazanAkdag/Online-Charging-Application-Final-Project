@@ -1,0 +1,2 @@
+jenkins_user: ubuntu
+jenkins_ip: "{{ lookup('file', 'ec2_ids') | regex_search('jenkins=(.+)', '\\1') }}"
