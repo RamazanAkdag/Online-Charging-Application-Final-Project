@@ -1,3 +1,11 @@
+- name: Setup Jenkins
+  hosts: jenkins
+  become: true
+  vars_files:
+    - group_vars/jenkins.yml
+  roles:
+    - jenkins
+
 - name: Setup Nexus
   hosts: nexus
   become: true
@@ -19,11 +27,7 @@
     - name: Include main task file
       import_tasks: roles/k8s/tasks/main.yml
 
-- name: Setup Jenkins
-  hosts: jenkins
-  become: true
-  vars_files:
-    - group_vars/jenkins.yml
-  roles:
-    - jenkins
+
+
+
 

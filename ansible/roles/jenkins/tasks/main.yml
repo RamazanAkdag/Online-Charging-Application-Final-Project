@@ -39,3 +39,36 @@
     name: jenkins
     state: started
     enabled: true
+
+- name: Create /opt/secrets directory for incoming secrets
+  file:
+    path: /opt/secrets
+    state: directory
+    owner: jenkins
+    group: jenkins
+    mode: '0755'
+
+- name: Install kubectl on Jenkins
+  get_url:
+    url: https://dl.k8s.io/release/v1.30.0/bin/linux/amd64/kubectl
+    dest: /usr/local/bin/kubectl
+    mode: '0755'
+
+- name: Set system-wide KUBECONFIG for all users (including Jenkins)
+  lineinfile:
+    path: /etc/environment
+    line: 'KUBECONFIG=/opt/secrets/kubeconfig'
+    create: yes
+
+- name: Add KUBECONFIG to Jenkins systemd environment
+  lineinfile:
+    path: /etc/default/jenkins
+    line: 'KUBECONFIG=/opt/secrets/kubeconfig'
+    create: yes
+
+- name: Restart Jenkins to apply environment changes
+  systemd:
+    name: jenkins
+    state: restarted
+
+
