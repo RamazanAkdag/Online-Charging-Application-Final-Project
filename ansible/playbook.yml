@@ -5,18 +5,24 @@
     - group_vars/jenkins.yml
   roles:
     - jenkins
+  tags:
+    - jenkins_setup
 
 - name: Setup SonarQube
   hosts: sonarqube
   become: true
   roles:
     - sonarqube
+  tags:
+    - sonarqube_setup
 
 - name: Setup Nexus
   hosts: nexus
   become: true
   roles:
     - nexus
+  tags:
+    - nexus_setup
 
 - name: Setup Kubernetes
   hosts: k8s_master:k8s_slaves
@@ -26,8 +32,14 @@
   tasks:
     - name: Include main task file
       import_tasks: roles/k8s/tasks/main.yml
+      tags:
+        - k8s_setup
 
-
-
-
-
+- name: Jenkins ortam değişkenlerini ayarla
+  hosts: jenkins
+  become: true
+  tasks:
+    - name: Include env var task file
+      import_tasks: roles/jenkins/tasks/setup_env_vars.yml
+      tags:
+        - jenkins_env_vars

@@ -1,74 +1,111 @@
-- name: Install Java JDK (for Jenkins)
+---
+- name: Gerekli paketleri yükle
   apt:
     name:
-      - fontconfig
       - openjdk-17-jre
+      - git
+      - curl
     state: present
     update_cache: yes
 
-- name: Create keyring directory
+- name: Jenkins kullanıcı ve grubunu oluştur
+  user:
+    name: "{{ jenkins_user }}"
+    create_home: yes
+    shell: /bin/bash
+
+- name: Jenkins ana dizinini oluştur
   file:
-    path: /etc/apt/keyrings
+    path: "{{ jenkins_home }}"
     state: directory
+    owner: "{{ jenkins_user }}"
+    group: "{{ jenkins_group }}"
     mode: '0755'
 
-- name: Download Jenkins GPG key
-  get_url:
-    url: https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
-    dest: /etc/apt/keyrings/jenkins-keyring.asc
-    mode: '0644'
+- name: Plugins dizinini oluştur
+  file:
+    path: "{{ plugins_dir }}"
+    state: directory
+    owner: "{{ jenkins_user }}"
+    group: "{{ jenkins_group }}"
+    mode: '0755'
 
-- name: Add Jenkins apt repository (LTS version)
+- name: jcasc.yaml dosyasını kopyala
   copy:
-    dest: /etc/apt/sources.list.d/jenkins.list
-    content: |
-      deb [signed-by=/etc/apt/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/
+    src: "{{ playbook_dir }}/roles/jenkins/files/jcasc.yaml"
+    dest: "{{ jcasc_path }}"
+    owner: "{{ jenkins_user }}"
+    group: "{{ jenkins_group }}"
+    mode: '0644'
+    force: yes
+
+
+- name: Plugin listesini kopyala
+  copy:
+    src: jenkins_plugins.txt
+    dest: "{{ jenkins_home }}/jenkins_plugins.txt"
+    owner: "{{ jenkins_user }}"
+    group: "{{ jenkins_group }}"
     mode: '0644'
 
-- name: Update apt cache
-  apt:
-    update_cache: yes
+- name: Jenkins WAR dosyasını indir
+  get_url:
+    url: "{{ jenkins_url }}"
+    dest: "{{ jenkins_home }}/jenkins.war"
+    mode: '0755'
 
-- name: Install Jenkins
-  apt:
-    name: jenkins
-    state: present
+- name: Plugin manager jar dosyasını indir
+  get_url:
+    url: "{{ plugin_manager_url }}"
+    dest: "{{ jenkins_home }}/jenkins-plugin-manager.jar"
+    mode: '0755'
 
-- name: Start and enable Jenkins service
+- name: Gerekli Jenkins pluginlerini indir (plugin dosyasından)
+  command: >
+    java -jar {{ jenkins_home }}/jenkins-plugin-manager.jar
+    --war {{ jenkins_home }}/jenkins.war
+    --plugin-download-directory {{ plugins_dir }}
+    --plugin-file {{ jenkins_home }}/jenkins_plugins.txt
+  args:
+    creates: "{{ plugins_dir }}/configuration-as-code.jpi"
+
+- name: Systemd servisi için jenkins.service dosyasını oluştur
+  copy:
+    dest: /etc/systemd/system/jenkins.service
+    content: |
+      [Unit]
+      Description=Jenkins WAR Service
+      After=network.target
+
+      [Service]
+      Type=simple
+      User={{ jenkins_user }}
+      Environment="JENKINS_HOME={{ jenkins_home }}"
+      Environment="CASC_JENKINS_CONFIG={{ jcasc_path }}"
+      ExecStart=/usr/bin/java -jar {{ jenkins_home }}/jenkins.war --httpPort=8080 --webroot={{ jenkins_home }}/war
+      Restart=always
+
+      [Install]
+      WantedBy=multi-user.target
+  notify:
+    - daemon-reload
+
+- name: Jenkins servisini başlat ve etkinleştir
   systemd:
     name: jenkins
-    state: started
     enabled: true
+    state: started
 
-- name: Create /opt/secrets directory for incoming secrets
+- name: /opt/secrets dizinini oluştur
   file:
     path: /opt/secrets
     state: directory
-    owner: jenkins
-    group: jenkins
+    owner: "{{ jenkins_user }}"
+    group: "{{ jenkins_group }}"
     mode: '0755'
 
-- name: Install kubectl on Jenkins
+- name: kubectl kurulum dosyasını indir
   get_url:
     url: https://dl.k8s.io/release/v1.30.0/bin/linux/amd64/kubectl
     dest: /usr/local/bin/kubectl
     mode: '0755'
-
-- name: Set system-wide KUBECONFIG for all users (including Jenkins)
-  lineinfile:
-    path: /etc/environment
-    line: 'KUBECONFIG=/opt/secrets/kubeconfig'
-    create: yes
-
-- name: Add KUBECONFIG to Jenkins systemd environment
-  lineinfile:
-    path: /etc/default/jenkins
-    line: 'KUBECONFIG=/opt/secrets/kubeconfig'
-    create: yes
-
-- name: Restart Jenkins to apply environment changes
-  systemd:
-    name: jenkins
-    state: restarted
-
-
