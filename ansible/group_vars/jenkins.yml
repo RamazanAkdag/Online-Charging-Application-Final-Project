@@ -1,0 +1,7 @@
+jenkins_home: /opt/jenkins
+jenkins_user: jenkins
+jenkins_group: jenkins
+jcasc_path: /opt/jenkins/jcasc.yaml
+plugins_dir: /opt/jenkins/plugins
+jenkins_url: https://get.jenkins.io/war-stable/latest/jenkins.war
+plugin_manager_url: https://github.com/jenkinsci/plugin-installation-manager-tool/releases/download/2.12.17/jenkins-plugin-manager-2.12.17.jar
