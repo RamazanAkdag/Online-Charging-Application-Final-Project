@@ -1,0 +1,104 @@
+jenkins:
+  systemMessage: "Jenkins auto-configured by JCasC."
+
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+        - id: "ocs-project"
+          name: "berkin dündar"
+          password: "ocs1234*"
+
+  authorizationStrategy:
+    loggedInUsersCanDoAnything:
+      allowAnonymousRead: false
+
+  globalNodeProperties:
+    - envVars:
+        env:
+          - key: "ProductVersion"
+            value: "1.1"
+
+  updateCenter:
+    sites:
+      - id: "default"
+        url: "https://updates.jenkins.io/update-center.json"
+
+tool:
+  jdk:
+    installations:
+      - name: "jdk17"
+        home: "/usr/lib/jvm/java-17-openjdk-amd64"
+  maven:
+    installations:
+      - name: "maven3"
+        home: "/opt/maven"
+  git:
+    installations:
+      - name: "Default"
+        home: "/usr/bin/git"
+
+  sonarRunnerInstallation:
+    installations:
+      - name: "sonar-scanner"
+        properties:
+          - installSource:
+              installers:
+                - sonarRunnerInstaller:
+                    id: "5.0.1.3006"
+
+credentials:
+  system:
+    domainCredentials:
+      - credentials:
+          - usernamePassword:
+              id: "docker-cred"
+              username: "beko2001"
+              password: "${DOCKER_TOKEN}"
+              description: "Docker Hub credentials"
+              scope: GLOBAL
+          - usernamePassword:
+              id: "Mail-cred"
+              username: "berkindundar@gmail.com"
+              password: "${MAIL_TOKEN}"
+              description: "Mail SMTP credentials"
+              scope: GLOBAL
+          - string:
+              id: "sonar-token"
+              secret: "${SONAR_TOKEN}"
+              description: "SonarQube Token"
+              scope: GLOBAL
+          - string:
+              id: "k8-cred"
+              secret: "${K8S_TOKEN}"
+              description: "Kubernetes Token"
+              scope: GLOBAL
+          - string:
+              id: "git_secret"
+              secret: "${GIT_TOKEN}"
+              description: "Git SSH Private Key"
+              scope: GLOBAL
+
+
+
+
+jobs:
+  - script: >
+      pipelineJob('ocs-pipeline') {
+        definition {
+          cpsScm {
+            scm {
+              git {
+                remote {
+                  url('https://github.com/RamazanAkdag/Online-Charging-Application-Final-Project.git')
+                }
+                branches('*/new_main')
+              }
+            }
+            scriptPath('jenkins/Jenkinsfile')
+          }
+        }
+        logRotator {
+          numToKeep(10)
+        }
+      }
