@@ -1,0 +1,16 @@
+- name: Plugin listesi dosyasını kopyala
+  copy:
+    src: jenkins_plugins.txt
+    dest: "{{ jenkins_home }}/jenkins_plugins.txt"
+    owner: "{{ jenkins_user }}"
+    group: "{{ jenkins_group }}"
+    mode: '0644'
+
+- name: Pluginleri yükle (plugin listesine göre)
+  command: >
+    java -jar {{ jenkins_home }}/jenkins-plugin-manager.jar
+    --war {{ jenkins_home }}/jenkins.war
+    --plugin-download-directory {{ plugins_dir }}
+    --plugin-file {{ jenkins_home }}/jenkins_plugins.txt
+  args:
+    creates: "{{ plugins_dir }}/config-file-provider.jpi"
