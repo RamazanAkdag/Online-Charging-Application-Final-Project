@@ -56,17 +56,19 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
                                 "/swagger-ui.html",
+                                "/swagger-ui/**",           // << EKLENDİ
                                 "/v3/api-docs/**",
                                 "/swagger-resources/**",
-                                "/webjars/**"
-                        ).permitAll()
-                        .requestMatchers("/api/auth/register",
+                                "/webjars/**",
+                                "/favicon.ico",             // << EKLENDİ
+                                "/error",                   // << GÜVENLİK AÇIKLIĞINI ÖNLEMEK İÇİN BIRAKILDI
+                                "/api/auth/register",
                                 "/api/auth/login",
                                 "/api/auth/customer-details",
-                                "/error",
                                 "/api/auth/forgot-password",
                                 "/api/reset-password",
-                                "/api/reset-password/**").permitAll()
+                                "/api/reset-password/**"
+                        ).permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
