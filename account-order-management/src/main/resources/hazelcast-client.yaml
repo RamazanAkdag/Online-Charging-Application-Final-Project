@@ -2,7 +2,7 @@ hazelcast-client:
   cluster-name: hazelcast-cluster
   network:
     cluster-members:
-      - 127.0.0.1:5701
+      - hazelcast-node1:5701
     smart-routing: false
     connection-timeout: 10000
     redo-operation: true
