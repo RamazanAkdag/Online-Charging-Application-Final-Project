@@ -6,7 +6,5 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface OracleCustomerToIgniteCustomerMapper {
-
     IgniteCustomer toIgnite(OracleCustomer customer);
 }
-
