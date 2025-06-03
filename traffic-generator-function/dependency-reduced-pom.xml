@@ -34,8 +34,20 @@
         <artifactId>jib-maven-plugin</artifactId>
         <configuration>
           <to>
-            <image>beko2001/traffic-generator-function:latest</image>
+            <image>ramazanakdag/traffic-generator-function:latest</image>
           </to>
+          <container>
+            <environment>
+              <SPRING_PROFILES_ACTIVE>docker</SPRING_PROFILES_ACTIVE>
+            </environment>
+          </container>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.0.0-M5</version>
+        <configuration>
+          <skipTests>true</skipTests>
         </configuration>
       </plugin>
     </plugins>

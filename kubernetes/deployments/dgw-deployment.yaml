@@ -17,7 +17,7 @@ spec:
       hostname: diameter-gateway
       containers:
       - name: diameter-gateway
-        image: beko2001/diameter-gateway:latest
+        image: ramazanakdag/diameter-gateway:latest
         ports:
         - containerPort: 5855
         env:

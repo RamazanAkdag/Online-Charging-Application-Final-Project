@@ -17,7 +17,7 @@ spec:
       hostname: online-charging-system
       containers:
       - name: online-charging-system
-        image: beko2001/online-charging-system:latest
+        image: ramazanakdag/online-charging-system:latest
         ports:
         - containerPort: 8071
         env:

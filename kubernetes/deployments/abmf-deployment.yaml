@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: account-balance-management-function
-        image: beko2001/account-balance-management-function:latest
+        image: ramazanakdag/account-balance-management-function:latest
         ports:
         - containerPort: 5832
         env:

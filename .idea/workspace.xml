@@ -6,7 +6,25 @@
   <component name="ChangeListManager">
     <list default="true" id="4e36dfc9-06df-4fb0-896c-d0105c657a96" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-order-management/src/main/resources/hazelcast-client.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/src/main/resources/hazelcast-client.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-balance-management-function/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/account-balance-management-function/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-balance-management-function/src/main/resources/application-docker.properties" beforeDir="false" afterPath="$PROJECT_DIR$/account-balance-management-function/src/main/resources/application-docker.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charging-gateway-function/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/charging-gateway-function/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charging-gateway-function/src/main/resources/application-docker.properties" beforeDir="false" afterPath="$PROJECT_DIR$/charging-gateway-function/src/main/resources/application-docker.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/diameter-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/diameter-gateway/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kubernetes/deployments/abmf-deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/kubernetes/deployments/abmf-deployment.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kubernetes/deployments/aom-deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/kubernetes/deployments/aom-deployment.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kubernetes/deployments/cgf-deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/kubernetes/deployments/cgf-deployment.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kubernetes/deployments/dgw-deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/kubernetes/deployments/dgw-deployment.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kubernetes/deployments/kafka-deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/kubernetes/deployments/kafka-deployment.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kubernetes/deployments/nf-deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/kubernetes/deployments/nf-deployment.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kubernetes/deployments/ocs-deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/kubernetes/deployments/ocs-deployment.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-function/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/notification-function/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-function/src/main/resources/application-docker.properties" beforeDir="false" afterPath="$PROJECT_DIR$/notification-function/src/main/resources/application-docker.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/online-charging-system/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/online-charging-system/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/online-charging-system/src/main/resources/application-docker.properties" beforeDir="false" afterPath="$PROJECT_DIR$/online-charging-system/src/main/resources/application-docker.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/traffic-generator-function/dependency-reduced-pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/traffic-generator-function/dependency-reduced-pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/traffic-generator-function/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/traffic-generator-function/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,77 +90,77 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.DiameterGatewayApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.IgniteTest.executor&quot;: &quot;Run&quot;,
-    &quot;Application.TrafficGeneratorFunctionApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-composes/hazelcast-compose.yml.hazelcast-node1: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-composes/hazelcast-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-composes/ignite-compose.yml.ignite-node-1: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-composes/ignite-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-composes/kafka-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-composes/ocs-compose.yml.account-balance-management-function: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-composes/ocs-compose.yml.account-order-management: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-composes/ocs-compose.yml.diameter-gateway: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-composes/ocs-compose.yml.online-charging-system: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-composes/ocs-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-local/hazelcast-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-local/ignite compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-local/kafka-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.hazelcast-compose.yml.hazelcast-node1: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.hazelcast-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.ignite-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.kafka-compose.yml.kafdrop: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.kafka-compose.yml.kafka: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.kafka-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.kubernetes.account-order-management: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.kubernetes.hazelcast-node1: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.kubernetes.hazelcast: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.kubernetes.management-center: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.kubernetes: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AuthControllerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.BalanceServiceTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CGFKafkaMessageIntegrationTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CustomerControllerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CustomerControllerTest.getCustomerDetails_shouldReturnCustomerInfo.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.HazelcastSubscriberServiceTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.IgniteCustomerServiceTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.IgniteCustomerServiceTest.update_shouldThrowException_whenCustomerDoesNotExist.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SubscriberControllerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UsageServiceTest.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.ocs-project [clean,compile,-DskipTests].executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;Spring Boot.AccountBalanceManagementFunctionApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.AccountOrderManagementApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.ChargingGatewayFunctionApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.DiameterGatewayApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.NotificationFunctionApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.OnlineChargingSystemApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;ansible&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/beko/Desktop/ocs/Online-Charging-Application-Final-Project/dockerization/docker-local&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.33563218&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.DiameterGatewayApplication.executor": "Run",
+    "Application.IgniteTest.executor": "Run",
+    "Application.TrafficGeneratorFunctionApplication.executor": "Run",
+    "Docker.docker-composes/hazelcast-compose.yml.hazelcast-node1: Compose Deployment.executor": "Run",
+    "Docker.docker-composes/hazelcast-compose.yml: Compose Deployment.executor": "Run",
+    "Docker.docker-composes/ignite-compose.yml.ignite-node-1: Compose Deployment.executor": "Run",
+    "Docker.docker-composes/ignite-compose.yml: Compose Deployment.executor": "Run",
+    "Docker.docker-composes/kafka-compose.yml: Compose Deployment.executor": "Run",
+    "Docker.docker-composes/ocs-compose.yml.account-balance-management-function: Compose Deployment.executor": "Run",
+    "Docker.docker-composes/ocs-compose.yml.account-order-management: Compose Deployment.executor": "Run",
+    "Docker.docker-composes/ocs-compose.yml.diameter-gateway: Compose Deployment.executor": "Run",
+    "Docker.docker-composes/ocs-compose.yml.online-charging-system: Compose Deployment.executor": "Run",
+    "Docker.docker-composes/ocs-compose.yml: Compose Deployment.executor": "Run",
+    "Docker.docker-local/hazelcast-compose.yml: Compose Deployment.executor": "Run",
+    "Docker.docker-local/ignite compose.yml: Compose Deployment.executor": "Run",
+    "Docker.docker-local/kafka-compose.yml: Compose Deployment.executor": "Run",
+    "Docker.hazelcast-compose.yml.hazelcast-node1: Compose Deployment.executor": "Run",
+    "Docker.hazelcast-compose.yml: Compose Deployment.executor": "Run",
+    "Docker.ignite-compose.yml: Compose Deployment.executor": "Run",
+    "Docker.kafka-compose.yml.kafdrop: Compose Deployment.executor": "Run",
+    "Docker.kafka-compose.yml.kafka: Compose Deployment.executor": "Run",
+    "Docker.kafka-compose.yml: Compose Deployment.executor": "Run",
+    "Docker.kubernetes.account-order-management: Compose Deployment.executor": "Run",
+    "Docker.kubernetes.hazelcast-node1: Compose Deployment.executor": "Run",
+    "Docker.kubernetes.hazelcast: Compose Deployment.executor": "Run",
+    "Docker.kubernetes.management-center: Compose Deployment.executor": "Run",
+    "Docker.kubernetes: Compose Deployment.executor": "Run",
+    "JUnit.AuthControllerTest.executor": "Run",
+    "JUnit.BalanceServiceTest.executor": "Run",
+    "JUnit.CGFKafkaMessageIntegrationTest.executor": "Run",
+    "JUnit.CustomerControllerTest.executor": "Run",
+    "JUnit.CustomerControllerTest.getCustomerDetails_shouldReturnCustomerInfo.executor": "Run",
+    "JUnit.HazelcastSubscriberServiceTest.executor": "Run",
+    "JUnit.IgniteCustomerServiceTest.executor": "Run",
+    "JUnit.IgniteCustomerServiceTest.update_shouldThrowException_whenCustomerDoesNotExist.executor": "Run",
+    "JUnit.SubscriberControllerTest.executor": "Run",
+    "JUnit.UsageServiceTest.executor": "Run",
+    "Maven.ocs-project [clean,compile,-DskipTests].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot.AccountBalanceManagementFunctionApplication.executor": "Run",
+    "Spring Boot.AccountOrderManagementApplication.executor": "Run",
+    "Spring Boot.ChargingGatewayFunctionApplication.executor": "Run",
+    "Spring Boot.DiameterGatewayApplication.executor": "Run",
+    "Spring Boot.NotificationFunctionApplication.executor": "Run",
+    "Spring Boot.OnlineChargingSystemApplication.executor": "Run",
+    "git-widget-placeholder": "Ramo/docker-k8s-test",
+    "ignore.virus.scanning.warn.message": "true",
+    "jdk.selected.JAVA_MODULE": "17",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/beko/Desktop/ocs/Online-Charging-Application-Final-Project/dockerization/docker-local",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.33563218",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "run.configurations.included.in.services": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/dockerization/docker-local" />

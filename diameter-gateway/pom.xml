@@ -141,7 +141,7 @@
                 <artifactId>jib-maven-plugin</artifactId>
                 <configuration>
                     <to>
-                        <image>beko2001/diameter-gateway:latest</image>
+                        <image>ramazanakdag/diameter-gateway:latest</image>
                     </to>
                     <container>
                         <environment>
