@@ -1,14 +1,28 @@
 apiVersion: v1
 kind: Service
 metadata:
+  name: diameter-gateway-nodeport
+spec:
+  selector:
+    app: diameter-gateway
+  ports:
+    - name: http
+      protocol: TCP
+      port: 5855
+      targetPort: 5855
+      nodePort: 31855
+  type: NodePort
+---
+apiVersion: v1
+kind: Service
+metadata:
   name: diameter-gateway
 spec:
   selector:
     app: diameter-gateway
   ports:
-  - name: http
-    protocol: TCP
-    port: 5855
-    targetPort: 5855
-    nodePort: 31855  
-  type: NodePort
+    - name: akka
+      protocol: TCP
+      port: 2552
+      targetPort: 2552
+  type: ClusterIP

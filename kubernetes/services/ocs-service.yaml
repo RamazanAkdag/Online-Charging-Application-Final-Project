@@ -6,8 +6,12 @@ spec:
   selector:
     app: online-charging-system
   ports:
-  - name: http
-    protocol: TCP
-    port: 8071
-    targetPort: 8071
+    - name: http
+      protocol: TCP
+      port: 8071
+      targetPort: 8071
+    - name: akka
+      protocol: TCP
+      port: 2553
+      targetPort: 2553
   type: ClusterIP
