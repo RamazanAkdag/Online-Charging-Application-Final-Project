@@ -7,23 +7,17 @@
     <list default="true" id="4e36dfc9-06df-4fb0-896c-d0105c657a96" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/account-balance-management-function/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/account-balance-management-function/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account-balance-management-function/src/main/resources/application-docker.properties" beforeDir="false" afterPath="$PROJECT_DIR$/account-balance-management-function/src/main/resources/application-docker.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/account-order-management/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/charging-gateway-function/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/charging-gateway-function/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charging-gateway-function/src/main/resources/application-docker.properties" beforeDir="false" afterPath="$PROJECT_DIR$/charging-gateway-function/src/main/resources/application-docker.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/diameter-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/diameter-gateway/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kubernetes/deployments/abmf-deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/kubernetes/deployments/abmf-deployment.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kubernetes/deployments/aom-deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/kubernetes/deployments/aom-deployment.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kubernetes/deployments/cgf-deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/kubernetes/deployments/cgf-deployment.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kubernetes/deployments/dgw-deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/kubernetes/deployments/dgw-deployment.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kubernetes/deployments/kafka-deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/kubernetes/deployments/kafka-deployment.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kubernetes/deployments/nf-deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/kubernetes/deployments/nf-deployment.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kubernetes/deployments/ocs-deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/kubernetes/deployments/ocs-deployment.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/notification-function/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/notification-function/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notification-function/src/main/resources/application-docker.properties" beforeDir="false" afterPath="$PROJECT_DIR$/notification-function/src/main/resources/application-docker.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/online-charging-system/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/online-charging-system/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/online-charging-system/src/main/resources/application-docker.properties" beforeDir="false" afterPath="$PROJECT_DIR$/online-charging-system/src/main/resources/application-docker.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/traffic-generator-function/dependency-reduced-pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/traffic-generator-function/dependency-reduced-pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/traffic-generator-function/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/traffic-generator-function/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

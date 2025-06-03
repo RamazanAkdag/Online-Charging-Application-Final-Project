@@ -122,7 +122,7 @@
                 <artifactId>jib-maven-plugin</artifactId>
                 <configuration>
                     <to>
-                        <image>ramazanakdag/notification-function:latest</image>
+                        <image>beko2001/notification-function:latest</image>
                     </to>
                     <container>
                         <environment>

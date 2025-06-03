@@ -100,7 +100,7 @@
                 <artifactId>jib-maven-plugin</artifactId>
                 <configuration>
                     <to>
-                        <image>ramazanakdag/traffic-generator-function:latest</image>
+                        <image>beko2001/traffic-generator-function:latest</image>
                     </to>
                     <container>
                         <environment>

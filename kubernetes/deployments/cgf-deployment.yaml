@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: charging-gateway-function
-        image: ramazanakdag/charging-gateway-function:latest
+        image: beko2001/charging-gateway-function:latest
         ports:
         - containerPort: 5833
         env:

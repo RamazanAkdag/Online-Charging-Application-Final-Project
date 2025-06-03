@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: notification-function
-        image: ramazanakdag/notification-function:latest
+        image: beko2001/notification-function:latest
         ports:
         - containerPort: 5834
         env:
