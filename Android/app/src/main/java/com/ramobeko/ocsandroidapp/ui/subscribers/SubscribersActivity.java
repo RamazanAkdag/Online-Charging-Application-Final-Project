@@ -32,28 +32,30 @@ public class SubscribersActivity extends AppCompatActivity {
 
         binding.btnLogout.setOnClickListener(v -> {
             SecurePrefs.removeToken(this);
-
             Intent intent = new Intent(this, LoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         });
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        fetchSubscribers(); // geri dönüldüğünde tekrar veriyi çeker
+    }
 
+    private void fetchSubscribers() {
         repository.getSubscriptions(this, new SubscriberRepository.SubscriberCallback() {
             @Override
             public void onSuccess(List<Subscriber> subscribers) {
                 SubscriberAdapter adapter = new SubscriberAdapter(subscribers);
                 binding.subscriberRecyclerView.setAdapter(adapter);
                 binding.tvCustomerName.setText(subscribers.get(0).getCustomer().getName());
-
-
-
             }
 
             @Override
             public void onFailure(String errorMessage) {
                 Toast.makeText(SubscribersActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
-
             }
         });
     }
