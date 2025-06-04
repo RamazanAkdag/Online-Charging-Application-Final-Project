@@ -12,7 +12,8 @@
   <url>http://maven.apache.org</url>
 
   <modules>
-    <module>account-order-management</module>
+      <module>common</module>
+      <module>account-order-management</module>
       <module>traffic-generator-function</module>
       <module>diameter-gateway</module>
       <module>online-charging-system</module>
