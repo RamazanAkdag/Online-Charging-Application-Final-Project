@@ -17,6 +17,7 @@ spec:
       containers:
       - name: account-balance-management-function
         image: beko2001/account-balance-management-function:latest
+        imagePullPolicy: always
         ports:
         - containerPort: 5832
         env:

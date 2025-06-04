@@ -17,6 +17,7 @@ spec:
       containers:
       - name: account-order-management
         image: beko2001/account-order-management:latest
+        imagePullPolicy: always
         ports:
         - containerPort: 5831
         env:

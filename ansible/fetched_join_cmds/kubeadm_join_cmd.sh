@@ -1,1 +1,1 @@
-kubeadm join 172.31.83.18:6443 --token pri9j7.p5onokfl3y2321k5 --discovery-token-ca-cert-hash sha256:c27457a727bd00e5837e6b8409322101352c6685bd0f4d465b3ef36f0f6ae344 
+kubeadm join 172.31.22.112:6443 --token a76lut.mdioz7zkh2j574w2 --discovery-token-ca-cert-hash sha256:ea3132b08d94359a55b8eb98306975db45f61c7c27480f3fd0edf2dfa7f5da95 

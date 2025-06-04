@@ -1,12 +1,13 @@
+# ────────── Cluster init & CNI ──────────
 - name: Initialize Kubernetes master
   command: kubeadm init --pod-network-cidr=10.244.0.0/16
 
 - name: Wait for API server to be ready
   shell: |
     until curl --silent --insecure https://127.0.0.1:6443/healthz; do sleep 5; done
+  register: apiserver_health
   retries: 20
   delay: 5
-  register: apiserver_health
   until: apiserver_health.rc == 0
 
 - name: Create .kube directory for ubuntu user
@@ -26,62 +27,158 @@
     group: ubuntu
     mode: '0644'
 
+- name: Export KUBECONFIG in ubuntu .bashrc
+  lineinfile:
+    path: /home/ubuntu/.bashrc
+    line: 'export KUBECONFIG=$HOME/.kube/config'
+    state: present
+    owner: ubuntu
+    group: ubuntu
 
 - name: Deploy Calico CNI
   command: kubectl apply --validate=false -f https://raw.githubusercontent.com/projectcalico/calico/v3.27.1/manifests/calico.yaml
   environment:
-    KUBECONFIG: /etc/kubernetes/admin.conf
+    KUBECONFIG: "/etc/kubernetes/admin.conf"
 
-- name: Wait for Calico pods to be ready
+# Calico DS oluşana kadar bekle + rollout takibi
+- name: Wait until calico-node daemonset exists
   shell: |
-    kubectl get pods -n kube-system --no-headers | awk '{print $1}' | \
-    xargs -I{} kubectl wait pod/{} -n kube-system --for=condition=Ready --timeout=300s
+    kubectl -n kube-system get daemonset calico-node --no-headers
+  register: ds_exists
+  retries: 30        # 5 dk boyunca dene
+  delay: 10
   environment:
-    KUBECONFIG: /etc/kubernetes/admin.conf
+    KUBECONFIG: "/etc/kubernetes/admin.conf"
+  until: ds_exists.rc == 0
 
-- name: Generate join command
+- name: Wait for Calico daemonset to roll out
+  shell: |
+    kubectl -n kube-system rollout status daemonset/calico-node --timeout=300s
+  environment:
+    KUBECONFIG: "/etc/kubernetes/admin.conf"
+
+# ────────── Python client convenience ──────────
+- name: Ensure pip is installed
+  apt:
+    name: python3-pip
+    state: present
+
+- name: Install kubernetes Python module
+  pip:
+    name: kubernetes
+    executable: pip3
+
+# ────────── RBAC ──────────
+- name: Copy RBAC manifests to master
+  copy:
+    src: "{{ item }}"
+    dest: "/tmp/{{ item | basename }}"
+  loop:
+    - roles/k8s/files/rbac/jenkins-sa.yml
+    - roles/k8s/files/rbac/jenkins-role.yml
+    - roles/k8s/files/rbac/jenkins-rolebinding.yml
+
+- name: Apply RBAC manifests
+  kubernetes.core.k8s:
+    state: present
+    src: "/tmp/{{ item | basename }}"
+  loop:
+    - jenkins-sa.yml
+    - jenkins-role.yml
+    - jenkins-rolebinding.yml
+  environment:
+    KUBECONFIG: "/etc/kubernetes/admin.conf"
+
+# ────────── Join script ──────────
+- name: Generate join command on first master
   shell: kubeadm token create --print-join-command
   register: join_cmd
+  run_once: true
+  delegate_to: "{{ groups['k8s_master'][0] }}"   # init yaptığın host
 
-- name: Save join command to file
+- name: Write join command to local file
+  delegate_to: localhost
+  become: false
+  run_once: true
   copy:
     content: "{{ join_cmd.stdout }}"
-    dest: /tmp/kubeadm_join_cmd.sh
+    dest: "./fetched_join_cmds/kubeadm_join_cmd.sh"
     mode: '0755'
 
-- name: Fetch join command from master to control machine
-  fetch:
-    src: /tmp/kubeadm_join_cmd.sh
-    dest: fetched_join_cmds/
-    flat: yes
+# ────────── ServiceAccount token & kubeconfig (v1.24+ uyumlu) ──────────
+
+- name: Ensure Jenkins ServiceAccount exists
+  kubernetes.core.k8s:
+    api_version: v1
+    kind: ServiceAccount
+    name: jenkins
+    namespace: default
+    state: present
+  environment:
+    KUBECONFIG: "/etc/kubernetes/admin.conf"
+
+# 1) Jeton oluştur
+- name: Get Jenkins SA token (ephemeral; 24 h)
+  shell: kubectl create token jenkins --duration=24h -n default
+  register: sa_token
+  environment:
+    KUBECONFIG: "/etc/kubernetes/admin.conf"
+
+# 2) CA (base64)
+- name: Get cluster CA (base64)
+  shell: kubectl config view --raw -o jsonpath='{.clusters[0].cluster.certificate-authority-data}'
+  register: ca_cert_b64
+  environment:
+    KUBECONFIG: "/etc/kubernetes/admin.conf"
+
+# 3) API server adresi
+- name: Get Kubernetes API server address
+  shell: kubectl config view --minify -o jsonpath='{.clusters[0].cluster.server}'
+  register: kube_api_server
+  environment:
+    KUBECONFIG: "/etc/kubernetes/admin.conf"
+
+# 1️⃣ Kubeconfig’i master’da render ediyorsun (aynı kalıyor)
+- name: Render limited kubeconfig for Jenkins
+  template:
+    src: jenkins-kubeconfig.yml
+    dest: /tmp/jenkins-kubeconfig
+  vars:
+    token: "{{ sa_token.stdout }}"
+    cacert: "{{ ca_cert_b64.stdout }}"
+    api_server: "{{ kube_api_server.stdout }}"
+  delegate_to: "{{ groups['k8s_master'][0] }}"
   run_once: true
 
-- name: Copy kubeconfig as Jenkins-use secret
-  copy:
-    src: /etc/kubernetes/admin.conf
-    dest: /tmp/kubernetes_master_secret
-    remote_src: yes
-
-- name: Fetch kubeconfig from master
+# 2️⃣ Master’dan controller’a çek
+- name: Fetch kubeconfig to controller
   fetch:
-    src: /tmp/kubernetes_master_secret
-    dest: /tmp/secrets/
+    src: /tmp/jenkins-kubeconfig                # uzak yol
+    dest: ./tmp/                                # yerel dizin (önceden oluşturulmuş)
     flat: yes
+  delegate_to: "{{ groups['k8s_master'][0] }}"  # kaynağı master
   run_once: true
+  become: false
 
-- name: Copy kubeconfig to Jenkins
-  copy:
-    src: /tmp/secrets/kubernetes_master_secret
-    dest: /opt/secrets/kubeconfig
+- name: Ensure /opt/secrets exists on Jenkins host
   delegate_to: "{{ groups['jenkins'][0] }}"
+  become: yes               # ↖ root yetkisi gerekiyor
   run_once: true
-
-- name: Set ownership and permissions for Kubernetes master secret on Jenkins
   file:
-    path: /opt/secrets/kubeconfig
+    path: /opt/secrets
+    state: directory
+    owner: jenkins
+    group: jenkins
+    mode: '0750'
+
+# 3️⃣ Jenkins sunucusuna kopyala
+- name: Copy kubeconfig to Jenkins host
+  delegate_to: "{{ groups['jenkins'][0] }}"
+  become: yes               # ↖ root yetkisi; sonra chown
+  run_once: true
+  copy:
+    src: ./tmp/jenkins-kubeconfig        # controller’daki dosya
+    dest: /opt/secrets/kubeconfig
     owner: jenkins
     group: jenkins
     mode: '0600'
-  delegate_to: "{{ groups['jenkins'][0] }}"
-  run_once: true
-

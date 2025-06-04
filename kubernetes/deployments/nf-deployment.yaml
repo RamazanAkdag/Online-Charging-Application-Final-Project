@@ -17,6 +17,7 @@ spec:
       containers:
       - name: notification-function
         image: beko2001/notification-function:latest
+        imagePullPolicy: always
         ports:
         - containerPort: 5834
         env:

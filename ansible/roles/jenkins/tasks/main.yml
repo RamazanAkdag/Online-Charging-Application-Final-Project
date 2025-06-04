@@ -109,3 +109,75 @@
     url: https://dl.k8s.io/release/v1.30.0/bin/linux/amd64/kubectl
     dest: /usr/local/bin/kubectl
     mode: '0755'
+
+- name: Docker için gerekli bağımlılıkları yükle
+  apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg
+      - lsb-release
+    state: present
+    update_cache: yes
+
+- name: Docker GPG anahtarını ekle
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Docker repository'sini ekle
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
+    state: present
+    filename: docker
+
+- name: Docker Engine'i kur
+  apt:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+    state: present
+    update_cache: yes
+
+- name: Jenkins kullanıcısını docker grubuna ekle
+  user:
+    name: "{{ jenkins_user }}"
+    groups: docker
+    append: yes
+
+- name: Docker servisini başlat ve etkinleştir
+  systemd:
+    name: docker
+    enabled: true
+    state: started
+
+
+- name: Trivy v0.63.0 tar.gz dosyasını indir
+  get_url:
+    url: https://github.com/aquasecurity/trivy/releases/download/v0.63.0/trivy_0.63.0_Linux-64bit.tar.gz
+    dest: /tmp/trivy.tar.gz
+    mode: '0755'
+
+- name: Trivy arşivini çıkar
+  unarchive:
+    src: /tmp/trivy.tar.gz
+    dest: /usr/local/bin/
+    remote_src: yes
+
+- name: Trivy binary'yi /usr/local/bin/trivy olarak taşı (dosya içindeyse)
+  command: mv /usr/local/bin/trivy /usr/local/bin/trivy
+  args:
+    creates: /usr/local/bin/trivy
+  ignore_errors: yes  # varsa taşı, yoksa geç
+
+- name: Trivy çalışabilirliğini doğrula
+  command: trivy --version
+  register: trivy_version_output
+  changed_when: false
+
+- name: Trivy versiyon çıktısını göster
+  debug:
+    msg: "{{ trivy_version_output.stdout }}"
+

@@ -18,6 +18,7 @@ spec:
       containers:
       - name: diameter-gateway
         image: beko2001/diameter-gateway:latest
+        imagePullPolicy: always
         ports:
         - containerPort: 5855
         env:

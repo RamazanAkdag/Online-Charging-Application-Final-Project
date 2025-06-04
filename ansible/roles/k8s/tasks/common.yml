@@ -8,6 +8,13 @@
     state: present
     update_cache: yes
 
+- name: Ensure /etc/apt/keyrings directory exists
+  file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: '0755'
+
+
 - name: Add Kubernetes GPG key
   shell: |
     curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
@@ -57,12 +64,15 @@
 - name: Create containerd config file
   shell: "containerd config default | tee /etc/containerd/config.toml"
 
+
 - name: Enable IP forwarding
   sysctl:
     name: net.ipv4.ip_forward
-    value: '1'
+    value: 1
     state: present
     reload: yes
+  become: yes           
+
 
 - name: Configure containerd to use systemd as cgroup driver
   block:
