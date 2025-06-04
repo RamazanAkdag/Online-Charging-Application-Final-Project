@@ -181,3 +181,45 @@
   debug:
     msg: "{{ trivy_version_output.stdout }}"
 
+- name: JDK 17 klasörünün varlığını doğrula
+  stat:
+    path: /usr/lib/jvm/java-17-openjdk-amd64
+  register: jdk17_check
+
+- name: JDK 17 symbolic link oluştur (gerekirse)
+  file:
+    src: /usr/lib/jvm/java-17-openjdk-amd64
+    dest: /usr/lib/jvm/default-java
+    state: link
+  when: jdk17_check.stat.exists
+
+- name: Maven dizin yapısını oluştur
+  file:
+    path: /opt/maven
+    state: directory
+    owner: "{{ jenkins_user }}"
+    group: "{{ jenkins_group }}"
+    mode: '0755'
+
+- name: Maven 3.9.9 arşivini indir
+  get_url:
+    url: https://archive.apache.org/dist/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.tar.gz
+    dest: /tmp/apache-maven.tar.gz
+    mode: '0644'
+
+- name: Maven'i /opt/maven altına çıkar
+  unarchive:
+    src: /tmp/apache-maven.tar.gz
+    dest: /opt/maven
+    remote_src: yes
+    extra_opts: [--strip-components=1]
+
+- name: Maven çalışabilirliğini doğrula
+  command: /opt/maven/bin/mvn -v
+  register: maven_version_output
+  changed_when: false
+
+- name: Maven versiyon çıktısını göster
+  debug:
+    msg: "{{ maven_version_output.stdout }}"
+

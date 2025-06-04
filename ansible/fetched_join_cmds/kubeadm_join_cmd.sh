@@ -1,1 +1,1 @@
-kubeadm join 172.31.22.112:6443 --token a76lut.mdioz7zkh2j574w2 --discovery-token-ca-cert-hash sha256:ea3132b08d94359a55b8eb98306975db45f61c7c27480f3fd0edf2dfa7f5da95 
+kubeadm join 172.31.38.80:6443 --token ef1tqd.l03eqdcryowhpdjy --discovery-token-ca-cert-hash sha256:ce137828416ce9172d73f515e6e8a2d8fef22de32af9cf90569540aab0ac8055 
