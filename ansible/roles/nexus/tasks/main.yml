@@ -73,3 +73,29 @@
         name: nexus
         enabled: yes
         state: started
+
+- name: Write Nexus IP to temp file
+  copy:
+    content: "{{ ansible_host }}"
+    dest: /tmp/nexus_ip
+
+- name: Fetch Nexus IP file
+  fetch:
+    src: /tmp/nexus_ip
+    dest: /tmp/secrets/
+    flat: yes
+
+- name: Copy Nexus IP file to Jenkins
+  copy:
+    src: /tmp/secrets/nexus_ip
+    dest: /opt/secrets/nexus_ip
+  delegate_to: "{{ groups['jenkins'][0] }}"
+
+- name: Set owner and permissions for Nexus IP file on Jenkins
+  file:
+    path: /opt/secrets/nexus_ip
+    owner: jenkins
+    group: jenkins
+    mode: '0600'
+  delegate_to: "{{ groups['jenkins'][0] }}"
+
