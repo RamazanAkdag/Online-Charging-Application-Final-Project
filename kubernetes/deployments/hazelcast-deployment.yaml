@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hazelcast-node1
+  labels:
+    app: hazelcast-node1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hazelcast-node1
+  template:
+    metadata:
+      labels:
+        app: hazelcast-node1
+    spec:
+      containers:
+      - name: hazelcast
+        image: hazelcast/hazelcast:latest
+        ports:
+        - containerPort: 5701
+        env:
+        - name: HZ_CLUSTERNAME
+          value: hazelcast-cluster
+        - name: HZ_NETWORK_JOIN_TCPIP_MEMBERS
+          value: hazelcast-node1
+        - name: HZ_JET_ENABLED
+          value: "true"

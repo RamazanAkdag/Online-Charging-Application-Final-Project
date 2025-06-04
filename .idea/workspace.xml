@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4e36dfc9-06df-4fb0-896c-d0105c657a96" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-balance-management-function/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/account-balance-management-function/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account-order-management/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/account-order-management/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charging-gateway-function/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/charging-gateway-function/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/diameter-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/diameter-gateway/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kubernetes/deployments/abmf-deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/kubernetes/deployments/abmf-deployment.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kubernetes/deployments/aom-deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/kubernetes/deployments/aom-deployment.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kubernetes/deployments/cgf-deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/kubernetes/deployments/cgf-deployment.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kubernetes/deployments/dgw-deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/kubernetes/deployments/dgw-deployment.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kubernetes/deployments/nf-deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/kubernetes/deployments/nf-deployment.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kubernetes/deployments/ocs-deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/kubernetes/deployments/ocs-deployment.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-function/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/notification-function/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/online-charging-system/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/online-charging-system/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/traffic-generator-function/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/traffic-generator-function/pom.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$/online-charging-system">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dockerfile" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Berko01&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/RamazanAkdag/Online-Charging-Application-Final-Project.git&quot;,
+    &quot;accountId&quot;: &quot;6315eb29-e73d-4069-bd58-2108a88118eb&quot;
+  }
+}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="KubernetesSettings">
+    <option name="contextName" value="docker-desktop" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2tR4PBh8Igj76J8NtPsU0ehXcTV" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.DiameterGatewayApplication.executor": "Run",
+    "Application.IgniteTest.executor": "Run",
+    "Application.TrafficGeneratorFunctionApplication.executor": "Run",
+    "Docker.docker-composes/hazelcast-compose.yml.hazelcast-node1: Compose Deployment.executor": "Run",
+    "Docker.docker-composes/hazelcast-compose.yml: Compose Deployment.executor": "Run",
+    "Docker.docker-composes/ignite-compose.yml.ignite-node-1: Compose Deployment.executor": "Run",
+    "Docker.docker-composes/ignite-compose.yml: Compose Deployment.executor": "Run",
+    "Docker.docker-composes/kafka-compose.yml: Compose Deployment.executor": "Run",
+    "Docker.docker-composes/ocs-compose.yml.account-balance-management-function: Compose Deployment.executor": "Run",
+    "Docker.docker-composes/ocs-compose.yml.account-order-management: Compose Deployment.executor": "Run",
+    "Docker.docker-composes/ocs-compose.yml.diameter-gateway: Compose Deployment.executor": "Run",
+    "Docker.docker-composes/ocs-compose.yml.online-charging-system: Compose Deployment.executor": "Run",
+    "Docker.docker-composes/ocs-compose.yml: Compose Deployment.executor": "Run",
+    "Docker.docker-local/hazelcast-compose.yml: Compose Deployment.executor": "Run",
+    "Docker.docker-local/ignite compose.yml: Compose Deployment.executor": "Run",
+    "Docker.docker-local/kafka-compose.yml: Compose Deployment.executor": "Run",
+    "Docker.hazelcast-compose.yml.hazelcast-node1: Compose Deployment.executor": "Run",
+    "Docker.hazelcast-compose.yml: Compose Deployment.executor": "Run",
+    "Docker.ignite-compose.yml: Compose Deployment.executor": "Run",
+    "Docker.kafka-compose.yml.kafdrop: Compose Deployment.executor": "Run",
+    "Docker.kafka-compose.yml.kafka: Compose Deployment.executor": "Run",
+    "Docker.kafka-compose.yml: Compose Deployment.executor": "Run",
+    "Docker.kubernetes.account-order-management: Compose Deployment.executor": "Run",
+    "Docker.kubernetes.hazelcast-node1: Compose Deployment.executor": "Run",
+    "Docker.kubernetes.hazelcast: Compose Deployment.executor": "Run",
+    "Docker.kubernetes.management-center: Compose Deployment.executor": "Run",
+    "Docker.kubernetes: Compose Deployment.executor": "Run",
+    "JUnit.AuthControllerTest.executor": "Run",
+    "JUnit.BalanceServiceTest.executor": "Run",
+    "JUnit.CGFKafkaMessageIntegrationTest.executor": "Run",
+    "JUnit.CustomerControllerTest.executor": "Run",
+    "JUnit.CustomerControllerTest.getCustomerDetails_shouldReturnCustomerInfo.executor": "Run",
+    "JUnit.HazelcastSubscriberServiceTest.executor": "Run",
+    "JUnit.IgniteCustomerServiceTest.executor": "Run",
+    "JUnit.IgniteCustomerServiceTest.update_shouldThrowException_whenCustomerDoesNotExist.executor": "Run",
+    "JUnit.SubscriberControllerTest.executor": "Run",
+    "JUnit.UsageServiceTest.executor": "Run",
+    "Maven.ocs-project [clean,compile,-DskipTests].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot.AccountBalanceManagementFunctionApplication.executor": "Run",
+    "Spring Boot.AccountOrderManagementApplication.executor": "Run",
+    "Spring Boot.ChargingGatewayFunctionApplication.executor": "Run",
+    "Spring Boot.DiameterGatewayApplication.executor": "Run",
+    "Spring Boot.NotificationFunctionApplication.executor": "Run",
+    "Spring Boot.OnlineChargingSystemApplication.executor": "Run",
+    "git-widget-placeholder": "Ramo/docker-k8s-test",
+    "ignore.virus.scanning.warn.message": "true",
+    "jdk.selected.JAVA_MODULE": "17",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/beko/Desktop/ocs/Online-Charging-Application-Final-Project/dockerization/docker-local",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.33563218",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "run.configurations.included.in.services": "true",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/dockerization/docker-local" />
+      <recent name="$PROJECT_DIR$/account-order-management/src" />
+      <recent name="$PROJECT_DIR$/online-charging-system/src/test/java/org/example/onlinechargingsystem/service/concrete" />
+      <recent name="$PROJECT_DIR$/online-charging-system/src/test/java/org/example/onlinechargingsystem" />
+      <recent name="$PROJECT_DIR$/notification-function/src/test/java/org/example/notificationfunction/concrete" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\berki\Desktop\ocs\Online-Charging-Application-Final-Project" />
+      <recent name="C:\Users\berki\Desktop\ocs\Online-Charging-Application-Final-Project\notification-function\src\main\java\org\example\notificationfunction" />
+      <recent name="C:\Users\berki\Desktop\ocs\Online-Charging-Application-Final-Project\traffic-generator-function\src\main\resources" />
+      <recent name="C:\Users\berki\Desktop\ocs\Online-Charging-Application-Final-Project\account-order-management\src\main\resources" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.example.notificationfunction.repository" />
+      <recent name="org.example.notificationfunction.kafka" />
+      <recent name="org.example.accountbalancemanagementfunction.util.kafka" />
+      <recent name="com.ramobeko.util.model" />
+      <recent name="org.example.charginggatewayfunction.repository" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value=" mvn clean compile jib:dockerBuild -DskipTests^" />
+      <command value=" mvn clean compile jib:dockerBuild -DskipTests" />
+      <command value="mvn clean compile -DskipTests" />
+    </option>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="Application" />
+        <option value="MicronautRunConfigurationType" />
+        <option value="QuarkusRunConfigurationType" />
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.OnlineChargingSystemApplication">
+    <configuration name="AuthControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="account-order-management" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ramobeko.accountordermanagement.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.ramobeko.accountordermanagement.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.ramobeko.accountordermanagement.controller.AuthControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SubscriberControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="account-order-management" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ramobeko.accountordermanagement.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.ramobeko.accountordermanagement.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.ramobeko.accountordermanagement.controller.SubscriberControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="ocs-project" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="ocs-project" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AccountBalanceManagementFunctionApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <option name="ALTERNATIVE_JRE_PATH" value="17" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <module name="account-balance-management-function" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.example.accountbalancemanagementfunction.AccountBalanceManagementFunctionApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AccountOrderManagementApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="17" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <module name="account-order-management" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.ramobeko.accountordermanagement.AccountOrderManagementApplication" />
+      <option name="VM_PARAMETERS" value="--add-opens=java.base/jdk.internal.access=ALL-UNNAMED --add-opens=java.base/jdk.internal.misc=ALL-UNNAMED --add-opens=java.base/sun.nio.ch=ALL-UNNAMED --add-opens=java.base/sun.util.calendar=ALL-UNNAMED --add-opens=java.management/com.sun.jmx.mbeanserver=ALL-UNNAMED --add-opens=jdk.internal.jvmstat/sun.jvmstat.monitor=ALL-UNNAMED --add-opens=java.base/sun.reflect.generics.reflectiveObjects=ALL-UNNAMED --add-opens=jdk.management/com.sun.management.internal=ALL-UNNAMED --add-opens=java.base/java.io=ALL-UNNAMED --add-opens=java.base/java.nio=ALL-UNNAMED --add-opens=java.base/java.net=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.util.concurrent=ALL-UNNAMED --add-opens=java.base/java.util.concurrent.locks=ALL-UNNAMED --add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED --add-opens=java.base/java.math=ALL-UNNAMED --add-opens=java.sql/java.sql=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.time=ALL-UNNAMED --add-opens=java.base/java.text=ALL-UNNAMED --add-opens=java.management/sun.management=ALL-UNNAMED --add-opens=java.desktop/java.awt.font=ALL-UNNAMED -DIGNITE_PEER_CLASS_LOADING=true -Djava.net.preferIPv4Stack=true" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ChargingGatewayFunctionApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="17" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <module name="charging-gateway-function" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.example.charginggatewayfunction.ChargingGatewayFunctionApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DiameterGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="diameter-gateway" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.example.DiameterGatewayApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NotificationFunctionApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="17" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <module name="notification-function" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.example.notificationfunction.NotificationFunctionApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OnlineChargingSystemApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="17" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <module name="online-charging-system" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.example.onlinechargingsystem.OnlineChargingSystemApplication" />
+      <option name="VM_PARAMETERS" value="--add-opens=java.base/jdk.internal.access=ALL-UNNAMED --add-opens=java.base/jdk.internal.misc=ALL-UNNAMED --add-opens=java.base/sun.nio.ch=ALL-UNNAMED --add-opens=java.base/sun.util.calendar=ALL-UNNAMED --add-opens=java.management/com.sun.jmx.mbeanserver=ALL-UNNAMED --add-opens=jdk.internal.jvmstat/sun.jvmstat.monitor=ALL-UNNAMED --add-opens=java.base/sun.reflect.generics.reflectiveObjects=ALL-UNNAMED --add-opens=jdk.management/com.sun.management.internal=ALL-UNNAMED --add-opens=java.base/java.io=ALL-UNNAMED --add-opens=java.base/java.nio=ALL-UNNAMED --add-opens=java.base/java.net=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.util.concurrent=ALL-UNNAMED --add-opens=java.base/java.util.concurrent.locks=ALL-UNNAMED --add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED --add-opens=java.base/java.math=ALL-UNNAMED --add-opens=java.sql/java.sql=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.time=ALL-UNNAMED --add-opens=java.base/java.text=ALL-UNNAMED --add-opens=java.management/sun.management=ALL-UNNAMED --add-opens=java.desktop/java.awt.font=ALL-UNNAMED -DIGNITE_PEER_CLASS_LOADING=true -Djava.net.preferIPv4Stack=true" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-local/hazelcast-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="dockerization/docker-local/hazelcast-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-local/ignite compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="dockerization/docker-local/ignite compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-local/kafka-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="dockerization/docker-local/kafka-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Docker.docker-local/hazelcast-compose.yml: Compose Deployment" />
+      <item itemvalue="Docker.docker-local/ignite compose.yml: Compose Deployment" />
+      <item itemvalue="Docker.docker-local/kafka-compose.yml: Compose Deployment" />
+      <item itemvalue="JUnit.AuthControllerTest" />
+      <item itemvalue="JUnit.SubscriberControllerTest" />
+      <item itemvalue="Spring Boot.DiameterGatewayApplication" />
+      <item itemvalue="Spring Boot.ChargingGatewayFunctionApplication" />
+      <item itemvalue="Spring Boot.NotificationFunctionApplication" />
+      <item itemvalue="Spring Boot.AccountBalanceManagementFunctionApplication" />
+      <item itemvalue="Spring Boot.AccountOrderManagementApplication" />
+      <item itemvalue="Spring Boot.OnlineChargingSystemApplication" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Docker.docker-local/kafka-compose.yml: Compose Deployment" />
+        <item itemvalue="Docker.docker-local/ignite compose.yml: Compose Deployment" />
+        <item itemvalue="Docker.docker-local/hazelcast-compose.yml: Compose Deployment" />
+        <item itemvalue="JUnit.SubscriberControllerTest" />
+        <item itemvalue="JUnit.AuthControllerTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.23774.435" />
+        <option value="bundled-js-predefined-d6986cc7102b-f27c65a3e318-JavaScript-IU-251.23774.435" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4e36dfc9-06df-4fb0-896c-d0105c657a96" name="Changes" comment="" />
+      <created>1740301532334</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1740301532334</updated>
+      <workItem from="1740301533965" duration="82000" />
+      <workItem from="1740301631780" duration="1179000" />
+      <workItem from="1740302833617" duration="16000" />
+      <workItem from="1740302879882" duration="1133000" />
+      <workItem from="1740304311076" duration="64000" />
+      <workItem from="1740304385503" duration="46000" />
+      <workItem from="1740304449163" duration="2751000" />
+      <workItem from="1740482531603" duration="4693000" />
+      <workItem from="1740590945758" duration="6548000" />
+      <workItem from="1740734261882" duration="5000" />
+      <workItem from="1740734893222" duration="10332000" />
+      <workItem from="1740767928942" duration="4795000" />
+      <workItem from="1740933993830" duration="4596000" />
+      <workItem from="1741116522970" duration="3062000" />
+      <workItem from="1741160527514" duration="8903000" />
+      <workItem from="1741262946418" duration="5556000" />
+      <workItem from="1741423162745" duration="3763000" />
+      <workItem from="1741767716296" duration="16116000" />
+      <workItem from="1741795606869" duration="417000" />
+      <workItem from="1741816982214" duration="861000" />
+      <workItem from="1742035557425" duration="7409000" />
+      <workItem from="1745232478365" duration="410000" />
+      <workItem from="1745486507639" duration="701000" />
+      <workItem from="1745581725333" duration="8340000" />
+      <workItem from="1746517979513" duration="5632000" />
+      <workItem from="1746540889814" duration="10402000" />
+      <workItem from="1746551535073" duration="6329000" />
+      <workItem from="1746596404972" duration="2774000" />
+      <workItem from="1746600971558" duration="1024000" />
+      <workItem from="1746602716786" duration="2099000" />
+      <workItem from="1746774204970" duration="7831000" />
+      <workItem from="1747067623349" duration="368000" />
+      <workItem from="1748244291299" duration="4578000" />
+      <workItem from="1748249600390" duration="369000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="LAST_COMMIT_MESSAGE" value="" />
+  </component>
+</project>

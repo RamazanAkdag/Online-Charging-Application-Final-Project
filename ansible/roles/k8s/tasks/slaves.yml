@@ -1,0 +1,8 @@
+- name: Copy join command from control machine to slave
+  copy:
+    src: fetched_join_cmds/kubeadm_join_cmd.sh
+    dest: /tmp/kubeadm_join_cmd.sh
+    mode: '0755'
+
+- name: Join node to Kubernetes cluster
+  command: bash /tmp/kubeadm_join_cmd.sh

@@ -1,0 +1,137 @@
+- name: Install dependencies (Java 17 + unzip)
+  apt:
+    name:
+      - openjdk-17-jdk
+      - unzip
+    state: present
+    update_cache: yes
+
+- name: Download SonarQube
+  get_url:
+    url: https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-10.4.1.88267.zip
+    dest: /opt/sonarqube.zip
+
+- name: Extract SonarQube
+  unarchive:
+    src: /opt/sonarqube.zip
+    dest: /opt/
+    remote_src: yes
+
+- name: Add SonarQube user
+  user:
+    name: sonarqube
+    shell: /bin/bash
+    create_home: yes
+
+- name: Change ownership
+  file:
+    path: /opt/sonarqube-10.4.1.88267
+    owner: sonarqube
+    group: sonarqube
+    recurse: yes
+
+- name: Create SonarQube service
+  copy:
+    dest: /etc/systemd/system/sonarqube.service
+    content: |
+      [Unit]
+      Description=SonarQube service
+      After=network.target
+
+      [Service]
+      Type=forking
+      ExecStart=/opt/sonarqube-10.4.1.88267/bin/linux-x86-64/sonar.sh start
+      ExecStop=/opt/sonarqube-10.4.1.88267/bin/linux-x86-64/sonar.sh stop
+      User=sonarqube
+      Restart=on-failure
+      LimitNOFILE=65536
+
+      [Install]
+      WantedBy=multi-user.target
+
+- name: Reload systemd
+  command: systemctl daemon-reload
+
+- name: Enable & Start SonarQube
+  systemd:
+    name: sonarqube
+    enabled: yes
+    state: started
+
+- name: Wait for SonarQube to be available
+  uri:
+    url: "http://localhost:9000/api/system/status"
+    method: GET
+    status_code: 200
+    return_content: yes
+    force_basic_auth: yes
+  register: sonar_status
+  until: "'UP' in sonar_status.content"
+  retries: 30
+  delay: 5
+
+- name: Generate sonar-token with default admin credentials
+  uri:
+    url: "http://localhost:9000/api/user_tokens/generate"
+    method: POST
+    user: "admin"
+    password: "admin"
+    force_basic_auth: yes
+    status_code: 200
+    body_format: form-urlencoded
+    body:
+      name: "sonar-token"
+  register: sonar_token_response
+  ignore_errors: yes
+
+- name: Save token to file
+  copy:
+    content: "{{ sonar_token_response.json.token | default('') }}"
+    dest: "/tmp/sonarqube_secret"
+  when: sonar_token_response.json.token is defined
+
+- name: Fetch SonarQube secret from SonarQube host
+  fetch:
+    src: /tmp/sonarqube_secret
+    dest: /tmp/secrets/
+    flat: yes
+
+- name: Copy SonarQube secret to Jenkins
+  copy:
+    src: /tmp/secrets/sonarqube_secret
+    dest: /opt/secrets/sonarqube_secret
+  delegate_to: "{{ groups['jenkins'][0] }}"
+
+- name: Set ownership and permissions for SonarQube secret on Jenkins
+  file:
+    path: /opt/secrets/sonarqube_secret
+    owner: jenkins
+    group: jenkins
+    mode: '0600'
+  delegate_to: "{{ groups['jenkins'][0] }}"
+
+- name: Write SonarQube IP to temp file
+  copy:
+    content: "{{ ansible_host }}"
+    dest: /tmp/sonarqube_ip
+
+- name: Fetch SonarQube IP file
+  fetch:
+    src: /tmp/sonarqube_ip
+    dest: /tmp/secrets/
+    flat: yes
+
+- name: Copy SonarQube IP file to Jenkins
+  copy:
+    src: /tmp/secrets/sonarqube_ip
+    dest: /opt/secrets/sonarqube_ip
+  delegate_to: "{{ groups['jenkins'][0] }}"
+
+- name: Set owner and permissions for SonarQube IP file on Jenkins
+  file:
+    path: /opt/secrets/sonarqube_ip
+    owner: jenkins
+    group: jenkins
+    mode: '0600'
+  delegate_to: "{{ groups['jenkins'][0] }}"
+

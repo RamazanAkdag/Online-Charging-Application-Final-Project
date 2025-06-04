@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  hazelcast-node1:
+    image: hazelcast/hazelcast:latest
+    container_name: hazelcast-node1
+    environment:
+      - HZ_CLUSTERNAME=hazelcast-cluster
+      - HZ_NETWORK_JOIN_TCPIP_ENABLED=true
+      - HZ_NETWORK_JOIN_TCPIP_MEMBERS=hazelcast-node1
+      - HZ_NETWORK_PUBLICADDRESS=localhost:5701
+      - HZ_NETWORK_JOIN_AUTODETECTION_ENABLED=false
+      - HZ_JET_ENABLED=true
+    networks:
+      - hazelcast-network
+    ports:
+      - "5701:5701"
+
+# İleride açmak istersen aynı şekilde networks kısmında yalnızca `hazelcast-network` kalmalı.
+
+networks:
+  hazelcast-network:
+    driver: bridge

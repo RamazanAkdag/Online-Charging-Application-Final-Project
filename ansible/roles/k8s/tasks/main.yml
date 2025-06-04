@@ -1,0 +1,11 @@
+- name: Apply common configuration
+  import_tasks: common.yml
+  when: not (is_dev | default(false))
+
+- name: Apply master configuration
+  import_tasks: master.yml
+  when: inventory_hostname in groups['k8s_master'] and not (is_dev | default(false))
+
+- name: Apply slave configuration
+  import_tasks: slaves.yml
+  when: inventory_hostname in groups['k8s_slaves'] and not (is_dev | default(false))

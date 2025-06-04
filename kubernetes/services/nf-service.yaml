@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: notification-function
+spec:
+  selector:
+    app: notification-function
+  ports:
+  - name: http
+    protocol: TCP
+    port: 5834
+    targetPort: 5834
+  type: ClusterIP

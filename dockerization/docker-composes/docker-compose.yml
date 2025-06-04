@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  hazelcast:
+    image: hazelcast/hazelcast:latest
+    environment:
+      - HZ_CLUSTERNAME=hazelcast-cluster
+    ports:
+      - "5701:5701"
+
+  management-center:
+    image: hazelcast/management-center:latest
+    environment:
+      - MC_DEFAULT_CLUSTER=hazelcast-cluster
+      - MC_CLUSTER_MEMBER=hazelcast:5701
+    ports:
+      - "8080:8080"

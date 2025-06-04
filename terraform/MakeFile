@@ -1,0 +1,5 @@
+zip:
+	./zip_lambda.sh
+
+apply: zip
+	cd environments/dev && terraform apply -auto-approve && ./save_outputs.sh

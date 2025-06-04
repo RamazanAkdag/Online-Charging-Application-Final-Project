@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: management-center
+  labels:
+    app: management-center
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: management-center
+  template:
+    metadata:
+      labels:
+        app: management-center
+    spec:
+      containers:
+      - name: management-center
+        image: hazelcast/management-center:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: MC_DEFAULT_CLUSTER
+          value: hazelcast-cluster
+        - name: MC_CLUSTER_MEMBER
+          value: hazelcast-node1:5701

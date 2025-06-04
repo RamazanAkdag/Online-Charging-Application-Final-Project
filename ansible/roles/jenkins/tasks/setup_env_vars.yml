@@ -1,0 +1,125 @@
+- name: /opt/secrets dizinini oluştur
+  file:
+    path: /opt/secrets
+    state: directory
+    owner: jenkins
+    group: jenkins
+    mode: '0755'
+
+- name: mail_cred dosyasını kopyala
+  copy:
+    src: "{{ playbook_dir }}/roles/jenkins/files/mail_cred"
+    dest: /opt/secrets/mail_cred
+    owner: jenkins
+    group: jenkins
+    mode: '0600'
+
+- name: MAIL_TOKEN ortam değişkenini /etc/environment'a yaz
+  lineinfile:
+    path: /etc/environment
+    line: "MAIL_TOKEN=/opt/secrets/mail_cred"
+    create: yes
+
+- name: MAIL_TOKEN ortam değişkenini Jenkins ortamına yaz
+  lineinfile:
+    path: /etc/default/jenkins
+    line: "MAIL_TOKEN=/opt/secrets/mail_cred"
+    create: yes
+
+- name: git_secret dosyasını kopyala
+  copy:
+    src: "{{ playbook_dir }}/roles/jenkins/files/git_secret"
+    dest: /opt/secrets/git_secret
+    owner: jenkins
+    group: jenkins
+    mode: '0600'
+    
+- name: GIT_TOKEN ortam değişkenini /etc/environment'a yaz
+  lineinfile:
+    path: /etc/environment
+    line: "GIT_TOKEN=/opt/secrets/git_secret"
+    create: yes
+
+- name: GIT_TOKEN ortam değişkenini Jenkins ortamına yaz
+  lineinfile:
+    path: /etc/default/jenkins
+    line: "GIT_TOKEN=/opt/secrets/git_secret"
+    create: yes
+
+- name: KUBECONFIG değişkenini /etc/environment içine ekle
+  lineinfile:
+    path: /etc/environment
+    line: 'KUBECONFIG=/opt/secrets/kubeconfig'
+    create: yes
+
+- name: KUBECONFIG değişkenini Jenkins ortamına ekle
+  lineinfile:
+    path: /etc/default/jenkins
+    line: 'K8S_TOKEN=/opt/secrets/kubeconfig'
+    create: yes
+
+- name: SonarQube IP'yi dosyadan oku
+  command: cat /opt/secrets/sonarqube_ip
+  register: sonarqube_ip_raw
+
+- name: SONAR_URL bilgisini oluştur
+  set_fact:
+    sonar_url: "http://{{ sonarqube_ip_raw.stdout }}:9000"
+
+- name: SonarQube secret'ı oku
+  command: cat /opt/secrets/sonarqube_secret
+  register: sonarqube_token_raw
+
+- name: SONAR_URL /etc/environment'a yaz
+  lineinfile:
+    path: /etc/environment
+    line: "SONAR_URL={{ sonar_url }}"
+    create: yes
+
+- name: SONAR_TOKEN /etc/environment'a yaz
+  lineinfile:
+    path: /etc/environment
+    line: "SONAR_TOKEN={{ sonarqube_token_raw.stdout }}"
+    create: yes
+
+- name: SONAR_URL Jenkins ortamına yaz
+  lineinfile:
+    path: /etc/default/jenkins
+    line: "SONAR_URL={{ sonar_url }}"
+    create: yes
+
+- name: SONAR_TOKEN Jenkins ortamına yaz
+  lineinfile:
+    path: /etc/default/jenkins
+    line: "SONAR_TOKEN={{ sonarqube_token_raw.stdout }}"
+    create: yes
+
+- name: jcasc.yaml yolunu tanımla (/etc/default/jenkins içine)
+  lineinfile:
+    path: /etc/default/jenkins
+    line: 'CASC_JENKINS_CONFIG=/var/lib/jenkins/jcasc.yaml'
+    create: yes
+
+- name: /var/lib/jenkins dizinini oluştur
+  file:
+    path: /var/lib/jenkins
+    state: directory
+    owner: jenkins
+    group: jenkins
+    mode: '0755'
+
+- name: jcasc.yaml dosyasını tekrar kopyala
+  copy:
+    src: "{{ playbook_dir }}/roles/jenkins/files/jcasc.yaml"
+    dest: /var/lib/jenkins/jcasc.yaml
+    owner: jenkins
+    group: jenkins
+    mode: '0644'
+    force: yes
+
+- name: Jenkins'i yeniden başlat (JCasC değişkenleri ve yapılandırma aktif olsun diye)
+  systemd:
+    name: jenkins
+    state: restarted
+
+
