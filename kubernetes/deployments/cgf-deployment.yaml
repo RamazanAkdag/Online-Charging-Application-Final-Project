@@ -17,7 +17,7 @@ spec:
       containers:
       - name: charging-gateway-function
         image: beko2001/charging-gateway-function:latest
-        imagePullPolicy: always
+        imagePullPolicy: "Always"
         ports:
         - containerPort: 5833
         env:
