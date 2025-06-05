@@ -47,6 +47,15 @@
     group: nexus
     mode: '0644'
 
+- name: Disable random admin password generation
+  lineinfile:
+    path: /opt/sonatype-work/nexus3/etc/nexus.properties
+    line: 'nexus.security.randompassword=false'
+    create: yes
+    owner: nexus
+    group: nexus
+    mode: '0644'
+
 - name: Create systemd service
   copy:
     dest: /etc/systemd/system/nexus.service
@@ -74,6 +83,7 @@
         enabled: yes
         state: started
 
+
 - name: Write Nexus IP to temp file
   copy:
     content: "{{ ansible_host }}"
@@ -99,3 +109,21 @@
     mode: '0600'
   delegate_to: "{{ groups['jenkins'][0] }}"
 
+
+- name: /opt/secrets dizinini oluştur Jenkins'te
+  file:
+    path: /opt/secrets
+    state: directory
+    owner: jenkins
+    group: jenkins
+    mode: '0700'
+  delegate_to: "{{ groups['jenkins'][0] }}"
+
+- name: Nexus şifresini Jenkins'e kopyala
+  copy:
+    src: "../../../../jenkins/nexus_password"
+    dest: /opt/secrets/nexus_password
+    owner: jenkins
+    group: jenkins
+    mode: '0600'
+  delegate_to: "{{ groups['jenkins'][0] }}"

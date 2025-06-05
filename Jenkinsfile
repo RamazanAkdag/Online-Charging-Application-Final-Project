@@ -1,6 +1,7 @@
 pipeline {
     agent any
 
+
     tools {
         jdk 'jdk17'
         maven 'maven3'
@@ -51,10 +52,12 @@ pipeline {
                         -Dsonar.java.binaries=. \
                         -Dsonar.token=$SONAR_TOKEN \
                         -Dsonar.host.url=http://$SONAR_HOST:9000 \
+                        -Dsonar.exclusions=settings.xml,trivy-fs-report.html \
                     | tee sonar-log.txt
                 '''
             }
         }
+
 
         stage('Quality Gate') {
             steps {
@@ -117,20 +120,65 @@ pipeline {
             }
         }
 
-
-        stage('Parse Nexus IP and Deploy to Nexus') {
+        stage('Inject Nexus Info into Parent POM') {
             steps {
                 script {
-                    def nexusIp = sh(
-                        script: "cat /opt/secrets/nexus_ip",
-                        returnStdout: true
-                    ).trim()
-                    echo "📡 Nexus IP: ${nexusIp}"
+                    def nexusIp = sh(script: "cat /opt/secrets/nexus_ip", returnStdout: true).trim()
 
-                    sh """
-                        mvn clean deploy \\
-                        -DaltDeploymentRepository=nexus::default::http://${nexusIp}:8081/repository/maven-releases/
-                    """
+                    sh '''
+                        NEXUS_IP=$(cat /opt/secrets/nexus_ip)
+                        sed -i '/<\\/project>/i \
+                        <distributionManagement>\\n\
+                            <repository>\\n\
+                            <id>maven-releases</id>\\n\
+                            <url>http://'"$NEXUS_IP"':8081/repository/maven-releases/</url>\\n\
+                            </repository>\\n\
+                            <snapshotRepository>\\n\
+                            <id>maven-snapshots</id>\\n\
+                            <url>http://'"$NEXUS_IP"':8081/repository/maven-snapshots/</url>\\n\
+                            </snapshotRepository>\\n\
+                        </distributionManagement>' pom.xml
+                        '''
+
+                }
+            }
+        }
+
+        stage('Create Maven Settings with Nexus Credentials') {
+            steps {
+                script {
+                    def nexusUser = "admin"
+                    def nexusPass = sh(script: "cat /opt/secrets/nexus_password", returnStdout: true).trim()
+
+                    def settingsXml = """
+        <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+        <servers>
+            <server>
+            <id>maven-releases</id>
+            <username>${nexusUser}</username>
+            <password>${nexusPass}</password>
+            </server>
+            <server>
+            <id>maven-snapshots</id>
+            <username>${nexusUser}</username>
+            <password>${nexusPass}</password>
+            </server>
+        </servers>
+        </settings>
+        """
+                    writeFile file: 'settings.xml', text: settingsXml
+                }
+            }
+        }
+
+
+
+        stage('Deploy Artifacts to Nexus') {
+            steps {
+                script {
+                    sh "mvn clean deploy -DskipTests --settings settings.xml"
                 }
             }
         }
