@@ -5,6 +5,7 @@
       - openjdk-17-jre
       - git
       - curl
+      - jq
     state: present
     update_cache: yes
 
