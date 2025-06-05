@@ -6,6 +6,27 @@
     group: jenkins
     mode: '0755'
 
+
+- name: docker_secret dosyasını kopyala
+  copy:
+    src: "{{ playbook_dir }}/roles/jenkins/files/docker_secret"
+    dest: /opt/secrets/docker_secret
+    owner: jenkins
+    group: jenkins
+    mode: '0600'
+
+- name: DOCKER_TOKEN ortam değişkenini /etc/environment'a yaz
+  lineinfile:
+    path: /etc/environment
+    line: "DOCKER_TOKEN=/opt/secrets/docker_secret"
+    create: yes
+
+- name: DOCKER_TOKEN ortam değişkenini Jenkins ortamına yaz
+  lineinfile:
+    path: /etc/default/jenkins
+    line: "DOCKER_TOKEN=/opt/secrets/docker_secret"
+    create: yes
+
 - name: mail_cred dosyasını kopyala
   copy:
     src: "{{ playbook_dir }}/roles/jenkins/files/mail_cred"
