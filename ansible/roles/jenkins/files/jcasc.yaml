@@ -92,13 +92,14 @@ jobs:
                 remote {
                   url('https://github.com/RamazanAkdag/Online-Charging-Application-Final-Project.git')
                 }
-                branches('*/new_main')
+                branches('*/ansible')
               }
             }
-            scriptPath('jenkins/Jenkinsfile')
+            scriptPath('Jenkinsfile')  // 📌 Kök dizindeyse sadece bu
           }
         }
         logRotator {
           numToKeep(10)
         }
       }
+
