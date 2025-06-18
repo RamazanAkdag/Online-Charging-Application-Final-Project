@@ -38,9 +38,3 @@ spec:
               value: PLAINTEXT
             - name: KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR
               value: "1"
-          command: [ "sh", "-c" ]
-          args:
-            - |
-              export KAFKA_BROKER_ID=$(echo ${HOSTNAME##*-})
-              export KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://${HOSTNAME}.kafka-headless.${POD_NAMESPACE}.svc.cluster.local:9092
-              /etc/confluent/docker/run
