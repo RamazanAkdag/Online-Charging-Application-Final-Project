@@ -14,7 +14,7 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps {
-                git branch: 'ansible', url: 'https://github.com/RamazanAkdag/Online-Charging-Application-Final-Project'
+                git branch: 'master', url: 'https://github.com/RamazanAkdag/Online-Charging-Application-Final-Project'
             }
         }
 
