@@ -1,7 +1,10 @@
+cat kafka.yml 
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: kafka
+  labels:
+    app: kafka
 spec:
   serviceName: kafka-headless
   replicas: 1
@@ -13,11 +16,15 @@ spec:
       labels:
         app: kafka
     spec:
+      securityContext:
+        fsGroup: 1000
       containers:
         - name: kafka
-          image: confluentinc/cp-kafka:latest
+          image: confluentinc/cp-kafka:7.3.3
+          imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 9092
+            - name: client
+              containerPort: 9092
           env:
             - name: KAFKA_ZOOKEEPER_CONNECT
               value: zookeeper:2181
@@ -32,4 +39,4 @@ spec:
             - name: KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR
               value: "1"
             - name: KAFKA_BROKER_ID
-              value: "0"  # Sayısal broker ID verildi
+              value: "0"
