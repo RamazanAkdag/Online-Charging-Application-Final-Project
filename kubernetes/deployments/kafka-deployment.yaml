@@ -32,7 +32,4 @@ spec:
             - name: KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR
               value: "1"
             - name: KAFKA_BROKER_ID
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.name
-          # volumeMounts yok çünkü veri saklamıyoruz
+              value: "0"  # Sayısal broker ID verildi
